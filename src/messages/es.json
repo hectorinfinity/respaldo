@@ -1,0 +1,94 @@
+{
+  "Header_Tool": {
+    "login": {
+      "login": "Log In"
+    }
+  },
+  "Header_Nav": {
+    "menu": {
+      "home": "Inicio",
+      "category": "Categorías",
+      "program": "Programas",
+      "search": "Búsqueda"
+    },
+    "message": {
+      "open": "Abrir menú principal",
+      "close": "Cerrar menú"
+    }
+  },
+  "Footer_Titles": {
+    "social": "Sigue Nuestras Redes",
+    "download": "Descarga nuestra app",
+    "help": "Ayuda",
+    "information": "Información",
+    "page": "Páginas",
+    "legal": "Legal",
+    "newsletter": {
+      "title": "Suscríbete a nuestro boletín",
+      "subtitle": "Los últimos eventos, noticias, artículos y recursos, enviados a su bandeja de entrada semanalmente.",
+      "email": "Correo Electrónico",
+      "email_enter": "Ingresa tu correo electrónico",
+      "subscribe": "Subscribirme"
+    },
+    "term": {
+      "text": "Al continuar en esta pagina, usted acuerda regirse por nuestros ",
+      "name": "Términos y Condiciones"
+    },
+    "right": "©️ 2021-2023 - Todos los derechos reservados."
+  },
+  "Footer_Menu": {
+    "help": {
+      "contact": "Contacto",
+      "faq": "Preguntas Frecuentes"
+    },
+    "information": {
+      "advert": "Anuncios",
+      "about": "Acerca de",
+      "donation": "Donaciones",
+      "partner": "Socios",
+      "ticket": "Información de Boletos"
+    },
+    "page": {
+      "category": "Categorías",
+      "newsletter": "Newsletter",
+      "program": "Programas",
+      "search": "Búsqueda"
+    },
+    "legal": {
+      "privacy": "Politicas de Privacidad",
+      "term": "Términos y Condiciones"
+    }
+  },
+
+  "LA_Comment_Btns": "/////////////////////////////////////// Landing Page Contact US Button",
+  "btn_contact": "Contáctanos",
+  
+  "LA_Comment_About": "/////////////////////////////////////// Landing Page About Section",
+  "About": {
+    "page": "Acerca de nosotros",
+
+    "about": "Nuestra compañía",
+    "about_desc": "Somos una empresa enfocada en la difusión de eventos culturales a nivel mundial.",
+
+    "mision": "Mision",
+    "mision_desc": "Permitir difundir, promocionar y encontrar eventos culturales a través de un único medio.",
+
+    "vision": "Vision",
+    "vision_desc": "Ser el principal y distintivo medio digital de difusión y búsqueda de eventos.",
+
+    "offert": "¿Qué ofrecemos?",
+
+    "public": "Pública tus eventos de manera gratuita.",
+    "visualize": "Visualiza según tu zona geográfica.",
+    "mark": "Marca tus eventos como me interesa o asistiré.",
+    "share": "Comparte tus eventos favoritos.",
+    "route": "Traza la ruta al evento."
+  },
+
+  "LA_Comment_Advert": "/////////////////////////////////////// Landing Page Advert Section",
+  "Advert": {
+    "page": "Publicidad",
+    
+    "ijd": ""
+  }
+}

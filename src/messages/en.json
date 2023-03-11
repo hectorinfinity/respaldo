@@ -1,0 +1,212 @@
+{
+  "Header_Tool": {
+    "login": {
+      "login": "Log In"
+    }
+  },
+  "Header_Nav": {
+    "menu": {
+      "home": "Home",
+      "category": "Categories",
+      "program": "Programs",
+      "search": "Search"
+    },
+    "message": {
+      "open": "Open main menu",
+      "close": "Close menu"
+    }
+  },
+  "Footer_Titles": {
+    "social": "Follow us",
+    "download": "Download our app",
+    "help": "Help",
+    "information": "Information",
+    "page": "Pages",
+    "legal": "Legal",
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "subtitle": "The latest events, news, articles, and resources, sent to your inbox weekly.",
+      "email": "Email address",
+      "email_enter": "Enter your email",
+      "subscribe": "Subscribe"
+    },
+    "term": {
+      "text": "By continuing on this site, you agree to be bound by our terms and conditions ",
+      "name": "Terms and Conditions"
+    },
+    "right": "© 2021-2023 - All rights reserved."
+  },
+  "Footer_Menu": {
+    "help": {
+      "contact": "Contact Us",
+      "faqs": "FAQ's"
+    },
+    "information": {
+      "advert": "Advertisements",
+      "about": "About Us",
+      "donation": "Donations",
+      "partner": "Partners",
+      "ticket": "Ticket Information"
+    },
+    "page": {
+      "category": "Categories",
+      "newsletter": "Newsletter",
+      "program": "Programs",
+      "search": "Search"
+    }
+    ,
+    "legal": {
+      "privacy": "Privacy Policy",
+      "term": "Terms and Conditions"
+    }
+  },
+
+  "LA_Comment_Btns": "/////////////////////////////////////// Landing Page Contact US Button",
+  "btn": {
+    "subscribe_me": "Subscribe me",
+    "contact_us": "Contact Us",
+    "create_event": "Create An Event"
+  },
+  
+  "LA_Comment_About": "/////////////////////////////////////// Landing Page About Section",
+  "About": {
+    "page": "About Us",
+
+    "about": "About our company",
+    "about_desc": "We are a company focused on the dissemination of cultural events worldwide.",
+
+    "mision": "Mision",
+    "mision_desc": "Allow to disseminate, promote and find cultural events through a single medium.",
+
+    "vision": "Vision",
+    "vision_desc": "To be the main and distinctive digital medium for the diffusion and search of events",
+
+    "offert": "What we offer?",
+
+    "public": "Publish your events for free.",
+    "visualize": "View according to your geographical area.",
+    "mark": "Mark your events as I am interested or I will attend.",
+    "share": "Share your favorite events.",
+    "route": "Trace the route to the event."
+  },
+
+  "LA_Comment_Advert": "/////////////////////////////////////// Landing Page Advert Section",
+  "Advert": {
+    "page": "Advertisements",
+    
+    "question": "Do you want to advertise with us?",
+    "answer": "We have the following advertising options",
+
+    "target": "Targeted advertising to events",
+    "target_desc": "Advertise your events on our website and mobile app by appearing in recommended events.",
+
+    "social": "Social Media",
+    "social_desc": "We offer you the possibility of creating a specialized campaign to publicize your event on social networks.\n\n We offer you to be advertised on our social networks with the creative support of our marketing team.",
+
+    "advert": "Advertisements",
+    "advert_desc": "Banners and Recommendations\n\n It appears in the different sections of the website and mobile application, this service can be contracted from the administrative panel as an event promoter.",
+
+    "newsletter": "Newsletter",
+    "newsletter_desc": "Do you want to appear in our newsletter? We offer you a space for your company in our monthly newsletter.",
+
+    "ticket": "Tickets",
+    "ticket_desc": "Advertise on our digital and physical tickets."
+  },
+
+  "LA_Comment_Contact": "/////////////////////////////////////// Landing Page Contact Section",
+  "Contact": {
+    "page": "Contact Us",
+    
+    "question": "Do you want to advertise with us?",
+    "answer": "We have the following advertising options",
+
+    "target": "Targeted advertising to events",
+    "target_desc": "Advertise your events on our website and mobile app by appearing in recommended events.",
+
+    "social": "Social Media",
+    "social_desc": "We offer you the possibility of creating a specialized campaign to publicize your event on social networks.\n\n We offer you to be advertised on our social networks with the creative support of our marketing team.",
+
+    "advert": "Advertisements",
+    "advert_desc": "Banners and Recommendations\n\n It appears in the different sections of the website and mobile application, this service can be contracted from the administrative panel as an event promoter.",
+
+    "newsletter": "Newsletter",
+    "newsletter_desc": "Do you want to appear in our newsletter? We offer you a space for your company in our monthly newsletter.",
+
+    "ticket": "Tickets",
+    "ticket_desc": "Advertise on our digital and physical tickets."
+  },
+
+  "LA_Comment_Donation": "/////////////////////////////////////// Landing Page Donation Section",
+  "Donation": {
+    "page": "Donation",
+    
+    "question": "Do you want your foundation to receive any of our donations?",
+    "answer": "Get in touch with us, we will send you the requirements to include in our donation program.",
+
+    "how_question": "How does it work?",
+    "how_answer": "The promoter publishes and sells his tickets with us, the promoter proposes, chooses or allows us to choose a foundation from our list.\n\nOnce the net proceeds are obtained, we set aside 2% per ticket and donate it to the chosen foundation.",
+
+    "fundations": "Our fundations"
+  },
+
+  "LA_Comment_Newsletter": "/////////////////////////////////////// Landing Page Newsletter Section",
+  "Newsletter": {
+    "page": "Newsletter",
+    
+    "title": "Subscribe to our mailing list",
+    "subtitle": "Join our mailing list to stay up to date with cultural news and upcoming events.",
+
+    "email": "Email"
+  },
+
+  "LA_Comment_Partners": "/////////////////////////////////////// Landing Page Partners Section",
+  "Partners": {
+    "page": "Partners",
+    
+    "question": "Do you want to be part of our alliances or partners?",
+    "answer": "Communicate through any means of contact and lets work together to take culture to another level.",
+
+    "resume": "At Ctickets we have the best alliances and strategic partners, which allow us to bring you closer to culture and provide you with the best quality in all our services.",
+    "alliances": "Strategic Alliances",
+    "partners": "Partners"
+  },
+
+  "LA_Comment_Ticket": "/////////////////////////////////////// Landing Page Ticket Section",
+  "Ticket": {
+    "page": "Ticket Info",
+
+    "header_title": "Advanced Event Management",
+    "header_subtitle": "Promote, sell and manage tickets for your events.",
+    "header_start": "Start now, it's free",
+    
+    "title": "Your Event, Your Rules",
+    "subtitle": "Manage all your events in one place.",
+
+    "monitor": "Monitor the scope of your events through an administrative panel",
+    "monitor_desc": "Translate data into information, process the one that leads to higher profits and better marketing strategies.",
+    "monitor_list_1": "Visits",
+    "monitor_list_2": "Likes",
+    "monitor_list_3": "Shared",
+
+    "sell": "Sell tickets on-line",
+    "sell_desc": "We offer the availability of ticket office with the lowest commission in the market.",
+    "sell_list_1": "Sell immediately",
+    "sell_list_2": "Flexible prices",
+    "sell_list_3": "If your even is free, our services are too",
+
+    "marketing": "Advertising and Marketing",
+    "marketing_desc": "Reach millions of regular event attendees through our mobile app, website, social media, tickets, newsletter and blog.",
+    "marketing_list_1": "Competitive prices",
+    "marketing_list_2": "Dissemination at the local, state, national or international level",
+
+    "design": "Design and Content",
+    "design_desc": "Our creative team is at your disposal for the creation and design of content to generate the best possible experience",
+    "design_list_1": "Event templates",
+    "design_list_2": "Advertisement",
+
+    "client": "Attention to the Client",
+    "client_desc": "We have your back with our customer service, we also take care of your customers doubts.",
+    "client_list_1": "Our team is your team",
+    "client_list_2": " Count on us"
+  }
+}
