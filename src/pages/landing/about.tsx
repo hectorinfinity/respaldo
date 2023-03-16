@@ -2,10 +2,12 @@
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-
+// Layout and Header
 import MainLayout from "@/components/layout/main";
 import Header from "@/components/headers/landing/header";
 import Section from "@/components/headers/landing/section";
+// Helpers
+import { CurrentColor } from "@/helpers/currentColor";
 // Images
 import image from "public/images/assets/landing/about/slide.jpg";
 import us from "public/images/assets/landing/about/us.png";
@@ -20,17 +22,18 @@ import vector5 from "public/images/assets/landing/about/vector5.png";
 
 const About = () => {
   const t = useTranslations("About");
+  const currentColor = CurrentColor();
 
   return (
     <>
       <Header image={image} />
-      <Section title={t('page')} gradiant="h-[129px] w-[100%] pl-[20px] lg:pl-[200px] py-[35px] bg-gradient-to-b from-customBlue via-customBlue to-white" />
+      <Section title={t('page')} color={currentColor}/>
 
       <div className="relative h-fit w-full">
         <div className="flex justify-center">
           <div className="py-5 md:float-none md:inline-block md:mx-20 lg:float-none lg:inline-block lg:mx-20">
             <div className="items-center md:float-left lg:px-5">
-              <h1 className="text-[#2D2C9C] text-[36px] font-bold">{t('about')}</h1>
+              <h1 className={`text-${currentColor} text-[36px] font-bold`}>{t('about')}</h1>
               <div className="px-[20px] text-center flex items-center w-[300px] h-[100px] md:w-[350px] md:h-[150px] lg:w-[450px] lg:h-[200px] bg-[#F2F2F2] rounded-[20px] border-[1px] border-black">
               {t('about_desc')}
               </div>
@@ -46,7 +49,7 @@ const About = () => {
               <Image src={mision} alt="us" className="w-[220px] md:w-[240px] lg:w-[300px]" />
             </div>
             <div className="items-center md:float-left lg:px-5">
-              <h1 className="text-[#2D2C9C] text-[36px] font-bold">{t('mision')}</h1>
+              <h1 className={`text-${currentColor} text-[36px] font-bold`}>{t('mision')}</h1>
               <div className="px-[20px] text-center flex items-center w-[300px] h-[100px] md:w-[350px] md:h-[150px] lg:w-[450px] lg:h-[200px] bg-[#F2F2F2] rounded-[20px] border-[1px] border-black">
               {t('mision_desc')}
               </div>
@@ -56,7 +59,7 @@ const About = () => {
         <div className="flex justify-center">
           <div className="py-5 md:float-none md:inline-block md:mx-20 lg:float-none lg:inline-block lg:mx-20">
             <div className="items-center md:float-left lg:px-5">
-              <h1 className="text-[#2D2C9C] text-[36px] font-bold">{t('vision')}</h1>
+              <h1 className={`text-${currentColor} text-[36px] font-bold`}>{t('vision')}</h1>
               <div className="px-[20px] text-center flex items-center w-[300px] h-[100px] md:w-[350px] md:h-[150px] lg:w-[450px] lg:h-[200px] bg-[#F2F2F2] rounded-[20px] border-[1px] border-black">
               {t('vision_desc')}
               </div>

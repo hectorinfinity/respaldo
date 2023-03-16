@@ -1,11 +1,17 @@
 /** @format */
 import { GetStaticPropsContext } from "next";
+import Image from "next/image";
+import Link from "next/link";
+// Layout and Header
 import MainLayout from "@/components/layout/main";
+//Images
+import image from "public/images/assets/landing/home/slide_01.jpg";
+
 const Home = () => {
   return (
-    <div className="flex h-fit w-full flex-col">
-      Hola
-    </div>
+    <div className="relative bg-white">
+        Hola
+     </div>
   );
 };
 

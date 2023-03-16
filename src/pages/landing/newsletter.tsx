@@ -1,64 +1,97 @@
 /** @format */
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-
+// Layout and Header
 import MainLayout from "@/components/layout/main";
 import Header from "@/components/headers/landing/header";
 import Section from "@/components/headers/landing/section";
+// Form
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { CustomError } from '@/components/forms';
+// Helpers
+import { CurrentColor, FormStyles } from "@/helpers/index";
+// Interface
+import { Newslatter } from "@/interfaces/newslatter";
+// Icons
+import { CalendarDaysIcon, HandRaisedIcon } from '@heroicons/react/24/outline';
 // Images
 import image from "public/images/assets/landing/newsletter/slide.jpg";
 
+const validationSchema = yup.object().shape({
+  email: yup.string().email().required()
+});
+
 const Newsletter = () => {
   const t = useTranslations("Newsletter");
+  const tc = useTranslations("Common_Forms");
   const tb = useTranslations("btn");
+  const currentColor = CurrentColor();
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<Newslatter>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmitHandler = (data: Newslatter) => {
+    console.log({ data });
+    reset();
+    // Handle Submit Form
+  };
 
   return (
     <>
       <Header image={image} />
-      <Section title={t('page')} gradiant="h-[129px] w-[100%] pl-[20px] lg:pl-[200px] py-[35px] bg-gradient-to-b from-customGreen via-customGreen to-white" />
+      <Section title={t('page')} color={currentColor} />
 
-      <div className="relative h-fit w-full">
-        <div className="px-[5vw] py-10">
-
-          <div className="md:hidden inline-block">
-            <div className="flex justify-center">
-              <Image
-                src={image}
-                className="h-fit w-[70%] md:w-[80%] object-contain"
-                alt="main"
-              />
-            </div>
-          </div>
-
-          <div className="flex h-[80vw] md:h-[40vw] lg:h-[25vw] w-full items-start justify-center content-center">
-            <div className="hidden md:flex items-center justify-center self-center">
-              <Image
-                src={image}
-                className="h-fit w-[70%] md:w-[80%] object-contain"
-                alt="main"
-              />
-            </div>
-            <div className="flex h-full w-[200%] md:w-[80%] lg:w-[60%] flex-col justify-between">
-              <h1 className="text-lg md:text-3xl lg:text-5xl font-bold">
-              {t('title')}
-              </h1>
-              <div className="flex w-[100%] md:w-[80%] flex-col space-y-6">
-                <p className="text-sm md:text-lg lg:text-2xl font-bold text-[#4B4B4D]">
+      <div className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:max-w-none lg:grid-cols-2">
+            <div className="max-w-xl lg:max-w-lg">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t('title')}</h2>
+              <p className="mt-4 text-lg leading-8 text-customGray">
                 {t('subtitle')}
-                </p>
-                <input
-                  type="text"
-                  name=""
-                  className="w-[100%] rounded-xl border border-[#6363632f] bg-white py-2 px-6 text-sm font-bold text-[#7b7b7b] shadow-sm shadow-customShadow outline-none placeholder:text-base placeholder:text-[#7b7b7b] active:ring-0 "
-                  id=""
-                  placeholder={t('email')}
-                />
-                <button className=" rounded-md border-0 bg-customGreen hover:bg-customYellow py-2 px-2 text-sm font-bold text-white shadow-lg shadow-customShadow active:ring-0 ">
-                {tb('subscribe_me')}
-                </button>
+              </p>
+              <div className="mt-6 flex flex-2 flex-col max-w-md gap-x-4">
+                <form onSubmit={handleSubmit(onSubmitHandler)} method="POST">
+                  <input
+                        id="email"
+                        type="email"
+                        autoComplete={tc('auto_email')}
+                        placeholder={tc('field_email')}
+                        className={FormStyles('input')}
+                        {...register('email')}
+                      />
+                      <CustomError error={errors.email?.message} />
+                  <button
+                    type="submit"
+                    className={`flex-none rounded-md text-white bg-${currentColor} py-2.5 px-3.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
+                  >
+                    {tb('subscribe_me')}
+                  </button>
+                </form>
               </div>
             </div>
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+              <div className="flex flex-col items-start">
+                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+                  <CalendarDaysIcon className="h-6 w-6" aria-hidden="true" />
+                </div>
+                <dt className="mt-4 font-semibold">{t('weekly')}</dt>
+                <dd className="mt-2 leading-7 text-customGray">
+                  {t('weekly_desc')}
+                </dd>
+              </div>
+              <div className="flex flex-col items-start">
+                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+                  <HandRaisedIcon className="h-6 w-6" aria-hidden="true" />
+                </div>
+                <dt className="mt-4 font-semibold">{t('spam')}</dt>
+                <dd className="mt-2 leading-7 text-customGray">
+                  {t('spam_desc')}
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>

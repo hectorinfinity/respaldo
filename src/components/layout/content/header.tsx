@@ -1,7 +1,5 @@
 /** @format */
-
-import { ToolBar } from "./header/toolbar";
-import { NavBar } from "./header/navbar";
+import { ToolBar, NavBar } from "./header/index";
 
 export const Header = () => {
   return (

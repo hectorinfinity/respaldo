@@ -2,11 +2,37 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+// Form
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { CustomError } from '@/components/forms';
+// Helpers
+import { CurrentColor, FormStyles } from "@/helpers/index";
+// Interface
+import { Newslatter } from "@/interfaces/newslatter";
+
+const validationSchema = yup.object().shape({
+  email: yup.string().email().required()
+});
 
 export const Footer = () => {
   const tt = useTranslations("Footer_Titles");
   const tm = useTranslations("Footer_Menu");
+  const tc = useTranslations("Common_Forms");
   const tb = useTranslations("btn");
+
+  const currentColor = CurrentColor();
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<Newslatter>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmitHandler = (data: Newslatter) => {
+    console.log({ data });
+    reset();
+    // Handle Submit Form
+  };
 
   const navigation = {
     help: [
@@ -26,6 +52,7 @@ export const Footer = () => {
       { name: tm('page.search'), href: '/search' },
     ],
     legal: [
+      { name: tm('legal.cookie'), href: '/landing/cookies' },
       { name: tm('legal.privacy'), href: '/landing/privacy' },
       { name: tm('legal.term'), href: '/landing/term' },
     ],
@@ -58,7 +85,7 @@ export const Footer = () => {
       },
     ],
   }
-  
+
   return (
     <footer className="bg-black" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
@@ -148,23 +175,19 @@ export const Footer = () => {
               {tt('newsletter.subtitle')}
             </p>
           </div>
-          <form className="mt-6 sm:flex sm:max-w-md lg:mt-0">
-            <label htmlFor="email-address" className="sr-only">
-              {tt('newsletter.email')}
-            </label>
+          <form onSubmit={handleSubmit(onSubmitHandler)} method="POST" className="mt-6 w-80 sm:flex sm:max-w-md lg:mt-0">
             <input
+              id="email"
               type="email"
-              name="email-address"
-              id="email-address"
-              autoComplete="email"
-              required
-              className="w-full min-w-0 appearance-none rounded-md border-0 bg-white/5 px-3 py-1.5 text-base text-white shadow-sm ring-1 ring-inset ring-white/10 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-amber-400 sm:w-56 sm:text-sm sm:leading-6"
-              placeholder={tt('newsletter.email_enter')}
+              autoComplete={tc('auto_email')}
+              placeholder={tc('field_email')}
+              className={FormStyles('input')}
+              {...register('email')}
             />
             <div className="mt-4 sm:mt-0 sm:ml-4 sm:flex-shrink-0">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md bg-customGreen py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-customYellow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className={`rounded-md border-0 bg-${currentColor} py-2 px-2 text-sm font-bold text-white shadow-lg shadow-customShadow active:ring-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
               >
                 {tb('subscribe_me')}
               </button>
@@ -173,10 +196,14 @@ export const Footer = () => {
         </div>
         <div className="mt-8 border-t border-white/10 pt-8 md:flex md:items-center md:justify-between">
           <p className="mt-8 text-xs leading-5 text-gray-400 md:order-1 md:mt-0">
-            {tt('term.text')}
+            {tt('continue.text_first')}
             <Link href="/landing/term" className="text-white no-underline decoration-0">
-            {tt('term.name')}
-              </Link>
+              {tt('continue.text_terms')}
+            </Link>
+            {tt('continue.text_conjuntion')}
+            <Link href="/landing/term" className="text-white no-underline decoration-0">
+              {tt('continue.text_cookies')}
+            </Link>
             .
           </p>
           <p className="mt-8 text-xs leading-5 text-gray-400 md:order-1 md:mt-0">

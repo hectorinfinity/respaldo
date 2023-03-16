@@ -1,4 +1,19 @@
 {
+  "Error": {
+    "403": {
+      "title": "Forbidden",
+      "subtitle": "Sorry, you don't have access to this module."
+    },
+    "404": {
+      "title": "Page not found",
+      "subtitle": "Sorry, we couldn’t find the page you’re looking for."
+    },
+    "500": {
+      "title": "Internal Server Error",
+      "subtitle": "Sorry, we are working to solve this."
+    },
+    "back": "Back to home"
+  },
   "Header_Tool": {
     "login": {
       "login": "Log In"
@@ -25,14 +40,13 @@
     "legal": "Legal",
     "newsletter": {
       "title": "Subscribe to our newsletter",
-      "subtitle": "The latest events, news, articles, and resources, sent to your inbox weekly.",
-      "email": "Email address",
-      "email_enter": "Enter your email",
-      "subscribe": "Subscribe"
+      "subtitle": "The latest events, news, articles, and resources, sent to your inbox weekly."
     },
-    "term": {
-      "text": "By continuing on this site, you agree to be bound by our terms and conditions ",
-      "name": "Terms and Conditions"
+    "continue": {
+      "text_first": "By continuing on this site, you agree to be bound by our ",
+      "text_terms": "Terms and Conditions",
+      "text_conjuntion": " & ",
+      "text_cookies": "Cookie Policy"
     },
     "right": "© 2021-2023 - All rights reserved."
   },
@@ -56,19 +70,26 @@
     }
     ,
     "legal": {
+      "cookie": "Cookies Policy",
       "privacy": "Privacy Policy",
       "term": "Terms and Conditions"
     }
   },
-
-  "LA_Comment_Btns": "/////////////////////////////////////// Landing Page Contact US Button",
+  
+  "Landing_Comment_Btns": "/////////////////////////////////////// Landing Page Contact US Button",
   "btn": {
     "subscribe_me": "Subscribe me",
     "contact_us": "Contact Us",
-    "create_event": "Create An Event"
+    "create_event": "Create An Event",
+
+    "form_change": "Change",
+
+    "form_cancel": "Cancel",
+    "form_save": "Save",
+    "form_send": "Send"
   },
   
-  "LA_Comment_About": "/////////////////////////////////////// Landing Page About Section",
+  "Landing_Comment_About": "/////////////////////////////////////// Landing Page About Section",
   "About": {
     "page": "About Us",
 
@@ -90,7 +111,7 @@
     "route": "Trace the route to the event."
   },
 
-  "LA_Comment_Advert": "/////////////////////////////////////// Landing Page Advert Section",
+  "Landing_Comment_Advert": "/////////////////////////////////////// Landing Page Advert Section",
   "Advert": {
     "page": "Advertisements",
     
@@ -113,30 +134,19 @@
     "ticket_desc": "Advertise on our digital and physical tickets."
   },
 
-  "LA_Comment_Contact": "/////////////////////////////////////// Landing Page Contact Section",
+  "Landing_Comment_Contact": "/////////////////////////////////////// Landing Page Contact Section",
   "Contact": {
     "page": "Contact Us",
     
-    "question": "Do you want to advertise with us?",
-    "answer": "We have the following advertising options",
+    "title": "Get in touch",
+    "subtitle": "We want to know more about you",
 
-    "target": "Targeted advertising to events",
-    "target_desc": "Advertise your events on our website and mobile app by appearing in recommended events.",
-
-    "social": "Social Media",
-    "social_desc": "We offer you the possibility of creating a specialized campaign to publicize your event on social networks.\n\n We offer you to be advertised on our social networks with the creative support of our marketing team.",
-
-    "advert": "Advertisements",
-    "advert_desc": "Banners and Recommendations\n\n It appears in the different sections of the website and mobile application, this service can be contracted from the administrative panel as an event promoter.",
-
-    "newsletter": "Newsletter",
-    "newsletter_desc": "Do you want to appear in our newsletter? We offer you a space for your company in our monthly newsletter.",
-
-    "ticket": "Tickets",
-    "ticket_desc": "Advertise on our digital and physical tickets."
+    "address": "Address",
+    "phone": "Phones",
+    "email": "Emails"
   },
 
-  "LA_Comment_Donation": "/////////////////////////////////////// Landing Page Donation Section",
+  "Landing_Comment_Donation": "/////////////////////////////////////// Landing Page Donation Section",
   "Donation": {
     "page": "Donation",
     
@@ -149,29 +159,36 @@
     "fundations": "Our fundations"
   },
 
-  "LA_Comment_Newsletter": "/////////////////////////////////////// Landing Page Newsletter Section",
+  "Landing_Comment_Newsletter": "/////////////////////////////////////// Landing Page Newsletter Section",
   "Newsletter": {
     "page": "Newsletter",
     
-    "title": "Subscribe to our mailing list",
-    "subtitle": "Join our mailing list to stay up to date with cultural news and upcoming events.",
+    "title": "Subscribe to our newsletter",
+    "subtitle": "Join our newsletter to stay up to date with cultural news and upcoming events.",
 
-    "email": "Email"
+    "email": "Email address",
+    "email_placeholder": "Enter your email",
+
+    "weekly": "Weekly Articles",
+    "weekly_desc": "Recibe the latest events, news, articles, and resources.",
+
+    "spam": "No spam",
+    "spam_desc": "We will only send you information related to our services."
   },
 
-  "LA_Comment_Partners": "/////////////////////////////////////// Landing Page Partners Section",
+  "Landing_Comment_Partners": "/////////////////////////////////////// Landing Page Partners Section",
   "Partners": {
     "page": "Partners",
     
     "question": "Do you want to be part of our alliances or partners?",
     "answer": "Communicate through any means of contact and lets work together to take culture to another level.",
 
-    "resume": "At Ctickets we have the best alliances and strategic partners, which allow us to bring you closer to culture and provide you with the best quality in all our services.",
+    "resume": "At CTickets we have the best alliances and strategic partners, which allow us to bring you closer to culture and provide you with the best quality in all our services.",
     "alliances": "Strategic Alliances",
     "partners": "Partners"
   },
 
-  "LA_Comment_Ticket": "/////////////////////////////////////// Landing Page Ticket Section",
+  "Landing_Comment_Ticket": "/////////////////////////////////////// Landing Page Ticket Section",
   "Ticket": {
     "page": "Ticket Info",
 
@@ -208,5 +225,185 @@
     "client_desc": "We have your back with our customer service, we also take care of your customers doubts.",
     "client_list_1": "Our team is your team",
     "client_list_2": " Count on us"
+  },
+
+  "Landing_Comment_Cookie": "/////////////////////////////////////// Landing Page Cookie Section",
+  "Cookie": {
+    "page": "Cookies Policy"
+  },
+
+  "Landing_Comment_Privacy": "/////////////////////////////////////// Landing Page Privacy Section",
+  "Privacy": {
+    "page": "Privacy Policy"
+  },
+
+  "Landing_Comment_Terms": "/////////////////////////////////////// Landing Page Terms Section",
+  "Term": {
+    "page": "Terms and Conditions"
+  },
+
+  "Panel_Comment": "/////////////////////////////////////// Panel Section",
+  "Panel": {
+    "title": "Control Panel"
+  },
+
+  "Panel_Comment_Menu": "/////////////////////////////////////// Panel Menu Section",
+  "Panel_Menu": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "event": "Event",
+    "pos": "Point of Sale",
+    "ticket": "Tickets",
+    "admin": "Admin"
+  },
+
+  "Panel_Comment_SideBar": "/////////////////////////////////////// Panel SideBar Section",
+  "Panel_SideBar": {
+    "profile": {
+      "favorite": "Favorites",
+      "info": "Personal Information",
+      "address": "Address",
+      "billing": "Billing",
+      "card": "Credit/Debit Cards",
+      "request": "Promotor Request",
+      "security": "Security",
+      "config": {
+        "config": "Configuration",
+        "general": "General",
+        "follow": "Follow",
+        "custom": "Custom",
+        "delete": "Delete Account"
+      }
+    },
+    "event": {
+      "event": "Events",
+      "discount": "Discount",
+      "special": "Special Category"
+    },
+    "ticket": {
+      "ticket": "Tickets",
+      "refund": "Refund",
+      "user": {
+        "user": "Users",
+        "app": "Application",
+        "pos": "Point of Sale"
+      }
+    },
+    "admin": {
+      "config": {
+        "config": "Config",
+        "setting": "Settings",
+        "cookie": "Cookies Policy",
+        "term": "Terms and Conditions",
+        "privacy": "Privacy Policy"
+      },
+      "event": {
+        "event": "Events",
+        "category": "Categories",
+        "subcategory": "Subategories",
+        "subsubcategory": "Sub-Subcategories",
+        "supplier": "Suppliers",
+        "tag": "tags",
+        "venue": "Venues"
+      },
+      "review": "Review",
+      "user": "Users"
+
+    }
+  },
+
+
+  "Forms": "/////////////////////////////////////// Forms",
+  "Error_Forms": {
+    "unique.email": "There is already an account with this email.",
+    
+    "default": "This value seems to be invalid.",
+    "email": "This value should be a valid email.",
+    "url": "This value should be a valid url.",
+    "number": "This value should be a valid number.",
+    "integer": "This value should be a valid integer.",
+    "digits": "This value should be digits.",
+    "alphanum": "This value should be alphanumeric.",
+    "notblank": "This value should not be blank.",
+    "notnull": "This value should not be blank.",
+    "required": "This value is required.",
+    "pattern": "This value seems to be invalid.",
+    "min": "This value should be greater than or equal to {{ limit }}.",
+    "max": "This value should be lower than or equal to {{ limit }}.",
+    "range": "This value should be between {{ limit }} and {{ limit }}.",
+    "minlength": "This value is too short. It should have {{ limit }} characters or more.",
+    "maxlength": "This value is too long. It should have {{ limit }} characters or fewer.",
+    "length": "This value length is invalid. It should be between {{ limit }} and {{ limit }} characters long.",
+    "mincheck": "You must select at least {{ limit }} choices.",
+    "maxcheck": "You must select {{ limit }} choices or fewer.",
+    "check": "You must select between {{ limit }} and {{ limit }} choices.",
+    "equalto": "This value should be the same.",
+    "equalto.email": "Your password should not be the same as your email.",
+    "euvatin": "Its not a valid VAT Identification Number.",
+    
+    "choice": "Choose a valid option.",
+    "passmatch": "The passwords doesn't match.",
+    "compromised": "This password has previously appeared in a data breach. Please choose a more secure alternative.",
+    "time": "The time format is invalid",
+    "datetime": "The date time format is invalid"
+  },
+
+  "Common_Forms": {
+    "field_search": "Search",
+    "auto_search": "search",
+    "place_search": "Search...",
+    
+    "field_pass": "Password",
+    "auto_pass": "current-password",
+
+    "field_repass": "Repeat Password",
+
+    "field_firstname": "First name",
+    "auto_firstname": "given name",
+
+    "field_surname": "Surname",
+    "auto_surname": "family name",
+
+    "field_username": "Username",
+    "auto_username": "username",
+
+    "field_email": "Email",
+    "auto_email": "email",
+
+    "field_phone": "Phone",
+    "auto_phone": "phone"
+  },
+
+  "Access_Forms": {
+    "title": "Sign in",
+    
+    "subtitle_new": "New to CTickets",
+    "subtitle_new_link": "Sign up for free",
+    "subtitle_have": "You have an account?",
+
+    "field_remember": "Remember me",
+    "forgot": "Forgot password?",
+    "signin": "Sin in",
+    "signup": "Sign Up",
+    "continue": "Or continue with"
+  },
+
+  "Contact_Form": {
+    "field_subject": "Subject",
+    "auto_subject": "subject",
+
+    "field_message": "Message",
+    "auto_message": "message"
+  },
+
+  "Profile_Form": {
+    "field_photo": "Photo",
+    "rs_photo": "user photo",
+
+    "field_sex": "Sex",
+    "place_sex": "Select your sex",
+
+    "field_birthday": "Birthday",
+    "auto_birthday": "birthday"
   }
 }
