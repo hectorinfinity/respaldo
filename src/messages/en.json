@@ -78,6 +78,8 @@
   
   "Landing_Comment_Btns": "/////////////////////////////////////// Landing Page Contact US Button",
   "btn": {
+    "form_back": "Back to form",
+
     "subscribe_me": "Subscribe me",
     "contact_us": "Contact Us",
     "create_event": "Create An Event",
@@ -141,6 +143,12 @@
     "title": "Get in touch",
     "subtitle": "We want to know more about you",
 
+    "success_title": "Your message has been sent successfully",
+    "success_subtitle": "Thank you very much, we will contact you as soon as possible!",
+    
+    "error_title": "An error occurred",
+    "error_subtitle": "Please try again or contact us through our social networks or WhatsApp.",
+
     "address": "Address",
     "phone": "Phones",
     "email": "Emails"
@@ -165,6 +173,9 @@
     
     "title": "Subscribe to our newsletter",
     "subtitle": "Join our newsletter to stay up to date with cultural news and upcoming events.",
+
+    "success_title": "Thanks for subscribe to our newsletter.",
+    "error_title": "An error occurred, please try again.",
 
     "email": "Email address",
     "email_placeholder": "Enter your email",
@@ -314,40 +325,6 @@
 
 
   "Forms": "/////////////////////////////////////// Forms",
-  "Error_Forms": {
-    "unique.email": "There is already an account with this email.",
-    
-    "default": "This value seems to be invalid.",
-    "email": "This value should be a valid email.",
-    "url": "This value should be a valid url.",
-    "number": "This value should be a valid number.",
-    "integer": "This value should be a valid integer.",
-    "digits": "This value should be digits.",
-    "alphanum": "This value should be alphanumeric.",
-    "notblank": "This value should not be blank.",
-    "notnull": "This value should not be blank.",
-    "required": "This value is required.",
-    "pattern": "This value seems to be invalid.",
-    "min": "This value should be greater than or equal to {{ limit }}.",
-    "max": "This value should be lower than or equal to {{ limit }}.",
-    "range": "This value should be between {{ limit }} and {{ limit }}.",
-    "minlength": "This value is too short. It should have {{ limit }} characters or more.",
-    "maxlength": "This value is too long. It should have {{ limit }} characters or fewer.",
-    "length": "This value length is invalid. It should be between {{ limit }} and {{ limit }} characters long.",
-    "mincheck": "You must select at least {{ limit }} choices.",
-    "maxcheck": "You must select {{ limit }} choices or fewer.",
-    "check": "You must select between {{ limit }} and {{ limit }} choices.",
-    "equalto": "This value should be the same.",
-    "equalto.email": "Your password should not be the same as your email.",
-    "euvatin": "Its not a valid VAT Identification Number.",
-    
-    "choice": "Choose a valid option.",
-    "passmatch": "The passwords doesn't match.",
-    "compromised": "This password has previously appeared in a data breach. Please choose a more secure alternative.",
-    "time": "The time format is invalid",
-    "datetime": "The date time format is invalid"
-  },
-
   "Common_Forms": {
     "field_search": "Search",
     "auto_search": "search",

@@ -1,4 +1,5 @@
 /** @format */
+import { useState } from "react";
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Form
@@ -29,6 +30,8 @@ const validationSchema = yup.object().shape({
 });
 
 const Contact = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [submittedError, setSubmittedError] = useState(false);
   const currentColor = CurrentColor();
   const t = useTranslations("Contact");
   const tc = useTranslations("Common_Forms");
@@ -41,6 +44,8 @@ const Contact = () => {
   });
 
   const onSubmitHandler = (data: Contact) => {
+    setSubmitted(false);
+    setSubmittedError(true);
     console.log({ data });
     reset();
     // Handle Submit Form
@@ -130,103 +135,129 @@ const Contact = () => {
               </dl>
             </div>
           </div>
-          <form onSubmit={handleSubmit(onSubmitHandler)} method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:py-20 lg:px-8">
-            <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-              <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
-                <div>
-                  <CustomLabel field="firstname" name={tc('field_firstname')} required />
-                  <div className="mt-2.5">
-                    <input
-                      id="firstname"
-                      type="text"
-                      autoComplete={tc('auto_firstname')}
-                      placeholder={tc('field_firstname')}
-                      className={FormStyles('input')}
-                      {...register('firstname')}
-                    />
-                    <CustomError error={errors.firstname?.message} />
+          {
+            submitted ? (
+                <div className="flex flex-col px-6 pb-24 pt-20 sm:pb-32 lg:py-20 lg:px-8">
+                  <h2 className="text-3xl tracking-wider font-bold mt-5 text-customGreenVan">
+                  {t('success_title')}
+                  </h2>
+                  <p className="mt-5">{t('success_subtitle')}</p>
+                </div>
+            ) : submittedError ? (
+                <div className="flex flex-1 flex-col px-6 pb-24 pt-20 sm:pb-32 lg:py-20 lg:px-8">
+                  <p className="text-xl text-customRed font-bold mt-5">
+                  {t('error_title')}
+                  </p>
+                  <p className="mt-5">{t('error_subtitle')}</p>
+                  <div className="flex justify-start mt-5">
+                    <button
+
+                      className={`rounded-md bg-${currentColor} w-[55%] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
+                      onClick={() => setSubmittedError(false)}
+                    >
+                      {tb('form_back')}
+                    </button>
                   </div>
                 </div>
-                <div>
-                  <CustomLabel field="surname" name={tc('field_surname')} required />
-                  <div className="mt-2.5">
-                    <input
-                      id="surname"
-                      type="text"
-                      autoComplete={tc('auto_surname')}
-                      placeholder={tc('field_surname')}
-                      className={FormStyles('input')}
-                      {...register('surname')}
-                    />
-                    <CustomError error={errors.surname?.message} />
+            ) : (
+              <form onSubmit={handleSubmit(onSubmitHandler)} method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:py-20 lg:px-8">
+                <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
+                  <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
+                    <div>
+                      <CustomLabel field="firstname" name={tc('field_firstname')} required />
+                      <div className="mt-2.5">
+                        <input
+                          id="firstname"
+                          type="text"
+                          autoComplete={tc('auto_firstname')}
+                          placeholder={tc('field_firstname')}
+                          className={FormStyles('input')}
+                          {...register('firstname')}
+                        />
+                        <CustomError error={errors.firstname?.message} />
+                      </div>
+                    </div>
+                    <div>
+                      <CustomLabel field="surname" name={tc('field_surname')} required />
+                      <div className="mt-2.5">
+                        <input
+                          id="surname"
+                          type="text"
+                          autoComplete={tc('auto_surname')}
+                          placeholder={tc('field_surname')}
+                          className={FormStyles('input')}
+                          {...register('surname')}
+                        />
+                        <CustomError error={errors.surname?.message} />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <CustomLabel field="email" name={tc('field_email')} required />
+                      <div className="mt-2.5">
+                        <input
+                          id="email"
+                          type="email"
+                          autoComplete={tc('auto_email')}
+                          placeholder={tc('field_email')}
+                          className={FormStyles('input')}
+                          {...register('email')}
+                        />
+                        <CustomError error={errors.email?.message} />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <CustomLabel field="phone" name={tc('field_phone')} required />
+                      <div className="mt-2.5">
+                        <input
+                          id="phone"
+                          type="tel"
+                          autoComplete={tc('auto_phone')}
+                          placeholder={tc('field_phone')}
+                          className={FormStyles('input')}
+                          {...register('phone')}
+                        />
+                        <CustomError error={errors.phone?.message} />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <CustomLabel field="subject" name={tf('field_subject')} required />
+                      <div className="mt-2.5">
+                        <input
+                          id="subject"
+                          type="text"
+                          autoComplete={tf('auto_subject')}
+                          placeholder={tf('field_subject')}
+                          className={FormStyles('input')}
+                          {...register('subject')}
+                        />
+                        <CustomError error={errors.subject?.message} />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                      <CustomLabel field="message" name={tf('field_message')} required />
+                      <div className="mt-2.5">
+                        <textarea
+                          id="message"
+                          rows={4}
+                          className={FormStyles('area')}
+                          defaultValue={''}
+                          {...register("message")}
+                        />
+                        <CustomError error={errors.message?.message} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-8 flex justify-end">
+                    <button
+                      type="submit"
+                      className={`rounded-md bg-${currentColor} px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
+                    >
+                      {tb('form_send')}
+                    </button>
                   </div>
                 </div>
-                <div className="sm:col-span-2">
-                  <CustomLabel field="email" name={tc('field_email')} required />
-                  <div className="mt-2.5">
-                    <input
-                      id="email"
-                      type="email"
-                      autoComplete={tc('auto_email')}
-                      placeholder={tc('field_email')}
-                      className={FormStyles('input')}
-                      {...register('email')}
-                    />
-                    <CustomError error={errors.email?.message} />
-                  </div>
-                </div>
-                <div className="sm:col-span-2">
-                  <CustomLabel field="phone" name={tc('field_phone')} required />
-                  <div className="mt-2.5">
-                    <input
-                      id="phone"
-                      type="tel"
-                      autoComplete={tc('auto_phone')}
-                      placeholder={tc('field_phone')}
-                      className={FormStyles('input')}
-                      {...register('phone')}
-                    />
-                    <CustomError error={errors.phone?.message} />
-                  </div>
-                </div>
-                <div className="sm:col-span-2">
-                  <CustomLabel field="subject" name={tf('field_subject')} required />
-                  <div className="mt-2.5">
-                    <input
-                      id="subject"
-                      type="text"
-                      autoComplete={tf('auto_subject')}
-                      placeholder={tf('field_subject')}
-                      className={FormStyles('input')}
-                      {...register('subject')}
-                    />
-                    <CustomError error={errors.subject?.message} />
-                  </div>
-                </div>
-                <div className="sm:col-span-2">
-                  <CustomLabel field="message" name={tf('field_message')} required />
-                  <div className="mt-2.5">
-                    <textarea
-                      id="message"
-                      rows={4}
-                      className={FormStyles('area')}
-                      defaultValue={''}
-                      {...register("message")}
-                    />
-                    <CustomError error={errors.message?.message} />
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8 flex justify-end">
-                <button
-                  type="submit"
-                  className={`rounded-md bg-${currentColor} px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
-                >
-                  {tb('form_send')}
-                </button>
-              </div>
-            </div>
-          </form>
+              </form>
+            )}
         </div>
       </div>
       <div className="relative isolate bg-white py-10">
@@ -248,3 +279,4 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     },
   };
 }
+

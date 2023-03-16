@@ -1,4 +1,5 @@
 /** @format */
+import { useState } from "react";
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
@@ -24,6 +25,8 @@ const validationSchema = yup.object().shape({
 });
 
 const Newsletter = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [submittedError, setSubmittedError] = useState(false);
   const t = useTranslations("Newsletter");
   const tc = useTranslations("Common_Forms");
   const tb = useTranslations("btn");
@@ -53,8 +56,31 @@ const Newsletter = () => {
                 {t('subtitle')}
               </p>
               <div className="mt-6 flex flex-2 flex-col max-w-md gap-x-4">
-                <form onSubmit={handleSubmit(onSubmitHandler)} method="POST">
-                  <input
+                {
+                  submitted ? (
+                    <div>
+                      <h2 className="text-3xl tracking-wider font-bold mt-5 text-customGreenVan">
+                        {t('success_title')}
+                      </h2>
+                    </div>
+                  ) : submittedError ? (
+                    <div>
+                      <h2 className="text-xl text-customRed font-bold mt-5">
+                        {t('error_title')}
+                      </h2>
+                      <div className="flex justify-start mt-5">
+                        <button
+
+                          className={`rounded-md bg-${currentColor} w-[55%] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
+                          onClick={() => setSubmittedError(false)}
+                        >
+                          {tb('form_back')}
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit(onSubmitHandler)} method="POST">
+                      <input
                         id="email"
                         type="email"
                         autoComplete={tc('auto_email')}
@@ -63,13 +89,14 @@ const Newsletter = () => {
                         {...register('email')}
                       />
                       <CustomError error={errors.email?.message} />
-                  <button
-                    type="submit"
-                    className={`flex-none rounded-md text-white bg-${currentColor} py-2.5 px-3.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
-                  >
-                    {tb('subscribe_me')}
-                  </button>
-                </form>
+                      <button
+                        type="submit"
+                        className={`mt-3 flex-none rounded-md text-white bg-${currentColor} py-2.5 px-3.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
+                      >
+                        {tb('subscribe_me')}
+                      </button>
+                    </form>
+                  )}
               </div>
             </div>
             <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
