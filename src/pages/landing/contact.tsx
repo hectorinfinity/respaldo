@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
-// Form
+// Forms
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { CustomError, CustomLabel } from '@/components/forms';
+import { CustomError, CustomLabel, CustomSubmit } from '@/components/forms';
 // Layout
 import MainLayout from "@/components/layout/main";
 import Header from "@/components/headers/landing/header";
@@ -35,7 +35,6 @@ const Contact = () => {
   const currentColor = CurrentColor();
   const t = useTranslations("Contact");
   const tc = useTranslations("Common_Forms");
-  const tf = useTranslations("Contact_Form");
   const tb = useTranslations("btn");
 
 
@@ -220,13 +219,13 @@ const Contact = () => {
                       </div>
                     </div>
                     <div className="sm:col-span-2">
-                      <CustomLabel field="subject" name={tf('field_subject')} required />
+                      <CustomLabel field="subject" name={tc('field_subject')} required />
                       <div className="mt-2.5">
                         <input
                           id="subject"
                           type="text"
-                          autoComplete={tf('auto_subject')}
-                          placeholder={tf('field_subject')}
+                          autoComplete={tc('auto_subject')}
+                          placeholder={tc('field_subject')}
                           className={FormStyles('input')}
                           {...register('subject')}
                         />
@@ -234,7 +233,7 @@ const Contact = () => {
                       </div>
                     </div>
                     <div className="sm:col-span-2">
-                      <CustomLabel field="message" name={tf('field_message')} required />
+                      <CustomLabel field="message" name={tc('field_message')} required />
                       <div className="mt-2.5">
                         <textarea
                           id="message"
@@ -248,12 +247,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="mt-8 flex justify-end">
-                    <button
-                      type="submit"
-                      className={`rounded-md bg-${currentColor} px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
-                    >
-                      {tb('form_send')}
-                    </button>
+                    <CustomSubmit typeText='send' />
                   </div>
                 </div>
               </form>

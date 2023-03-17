@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import { Disclosure } from "@headlessui/react";
+// Helpers
+import { classNames } from "@/helpers";
+// Components
 import { NavigationMenu } from "./navigationMenu";
 
 type Props = {
     path: string,
     color: string
-}
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
 }
 
 export const Navigation = ({path, color}: Props) => {
@@ -75,14 +74,13 @@ export const Navigation = ({path, color}: Props) => {
                                 <Disclosure.Panel className="space-y-1">
                                     {item.children.map((subItem) => (
                                         !subItem.children ? (
-                                            <Disclosure.Button
+                                            <Link
                                                 key={subItem.name}
-                                                as="a"
                                                 href={subItem.href}
                                                 className={`group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-${color} hover:text-white`}
                                             >
                                                 {subItem.name}
-                                            </Disclosure.Button>
+                                            </Link>
                                         ) : (
                                             <Disclosure as="div" key={item.name} className="space-y-1">
                                                 {({ open }) => (
@@ -109,14 +107,13 @@ export const Navigation = ({path, color}: Props) => {
                                                         </Disclosure.Button>
                                                         <Disclosure.Panel className="space-y-1">
                                                             {subItem.children.map((subSubItem) => (
-                                                                <Disclosure.Button
+                                                                <Link
                                                                     key={subSubItem.name}
-                                                                    as="a"
                                                                     href={subSubItem.href}
                                                                     className={`group flex w-full items-center rounded-md py-2 pl-16 pr-2 text-sm font-medium text-gray-600 hover:bg-${color} hover:text-white`}
                                                                 >
                                                                     {subSubItem.name}
-                                                                </Disclosure.Button>
+                                                                </Link>
                                                             ))}
                                                         </Disclosure.Panel>
                                                     </>

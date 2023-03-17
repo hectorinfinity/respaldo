@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Disclosure } from '@headlessui/react'
+// Helpers
+import { classNames } from "@/helpers";
 // Icons
 import {
     Squares2X2Icon,
@@ -14,10 +16,6 @@ import {
 type Props = {
     path: string,
     color: string
-}
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
 }
 
 export const Menu = ({path, color}: Props) => {

@@ -25,19 +25,18 @@ export function NavigationMenu(path: string) {
     const t = useTranslations("Panel_SideBar");
 
     const profile_navigation = [
-        { name: t('profile.favorite'), icon: HeartIcon, current: true, href: '/panel/profile/personal' },
-        { name: t('profile.info'), icon: UsersIcon, current: false, href: '/panel/profile/personal' },
+        { name: t('profile.info'), icon: UsersIcon, current: false, href: '/panel/profile' },
         { name: t('profile.address'), icon: MapPinIcon, current: false, href: '/panel/profile/address' },
         { name: t('profile.billing'), icon: BanknotesIcon, current: false, href: '/panel/profile/billing' },
-        { name: t('profile.card'), icon: CreditCardIcon, current: false, href: '/panel/profile/cards' },
+        { name: t('profile.card'), icon: CreditCardIcon, current: false, href: '/panel/profile/card' },
         { name: t('profile.request'), icon: ArrowPathRoundedSquareIcon, current: false, href: '/panel/profile/request' },
         { name: t('profile.security'), icon: LockClosedIcon, current: false, href: '/panel/profile/security' },
         {
             name: t('profile.config.config'), icon: Cog8ToothIcon, current: false, children: [
-                { name: t('profile.config.general'), href: '/panel/profile/general' },
-                { name: t('profile.config.follow'), href: '/panel/profile/follow' },
-                { name: t('profile.config.custom'), href: '/panel/profile/custom' },
-                { name: t('profile.config.delete'), href: '/panel/profile/delete' },
+                { name: t('profile.config.general'), href: '/panel/profile/config' },
+                { name: t('profile.config.follow'), href: '/panel/profile/config/follow' },
+                { name: t('profile.config.custom'), href: '/panel/profile/config/custom' },
+                { name: t('profile.config.delete'), href: '/panel/profile/config/delete' },
             ],
         },
     ]

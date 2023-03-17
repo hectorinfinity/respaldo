@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 // Components
 import { LanguageSwitcher, Login } from '@/components/layout/content/header/toolbar/index';
-import { CustomInput } from "@/components/forms";
+import { FormStyles } from "@/helpers";
 // Helpers
 import { CurrentColor } from "@/helpers/currentColor";
 // Icons
@@ -57,7 +57,14 @@ export const ToolBar = () => {
         </div>
         <div className="hidden lg:flex lg:basis-1/6 lg:justify-end lg:pl-2 lg:py-2">
           <div className="relative mt-2 rounded-md shadow-sm w-60">
-            <CustomInput type="text" field="search" autocomplete={tc('auto_search')} placeholder={tc('place_search')} />
+            <input
+              type="text"
+              name="search"
+              id="search"
+              autoComplete={tc('auto_search')}
+              placeholder={tc('place_search')}
+              className={FormStyles('input')}
+            />
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
             </div>

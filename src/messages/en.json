@@ -86,6 +86,9 @@
 
     "form_change": "Change",
 
+    "form_delete": "Delete",
+    "form_delete_account": "Delete Account",
+
     "form_cancel": "Cancel",
     "form_save": "Save",
     "form_send": "Send"
@@ -253,10 +256,52 @@
     "page": "Terms and Conditions"
   },
 
+  "Access_Comment": "/////////////////////////////////////// Access Section",
+  "Access": {
+    "title": "Sign in",
+    
+    "subtitle_new": "New to CTickets",
+    "subtitle_new_link": "Sign up for free",
+    "subtitle_have": "You have an account?",
+
+    "forgot": "Forgot password?",
+    "signin": "Sin in",
+    "signup": "Sign Up",
+    "continue": "Or continue with"
+  },
+
   "Panel_Comment": "/////////////////////////////////////// Panel Section",
   "Panel": {
     "title": "Control Panel"
   },
+
+  "Panel_Profile_Card_Comment": "/////////////////////////////////////// Panel Profile Card",
+  "Panel_Profile_Card": {
+    "message": "Please add a debit card, this card will allow us to transfer the money from your tickets during the first 10 days after the event is finished.",
+    "credit": "Credit",
+    "debit": "Debit"
+  },
+
+  "Panel_Profile_Category_Comment": "/////////////////////////////////////// Panel Profile Category",
+  "Panel_Profile_Category": {
+    "message": "Select the categories you want to display on your home page."
+  },
+
+  "Panel_Profile_Delete_Comment": "/////////////////////////////////////// Panel Profile Delete",
+  "Panel_Profile_Delete": {
+    "message": "If you delete your account, your private data will be erased permanently and you will not be able to access the mobile application or web page.",
+    "confirm_email": "We’ll send an confirmation email for your delete request.",
+
+    "why": "Why are you deleting your account?"
+  },
+
+  "Panel_Profile_Request_Comment": "/////////////////////////////////////// Panel Profile Request",
+  "Panel_Profile_Request": {
+    "text_drag_n_drop": "or drag and drop",
+    "text_up_to": "up to"
+  },
+
+  
 
   "Panel_Comment_Menu": "/////////////////////////////////////// Panel Menu Section",
   "Panel_Menu": {
@@ -314,7 +359,7 @@
         "subcategory": "Subategories",
         "subsubcategory": "Sub-Subcategories",
         "supplier": "Suppliers",
-        "tag": "tags",
+        "tag": "Tags",
         "venue": "Venues"
       },
       "review": "Review",
@@ -323,9 +368,10 @@
     }
   },
 
-
   "Forms": "/////////////////////////////////////// Forms",
   "Common_Forms": {
+    "rs_photo": "user photo",
+
     "field_search": "Search",
     "auto_search": "search",
     "place_search": "Search...",
@@ -333,7 +379,11 @@
     "field_pass": "Password",
     "auto_pass": "current-password",
 
+    "field_newpass": "New Password",
+    "auto_newpass": "new-password",
+
     "field_repass": "Repeat Password",
+    "field_remember": "Remember me",
 
     "field_firstname": "First name",
     "auto_firstname": "given name",
@@ -348,39 +398,56 @@
     "auto_email": "email",
 
     "field_phone": "Phone",
-    "auto_phone": "phone"
-  },
+    "auto_phone": "phone",
 
-  "Access_Forms": {
-    "title": "Sign in",
-    
-    "subtitle_new": "New to CTickets",
-    "subtitle_new_link": "Sign up for free",
-    "subtitle_have": "You have an account?",
-
-    "field_remember": "Remember me",
-    "forgot": "Forgot password?",
-    "signin": "Sin in",
-    "signup": "Sign Up",
-    "continue": "Or continue with"
-  },
-
-  "Contact_Form": {
     "field_subject": "Subject",
     "auto_subject": "subject",
 
     "field_message": "Message",
-    "auto_message": "message"
-  },
+    "auto_message": "message",
 
-  "Profile_Form": {
     "field_photo": "Photo",
-    "rs_photo": "user photo",
 
     "field_sex": "Sex",
     "place_sex": "Select your sex",
 
     "field_birthday": "Birthday",
-    "auto_birthday": "birthday"
+    "auto_birthday": "birthday",
+
+    "field_addressname": "Address Name",
+    "auto_addressname": "address name",
+
+    "field_venuename": "Venue Name",
+    "auto_venuename": "venue name",
+
+    "field_searchaddress": "Search with Google...",
+    "auto_searchaddress": "Search the address",
+
+    "field_address1": "Address",
+    "auto_address1": "Enter the adddress",
+    "field_address2": "Address 2",
+    "auto_address2": "Complete the adddress",
+    "field_pc": "Postal Code",
+    "auto_pc": "postal code",
+    "field_country": "Country",
+    "auto_country": "country",
+    "field_state": "State",
+    "auto_state": "state",
+    "field_city": "City",
+    "auto_city": "City",
+
+    "field_businessname": "Business Name",
+    "auto_businessname": "business name",
+    "field_rfc": "RFC",
+    "auto_rfc": "RFC",
+    "field_cfdi": "CFDI",
+    "auto_cfdi": "CFDI",
+
+    "field_front_id": "Front ID",
+    "field_back_id": "Front ID",
+    "field_selfie": "Selfie",
+    "field_upload_file": "Upload a file",
+
+    "field_tags": "Tags"
   }
 }

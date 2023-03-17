@@ -7,7 +7,7 @@ import Section from "@/components/headers/landing/section";
 // Helpers
 import { CurrentColor } from "@/helpers/currentColor";
 
-const About = () => {
+const Cookies = () => {
   const t = useTranslations("Cookie");
   const currentColor = CurrentColor();
 
@@ -38,8 +38,8 @@ const About = () => {
   );
 };
 
-About.Layout = MainLayout;
-export default About;
+Cookies.Layout = MainLayout;
+export default Cookies;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {

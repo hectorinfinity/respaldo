@@ -7,7 +7,7 @@ import Section from "@/components/headers/landing/section";
 // Helpers
 import { CurrentColor } from "@/helpers/currentColor";
 
-const About = () => {
+const Term = () => {
   const t = useTranslations("Term");
   const currentColor = CurrentColor();
 
@@ -38,8 +38,8 @@ const About = () => {
   );
 };
 
-About.Layout = MainLayout;
-export default About;
+Term.Layout = MainLayout;
+export default Term;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {

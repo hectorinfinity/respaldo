@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 
-const Advert = () => {
+const Panel = () => {
     const t = useTranslations("Panel");
 
     return (
@@ -17,8 +17,8 @@ const Advert = () => {
     );
 };
 
-Advert.Layout = AdminLayout;
-export default Advert;
+Panel.Layout = AdminLayout;
+export default Panel;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

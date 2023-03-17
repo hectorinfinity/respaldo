@@ -8,7 +8,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { CurrentColor } from "@/helpers/currentColor";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
-import { BasicTable, ColumnsTable, CheckboxTable } from '@/components/admin/tables/Index';
+import { BasicTable, ColumnsTable, CheckboxTable } from '@/components/admin/tables';
 // Fake Data
 import { faker } from '@faker-js/faker';
 // Icons
@@ -23,7 +23,7 @@ interface Category {
     name: string
 }
 
-const SpecialCategory = () => {
+const EventSpecialCategory = () => {
     const t = useTranslations("Panel");
     const currentColor = CurrentColor();
 
@@ -153,8 +153,8 @@ const SpecialCategory = () => {
     );
 };
 
-SpecialCategory.Layout = AdminLayout;
-export default SpecialCategory;
+EventSpecialCategory.Layout = AdminLayout;
+export default EventSpecialCategory;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

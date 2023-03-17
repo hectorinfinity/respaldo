@@ -1,0 +1,70 @@
+/** @format */
+import { useState } from 'react';
+import { GetStaticPropsContext } from "next";
+import { useTranslations } from "next-intl";
+import { Switch } from '@headlessui/react'
+// Layout and Header
+import AdminLayout from "@/components/layout/admin";
+// Forms
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
+import { FormStyles } from '@/helpers';
+// Components
+import { CustomTag } from '@/components/commons/customTag';
+
+const ProfileConfig = () => {
+    const t = useTranslations("Panel");
+    const tc = useTranslations("Common_Forms");
+
+    return (
+        <>
+            {/* Bottom section */}
+            <div className="w-screen min-h-0 overflow-hidden">
+                <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
+                    {/* Profile section */}
+                    <div className="py-6 px-4 sm:p-6 lg:pb-8">
+                        <div className="grid grid-cols-12 gap-6">
+                            <div className="col-span-12 sm:col-span-6">
+                                <CustomLabel field="search" name={tc('field_search')} />
+                                <input
+                                    type="text"
+                                    name="search"
+                                    id="search"
+                                    autoComplete={tc('auto_search')}
+                                    placeholder={tc('field_search')}
+                                    className={FormStyles('input')}
+                                />
+                            </div>
+                        </div>
+                        <div className="mt-6 grid grid-cols-12 gap-6">
+                            <div className="col-span-12 sm:col-span-12">
+                                <CustomLabel field="tags" name={tc('field_tags')} />
+                                <CustomTag name="Iron Maiden" />
+                            </div>
+                        </div>
+                    </div>
+                    {/* Buttons section */}
+                    <div className="divide-y divide-gray-200 pt-6">
+                        <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
+                            <CustomCancel />
+                            <CustomSubmit />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </>
+    );
+};
+
+ProfileConfig.Layout = AdminLayout;
+export default ProfileConfig;
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+    return {
+        props: {
+            messages: (await import(`@/messages/${locale}.json`)).default,
+        },
+    };
+}

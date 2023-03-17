@@ -1,19 +1,23 @@
 import { Fragment } from 'react';
 import { useTranslations } from "next-intl";
 import { Menu, Transition } from '@headlessui/react';
-// Components
-import { CustomInput } from '@/components/forms';
+// Forms
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { CustomError, CustomLabel } from '@/components/forms';
+import { FormStyles } from '@/helpers';
 // Icons
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+
 
 type Props = {
     currentColor: string
 }
 
 export const Login = ({ currentColor }: Props) => {
-    const t = useTranslations("Common_Forms");
+    const t = useTranslations("Access");
     const tc = useTranslations("Common_Forms");
-    const ta = useTranslations("Access_Forms");
 
     return (
         <Menu as="div" className="relative inline-block text-left">
@@ -24,7 +28,7 @@ export const Login = ({ currentColor }: Props) => {
                     <div className="my-[1.5px] h-[12px] w-[12px] rounded-full bg-black"></div>
                     <div className="my-[1.5px] h-[12px] w-[12px] rounded-full bg-black"></div>
                 </div>
-                <p className="text-sm text-white md:text-lg font-bold uppercase tracking-tighter">Log in</p>
+                <p className="text-sm text-white md:text-lg font-bold uppercase tracking-tighter">{t('title')}</p>
                 <ChevronDownIcon className="h-5 w-5 text-white" aria-hidden="true" />
             </Menu.Button>
             <Transition
@@ -39,11 +43,11 @@ export const Login = ({ currentColor }: Props) => {
                 <Menu.Items className="absolute right-0 z-50 w-[20rem] md:w-[30rem] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="flex min-h-full flex-col justify-center sm:px-6 lg:px-8">
                         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">{ta('title')}</h2>
+                            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
                             <p className="mt-2 text-center text-sm text-[#8D8D8D]">
-                                {ta('subtitle_new')}&nbsp;
+                                {t('subtitle_new')}&nbsp;
                                 <a href="#" className="font-medium text-customGreen hover:loginHover">
-                                    {ta('subtitle_new_link')}
+                                    {t('subtitle_new_link')}
                                 </a>
                             </p>
                         </div>
@@ -52,20 +56,30 @@ export const Login = ({ currentColor }: Props) => {
                             <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                                 <form className="space-y-6" action="#" method="POST">
                                     <div>
-                                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                                            {t('field_email')}
-                                        </label>
+                                        <CustomLabel field="email" name={tc('field_email')} />
                                         <div className="mt-2">
-                                            <CustomInput type="email" field="email" autocomplete={tc('auto_email')} placeholder={tc('field_email')} />
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                id="email"
+                                                autoComplete={tc('auto_email')}
+                                                placeholder={tc('field_email')}
+                                                className={FormStyles('input')}
+                                            />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                            {t('field_pass')}
-                                        </label>
+                                        <CustomLabel field="email" name={tc('field_pass')} />
                                         <div className="mt-2">
-                                            <CustomInput type="password" field="password" autocomplete={tc('auto_pass')} placeholder={tc('field_pass')} />
+                                            <input
+                                                type="password"
+                                                name="password"
+                                                id="password"
+                                                autoComplete={tc('auto_pass')}
+                                                placeholder={tc('field_pass')}
+                                                className={FormStyles('input')}s
+                                            />
                                         </div>
                                     </div>
 
@@ -78,13 +92,13 @@ export const Login = ({ currentColor }: Props) => {
                                                 className="h-4 w-4 rounded border-gray-300 text-customGreen focus:loginHover"
                                             />
                                             <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                                {ta('field_remember')}
+                                                {tc('field_remember')}
                                             </label>
                                         </div>
 
                                         <div className="text-sm">
                                             <a href="#" className="font-medium text-customGreen hover:loginHover">
-                                                {ta('forgot')}
+                                                {t('forgot')}
                                             </a>
                                         </div>
                                     </div>
@@ -94,7 +108,7 @@ export const Login = ({ currentColor }: Props) => {
                                             type="submit"
                                             className="flex w-full justify-center rounded-md bg-customGreen py-2 px-3 text-sm font-semibold text-white shadow-sm hover:loginHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                         >
-                                            {ta('signin')}
+                                            {t('signin')}
                                         </button>
                                     </div>
                                 </form>
@@ -105,7 +119,7 @@ export const Login = ({ currentColor }: Props) => {
                                             <div className="w-full border-t border-gray-300" />
                                         </div>
                                         <div className="relative flex justify-center text-sm">
-                                            <span className="bg-white px-2 text-gray-500">{ta('continue')}</span>
+                                            <span className="bg-white px-2 text-gray-500">{t('continue')}</span>
                                         </div>
                                     </div>
 

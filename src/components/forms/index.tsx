@@ -1,17 +1,13 @@
-import { CustomError } from "./CustomError";
-import { CustomLabel } from "./CustomLabel";
-import { CustomInput } from './CustomInput';
-import { CustomTextArea} from './CustomTextArea';
-import { CustomSelect } from './CustomSelect';
-import { CustomCancel } from './CustomCancel';
-import { CustomSubmit } from './CustomSubmit';
+import { CustomError } from "./customError";
+import { CustomLabel } from "./customLabel";
+import { CustomCancel } from './customCancel';
+import { CustomDelete } from './CustomDelete';
+import { CustomSubmit } from './customSubmit';
 
 export {
     CustomError,
     CustomLabel,
-    CustomInput,
-    CustomTextArea,
-    CustomSelect,
     CustomCancel,
+    CustomDelete,
     CustomSubmit
 }

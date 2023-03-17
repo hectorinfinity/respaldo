@@ -1,5 +1,5 @@
 import { createColumnHelper } from '@tanstack/react-table';
-import { CheckboxTable } from './CheckboxTable';
+import { CheckboxTable } from './checkboxTable';
 // React Table ColumnDef
 import { ColumnDef } from '@tanstack/react-table';
 
