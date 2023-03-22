@@ -4,6 +4,7 @@ import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
+import { Heading } from "@/components/headers/admin/heading";
 // Forms
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,15 +14,25 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 const ProfileAddress = () => {
     const t = useTranslations("Panel_Profile_Request");
     const tc = useTranslations("Common_Forms");
+    const ts = useTranslations("Panel_SideBar");
+
+    const breadcrumb = [
+        { page: ts('user'), href: '/panel/profile' },
+        { page: ts('profile.request'), href: '' }
+    ]
 
     return (
         <>
-            {/* Bottom section */}
-            <div className="w-screen min-h-0 overflow-hidden">
-                <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                    {/* Profile section */}
-                    <div className="py-6 px-4 sm:p-6 lg:pb-8">
-                        <div className="mt-6 grid grid-cols-12 gap-6">
+            {/* Breadcrumb section */}
+            <div>
+                <Heading breadcrumb={breadcrumb} />
+            </div>
+            {/* Admin section */}
+            <div className="flex flex-1 pt-6">
+                <div className="w-screen min-h-0 overflow-hidden">
+                    <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
+                        {/* Profile section */}
+                        <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                                 <CustomLabel field="front_id" name={tc('field_front_id')} required />
                                 <div className="mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
@@ -119,16 +130,16 @@ const ProfileAddress = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {/* Buttons section */}
-                    <div className="divide-y divide-gray-200 pt-6">
-                        <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
-                            <CustomCancel />
-                            <CustomSubmit />
+                        {/* Buttons section */}
+                        <div className="divide-y divide-gray-200 pt-6">
+                            <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
+                                <CustomCancel />
+                                <CustomSubmit />
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div >
+                    </form>
+                </div >
+            </div>
         </>
     );
 };

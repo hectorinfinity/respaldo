@@ -4,6 +4,7 @@ import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
+import { Heading } from '@/components/headers/admin/heading';
 // Forms
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,14 +13,26 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 import { FormStyles } from '@/helpers';
 
 const ProfileBilling = () => {
-    const t = useTranslations("Panel");
+    const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
+
+    const breadcrumb = [
+        { page: t('user'), href: '/panel/profile' },
+        { page: t('profile.card.name'), href: '/panel/profile/card' },
+        { page: t('profile.card.create'), href: '' }
+    ]
 
     return (
         <>
-            {/* Bottom section */}
-            <div className="w-screen min-h-0 overflow-hidden">
-                Stripe Form
+            {/* Breadcrumb section */}
+            <div>
+                <Heading breadcrumb={breadcrumb} />
+            </div>
+            {/* Profile section */}
+            <div className="flex flex-1 pt-6">
+                <div className="w-screen min-h-0 overflow-hidden">
+                    Stripe Form
+                </div>
             </div>
         </>
     );

@@ -91,7 +91,9 @@
 
     "form_cancel": "Cancel",
     "form_save": "Save",
-    "form_send": "Send"
+    "form_send": "Send",
+
+    "new_card": "Add new card"
   },
   
   "Landing_Comment_About": "/////////////////////////////////////// Landing Page About Section",
@@ -315,12 +317,17 @@
 
   "Panel_Comment_SideBar": "/////////////////////////////////////// Panel SideBar Section",
   "Panel_SideBar": {
+    "dashboard": "Dashboard",
+    "user": "User",
     "profile": {
       "favorite": "Favorites",
       "info": "Personal Information",
       "address": "Address",
       "billing": "Billing",
-      "card": "Credit/Debit Cards",
+      "card": {
+        "name": "Credit/Debit Cards",
+        "create": "Add New Card"
+      },
       "request": "Promotor Request",
       "security": "Security",
       "config": {
@@ -346,6 +353,7 @@
       }
     },
     "admin": {
+      "admin": "Admin",
       "config": {
         "config": "Config",
         "setting": "Settings",
@@ -364,7 +372,6 @@
       },
       "review": "Review",
       "user": "Users"
-
     }
   },
 
@@ -372,6 +379,7 @@
   "Common_Forms": {
     "rs_photo": "user photo",
 
+    "field_lang": "Lenguage",
     "field_search": "Search",
     "auto_search": "search",
     "place_search": "Search...",
@@ -448,6 +456,17 @@
     "field_selfie": "Selfie",
     "field_upload_file": "Upload a file",
 
-    "field_tags": "Tags"
+    "field_tags": "Tags",
+
+    "field_start": "Start",
+    "field_end": "End",
+    "field_amount": "Amount",
+    "field_porcentage": "Porcentage",
+
+    "field_fees": "Fees",
+    "field_months_without": "Months Whitout Interests",
+    "field_month": "Months",
+    "field_months": "Months",
+    "field_quota": "Quota"
   }
 }

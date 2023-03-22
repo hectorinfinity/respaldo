@@ -25,7 +25,7 @@ export const CustomCard = ({id, name, type, number, exp}: Props) => {
                         <div className="text-white">
                             <CpuChipIcon className='w-6 h-6' aria-hidden="true" />
                         </div>
-                        <div className='text-customYellow -mt-3'>
+                        <div className='text-customGreen -mt-3'>
                             <Link href="#">
                                 <div className="border-white bg-white rounded-full w-7 h-7 flex align-middle justify-center py-1">
                                     <PencilIcon className='w-5 h-5' aria-hidden="true" />

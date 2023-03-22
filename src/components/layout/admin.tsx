@@ -10,7 +10,6 @@ import { CurrentColor } from "@/helpers/currentColor";
 import { Header } from "./content/header";
 import { Menu } from './content/admin/menu';
 import { Navigation } from "@/components/layout/content/admin/navigation";
-import { Heading } from "@/components/layout/content/admin/heading";
 import { Footer } from "./content/footer";
  // Icons
 import {
@@ -115,8 +114,7 @@ function AdminLayout({ children }: PropsWithChildren<{}>): ReactElement {
               aria-labelledby="primary-heading"
               className="p-10 flex flex-col overflow-y-auto lg:order-last"
             >
-              <Heading />
-              <main className="flex justify-start min-h-[40vh] gap-10 py-1">
+              <main className="container mx-auto px-2 sm:px-3 lg:px-4">
                 {children}
               </main>
             </section>
