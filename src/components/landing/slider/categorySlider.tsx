@@ -28,13 +28,12 @@ export const CategorySlider = () => {
 ]
 
   return (
-    <div className="w-[90%] h-40 flex flex-row items-center">
+    <div className="w-[90%] md:w-[100%] h-40 flex flex-row items-center">
       <Swiper
-        slidesPerView={7}
-        mousewheel={true}
+        slidesPerView={8}
         keyboard={true}
         navigation={true}
-        modules={[Navigation, Mousewheel, Keyboard]}
+        modules={[Navigation, Keyboard]}
         breakpoints={{
           // when window width is >= 320px
           320: {
@@ -48,7 +47,7 @@ export const CategorySlider = () => {
           },
           // when window width is >= 980px
           1024: {
-            slidesPerView: 7,
+            slidesPerView: 8,
             spaceBetween: 40
           }
         }}

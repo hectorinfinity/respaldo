@@ -6,6 +6,7 @@ import Link from "next/link";
 import MainLayout from "@/components/layout/main";
 //Images
 import { HeroSlider, CategorySlider, EventSlider } from "@/components/landing/slider/index";
+import { EventCardVert } from "@/components/landing/event/eventCardVert";
 
 const Home = () => {
   return (
@@ -15,18 +16,28 @@ const Home = () => {
       </div>
       <div className="py-10 md:px-8">
         <div className="flex flex-col items-center">
-          <h2 className="font-bold text-3xl pb-10">Category</h2>
+          <h2 className="font-bold text-3xl pb-10">Categories</h2>
           <CategorySlider />
         </div>
       </div>
-      <div className="px-10">
-        <div className="flex flex-col items-center">
-          <h2 className="font-bold text-3xl pb-10">Featured Events</h2>
+      <div className="py-10 md:px-8">
+        <div className="flex flex-col items-center py-5">
+          <div className="self-start">
+            <h2 className="font-bold text-3xl">New Events</h2>
+          </div>
           <EventSlider />
         </div>
-        <div className="flex flex-col items-center">
-          <h1 className="my-5 text-3xl font-bold">Featured Events</h1>
-
+        <div className="flex flex-col items-center py-5">
+          <div className="self-start">
+            <h2 className="font-bold text-3xl">Featured Events</h2>
+          </div>
+          <EventSlider />
+        </div>
+        <div className="flex flex-col items-center py-5">
+          <div className="self-start">
+            <h2 className="font-bold text-3xl">Recommended Events</h2>
+          </div>
+          <EventSlider />
         </div>
       </div>
     </div>

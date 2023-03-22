@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/mousewheel";
 import "swiper/css/keyboard";
 // import required modules
-import { Navigation, Mousewheel, Keyboard } from "swiper";
+import { Pagination, Navigation, Mousewheel, Keyboard } from "swiper";
 import { CustomCategory } from "./category/customCategory";
 import { EventCardVert } from "../event/eventCardVert";
 
@@ -29,13 +29,14 @@ export const EventSlider = () => {
 ]
 
   return (
-    <div className="container w-[100%]">
+    <div className="w-[100%] flex flex-row items-center">
       <Swiper
-        slidesPerView={1}
-        mousewheel={true}
+        slidesPerView={4}
+        spaceBetween={15}
         keyboard={true}
         navigation={true}
-        modules={[Navigation, Mousewheel, Keyboard]}
+        pagination={true}
+        modules={[Navigation, Pagination, Keyboard]}
         breakpoints={{
           // when window width is >= 320px
           320: {
@@ -44,28 +45,29 @@ export const EventSlider = () => {
           },
           // when window width is >= 480px
           480: {
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 30
           },
           // when window width is >= 980px
           1024: {
-            slidesPerView: 7,
+            slidesPerView: 4,
             spaceBetween: 40
           }
         }}
       >
-          <SwiperSlide className="flex-1">
+          <SwiperSlide className="px-10">
             <EventCardVert />
           </SwiperSlide>
-          <SwiperSlide className="flex-1">
+          <SwiperSlide className="px-10">
             <EventCardVert />
-          </SwiperSlide><SwiperSlide className="flex-1">
+          </SwiperSlide>
+          <SwiperSlide className="px-10">
             <EventCardVert />
-          </SwiperSlide><SwiperSlide className="flex-1">
+          </SwiperSlide>
+          <SwiperSlide className="px-10">
             <EventCardVert />
-          </SwiperSlide><SwiperSlide className="flex-1">
-            <EventCardVert />
-          </SwiperSlide><SwiperSlide className="flex-1">
+          </SwiperSlide>
+          <SwiperSlide className="px-10">
             <EventCardVert />
           </SwiperSlide>
       </Swiper>

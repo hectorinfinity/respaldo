@@ -9,7 +9,7 @@ type Props = {
 export const CustomCategory = ({ name, srcImage }: Props) => {
     
     return (
-        <Link href="" className="">
+        <Link href="">
             <div className="flex justify-center">
                 <Image
                     width={120}
