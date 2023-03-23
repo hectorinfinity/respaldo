@@ -4,8 +4,8 @@ import Image from "next/image";
 export const CategorySeparator = () => {
     return (
         <>
-            <div className="px-2 w-[90%] lg:w-full border-b-[12vw] sm:border-b-[8vw] lg:border-b-[4vw] border-customPurple rounded-xl rounded-t-xl">
-                <div className="border-b-[22vw] sm:border-b-[10vw] lg:border-b-[4vw] border-transparent">
+            <div className={`{w-full rounded-xl bg-gradient-to-t from-customPurple via-white to-white}`}>
+                <div className='h-24 sm:h-20 sm:pl-4'>
                     <Image
                         width={120}
                         height={120}
@@ -14,8 +14,8 @@ export const CategorySeparator = () => {
                         className="object-contain absolute"
                     />
                 </div>
-                <div className="flex justify-center -mb-10 sm:-mb-12 lg:-mb-14">
-                    <h1 className="text-3xl text-white">Cine</h1>
+                <div className='text-center align-bottom'>
+                    <h1 className="text-white text-lg md:text-4xl font-bold pb-2">Artes Visuales</h1>
                 </div>
             </div>
         </>

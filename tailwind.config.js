@@ -40,7 +40,7 @@ module.exports = {
   ],
   safelist: [
     {
-      pattern: /(bg|text|border|from|via|ring|stroke)-custom(Blue|BlueFresh|BlueNigh|Daisy|Green|GreenLight|GreenVan|Orange|Pink|Purple|Red|Yellow)/,
+      pattern: /(bg|text|border|from|via|to|ring|stroke)-custom(Blue|BlueFresh|BlueNigh|Daisy|Green|GreenLight|GreenVan|Orange|Pink|Purple|Red|Yellow)/,
     },
     'hover:text-customBlue',
     'hover:text-customBlueFresh',

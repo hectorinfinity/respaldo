@@ -25,16 +25,6 @@ const Home = () => {
             </div>
             <div className="py-10 md:px-8">
                 <div className="flex flex-col items-center">
-                    <SearchInput />
-                </div>
-            </div>
-            <div className="py-10 md:px-8">
-                <div className="flex flex-col items-center">
-                    <CategorySeparator />
-                </div>
-            </div>
-            <div className="py-10 md:px-8">
-                <div className="flex flex-col items-center">
                     <Content />
                 </div>
             </div>

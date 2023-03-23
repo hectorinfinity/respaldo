@@ -3,9 +3,15 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Tab, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, FunnelIcon, MagnifyingGlassIcon, ShoppingBagIcon, Squares2X2Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid'
-import { classNames } from '@/helpers'
+import { classNames, FormStyles } from '@/helpers'
 import { EventCardVert } from '../event/eventCardVert'
 import { EventCardHor } from '../event/eventCardHor'
+import DatePicker, { DateObject } from "react-multi-date-picker"
+
+import Image from "next/image";
+import { CategorySeparator } from './categorySeparator'
+import { SearchInput } from './searchInput'
+
 
 const sortOptions = [
     { name: 'Most Popular', href: '#', current: true },
@@ -76,8 +82,21 @@ const products = [
     // More products...
 ]
 
+const CustomRangeInput = ({ openCalendar, value }: any) => {
+    let from = new DateObject(value[0])?.format("DD / MMMM / YYYY") || "";
+    let to = new DateObject(value[1]).format("DD / MMMM / YYYY") || "";
+  
+    return (
+      <div className='w-full flex flex-row overflow-hidden border-[2px] border-[#7B7B7B] rounded-[4px] '>
+        <input className='w-[48%] py-2  border-r border-r-[#7B7B7B] text-[#7B7B7B] text-center' onFocus={openCalendar} value={from} readOnly />
+        <input className='w-[52%] py-2 text-center text-[#7B7B7B]' onFocus={openCalendar} value={to} readOnly />
+      </div>
+    );
+  }
+
 export const Content = () => {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+    const [dateValues, setDateValues] = useState<[DateObject, DateObject]>([new DateObject(), new DateObject()]);
 
     return (
         <>
@@ -119,47 +138,89 @@ export const Content = () => {
                                 </div>
 
                                 {/* Filters */}
-                                <form className="mt-4">
-                                    {filters.map((section) => (
-                                        <Disclosure as="div" key={section.name} className="border-t border-gray-200 pt-4 pb-4">
-                                            {({ open }) => (
-                                                <fieldset>
-                                                    <legend className="w-full px-2">
-                                                        <Disclosure.Button className="flex w-full items-center justify-between p-2 text-gray-400 hover:text-gray-500">
-                                                            <span className="text-sm font-medium text-gray-900">{section.name}</span>
-                                                            <span className="ml-6 flex h-7 items-center">
-                                                                <ChevronDownIcon
-                                                                    className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform')}
-                                                                    aria-hidden="true"
-                                                                />
-                                                            </span>
-                                                        </Disclosure.Button>
-                                                    </legend>
-                                                    <Disclosure.Panel className="px-4 pt-4 pb-2">
-                                                        <div className="space-y-6">
-                                                            {section.options.map((option, optionIdx) => (
-                                                                <div key={option.value} className="flex items-center">
-                                                                    <input
-                                                                        id={`${section.id}-${optionIdx}-mobile`}
-                                                                        name={`${section.id}[]`}
-                                                                        defaultValue={option.value}
-                                                                        type="checkbox"
-                                                                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                                                    />
-                                                                    <label
-                                                                        htmlFor={`${section.id}-${optionIdx}-mobile`}
-                                                                        className="ml-3 text-sm text-gray-500"
-                                                                    >
-                                                                        {option.label}
-                                                                    </label>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </Disclosure.Panel>
-                                                </fieldset>
-                                            )}
-                                        </Disclosure>
-                                    ))}
+                                <form className="mt-4 px-4">
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Categories</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <select
+                                                id="sex"
+                                                name="sex"
+                                                className={FormStyles('select')}
+                                                defaultValue={''}
+                                            >
+                                                <option value=''>Load Categories</option>
+
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Subcategories</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <select
+                                                id="sex"
+                                                name="sex"
+                                                className={FormStyles('select')}
+                                                defaultValue={''}
+                                            >
+                                                <option value=''>Load Subcategories</option>
+
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Sub-Subcategories</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <select
+                                                id="sex"
+                                                name="sex"
+                                                className={FormStyles('select')}
+                                                defaultValue={''}
+                                            >
+                                                <option value=''>Load Sub-Subcategories</option>
+
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Date</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <DatePicker
+                                                className="rmdp-prime"
+                                                value={dateValues}
+                                                onChange={setDateValues}
+                                                numberOfMonths={2}
+                                                range
+                                                render={<CustomRangeInput value={dateValues} />}
+                                            />
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Location</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                id="email"
+                                                autoComplete="location"
+                                                placeholder="location"
+                                                className={FormStyles('input')}
+                                            />
+                                        </div>
+                                    </fieldset>
+                                </div>
                                 </form>
                             </Dialog.Panel>
                         </Transition.Child>
@@ -168,6 +229,14 @@ export const Content = () => {
             </Transition.Root>
 
             <main className="mx-auto px-4 lg:px-8">
+                <div className="py-6">
+                    <div className="flex flex-col items-center">
+                        <SearchInput />
+                    </div>
+                </div>
+                <div className="pt-6">
+                    <CategorySeparator />
+                </div>
                 <div className="flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
                     <h1 className="text-lg font-bold tracking-tight text-gray-900">16 Results of "Cine"</h1>
                     <div className="flex items-center">
@@ -249,29 +318,90 @@ export const Content = () => {
 
                         <div className="hidden lg:block">
                             <form className="space-y-10 divide-y divide-gray-200">
-                                {filters.map((section, sectionIdx) => (
-                                    <div key={section.name} className={sectionIdx === 0 ? null : 'pt-10'}>
-                                        <fieldset>
-                                            <legend className="block text-sm font-medium text-gray-900">{section.name}</legend>
-                                            <div className="space-y-3 pt-6">
-                                                {section.options.map((option, optionIdx) => (
-                                                    <div key={option.value} className="flex items-center">
-                                                        <input
-                                                            id={`${section.id}-${optionIdx}`}
-                                                            name={`${section.id}[]`}
-                                                            defaultValue={option.value}
-                                                            type="checkbox"
-                                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                                        />
-                                                        <label htmlFor={`${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
-                                                            {option.label}
-                                                        </label>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                ))}
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Categories</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <select
+                                                id="sex"
+                                                name="sex"
+                                                className={FormStyles('select')}
+                                                defaultValue={''}
+                                            >
+                                                <option value=''>Load Categories</option>
+
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Subcategories</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <select
+                                                id="sex"
+                                                name="sex"
+                                                className={FormStyles('select')}
+                                                defaultValue={''}
+                                            >
+                                                <option value=''>Load Subcategories</option>
+
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Sub-Subcategories</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <select
+                                                id="sex"
+                                                name="sex"
+                                                className={FormStyles('select')}
+                                                defaultValue={''}
+                                            >
+                                                <option value=''>Load Sub-Subcategories</option>
+
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Date</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <DatePicker
+                                                className="rmdp-prime"
+                                                value={dateValues}
+                                                onChange={setDateValues}
+                                                numberOfMonths={2}
+                                                range
+                                                render={<CustomRangeInput value={dateValues} />}
+                                            />
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div className='pt-5'>
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-900">Location</legend>
+                                        <div className="space-y-3 pt-6">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                id="email"
+                                                autoComplete="location"
+                                                placeholder="location"
+                                                className={FormStyles('input')}
+                                            />
+                                        </div>
+                                    </fieldset>
+                                </div>
+
                             </form>
                         </div>
                     </aside>
