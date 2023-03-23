@@ -5,7 +5,7 @@ import Link from "next/link";
 import { HeartIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/20/solid";
 
-export const EventCardVert = () => {
+export const EventCardHor = () => {
     return (
         <div className="px-8 sm:px-4 py-4 drop-shadow-xl">
             <div className="relative h-64 w-70 lg:w-80 rounded-t-[2rem] border-b-[20px] border-customBlue">
