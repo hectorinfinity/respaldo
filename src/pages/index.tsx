@@ -10,9 +10,9 @@ import { EventCardVert } from "@/components/landing/event/eventCardVert";
 
 const Home = () => {
   return (
-    <div className="relative bg-white">
-      <div className="relative h-[40vw]">
-        <HeroSlider />
+    <div className="bg-white">
+      <div className="relative h-[40vw] -z-10">
+        {/*<HeroSlider />*/}
       </div>
       <div className="py-10 md:px-8">
         <div className="flex flex-col items-center">

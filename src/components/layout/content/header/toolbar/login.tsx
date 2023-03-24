@@ -1,6 +1,10 @@
-import { Fragment } from 'react';
+/** @format */
+import { Fragment, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Menu, Transition } from '@headlessui/react';
+// Sign In
+import { useAuthLogin, useAuthWithProvider } from "@/hooks/use_handle_auth"
+import { SignIn } from "@/interfaces/auth";
 // Forms
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,14 +14,33 @@ import { FormStyles } from '@/helpers';
 // Icons
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
-
 type Props = {
     currentColor: string
 }
 
+const signInSchema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required(),
+});
+
 export const Login = ({ currentColor }: Props) => {
     const t = useTranslations("Access");
     const tc = useTranslations("Common_Forms");
+
+    const [submitted, setSubmitted] = useState(false);
+    const [submittedError, setSubmittedError] = useState(false);
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<SignIn>({
+        resolver: yupResolver(signInSchema),
+    });
+
+    const onSubmitHandler = async (data: SignIn) => {
+        console.log(login_user(data))
+    };
+
+    const { customError: error_login, login_user, isLoading, isError, error } = useAuthLogin();
+
+    const { customError: error_login_provider, login_provider } = useAuthWithProvider()
 
     return (
         <Menu as="div" className="relative inline-block text-left">
@@ -40,8 +63,8 @@ export const Login = ({ currentColor }: Props) => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <Menu.Items className="absolute right-0 z-50 w-[20rem] md:w-[30rem] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="flex min-h-full flex-col justify-center sm:px-6 lg:px-8">
+                <Menu.Items className="absolute right-0 w-[20rem] md:w-[30rem] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="flex min-h-full flex-col justify-center sm:px-6 lg:px-8 relative z-[9999999999]">
                         <div className="sm:mx-auto sm:w-full sm:max-w-md">
                             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
                             <p className="mt-2 text-center text-sm text-[#8D8D8D]">
@@ -54,17 +77,17 @@ export const Login = ({ currentColor }: Props) => {
 
                         <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
                             <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                                <form className="space-y-6" action="#" method="POST">
+                                <form onSubmit={handleSubmit(onSubmitHandler)} method="POST" className="space-y-6">
                                     <div>
                                         <CustomLabel field="email" name={tc('field_email')} />
                                         <div className="mt-2">
                                             <input
                                                 type="email"
-                                                name="email"
                                                 id="email"
                                                 autoComplete={tc('auto_email')}
                                                 placeholder={tc('field_email')}
                                                 className={FormStyles('input')}
+                                                {...register('email')}
                                             />
                                         </div>
                                     </div>
@@ -74,11 +97,11 @@ export const Login = ({ currentColor }: Props) => {
                                         <div className="mt-2">
                                             <input
                                                 type="password"
-                                                name="password"
                                                 id="password"
                                                 autoComplete={tc('auto_pass')}
                                                 placeholder={tc('field_pass')}
-                                                className={FormStyles('input')}s
+                                                className={FormStyles('input')}
+                                                {...register('password')}
                                             />
                                         </div>
                                     </div>
@@ -125,8 +148,8 @@ export const Login = ({ currentColor }: Props) => {
 
                                     <div className="mt-6 grid grid-cols-3 gap-3">
                                         <div>
-                                            <a
-                                                href="#"
+                                            <button
+                                                onClick={ () => login_provider('facebook')}
                                                 className="inline-flex w-full justify-center rounded-md bg-white py-2 px-4 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                                             >
                                                 <span className="sr-only">Log in with Facebook</span>
@@ -137,24 +160,24 @@ export const Login = ({ currentColor }: Props) => {
                                                         clipRule="evenodd"
                                                     />
                                                 </svg>
-                                            </a>
+                                            </button>
                                         </div>
 
                                         <div>
-                                            <a
-                                                href="#"
+                                            <button
+                                                onClick={ () => login_provider('google')}
                                                 className="inline-flex w-full justify-center rounded-md bg-white py-2 px-4 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                                             >
                                                 <span className="sr-only">Log in with Google</span>
                                                 <svg className="h-5 w-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
                                                 </svg>
-                                            </a>
+                                            </button>
                                         </div>
 
                                         <div>
-                                            <a
-                                                href="#"
+                                            <button
+                                                onClick={ () => login_provider('apple')}
                                                 className="inline-flex w-full justify-center rounded-md bg-white py-2 px-4 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                                             >
                                                 <span className="sr-only">Log in with Apple</span>
@@ -165,7 +188,7 @@ export const Login = ({ currentColor }: Props) => {
                                                         clipRule="evenodd"
                                                     />
                                                 </svg>
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

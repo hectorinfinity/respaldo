@@ -1,10 +1,14 @@
-import { useMutationRegister, useMutationLogin } from './auth'
 import { useState, useContext } from 'react'
-import { Inputs as InputsRegister } from 'components/auth/register'
-import { Inputs as InputsLogin } from 'components/auth/login'
-import { sign_up_with_credentials, sign_in_with_credentials, ProviderType, sing_in } from 'lib/firebase_auth'
-import { AuthContext } from 'context/auth/auth_provider'
 import { useQueryClient } from '@tanstack/react-query'
+// Libraries
+import { sign_up_with_credentials, sign_in_with_credentials, ProviderType, sing_in } from '@/lib/firebase_auth'
+// Hooks
+import { useMutationRegister, useMutationLogin } from './auth'
+// Context
+import { AuthContext } from '@/context/auth/auth_provider'
+// Interfaces
+import { SignIn, SignUp } from '@/interfaces/auth'
+
 
 export const useAuthRegister = () => {
 
@@ -15,7 +19,7 @@ export const useAuthRegister = () => {
     // error by Firebase
     const [customError, setCustomError] = useState('')
 
-    const register_user = async (inputs: InputsRegister) => {
+    const register_user = async (inputs: SignUp) => {
         change_status('checking')
         // register user in Firebase and wait response/data
         const { user, error: error_firebase } = await sign_up_with_credentials(inputs)
@@ -58,7 +62,7 @@ export const useAuthLogin = () => {
     // error by Firebase
     const [customError, setCustomError] = useState('')
 
-    const login_user = async (inputs: InputsLogin) => {
+    const login_user = async (inputs: SignIn) => {
         // login user in Firebase and wait response/data
         const { error: error_firebase, user } = await sign_in_with_credentials(inputs)
 

@@ -34,7 +34,6 @@ interface UserAuth {
 }
 
 export const useUserAuthObserver = () => {
-
   const { statusAuth } = useContext(AuthContext)
 
   const queryClient = useQueryClient()
@@ -49,11 +48,8 @@ export const useUserAuthObserver = () => {
     }
   )
 
-
   useEffect(() => {
-
     const observer = new QueryObserver<UserAuth[]>(queryClient, { queryKey: [key] })
-
     const unsubscribe = observer.subscribe(result => {
       if (result.data) {
 

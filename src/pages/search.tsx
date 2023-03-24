@@ -1,15 +1,10 @@
 /** @format */
 import { GetStaticPropsContext } from "next";
-import Image from "next/image";
-import Link from "next/link";
 // Layout and Header
 import MainLayout from "@/components/layout/main";
 //Images
-import { HeroSlider, CategorySlider, EventSlider } from "@/components/landing/slider/index";
-import { EventCardVert } from "@/components/landing/event/eventCardVert";
+import { HeroSlider, CategorySlider } from "@/components/landing/slider/index";
 import { Content } from "@/components/landing/search/content";
-import { SearchInput } from "@/components/landing/search/searchInput";
-import { CategorySeparator } from "@/components/landing/search/categorySeparator";
 
 const Home = () => {
     return (

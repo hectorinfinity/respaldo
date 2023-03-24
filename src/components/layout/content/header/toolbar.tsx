@@ -2,14 +2,17 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 // Components
-import { LanguageSwitcher, Login } from '@/components/layout/content/header/toolbar/index';
-import { FormStyles } from "@/helpers";
+import { LanguageSwitcher, Login, UserMenu } from '@/components/layout/content/header/toolbar/index';
+// User validation
+import { useUserAuthObserver } from "@/hooks/auth";
 // Helpers
-import { CurrentColor } from "@/helpers/currentColor";
+import { CurrentColor, FormStyles } from "@/helpers";
 // Icons
 import { MapPinIcon, GlobeAltIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 export const ToolBar = () => {
+  const { user: existUser, queryClient, isLoading } = useUserAuthObserver()
+  
   const t = useTranslations("Header_Tool");
   const tc = useTranslations("Common_Forms");
   const currentColor = CurrentColor();
@@ -70,9 +73,15 @@ export const ToolBar = () => {
             </div>
           </div>
         </div>
-        <div className="flex basis-1/2 justify-end lg:flex lg:basis-1/6 lg:justify-end">
-          <Login currentColor={currentColor} />
-        </div>
+        {(!existUser) ? (
+          <div className="flex basis-1/2 justify-end lg:flex lg:basis-1/6 lg:justify-end my-4">
+            <UserMenu />
+          </div>
+        ) : (
+          <div className="flex basis-1/2 justify-end lg:flex lg:basis-1/6 lg:justify-end">
+            <Login currentColor={currentColor} />
+          </div>
+        )}
       </nav>
     </div>
   )

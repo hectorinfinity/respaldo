@@ -10,7 +10,7 @@ type CustomAppProps = AppProps & { Component: CustomNextComponent };
 // React Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { AuthProvider } from "../context/auth/auth_provider";
+import { AuthProvider } from "@/context/auth/auth_provider";
 // React Query Config
 const queryClient = new QueryClient({
   defaultOptions: {

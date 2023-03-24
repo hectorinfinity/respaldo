@@ -1,11 +1,10 @@
 import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, OAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updatePassword, updateProfile } from "firebase/auth";
 import { firebase_auth } from "./firebase";
 
-
 interface Inputs {
     email: string,
     password: string,
-    displayName: string
+    displayName?: string
 }
 
 const google_provider = new GoogleAuthProvider();
@@ -21,7 +20,6 @@ const provider = {
 }
 
 export const sing_in = async (type_provider: ProviderType) => {
-
     try {
         const resp = await signInWithPopup(firebase_auth, provider[type_provider]);
         const { displayName, email, photoURL, uid } = resp.user;
@@ -45,11 +43,8 @@ export const sing_in = async (type_provider: ProviderType) => {
 }
 
 export const sign_in_with_credentials = async ({ email, password }: Omit<Inputs, 'displayName'>) => {
-
     try {
-
         const resp = await signInWithEmailAndPassword(firebase_auth, email, password);
-
         const id_token = await resp.user.getIdToken()
 
         const user = {
@@ -59,7 +54,6 @@ export const sign_in_with_credentials = async ({ email, password }: Omit<Inputs,
         }
 
         return { user }
-
     } catch (e) {
         console.log(e)
         return { error: (e as Error).message }
@@ -69,7 +63,6 @@ export const sign_in_with_credentials = async ({ email, password }: Omit<Inputs,
 export const sign_up_with_credentials = async ({ email, password, displayName }: Inputs) => {
     try {
         const resp = await createUserWithEmailAndPassword(firebase_auth, email, password);
-
         const [id_token] = await Promise.all([
             await resp.user.getIdToken(),
             updateProfile(firebase_auth.currentUser!, { displayName })
@@ -84,7 +77,6 @@ export const sign_up_with_credentials = async ({ email, password, displayName }:
         }
 
         return { user }
-
     } catch (e) {
         return { error: (e as Error).message }
     }
@@ -92,7 +84,6 @@ export const sign_up_with_credentials = async ({ email, password, displayName }:
 
 export const set_new_password = async (new_password: string) => {
     const user = firebase_auth.currentUser;
-
     if (!user) return false
 
     try {
@@ -108,16 +99,13 @@ export const on_auth_state_has_changed = (
     logout: () => void,
 ) => {
 
-
     onAuthStateChanged(firebase_auth, async (user) => {
-
         if (!user) return logout()
 
         const providerId = user.providerData[0].providerId
         const id_token = await user.getIdToken()
 
         login(id_token, user.uid, providerId)
-
     }, (error) => {
         logout()
     })

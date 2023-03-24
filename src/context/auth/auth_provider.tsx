@@ -7,7 +7,6 @@ type Status = 'authenticated' | 'no-authenticated' | 'checking'
 
 export const AuthContext = createContext({} as { change_status: (status: Status) => void, statusAuth: Status })
 
-
 export const AuthProvider = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 
   const [statusAuth, setStatusAuth] = useState<Status>('checking')
