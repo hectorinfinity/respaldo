@@ -1,41 +1,43 @@
 /** @format */
 import { GetStaticPropsContext } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 // Layout and Header
 import MainLayout from "@/components/layout/main";
 //Images
 import { HeroSlider, CategorySlider, EventSlider } from "@/components/landing/slider/index";
-import { EventCardVert } from "@/components/landing/event/eventCardVert";
 
 const Home = () => {
+  const t = useTranslations("Public");
+
   return (
     <div className="bg-white">
-      <div className="relative h-[40vw] -z-10">
-        {/*<HeroSlider />*/}
+      {/*
+      <div className="h-[40vw] relative -z-10">
+        <HeroSlider />
       </div>
-      <div className="py-10 md:px-8">
+      */}
+      <div className="pt-10 pb-5 md:px-8">
         <div className="flex flex-col items-center">
-          <h2 className="font-bold text-3xl pb-10">Categories</h2>
+          <h2 className="font-bold text-3xl pb-10">{t('commons.categories')}</h2>
           <CategorySlider />
         </div>
       </div>
-      <div className="py-10 md:px-8">
+      <div className="md:px-10">
         <div className="flex flex-col items-center py-5">
-          <div className="self-start">
-            <h2 className="font-bold text-3xl">New Events</h2>
+          <div className="self-start pl-[6vw]">
+            <h2 className="font-bold text-3xl">{t('home.new_events')}</h2>
           </div>
           <EventSlider />
         </div>
         <div className="flex flex-col items-center py-5">
-          <div className="self-start">
-            <h2 className="font-bold text-3xl">Featured Events</h2>
+          <div className="self-start pl-[6vw]">
+            <h2 className="font-bold text-3xl">{t('home.featured_events')}</h2>
           </div>
           <EventSlider />
         </div>
         <div className="flex flex-col items-center py-5">
-          <div className="self-start">
-            <h2 className="font-bold text-3xl">Recommended Events</h2>
+          <div className="self-start pl-[6vw]">
+            <h2 className="font-bold text-3xl">{t('commons.recommended_evenets')}</h2>
           </div>
           <EventSlider />
         </div>

@@ -12,7 +12,7 @@ export function FormStyles(type: string) {
         case 'select':
             return `block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-customForm ring-2 ring-inset ring-customForm focus:ring-2 focus:ring-${currentColor} sm:text-sm sm:leading-6`
         case 'search':
-            return `bg-[#E0E0E0] block w-full rounded-lg border-0 px-3 py-1.5 shadow-sm ring-2 ring-inset ring-customForm placeholder:text-customForm focus:border-0 focus:ring-2 focus:ring-inset focus:ring-${currentColor} sm:text-sm sm:leading-6`
+            return `block w-full rounded-lg border-0 px-3 py-1.5 shadow-sm ring-2 ring-inset ring-customForm placeholder:text-customForm focus:border-0 focus:ring-2 focus:ring-inset focus:ring-${currentColor} sm:text-sm sm:leading-6`
         case 'label':
             return `block text-sm font-medium leading-6 text-customForm`
         case 'cancel':

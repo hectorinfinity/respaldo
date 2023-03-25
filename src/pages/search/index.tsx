@@ -8,17 +8,19 @@ import { Content } from "@/components/landing/search/content";
 
 const Home = () => {
     return (
-        <div className="relative bg-white">
-            <div className="relative h-[40vw]">
-                <HeroSlider />
-            </div>
-            <div className="py-10 md:px-8">
+        <div className="bg-white">
+            {/*
+      <div className="h-[40vw] relative -z-10">
+        <HeroSlider />
+      </div>
+      */}
+            <div className="pt-10 pb-5 md:px-8">
                 <div className="flex flex-col items-center">
                     <h2 className="font-bold text-3xl pb-10">Categories</h2>
                     <CategorySlider />
                 </div>
             </div>
-            <div className="py-10 md:px-8">
+            <div className="md:px-8">
                 <div className="flex flex-col items-center">
                     <Content />
                 </div>

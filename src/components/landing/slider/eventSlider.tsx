@@ -10,7 +10,7 @@ import "swiper/css/keyboard";
 // import required modules
 import { Pagination, Navigation, Mousewheel, Keyboard } from "swiper";
 import { CustomCategory } from "./category/customCategory";
-import { EventCardVert } from "../event/eventCardVert";
+import { EventCardGrid } from "../event/";
 
 export const EventSlider = () => {
   const categories = [
@@ -29,7 +29,7 @@ export const EventSlider = () => {
 ]
 
   return (
-    <div className="w-[100%] flex flex-row items-center">
+    <div className="w-[90%] flex flex-row items-center">
       <Swiper
         slidesPerView={4}
         spaceBetween={15}
@@ -55,20 +55,23 @@ export const EventSlider = () => {
           }
         }}
       >
-          <SwiperSlide className="px-10">
-            <EventCardVert />
+          <SwiperSlide>
+            <EventCardGrid />
           </SwiperSlide>
-          <SwiperSlide className="px-10">
-            <EventCardVert />
+          <SwiperSlide>
+            <EventCardGrid />
           </SwiperSlide>
-          <SwiperSlide className="px-10">
-            <EventCardVert />
+          <SwiperSlide>
+            <EventCardGrid />
           </SwiperSlide>
-          <SwiperSlide className="px-10">
-            <EventCardVert />
+          <SwiperSlide>
+            <EventCardGrid />
           </SwiperSlide>
-          <SwiperSlide className="px-10">
-            <EventCardVert />
+          <SwiperSlide>
+            <EventCardGrid />
+          </SwiperSlide>
+          <SwiperSlide>
+            <EventCardGrid />
           </SwiperSlide>
       </Swiper>
     </div>

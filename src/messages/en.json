@@ -93,6 +93,9 @@
     "form_save": "Save",
     "form_send": "Send",
 
+    "form_clear_filters": "Clear Filters",
+    "form_apply_filters": "Apply Filters",
+
     "new_card": "Add new card"
   },
   
@@ -378,6 +381,13 @@
   "Forms": "/////////////////////////////////////// Forms",
   "Common_Forms": {
     "rs_photo": "user photo",
+    "loading": "Loading",
+
+    "field_categories": "Categories",
+    "field_subcategories": "Subcategories",
+    "field_sub-subcategories": "Sub-Subategories",
+    "field_range_date": "Range Date",
+    "field_location": "Location",
 
     "field_lang": "Lenguage",
     "field_search": "Search",
@@ -468,5 +478,26 @@
     "field_month": "Months",
     "field_months": "Months",
     "field_quota": "Quota"
+  },
+
+  "Public_Comment": "/////////////////////////////////////// Public Comment",
+  "Public": {
+    "commons": {
+      "events": "Events",
+      "categories": "Categories",
+      "recommended_evenets": "Recommended Events"
+    },
+    "home": {
+      "new_events": "New Events",
+      "featured_events": "Feature Events"
+    },
+    "search": {
+      "filters": "Filters",
+      "sort": "Sort",
+      "results_of": "Results of",
+      "no_results": "We couldn't find any results for",
+      "view_grid": "View Grid",
+      "close_menu": "Close Menu"
+    }
   }
 }
