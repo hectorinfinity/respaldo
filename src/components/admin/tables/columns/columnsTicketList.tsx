@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { useTranslations } from "next-intl";
 // Table
 import { createColumnHelper } from '@tanstack/react-table';
-import { Checkbox, Options, SwitchTable } from "./components";
+import { Checkbox, Options, Status } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsDiscount() {
+export function columnsTicketList() {
   const tcc = useTranslations("table_columns");
   const currentColor = CurrentColor();
   const columnHelper = createColumnHelper<any>();
@@ -38,49 +38,34 @@ export function columnsDiscount() {
     }),
     columnHelper.accessor('event', {
       id: 'event',
-      header: () => tcc('event.event.event'),
+      header: () => tcc('ticket.list.event'),
       cell: info => info.getValue()
     }),
-    columnHelper.accessor('name', {
-      id: 'name',
-      header: () => tcc('event.discount.name'),
+    columnHelper.accessor('date', {
+      id: 'date',
+      header: () => tcc('ticket.list.date'),
       cell: info => info.getValue()
     }),
-    columnHelper.accessor('cuopon', {
-      id: 'cuopon',
-      header: () => tcc('event.discount.cuopon'),
+    columnHelper.accessor('available', {
+      id: 'available',
+      header: () => tcc('ticket.list.available'),
       cell: info => info.getValue()
     }),
-    columnHelper.accessor('discount', {
-      id: 'discount',
-      header: () => tcc('event.discount.discount'),
+    columnHelper.accessor('sold', {
+      id: 'sold',
+      header: () => tcc('ticket.list.sold'),
       cell: info => info.getValue()
     }),
-    columnHelper.accessor('limit', {
-      id: 'limit',
-      header: () => tcc('event.discount.limit'),
-      cell: info => info.getValue()
-    }),
-    columnHelper.accessor('exchanges', {
-      id: 'exchanges',
-      header: () => tcc('event.discount.exchanges'),
-      cell: info => info.getValue()
-    }),
-    columnHelper.accessor('init_at', {
-      id: 'init_at',
-      header: () => tcc('event.discount.init_at'),
-      cell: info => info.getValue()
-    }),
-    columnHelper.accessor('expires_at', {
-      id: 'expires_at',
-      header: () => tcc('event.discount.expires_at'),
+    columnHelper.accessor('income', {
+      id: 'income',
+      header: () => tcc('ticket.list.income'),
       cell: info => info.getValue()
     }),
     columnHelper.accessor('status', {
       id: 'status',
       header: () => tcc('status'),
-      cell: props => (
-        <SwitchTable color={currentColor}/>
+      cell: info => (
+        <Status text={info.getValue()}/>
       ),
     }),
     columnHelper.accessor('options', {

@@ -6,7 +6,7 @@ import { Checkbox, Options, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsDiscount() {
+export function columnsUserPos() {
   const tcc = useTranslations("table_columns");
   const currentColor = CurrentColor();
   const columnHelper = createColumnHelper<any>();
@@ -36,51 +36,31 @@ export function columnsDiscount() {
         </div>
       ),
     }),
-    columnHelper.accessor('event', {
-      id: 'event',
-      header: () => tcc('event.event.event'),
-      cell: info => info.getValue()
-    }),
     columnHelper.accessor('name', {
       id: 'name',
-      header: () => tcc('event.discount.name'),
+      header: () => tcc('ticket.user.name'),
       cell: info => info.getValue()
     }),
-    columnHelper.accessor('cuopon', {
-      id: 'cuopon',
-      header: () => tcc('event.discount.cuopon'),
+    columnHelper.accessor('email', {
+      id: 'email',
+      header: () => tcc('ticket.user.email'),
       cell: info => info.getValue()
     }),
-    columnHelper.accessor('discount', {
-      id: 'discount',
-      header: () => tcc('event.discount.discount'),
+    columnHelper.accessor('location', {
+      id: 'location',
+      header: () => tcc('ticket.user.location'),
       cell: info => info.getValue()
     }),
-    columnHelper.accessor('limit', {
-      id: 'limit',
-      header: () => tcc('event.discount.limit'),
-      cell: info => info.getValue()
-    }),
-    columnHelper.accessor('exchanges', {
-      id: 'exchanges',
-      header: () => tcc('event.discount.exchanges'),
-      cell: info => info.getValue()
-    }),
-    columnHelper.accessor('init_at', {
-      id: 'init_at',
-      header: () => tcc('event.discount.init_at'),
-      cell: info => info.getValue()
-    }),
-    columnHelper.accessor('expires_at', {
-      id: 'expires_at',
-      header: () => tcc('event.discount.expires_at'),
+    columnHelper.accessor('created', {
+      id: 'created',
+      header: () => tcc('ticket.user.created'),
       cell: info => info.getValue()
     }),
     columnHelper.accessor('status', {
       id: 'status',
       header: () => tcc('status'),
-      cell: props => (
-        <SwitchTable color={currentColor}/>
+      cell: info => (
+        <SwitchTable color={currentColor} />
       ),
     }),
     columnHelper.accessor('options', {

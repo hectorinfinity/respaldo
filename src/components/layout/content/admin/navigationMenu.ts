@@ -53,11 +53,11 @@ export function NavigationMenu(path: string) {
     const ticket_navigation = [
         { name: t('dashboard'), icon: Squares2X2Icon, current: path.split('/').length<4, href: '/panel/ticket/' },
         { name: t('ticket.ticket'), icon: TicketIcon, current: path.includes('list'), href: '/panel/ticket/list' },
-        { name: t('ticket.refund'), icon: ReceiptRefundIcon, current: path.includes('refund'), href: '/panel/ticket/refund' },
+        /*{ name: t('ticket.refund'), icon: ReceiptRefundIcon, current: path.includes('refund'), href: '/panel/ticket/refund' },*/
         {
             name: t('ticket.user.user'), icon: UsersIcon, children: [
-                { name: t('ticket.user.app'), current: path.includes('app'), href: '/panel/ticket/app' },
-                { name: t('ticket.user.pos'), current: path.includes('pos'), href: '/panel/ticket/pos' },
+                { name: t('ticket.user.app'), current: path.includes('user/app'), href: '/panel/ticket/user/app' },
+                { name: t('ticket.user.pos'), current: path.includes('user/pos'), href: '/panel/ticket/user/pos' },
             ],
         },
     ]

@@ -100,8 +100,11 @@
 
     "add_event": "Create Event",
     "add_discount": "Create Discount",
-    "add_special_category": "Create Spacial Category"
-    
+    "add_special_category": "Create Spacial Category",
+
+    "add_ticket": "Create Ticket",
+    "add_user_app": "Create User APP",
+    "add_user_pos": "Create User POS"
   },
 
   "Landing_Comment_Table": "/////////////////////////////////////// Tables",
@@ -132,6 +135,7 @@
         "shared": "Shared"
       },
       "discount": {
+        "name": "Name",
         "cuopon": "Cuopon",
         "discount": "Discount",
         "limit": "Limit",
@@ -141,6 +145,22 @@
         "status": "Status"
       },
       "special": "Special Category"
+    },
+    "ticket": {
+      "list": {
+        "event": "Event",
+        "date": "Date",
+        "available": "Available",
+        "sold": "Sold",
+        "income": "Income"
+      },
+      "user": {
+        "name": "Name",
+        "email": "email",
+        "event": "Event",
+        "location": "Location",
+        "created": "Created Date"
+      }
     }
   },
   
@@ -408,6 +428,7 @@
     },
     "ticket": {
       "ticket": "Tickets",
+      "list": "List",
       "refund": "Refund",
       "user": {
         "user": "Users",

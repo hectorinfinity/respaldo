@@ -5,28 +5,29 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
-import { columnsDiscount } from '@/components/admin/tables/columns/columnsDiscount';
+import { columnsUserApp } from '@/components/admin/tables/columns/columnsUserApp';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
-import { EventDiscount } from '@/interfaces/event';
+import { Event as EventInterface } from '@/interfaces/event';
 
-const EventSpecialCategory = () => {
+const TicketList = () => {
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
     const breadcrumb = [
-        { page: ts('event.event'), href: '/panel/event' },
-        { page: ts('event.discount'), href: '' }
+        { page: ts('ticket.ticket'), href: '/panel/ticket' },
+        { page: ts('ticket.user.user'), href: '' },
+        { page: ts('ticket.user.app'), href: '' }
     ]
-    const buttonBread =  { text: tb('add_discount'), href: '/panel/event/discount/create' }
+    const buttonBread =  { text: tb('add_user_app'), href: '/panel/ticket/user/app/create' }
 
     const data = useMemo(() => [
-        { id: '1', event: "Iron Maiden", name: "Descuento del 10%", cuopon: "MJ2012K", discount: "10%", limit: 10, exchanges: 2, init_at: "2022-10-10", expires_at: "2022-10-15", status: true },
-        { id: '2', event: "Teatro: Alicia en el país de las maravillas y sus amigos", name: "Descuento del 20%", cuopon: "MJ2I12K", discount: "20%", limit: 15, exchanges: 7, init_at: "2022-10-09", expires_at: "2022-10-28", status: true },
+        { id: '1', name: 'José Alfredo Demostenez', email: "jose.alfredo.demo@gmail.com", event: "Alicia en el país de las maravillas", location: "Gate A34" },
+        { id: '2', name: 'Mariano Figueroa', email: "mariano.figueroa@hotmail.com", event: "Iron Maiden", location: "Gate B" },
     ], []);
-    const columns = columnsDiscount();
-   
+    const columns = columnsUserApp();
+
     return (
         <>
             {/* Breadcrumb section */}
@@ -53,8 +54,8 @@ const EventSpecialCategory = () => {
     );
 };
 
-EventSpecialCategory.Layout = AdminLayout;
-export default EventSpecialCategory;
+TicketList.Layout = AdminLayout;
+export default TicketList;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
