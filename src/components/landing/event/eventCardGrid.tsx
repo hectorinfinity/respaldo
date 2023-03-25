@@ -5,7 +5,7 @@ import Link from "next/link";
 import { HeartIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/20/solid";
 
-export const EventCardHor = () => {
+export const EventCardGrid = () => {
     return (
         <div className="px-8 sm:px-4 py-4 drop-shadow-xl">
             <div className="relative h-64 w-70 lg:w-80 rounded-t-[2rem] border-b-[20px] border-customBlue">
@@ -20,16 +20,12 @@ export const EventCardHor = () => {
                     <h1 className="text-xl font-bold capitalize">Aladín - El Deslumbrante Show De Brodway</h1>
                     <div>
                         <p className="text-base font-light text-customGray">
-                            Martes, 16 Enero 2023
-                        </p>
-
-                        <p className="text-base font-light text-customGray">
-                            19:00 - 00:00 hrs
+                            Martes, 16 Enero 2023 - 19:00 - 00:00 hrs
                         </p>
                     </div>
                     <div className="flex items-center space-x-2 text-customGray">
                         <MapPinIcon name="location" className="w-5 h-5" />
-                        <p className="text-base font-medium leading-tight">
+                        <p className="text-base leading-tight">
                             Centro cultural, Ciudad de México
                         </p>
                     </div>
