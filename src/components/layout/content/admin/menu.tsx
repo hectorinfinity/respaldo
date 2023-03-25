@@ -38,6 +38,7 @@ export const Menu = ({path, color}: Props) => {
                         <div className="space-x-3 md:ml-6 sm:flex sm:space-x-6 md:space-x-8">
                             {navigation.map((item) => (
                                 <Link
+                                    key={item.name}
                                     href={item.href}
                                     className={classNames(
                                         item.current

@@ -46,7 +46,7 @@ export const Navigation = ({path, color}: Props) => {
                                 <Disclosure.Button
                                     className={classNames(
                                         item.current
-                                            ? 'bg-gray-100 text-gray-900'
+                                            ? `bg-gray-100 text-${color}`
                                             : `bg-white text-gray-600 hover:bg-${color} hover:text-white`,
                                             `group flex w-full items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-${color}`
                                     )}
@@ -77,7 +77,12 @@ export const Navigation = ({path, color}: Props) => {
                                             <Link
                                                 key={subItem.name}
                                                 href={subItem.href}
-                                                className={`group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-${color} hover:text-white`}
+                                                className={classNames(
+                                                    subItem.current
+                                                        ? `bg-gray-100 text-${color}`
+                                                        : `bg-white text-gray-600 hover:bg-${color} hover:text-white`,
+                                                        `group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium`
+                                                )}
                                             >
                                                 {subItem.name}
                                             </Link>

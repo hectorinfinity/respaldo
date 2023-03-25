@@ -5,27 +5,28 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
-import { columnsEvent } from '@/components/admin/tables/columns/columnsEvent';
+import { columnsDiscount } from '@/components/admin/tables/columns/columnsDiscount';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
-import { Event as EventInterface } from '@/interfaces/event';
+import { EventDiscount } from '@/interfaces/event';
 
-const Event = () => {
+const EventSpecialCategory = () => {
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
     const breadcrumb = [
-        { page: ts('event.event'), href: '' }
+        { page: ts('event.event'), href: '/panel/event' },
+        { page: ts('event.discount'), href: '' }
     ]
-    const buttonBread =  { text: tb('add_event'), href: '/panel/event/create' }
+    const buttonBread =  { text: tb('add_discount'), href: '/panel/event/discount/create' }
 
     const data = useMemo(() => [
-        { id: '1', event: 'Alicia en el país de las maravillas', category: "Theater", date: "2024-01-01 14:00", visit: 100, like: 100, assisted: 100, shared: 100, status: true },
-        { id: '2', event: 'Hell & Heaven - Preferente', category: "Músic-Rock/Metal", date: "2025-02-03 14:00 - 18:00", visit: 100, like: 100, assisted: 100, shared: 100, status: true },
+        { id: '1', event: "Iron Maiden", cuopon: "MJ2012K", discount: "10%", limit: 10, exchanges: 2, init_at: "2022-10-10", expires_at: "2022-10-15", status: true },
+        { id: '2', event: "Teatro: Alicia en el país de las maravillas y sus amigos", cuopon: "MJ2I12K", discount: "20%", limit: 15, exchanges: 7, init_at: "2022-10-09", expires_at: "2022-10-28", status: true },
     ], []);
-    const columns = columnsEvent();
-
+    const columns = columnsDiscount();
+   
     return (
         <>
             {/* Breadcrumb section */}
@@ -52,8 +53,8 @@ const Event = () => {
     );
 };
 
-Event.Layout = AdminLayout;
-export default Event;
+EventSpecialCategory.Layout = AdminLayout;
+export default EventSpecialCategory;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

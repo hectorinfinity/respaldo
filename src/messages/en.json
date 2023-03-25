@@ -76,7 +76,7 @@
     }
   },
   
-  "Landing_Comment_Btns": "/////////////////////////////////////// Landing Page Contact US Button",
+  "Landing_Comment_Btns": "/////////////////////////////////////// Buttons",
   "btn": {
     "form_back": "Back to form",
 
@@ -96,7 +96,52 @@
     "form_clear_filters": "Clear Filters",
     "form_apply_filters": "Apply Filters",
 
-    "new_card": "Add new card"
+    "new_card": "Add new card",
+
+    "add_event": "Create Event",
+    "add_discount": "Create Discount",
+    "add_special_category": "Create Spacial Category"
+    
+  },
+
+  "Landing_Comment_Table": "/////////////////////////////////////// Tables",
+  "table": {
+    "page": "Page",
+    "of": "of",
+    "results": "results",
+
+    "init": "Init",
+    "previous": "Previous",
+    "next": "Next",
+    "end": "End",
+
+    "showing": "Showing"
+  },
+
+  "Landing_Comment_Table_Columns": "/////////////////////////////////////// Tables Columns",
+  "table_columns": {
+    "status": "Status",
+    "option": "Options",
+    "event": {
+      "event": {
+        "event": "Event",
+        "category": "Category",
+        "visit": "Visits",
+        "like": "Likes",
+        "assisted": "Assisted",
+        "shared": "Shared"
+      },
+      "discount": {
+        "cuopon": "Cuopon",
+        "discount": "Discount",
+        "limit": "Limit",
+        "exchanges": "Exchanges",
+        "init_at": "Init At",
+        "expires_at": "Expires At",
+        "status": "Status"
+      },
+      "special": "Special Category"
+    }
   },
   
   "Landing_Comment_About": "/////////////////////////////////////// Landing Page About Section",
@@ -306,6 +351,21 @@
     "text_up_to": "up to"
   },
 
+  "Panel_Event_Comment": "/////////////////////////////////////// Panel Event ",
+  "Panel_Event": {
+    "discount": "or drag and drop"
+  },
+
+  "Panel_Event_Discount_Comment": "/////////////////////////////////////// Panel Event Discount",
+  "Panel_Event_Discount": {
+    "discount": "or drag and drop"
+  },
+
+  "Panel_Event_Special_Comment": "/////////////////////////////////////// Panel Event Special Category",
+  "Panel_Event_Special": {
+    "sepcial": "Sepcial Category"
+  },
+
   
 
   "Panel_Comment_Menu": "/////////////////////////////////////// Panel Menu Section",
@@ -462,10 +522,11 @@
     "auto_cfdi": "CFDI",
 
     "field_front_id": "Front ID",
-    "field_back_id": "Front ID",
+    "field_back_id": "Back ID",
     "field_selfie": "Selfie",
     "field_upload_file": "Upload a file",
 
+    "field_notification": "Notifications",
     "field_tags": "Tags",
 
     "field_start": "Start",
