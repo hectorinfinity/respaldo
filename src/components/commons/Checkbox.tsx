@@ -25,7 +25,7 @@ const Radio = React.forwardRef<any, props>(
             </label>
           )}
         </div>
-        {error && <p className="mt-1 ml-1 text-xs text-red-500 ">{error}</p>}
+        {error && <p className="mt-1 ml-1 text-xs text-customRed ">{error}</p>}
       </div>
     );
   }
