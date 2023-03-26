@@ -65,7 +65,7 @@ export function NavigationMenu(path: string) {
     const admin_navigation = [
         {
             name: t('admin.config.config'), icon: AdjustmentsHorizontalIcon, children: [
-                { name: t('admin.config.setting'), current: path.includes('config') && path.split('/').length<5, href: '/panel/admin/config' },
+                { name: t('admin.config.setting'), current: path.includes('config') && path.split('/').length<5, href: '/panel/admin' },
                 { name: t('admin.config.cookie'), current: path.includes('cookie'), href: '/panel/admin/config/cookie' },
                 { name: t('admin.config.term'), current: path.includes('term'), href: '/panel/admin/config/term' },
                 { name: t('admin.config.privacy'), current: path.includes('privacy'), href: '/panel/admin/config/privacy' },

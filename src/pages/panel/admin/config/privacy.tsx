@@ -14,7 +14,7 @@ import { CustomCancel, CustomSubmit } from '@/components/forms';
 import { CurrentColor } from '@/helpers';
 import { EditorLang } from '@/components/admin/lang';
 
-const AdminCookie = () => {
+const AdminPrivacy = () => {
     const { locales } = useRouter();
     const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
@@ -23,7 +23,7 @@ const AdminCookie = () => {
     const breadcrumb = [
         { page: t('admin.admin'), href: '/panel/admin' },
         { page: t('admin.config.config'), href: '/panel/admin' },
-        { page: t('admin.config.cookie'), href: '' }
+        { page: t('admin.config.privacy'), href: '' }
     ]
 
     return (
@@ -55,8 +55,8 @@ const AdminCookie = () => {
     );
 };
 
-AdminCookie.Layout = AdminLayout;
-export default AdminCookie;
+AdminPrivacy.Layout = AdminLayout;
+export default AdminPrivacy;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
