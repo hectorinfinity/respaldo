@@ -34,7 +34,7 @@ const ProfileAddress = () => {
                         {/* Profile section */}
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
-                                <CustomLabel field="front_id" name={tc('field_front_id')} required />
+                                <CustomLabel field="front_id-upload" name={tc('field_front_id')} required />
                                 <div className="mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                     <div className="space-y-1 text-center">
                                         <svg
@@ -53,11 +53,11 @@ const ProfileAddress = () => {
                                         </svg>
                                         <div className="flex text-sm text-gray-600">
                                             <label
-                                                htmlFor="file-upload"
+                                                htmlFor="front_id-upload"
                                                 className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>{tc('field_upload_file')}</span>
-                                                <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                                <input id="front_id-upload" name="front_id-upload" type="file" className="sr-only" />
                                             </label>
                                             <p className="pl-1">{t('text_drag_n_drop')}</p>
                                         </div>
@@ -66,7 +66,7 @@ const ProfileAddress = () => {
                                 </div>
                             </div>
                             <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
-                                <CustomLabel field="back_id" name={tc('field_back_id')} required />
+                                <CustomLabel field="back_id-upload" name={tc('field_back_id')} required />
                                 <div className="mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                     <div className="space-y-1 text-center">
                                         <svg
@@ -85,11 +85,11 @@ const ProfileAddress = () => {
                                         </svg>
                                         <div className="flex text-sm text-gray-600">
                                             <label
-                                                htmlFor="file-upload"
+                                                htmlFor="back_id-upload"
                                                 className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>{tc('field_upload_file')}</span>
-                                                <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                                <input id="back_id-upload" name="back_id-upload" type="file" className="sr-only" />
                                             </label>
                                             <p className="pl-1">{t('text_drag_n_drop')}</p>
                                         </div>
@@ -98,7 +98,7 @@ const ProfileAddress = () => {
                                 </div>
                             </div>
                             <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
-                                <CustomLabel field="selfie" name={tc('field_selfie')} required />
+                                <CustomLabel field="selfie-upload" name={tc('field_selfie')} required />
                                 <div className="mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                     <div className="space-y-1 text-center">
                                         <svg
@@ -117,11 +117,11 @@ const ProfileAddress = () => {
                                         </svg>
                                         <div className="flex text-sm text-gray-600">
                                             <label
-                                                htmlFor="file-upload"
+                                                htmlFor="selfie-upload"
                                                 className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>{tc('field_upload_file')}</span>
-                                                <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                                <input id="selfie-upload" name="selfie-upload" type="file" className="sr-only" />
                                             </label>
                                             <p className="pl-1">{t('text_drag_n_drop')}</p>
                                         </div>

@@ -480,6 +480,9 @@
   "Panel_SideBar": {
     "dashboard": "Dashboard",
     "user": "User",
+    "actions": {
+      "create": "Create"
+    },
     "profile": {
       "favorite": "Favorites",
       "info": "Personal Information",
@@ -638,7 +641,11 @@
     "field_months_without": "Months Whitout Interests",
     "field_month": "Months",
     "field_months": "Months",
-    "field_quota": "Quota"
+    "field_quota": "Quota",
+
+    "field_header": "Upload an image for your Header",
+    "field_icon": "Upload an icon for your category",
+    "field_color": "Pick a color for your category"
   },
 
   "Public_Comment": "/////////////////////////////////////// Public Comment",
