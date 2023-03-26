@@ -41,7 +41,29 @@ const AdminCookie = () => {
                     <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
                         {/* Category section */}
                         <div className="py-6 grid grid-cols-12 gap-6">
-                            <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6">
+                            <div className="col-span-12 sm:col-span-6 lg:col-span-3">
+                                <CustomLabel field="category" name={tc('field_category')} required />
+                                <select
+                                    id="category"
+                                    name="category"
+                                    className={FormStyles('select')}
+                                    defaultValue={''}
+                                >
+                                    <option value=''>{tc('field_select_category')}</option>
+                                </select>
+                            </div>
+                            <div className="col-span-12 sm:col-span-6 lg:col-span-3">
+                                <CustomLabel field="subcategory" name={tc('field_subcategory')} required />
+                                <select
+                                    id="subcategory"
+                                    name="subcategory"
+                                    className={FormStyles('select')}
+                                    defaultValue={''}
+                                >
+                                    <option value=''>{tc('field_select_subcategory')}</option>
+                                </select>
+                            </div>
+                            <div className="col-span-12 sm:col-span-6 lg:col-span-3">
                                 <CustomLabel field="icon-upload" name={tc('field_icon')} required />
                                 <div className="mt-2 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                     <div className="space-y-1 text-center">
@@ -73,11 +95,10 @@ const AdminCookie = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6">
+                            <div className="col-span-12 sm:col-span-6 lg:col-span-3">
                                 <CustomLabel field="front_id" name={tc('field_color')} required />
                                 <SketchPicker />
                             </div>
-
 
                             <InputLang lang="es" />
                         </div>
