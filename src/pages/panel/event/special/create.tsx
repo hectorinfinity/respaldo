@@ -13,7 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
 import { CurrentColor, FormStyles } from '@/helpers';
-import { InputLang } from '@/components/admin/lang';
+import { ComboLang, InputLang } from '@/components/admin/lang';
 
 const AdminCookie = () => {
     const { locales } = useRouter();
@@ -187,7 +187,7 @@ const AdminCookie = () => {
                                     </div>
                                 </div>
                             </div>
-                            <InputLang lang="es" />
+                            <ComboLang lang="es" />
                         </div>
 
                         {/* Buttons section */}
