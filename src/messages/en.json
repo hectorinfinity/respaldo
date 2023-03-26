@@ -549,6 +549,7 @@
     "field_location": "Location",
 
     "field_lang": "Lenguage",
+    "field_add_lang": "Add Language",
     "field_search": "Search",
     "auto_search": "search",
     "place_search": "Search...",

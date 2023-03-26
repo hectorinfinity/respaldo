@@ -18,7 +18,7 @@ import {
 // Helpers
 import { CurrentColor } from "@/helpers/currentColor";
 // Components
-import { SearchInput, DOTS, PaginationTable } from './index';
+import { SearchInput, DOTS, PaginationTable } from './components/index';
 // Icons
 import {
     ChevronDownIcon,

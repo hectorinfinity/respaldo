@@ -5,7 +5,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 
 export const SearchInput = () => {
-  const tc = useTranslations("Panel_SideBar");
+  const tc = useTranslations("Common_Forms");
 
   return (
     <>
@@ -14,8 +14,8 @@ export const SearchInput = () => {
           type="text"
           name="businessname"
           id="businessname"
-          autoComplete={tc('auto_businessname')}
-          placeholder={tc('field_businessname')}
+          autoComplete={tc('place_search')}
+          placeholder={tc('place_search')}
           className={FormStyles('search')}
         />
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
