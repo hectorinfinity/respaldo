@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { EventSupplier } from 'interfaces/event';
+import axios from '@/lib/axios';
+import { EventSupplier } from '@/interfaces/event';
 
 export const getEventsSuppliers = async () => {
     const { data } = await axios.get(`/events/suppliers/`);

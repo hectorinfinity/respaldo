@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { Event } from 'interfaces/event';
+import axios from '@/lib/axios';
+import { Event } from '@/interfaces/event';
 
 export const getEvents = async () => {
     const { data } = await axios.get(`/events/`);

@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { UserCostum } from 'interfaces/user';
+import axios from '@/lib/axios';
+import { UserCostum } from '@/interfaces/user';
 
 export const getUsersCostumes = async () => {
     const { data } = await axios.get(`/users/costumes/`);

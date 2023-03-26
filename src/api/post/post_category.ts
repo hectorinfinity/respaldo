@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { PostCategory } from 'interfaces/post';
+import axios from '@/lib/axios';
+import { PostCategory } from '@/interfaces/post';
 
 export const getPostsCategories = async () => {
     const { data } = await axios.get(`/posts/categories/`);
