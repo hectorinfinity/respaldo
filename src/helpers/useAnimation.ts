@@ -1,6 +1,12 @@
-import { animation } from '@/types/global';
-
-export default function useAnimation(animation: animation) {
+export default function useAnimation(
+  animation:
+    | 'grow'
+    | 'fade'
+    | 'slide-left'
+    | 'slide-right'
+    | 'slide-top'
+    | 'slide-bottom'
+) {
   switch (animation) {
     case 'grow':
       return {

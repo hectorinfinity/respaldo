@@ -29,7 +29,7 @@ export const FormSearchFilter = () => {
                 <div className='pt-5'>
                     <fieldset>
                         <legend className="block text-sm font-medium text-gray-900">{t('field_categories')}</legend>
-                        <div className="space-y-3 pt-6">
+                        <div className="pt-6 space-y-3">
                             <select
                                 id="sex"
                                 name="sex"
@@ -45,7 +45,7 @@ export const FormSearchFilter = () => {
                 <div className='pt-5'>
                     <fieldset>
                         <legend className="block text-sm font-medium text-gray-900">{t('field_subcategories')}</legend>
-                        <div className="space-y-3 pt-6">
+                        <div className="pt-6 space-y-3">
                             <select
                                 id="sex"
                                 name="sex"
@@ -61,7 +61,7 @@ export const FormSearchFilter = () => {
                 <div className='pt-5'>
                     <fieldset>
                         <legend className="block text-sm font-medium text-gray-900">{t('field_sub-subcategories')}</legend>
-                        <div className="space-y-3 pt-6">
+                        <div className="pt-6 space-y-3">
                             <select
                                 id="sex"
                                 name="sex"
@@ -77,11 +77,11 @@ export const FormSearchFilter = () => {
                 <div className='pt-5'>
                     <fieldset>
                         <legend className="block text-sm font-medium text-gray-900">{t('field_range_date')}</legend>
-                        <div className="space-y-3 pt-6">
+                        <div className="pt-6 space-y-3">
                             <DatePicker
                                 className="rmdp-prime"
                                 value={dateValues}
-                                onChange={setDateValues}
+                                onChange={setDateValues as any}
                                 numberOfMonths={2}
                                 range
                                 render={<CustomRangeInput value={dateValues} />}
@@ -92,7 +92,7 @@ export const FormSearchFilter = () => {
                 <div className='pt-5'>
                     <fieldset>
                         <legend className="block text-sm font-medium text-gray-900">{t('field_location')}</legend>
-                        <div className="space-y-3 pt-6">
+                        <div className="pt-6 space-y-3">
                             <input
                                 type="email"
                                 name="email"

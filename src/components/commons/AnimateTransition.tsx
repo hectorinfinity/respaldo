@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
-import { Transition } from '@headlessui/react';
-import { animation } from '@/types/global';
+import { Transition } from '@headlessui/react';;
 import useAnimation from '@/helpers/useAnimation';
 
 export type props = {
   className?: string;
   as?: any;
   show?: boolean;
-  animation: animation;
+  animation: 'grow' | 'fade' | 'slide-left' | 'slide-right'  | 'slide-top' | 'slide-bottom';
   children?: React.ReactNode;
   appear?: boolean;
   afterLeave?: any;

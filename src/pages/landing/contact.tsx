@@ -55,10 +55,10 @@ const Contact = () => {
       <Header image={image} />
       <Section title={t('page')} color={currentColor} />
 
-      <div className="relative isolate bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
+      <div className="relative bg-white isolate">
+        <div className="grid grid-cols-1 mx-auto max-w-7xl lg:grid-cols-2">
           <div className="relative px-6 pt-20 pb-20 sm:pt-32 lg:static lg:py-20 lg:px-8">
-            <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
+            <div className="max-w-xl mx-auto lg:mx-0 lg:max-w-lg">
               <div className={`absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-${currentColor} lg:w-1/2`}>
                 <svg
                   className={`absolute inset-0 h-full w-full stroke-${currentColor} [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]`}
@@ -136,15 +136,15 @@ const Contact = () => {
           </div>
           {
             submitted ? (
-                <div className="flex flex-col px-6 pb-24 pt-20 sm:pb-32 lg:py-20 lg:px-8">
-                  <h2 className="text-3xl tracking-wider font-bold mt-5 text-customGreenVan">
+                <div className="flex flex-col px-6 pt-20 pb-24 sm:pb-32 lg:py-20 lg:px-8">
+                  <h2 className="mt-5 text-3xl font-bold tracking-wider text-customGreenVan">
                   {t('success_title')}
                   </h2>
                   <p className="mt-5">{t('success_subtitle')}</p>
                 </div>
             ) : submittedError ? (
-                <div className="flex flex-1 flex-col px-6 pb-24 pt-20 sm:pb-32 lg:py-20 lg:px-8">
-                  <p className="text-xl text-customRed font-bold mt-5">
+                <div className="flex flex-col flex-1 px-6 pt-20 pb-24 sm:pb-32 lg:py-20 lg:px-8">
+                  <p className="mt-5 text-xl font-bold text-customRed">
                   {t('error_title')}
                   </p>
                   <p className="mt-5">{t('error_subtitle')}</p>
@@ -159,8 +159,8 @@ const Contact = () => {
                   </div>
                 </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmitHandler)} method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:py-20 lg:px-8">
-                <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
+              <form onSubmit={handleSubmit(onSubmitHandler)} method="POST" className="px-6 pt-20 pb-24 sm:pb-32 lg:py-20 lg:px-8">
+                <div className="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
                   <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
                     <div>
                       <CustomLabel field="firstname" name={tc('field_firstname')} required />
@@ -246,7 +246,7 @@ const Contact = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-8 flex justify-end">
+                  <div className="flex justify-end mt-8">
                     <CustomSubmit typeText='send' />
                   </div>
                 </div>
@@ -254,7 +254,7 @@ const Contact = () => {
             )}
         </div>
       </div>
-      <div className="relative isolate bg-white py-10">
+      <div className="relative py-10 bg-white isolate">
         <div className="flex justify-center w-100">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d919.7347204632892!2d-102.54627301188026!3d22.767649335671468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86824eb8de657407%3A0x1036f7d9db767840!2sJos%C3%A9%20Sergio%20B%C3%A1ez%20101%2C%20Villas%20del%20Sol%2C%2098067%20Guadalupe%2C%20Zac.!5e0!3m2!1ses-419!2smx!4v1678590382873!5m2!1ses-419!2smx" width="1200" height="450" style={{ border: 0 }} loading="lazy"></iframe>
         </div>
@@ -262,7 +262,7 @@ const Contact = () => {
     </>
   );
 };
-
+//@ts-ignore
 Contact.Layout = MainLayout;
 export default Contact;
 
