@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { UserReview } from 'interfaces/user';
+import axios from '@/lib/axios';
+import { UserReview } from '@/interfaces/user';
 
 export const getUsersReviews = async () => {
     const { data } = await axios.get(`/users/reviews/`);

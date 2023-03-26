@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { Post } from 'interfaces/post';
+import axios from '@/lib/axios';
+import { Post } from '@/interfaces/post';
 
 export const getPosts = async () => {
     const { data } = await axios.get(`/posts/`);

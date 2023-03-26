@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { EventOrderItem } from 'interfaces/event';
+import axios from '@/lib/axios';
+import { EventOrderItem } from '@/interfaces/event';
 
 export const getEventOrdersItems = async () => {
     const { data } = await axios.get(`/events/orders/items/`);

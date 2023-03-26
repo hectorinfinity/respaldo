@@ -1,6 +1,6 @@
-import { Faq, FaqContent, GetAllFaqs } from 'interfaces/help';
-import { PaginationParams } from 'interfaces/serializers/commons';
-import axios from 'lib/axios';
+import { Faq, FaqContent, GetAllFaqs } from '@/interfaces/help';
+import { PaginationParams } from '@/interfaces/serializers/commons';
+import axios from '@/lib/axios';
 
 export const getFaqs = async ({
     size = 50,

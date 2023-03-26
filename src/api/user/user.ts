@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { User } from 'interfaces/user';
+import axios from '@/lib/axios';
+import { User } from '@/interfaces/user';
 
 export const getMe = async () => {
     const { data } = await axios.get(`/users/me`);
