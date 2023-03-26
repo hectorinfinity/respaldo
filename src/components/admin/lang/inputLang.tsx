@@ -11,7 +11,7 @@ type Props = {
 
 export const InputLang = ({lang}: Props) => {
     return (
-        <div className="col-span-12 sm:col-span-3">
+        <div className="col-span-12 sm:col-span-6 lg:col-span-3">
             <div className="h-fit gap-x-16 gap-y-10 border-2">
                 <div className="inputCoverAd relative space-y-1 px-5 pt-10 pb-10">
                     <CustomLabel field='name' name='name' />

@@ -10,7 +10,7 @@ import { Heading } from '@/components/headers/admin/heading';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { CustomCancel, CustomSubmit } from '@/components/forms';
+import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
 import { CurrentColor, FormStyles } from '@/helpers';
 import { InputLang } from '@/components/admin/lang';
 
@@ -39,9 +39,19 @@ const AdminCookie = () => {
                     <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
                         {/* Subcategory section */}
                         <div className="py-6 grid grid-cols-12 gap-6">
+                            <div className="col-span-12 sm:col-span-3 md:col-span-3 lg:col-span-3">
+                                <CustomLabel field="category" name={tc('field_category')} required />
+                                <select
+                                    id="category"
+                                    name="category"
+                                    className={FormStyles('select')}
+                                    defaultValue={''}
+                                >
+                                    <option value=''>{tc('field_select_category')}</option>
+                                </select>
+                            </div>
                             <InputLang lang="es" />
                         </div>
-
                         {/* Buttons section */}
                         <div className="divide-y divide-gray-200">
                             <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
