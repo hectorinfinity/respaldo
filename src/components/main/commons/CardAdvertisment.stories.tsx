@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import CardAdvertisment, { props } from './CardAdvertisment';
-import {faker} from '@faker-js/faker'
+import { faker } from '@faker-js/faker';
 
 export default {
   title: 'Molecules/CardAdvertisment',
@@ -10,4 +10,7 @@ export default {
 
 const Template: StoryFn<props> = (args) => <CardAdvertisment {...args} />;
 
-export const Default = Template.bind({});
+export const Default: StoryFn<props> = Template.bind({});
+Default.args = {
+  image: faker.image.cats(),
+};
