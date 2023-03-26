@@ -26,7 +26,7 @@ interface buttonBread {
 export const Heading = ({ breadcrumb, buttonBread = null, langBread }: Props) => {
     const { locales } = useRouter();
     const currentColor = CurrentColor();
-    const t = useTranslations("Panel_SideBar");
+    const t = useTranslations("Common_Forms");
 
     return (
         <>
@@ -72,7 +72,7 @@ export const Heading = ({ breadcrumb, buttonBread = null, langBread }: Props) =>
                 ) : ''}
                 {langBread ? (
                     <div>
-                        <CustomLabel field="lang" name={t('field_lang')} />
+                        <CustomLabel field="lang" name={t('field_add_lang')} />
                         <div className="inline-flex">
                             <select
                                 id="lang"

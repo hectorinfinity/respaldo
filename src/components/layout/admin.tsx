@@ -24,7 +24,7 @@ function AdminLayout({ children }: PropsWithChildren<{}>): ReactElement {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const currentColor = CurrentColor();
   // Just the Dashboard and POS module doesn't have Sidebar
-  const hasSideBar = (router.pathname.split('/').length == 2) || router.pathname.includes('pos');
+  const hasSideBar = (router.pathname.split('/').length == 2) || (router.pathname.includes('pos') && router.pathname.split('/').length<4);
 
   return (
     <>

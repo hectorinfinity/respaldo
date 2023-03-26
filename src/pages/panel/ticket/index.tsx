@@ -21,8 +21,8 @@ const Ticket = () => {
         { name: 'Total Subscribers', stat: '71,897' },
         { name: 'Avg. Open Rate', stat: '58.16%' },
         { name: 'Avg. Click Rate', stat: '24.57%' },
-        { name: 'Avg. Click Rate', stat: '24.57%' },
-        { name: 'Avg. Click Rate', stat: '24.57%' },
+        { name: 'Avg. Click Rate2', stat: '24.57%' },
+        { name: 'Avg. Click Rated', stat: '24.57%' },
     ]
 
     return (

@@ -91,7 +91,7 @@ export const Footer = () => {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-12 lg:px-8 lg:pt-16">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <Image
@@ -168,7 +168,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
+        <div className="mt-8 border-t border-white/10 pt-8 sm:mt-20 lg:mt-16 lg:flex lg:items-center lg:justify-between">
           <div>
             <h3 className="text-sm font-semibold leading-6 text-white">{tt('newsletter.title')}</h3>
             <p className="mt-2 text-sm leading-6 text-gray-300">

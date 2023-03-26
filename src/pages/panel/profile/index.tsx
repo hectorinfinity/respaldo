@@ -111,7 +111,7 @@ const Profile = () => {
                                             <option value=''>{tc('place_sex')}</option>
                                             {sexOptions.map((item) => {
                                                 return (
-                                                    <option value={item.value}>{item.name}</option>
+                                                    <option key={item.value} value={item.value}>{item.name}</option>
                                                 )
                                             })}
                                         </select>
