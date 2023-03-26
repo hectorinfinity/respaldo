@@ -39,42 +39,42 @@ export function columnsDiscount() {
     columnHelper.accessor('event', {
       id: 'event',
       header: () => tcc('event.event.event'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('name', {
       id: 'name',
       header: () => tcc('event.discount.name'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('cuopon', {
       id: 'cuopon',
       header: () => tcc('event.discount.cuopon'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('discount', {
       id: 'discount',
       header: () => tcc('event.discount.discount'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('limit', {
       id: 'limit',
       header: () => tcc('event.discount.limit'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('exchanges', {
       id: 'exchanges',
       header: () => tcc('event.discount.exchanges'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('init_at', {
       id: 'init_at',
       header: () => tcc('event.discount.init_at'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('expires_at', {
       id: 'expires_at',
       header: () => tcc('event.discount.expires_at'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {
       id: 'status',

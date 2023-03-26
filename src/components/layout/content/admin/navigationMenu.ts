@@ -64,7 +64,7 @@ export function NavigationMenu(path: string) {
     
     const admin_navigation = [
         {
-            name: t('admin.config.config'), icon: AdjustmentsHorizontalIcon, current: true, children: [
+            name: t('admin.config.config'), icon: AdjustmentsHorizontalIcon, children: [
                 { name: t('admin.config.setting'), current: path.includes('config') && path.split('/').length<5, href: '/panel/admin/config' },
                 { name: t('admin.config.cookie'), current: path.includes('cookie'), href: '/panel/admin/config/cookie' },
                 { name: t('admin.config.term'), current: path.includes('term'), href: '/panel/admin/config/term' },
@@ -72,18 +72,16 @@ export function NavigationMenu(path: string) {
             ],
         },
         {
-            name: t('admin.event.event'), icon: CalendarIcon, current: false, children: [
-                { name: t('admin.event.category'), current: path.includes('category'), href: '/panel/admin/event/category' },
-                { name: t('admin.event.subcategory'), current: path.includes('subcategory'), href: '/panel/admin/event/subcategory' },
-                { name: t('admin.event.subsubcategory'), current: path.includes('subsubcategory'), href: '/panel/admin/event/subsubcategory' },
-                { name: t('admin.event.supplier'), current: path.includes('supplier'), href: '/panel/admin/event/supplier' },
-                { name: t('admin.event.tag'), current: path.includes('tag'), href: '/panel/admin/event/tag' },
-                {
-                    name: t('admin.event.venue'), href: '/panel/admin/event/venue', children: [
-                        { name: t('admin.event.category'), current: path.includes('venues/category') && path.split('/').length>5, href: '/panel/admin/event/venues/category' },
-                        { name: t('admin.event.venue'), current: path.includes('venue'),  href: '/panel/admin/event/venue' },
-                    ]
-                },
+            name: t('admin.event.event'), icon: CalendarIcon, children: [
+                { name: t('admin.event.category'), current: path.includes('event/category'), href: '/panel/admin/event/category' },
+                { name: t('admin.event.subcategory'), current: path.includes('event/subcategory'), href: '/panel/admin/event/subcategory' },
+                { name: t('admin.event.subsubcategory'), current: path.includes('event/subsubcategory'), href: '/panel/admin/event/subsubcategory' },
+                { name: t('admin.event.supplier'), current: path.includes('event/supplier'), href: '/panel/admin/event/supplier' },
+                { name: t('admin.event.tag'), current: path.includes('event/tag'), href: '/panel/admin/event/tag' },
+                { name: t('admin.event.venue'), href: '/panel/admin/event/venue', children: [
+                    { name: t('admin.event.category'), current: path.includes('venue/category') && path.split('/').length>5, href: '/panel/admin/event/venue/category' },
+                    { name: t('admin.event.venue'), current: path.includes('venue') && path.split('/').length<6,  href: '/panel/admin/event/venue' },
+                ]},
             ],
         },
         {
@@ -96,7 +94,7 @@ export function NavigationMenu(path: string) {
 
     if(path.includes('profile')) {
         return profile_navigation;
-    } else if(path.includes('event')) {
+    } else if((path.includes('event') && path.split('/').length<4) || path.includes('event/discount') || path.includes('event/special')) {
         return event_navigation;
     } else if(path.includes('ticket')) {
         return ticket_navigation;

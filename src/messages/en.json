@@ -100,11 +100,21 @@
 
     "add_event": "Create Event",
     "add_discount": "Create Discount",
-    "add_special_category": "Create Spacial Category",
+    "add_event_special_category": "Create Spacial Category",
+
+    "add_event_category": "Create Category",
+    "add_event_subcategory": "Create Subcategory",
+    "add_event_subsubcategory": "Create Sub-Subcategory",
+    "add_event_supplier": "Create Supplier",
+    "add_event_tag": "Create Tags",
+    "add_event_venue": "Create Venue",
+    "add_event_venue_category": "Create Venue Category",
 
     "add_ticket": "Create Ticket",
-    "add_user_app": "Create User APP",
-    "add_user_pos": "Create User POS"
+    "add_user_app": "Create APP User",
+    "add_user_pos": "Create POS User",
+
+    "add_user_system": "Create System User"
   },
 
   "Landing_Comment_Table": "/////////////////////////////////////// Tables",
@@ -144,7 +154,11 @@
         "expires_at": "Expires At",
         "status": "Status"
       },
-      "special": "Special Category"
+      "special": {
+        "category": "Special Category",
+        "owner": "Owner",
+        "created": "Created Date"
+      }
     },
     "ticket": {
       "list": {
@@ -156,10 +170,74 @@
       },
       "user": {
         "name": "Name",
-        "email": "email",
+        "email": "Email",
         "event": "Event",
         "location": "Location",
         "created": "Created Date"
+      }
+    },
+    "admin": {
+      "event": {
+        "icon": "Icon",
+        "category": "Category",
+        "subcategory": "Subcategory",
+        "subsubcategory": "Sub-Subcategory",
+        "supplier": {
+          "supplier": "Supplier",
+          "url": "URL"
+        },
+        "tag": "Tag",
+        "venue": {
+          "name": "Name",
+          "category": "Venue Category",
+          "city": "City",
+          "state": "State",
+          "country": "Country",
+          "created": "Created Date"
+        }
+      },
+      "user": {
+        "name": "Name",
+        "email": "Email",
+        "login": "Login By",
+        "last": "Last Login",
+        "requested": "Requested Date",
+        "created": "Created Date"
+      }
+    },
+    "dashboard": {
+      "pos": {
+        "event": "Event",
+        "type_sale": "Type of Sale",
+        "delivery": "Delivery",
+        "amount": "Amount",
+        "price": "Price",
+        "sell_date": "Sell Date"
+      },
+      "ticket": {
+        "section": "Section",
+        "amount": "Amount",
+        "available": "Available",
+        "sold": "Sold",
+        "attendance": "Attendance",
+        "earns": "Earns",
+
+        "phase": "Phase",
+        "start_at": "Start At",
+        "end_at": "End At"
+      },
+      "top": {
+        "event": "Event",
+        "visit": "Visits",
+        "sold": "Sold",
+        "attend": "Attend",
+        "click": "Click to Buy"
+      },
+      "user": {
+        "event": "Event",
+        "event_date": "Event Date",
+        "limit_date": "Payday Limit",
+        "pending": "Pending Payment"
       }
     }
   },

@@ -5,7 +5,7 @@ import { Checkbox, Options, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsSpecial() {
+export function columnsEventSupplier() {
   const tcc = useTranslations("table_columns");
 
   const currentColor = CurrentColor();
@@ -38,8 +38,13 @@ export function columnsSpecial() {
     }),
     columnHelper.accessor('category', {
       id: 'category',
-      header: () => tcc('event.special'),
-      cell: info => info.getValue()
+      header: () => tcc('admin.event.supplier.supplier'),
+      cell: props => props.getValue()
+    }),
+    columnHelper.accessor('url', {
+      id: 'url',
+      header: () => tcc('admin.event.supplier.url'),
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {
       id: 'status',

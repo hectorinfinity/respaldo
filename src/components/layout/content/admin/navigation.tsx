@@ -115,7 +115,12 @@ export const Navigation = ({path, color}: Props) => {
                                                                 <Link
                                                                     key={subSubItem.name}
                                                                     href={subSubItem.href}
-                                                                    className={`group flex w-full items-center rounded-md py-2 pl-16 pr-2 text-sm font-medium text-gray-600 hover:bg-${color} hover:text-white`}
+                                                                    className={classNames(
+                                                                        subSubItem.current
+                                                                            ? `bg-gray-100 text-${color}`
+                                                                            : `bg-white text-gray-600 hover:bg-${color} hover:text-white`,
+                                                                            `group flex w-full items-center rounded-md py-2 pl-16 pr-2 text-sm font-medium`
+                                                                    )}
                                                                 >
                                                                     {subSubItem.name}
                                                                 </Link>

@@ -39,32 +39,32 @@ export function columnsEvent() {
     columnHelper.accessor('event', {
       id: 'event',
       header: () => tcc('event.event.event'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('category', {
       id: 'category',
       header: () => tcc('event.event.category'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('visit', {
       id: 'visit',
       header: () => tcc('event.event.visit'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('like', {
       id: 'like',
       header: () => tcc('event.event.like'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('assisted', {
       id: 'assisted',
       header: () => tcc('event.event.assisted'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('shared', {
       id: 'shared',
       header: () => tcc('event.event.shared'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {
       id: 'status',

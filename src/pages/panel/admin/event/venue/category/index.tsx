@@ -5,29 +5,36 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
-import { columnsPOS } from '@/components/admin/tables/columns/columnsPOS';
+import { columnsCategory } from '@/components/admin/tables/columns/columnsCategory';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
+// Import Interface
+import { EventVenueCategory as EventVenueCategoryInterface } from '@/interfaces/event';
 
-const POS = () => {
+const EventVenueCategory = () => {
+    const t = useTranslations("table_columns");
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
     const breadcrumb = [
-        { page: ts('dashboard'), href: '/panel/pos' },
+        { page: ts('admin.admin'), href: '/panel/admin' },
+        { page: ts('admin.event.event'), href: '/panel/admin/venue' },
+        { page: ts('admin.event.venue'), href: '/panel/admin/venue' },
+        { page: ts('admin.event.category'), href: '' }
     ]
+    const buttonBread =  { text: tb('add_event_venue_category'), href: '/panel/admin/event/venue/category/create' }
 
     const data = useMemo(() => [
-        { id: '1', event: 'test', type_sale: 'Cash', delivery: 'Ticket', amount: 2, price: '$1200', sell_date: '2023-02-02' },
-        { id: '2', event: 'test2', type_sale: 'Card', delivery: 'Digital', amount: 4, price: '$1200', sell_date: '2023-02-02' },
+        { id: '1', category: 'Stadium', status: true },
+        { id: '2', category: 'Teather', status: true },
     ], []);
-    const columns = columnsPOS();
-
+    const columns = columnsCategory(t('admin.event.venue.category'));
+   
     return (
         <>
             {/* Breadcrumb section */}
             <div>
-                <Heading breadcrumb={breadcrumb} />
+                <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
             {/* Admin section */}
             <div className="flex flex-1 pt-6">
@@ -49,8 +56,8 @@ const POS = () => {
     );
 };
 
-POS.Layout = AdminLayout;
-export default POS;
+EventVenueCategory.Layout = AdminLayout;
+export default EventVenueCategory;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

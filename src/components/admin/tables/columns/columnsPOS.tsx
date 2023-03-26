@@ -6,7 +6,7 @@ import { Checkbox, Options, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsUserApp() {
+export function columnsPOS() {
   const tcc = useTranslations("table_columns");
   const currentColor = CurrentColor();
   const columnHelper = createColumnHelper<any>();
@@ -36,39 +36,35 @@ export function columnsUserApp() {
         </div>
       ),
     }),
-    columnHelper.accessor('name', {
-      id: 'name',
-      header: () => tcc('ticket.user.name'),
-      cell: props => props.getValue()
-    }),
-    columnHelper.accessor('email', {
-      id: 'email',
-      header: () => tcc('ticket.user.email'),
-      cell: props => props.getValue()
-    }),
     columnHelper.accessor('event', {
       id: 'event',
-      header: () => tcc('ticket.user.event'),
+      header: () => tcc('dashboard.pos.event'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('location', {
-      id: 'location',
-      header: () => tcc('ticket.user.location'),
+    columnHelper.accessor('type_sale', {
+      id: 'type_sale',
+      header: () => tcc('dashboard.pos.type_sale'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('status', {
-      id: 'status',
-      header: () => tcc('status'),
-      cell: props => (
-        <SwitchTable color={currentColor} />
-      ),
+    columnHelper.accessor('delivery', {
+      id: 'delivery',
+      header: () => tcc('dashboard.pos.delivery'),
+      cell: props => props.getValue()
     }),
-    columnHelper.accessor('options', {
-      id: 'options',
-      header: () => tcc('option'),
-      cell: props => (
-        <Options id={props.row.original.id} color={currentColor} />
-      ),
+    columnHelper.accessor('amount', {
+      id: 'amount',
+      header: () => tcc('dashboard.pos.amount'),
+      cell: props => props.getValue()
+    }),
+    columnHelper.accessor('price', {
+      id: 'price',
+      header: () => tcc('dashboard.pos.price'),
+      cell: props => props.getValue()
+    }),
+    columnHelper.accessor('sell_date', {
+      id: 'sell_date',
+      header: () => tcc('dashboard.pos.sell_date'),
+      cell: props => props.getValue()
     })
   ]);
 }

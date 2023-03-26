@@ -6,7 +6,7 @@ import { Checkbox, Options, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsUserApp() {
+export function columnsUserDashboard() {
   const tcc = useTranslations("table_columns");
   const currentColor = CurrentColor();
   const columnHelper = createColumnHelper<any>();
@@ -36,38 +36,31 @@ export function columnsUserApp() {
         </div>
       ),
     }),
-    columnHelper.accessor('name', {
-      id: 'name',
-      header: () => tcc('ticket.user.name'),
-      cell: props => props.getValue()
-    }),
-    columnHelper.accessor('email', {
-      id: 'email',
-      header: () => tcc('ticket.user.email'),
-      cell: props => props.getValue()
-    }),
     columnHelper.accessor('event', {
       id: 'event',
-      header: () => tcc('ticket.user.event'),
+      header: () => tcc('dashboard.user.event'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('location', {
-      id: 'location',
-      header: () => tcc('ticket.user.location'),
+    columnHelper.accessor('event_date', {
+      id: 'event_date',
+      header: () => tcc('dashboard.user.event_date'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('status', {
-      id: 'status',
-      header: () => tcc('status'),
-      cell: props => (
-        <SwitchTable color={currentColor} />
-      ),
+    columnHelper.accessor('limit_date', {
+      id: 'limit_date',
+      header: () => tcc('dashboard.user.limit_date'),
+      cell: props => props.getValue()
+    }),
+    columnHelper.accessor('pending', {
+      id: 'pending',
+      header: () => tcc('dashboard.user.pending'),
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('options', {
       id: 'options',
       header: () => tcc('option'),
       cell: props => (
-        <Options id={props.row.original.id} color={currentColor} />
+        <Options id={props.row.original.id} color={currentColor} edit={false} deleteOpt={false} pay={true} />
       ),
     })
   ]);

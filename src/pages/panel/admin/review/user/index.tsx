@@ -5,23 +5,26 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
-import { columnsPOS } from '@/components/admin/tables/columns/columnsPOS';
+import { columnsUserReview } from '@/components/admin/tables/columns/columnsUserReview';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
+// Import Interface
+import { Event as EventInterface } from '@/interfaces/event';
 
-const POS = () => {
+const AdminUserReview = () => {
     const ts = useTranslations("Panel_SideBar");
-    const tb = useTranslations("btn");
 
     const breadcrumb = [
-        { page: ts('dashboard'), href: '/panel/pos' },
+        { page: ts('admin.admin'), href: '/panel/admin' },
+        { page: ts('admin.review'), href: '' },
+        { page: ts('admin.user'), href: '' }
     ]
 
     const data = useMemo(() => [
-        { id: '1', event: 'test', type_sale: 'Cash', delivery: 'Ticket', amount: 2, price: '$1200', sell_date: '2023-02-02' },
-        { id: '2', event: 'test2', type_sale: 'Card', delivery: 'Digital', amount: 4, price: '$1200', sell_date: '2023-02-02' },
+        { id: '1', name: 'José Alfredo Demostenez', email: "jose.alfredo.demo@gmail.com", requested: "2022-03-08", created: "2022-03-08" },
+        { id: '2', name: 'Mariano Figueroa', email: "mariano.figueroa@hotmail.com", requested: "2022-03-08", created: "2022-03-09" },
     ], []);
-    const columns = columnsPOS();
+    const columns = columnsUserReview();
 
     return (
         <>
@@ -49,8 +52,8 @@ const POS = () => {
     );
 };
 
-POS.Layout = AdminLayout;
-export default POS;
+AdminUserReview.Layout = AdminLayout;
+export default AdminUserReview;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

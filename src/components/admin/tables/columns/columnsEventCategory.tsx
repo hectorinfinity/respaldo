@@ -1,16 +1,16 @@
-import Link from 'next/link';
 import { useTranslations } from "next-intl";
 // Table
 import { createColumnHelper } from '@tanstack/react-table';
-import { Checkbox, Options, SwitchTable } from "./components";
+import { Checkbox, Icon, Options, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsUserApp() {
+export function columnsEventCategory() {
   const tcc = useTranslations("table_columns");
+
   const currentColor = CurrentColor();
   const columnHelper = createColumnHelper<any>();
-  
+
   return ([
     columnHelper.accessor('select', {
       id: 'select',
@@ -36,24 +36,16 @@ export function columnsUserApp() {
         </div>
       ),
     }),
-    columnHelper.accessor('name', {
-      id: 'name',
-      header: () => tcc('ticket.user.name'),
-      cell: props => props.getValue()
+    columnHelper.accessor('icon', {
+      id: 'icon',
+      header: () => tcc('admin.event.icon'),
+      cell: props => (
+        <Icon imageSrc={props.getValue()} />
+      ),
     }),
-    columnHelper.accessor('email', {
-      id: 'email',
-      header: () => tcc('ticket.user.email'),
-      cell: props => props.getValue()
-    }),
-    columnHelper.accessor('event', {
-      id: 'event',
-      header: () => tcc('ticket.user.event'),
-      cell: props => props.getValue()
-    }),
-    columnHelper.accessor('location', {
-      id: 'location',
-      header: () => tcc('ticket.user.location'),
+    columnHelper.accessor('category', {
+      id: 'category',
+      header: () => tcc('admin.event.category'),
       cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {

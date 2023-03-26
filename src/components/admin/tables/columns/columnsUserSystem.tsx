@@ -6,7 +6,7 @@ import { Checkbox, Options, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsUserApp() {
+export function columnsUserSystem() {
   const tcc = useTranslations("table_columns");
   const currentColor = CurrentColor();
   const columnHelper = createColumnHelper<any>();
@@ -38,22 +38,27 @@ export function columnsUserApp() {
     }),
     columnHelper.accessor('name', {
       id: 'name',
-      header: () => tcc('ticket.user.name'),
+      header: () => tcc('admin.user.name'),
       cell: props => props.getValue()
     }),
     columnHelper.accessor('email', {
       id: 'email',
-      header: () => tcc('ticket.user.email'),
+      header: () => tcc('admin.user.email'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('event', {
-      id: 'event',
-      header: () => tcc('ticket.user.event'),
+    columnHelper.accessor('login', {
+      id: 'login',
+      header: () => tcc('admin.user.login'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('location', {
-      id: 'location',
-      header: () => tcc('ticket.user.location'),
+    columnHelper.accessor('last', {
+      id: 'last',
+      header: () => tcc('admin.user.last'),
+      cell: props => props.getValue()
+    }),
+    columnHelper.accessor('created', {
+      id: 'created',
+      header: () => tcc('admin.user.created'),
       cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {

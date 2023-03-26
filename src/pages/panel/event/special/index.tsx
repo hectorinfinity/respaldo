@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
-import { columnsSpecial } from '@/components/admin/tables/columns/columnsSpecial';
+import { columnsEventSpecialCategory } from '@/components/admin/tables/columns/columnsEventSpecialCategory';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
@@ -19,13 +19,13 @@ const EventSpecialCategory = () => {
         { page: ts('event.event'), href: '/panel/event' },
         { page: ts('event.special'), href: '' }
     ]
-    const buttonBread =  { text: tb('add_special_category'), href: '/panel/event/special/create' }
+    const buttonBread =  { text: tb('add_event_special_category'), href: '/panel/event/special/create' }
 
     const data = useMemo(() => [
-        { id: '1', category: 'test', status: true },
-        { id: '2', category: 'test2', status: false },
+        { id: '1', category: 'test', owner: 'User Owner', created: '2023-04-05', status: true },
+        { id: '2', category: 'test2', owner: 'User Owner', created: '2023-04-05', status: false },
     ], []);
-    const columns = columnsSpecial();
+    const columns = columnsEventSpecialCategory();
    
     return (
         <>

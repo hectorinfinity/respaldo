@@ -6,7 +6,7 @@ import { Checkbox, Options, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export function columnsUserApp() {
+export function columnsTicketDashboard() {
   const tcc = useTranslations("table_columns");
   const currentColor = CurrentColor();
   const columnHelper = createColumnHelper<any>();
@@ -36,24 +36,34 @@ export function columnsUserApp() {
         </div>
       ),
     }),
-    columnHelper.accessor('name', {
-      id: 'name',
-      header: () => tcc('ticket.user.name'),
+    columnHelper.accessor('section', {
+      id: 'section',
+      header: () => tcc('dashboard.ticket.section'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('email', {
-      id: 'email',
-      header: () => tcc('ticket.user.email'),
+    columnHelper.accessor('amount', {
+      id: 'amount',
+      header: () => tcc('dashboard.ticket.amount'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('event', {
-      id: 'event',
-      header: () => tcc('ticket.user.event'),
+    columnHelper.accessor('available', {
+      id: 'available',
+      header: () => tcc('dashboard.ticket.available'),
       cell: props => props.getValue()
     }),
-    columnHelper.accessor('location', {
-      id: 'location',
-      header: () => tcc('ticket.user.location'),
+    columnHelper.accessor('sold', {
+      id: 'sold',
+      header: () => tcc('dashboard.ticket.sold'),
+      cell: props => props.getValue()
+    }),
+    columnHelper.accessor('attendance', {
+      id: 'attendance',
+      header: () => tcc('dashboard.ticket.attendance'),
+      cell: props => props.getValue()
+    }),
+    columnHelper.accessor('earns', {
+      id: 'earns',
+      header: () => tcc('dashboard.ticket.earns'),
       cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {

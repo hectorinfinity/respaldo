@@ -39,27 +39,27 @@ export function columnsUserPos() {
     columnHelper.accessor('name', {
       id: 'name',
       header: () => tcc('ticket.user.name'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('email', {
       id: 'email',
       header: () => tcc('ticket.user.email'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('location', {
       id: 'location',
       header: () => tcc('ticket.user.location'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('created', {
       id: 'created',
       header: () => tcc('ticket.user.created'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {
       id: 'status',
       header: () => tcc('status'),
-      cell: info => (
+      cell: props => (
         <SwitchTable color={currentColor} />
       ),
     }),

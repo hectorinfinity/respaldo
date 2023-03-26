@@ -5,29 +5,34 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
-import { columnsPOS } from '@/components/admin/tables/columns/columnsPOS';
+import { columnsEventCategory } from '@/components/admin/tables/columns/columnsEventCategory';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
+// Import Interface
+import { EventSubsubcategory as EventSubsubcategoryInterface } from '@/interfaces/event';
 
-const POS = () => {
+const EventSubsubcategory = () => {
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
     const breadcrumb = [
-        { page: ts('dashboard'), href: '/panel/pos' },
+        { page: ts('admin.admin'), href: '/panel/admin' },
+        { page: ts('admin.event.event'), href: '' },
+        { page: ts('admin.event.subsubcategory'), href: '' }
     ]
+    const buttonBread =  { text: tb('add_event_subsubcategory'), href: '/panel/admin/event/subsubcategory/create' }
 
     const data = useMemo(() => [
-        { id: '1', event: 'test', type_sale: 'Cash', delivery: 'Ticket', amount: 2, price: '$1200', sell_date: '2023-02-02' },
-        { id: '2', event: 'test2', type_sale: 'Card', delivery: 'Digital', amount: 4, price: '$1200', sell_date: '2023-02-02' },
+        { id: '1', icon: '/images/events/category/arts.png', category: 'Arts', status: true },
+        { id: '2', icon: '/images/events/category/dance.png', category: 'Dance', status: true },
     ], []);
-    const columns = columnsPOS();
-
+    const columns = columnsEventCategory();
+   
     return (
         <>
             {/* Breadcrumb section */}
             <div>
-                <Heading breadcrumb={breadcrumb} />
+                <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
             {/* Admin section */}
             <div className="flex flex-1 pt-6">
@@ -49,8 +54,8 @@ const POS = () => {
     );
 };
 
-POS.Layout = AdminLayout;
-export default POS;
+EventSubsubcategory.Layout = AdminLayout;
+export default EventSubsubcategory;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

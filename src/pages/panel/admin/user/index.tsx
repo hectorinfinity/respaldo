@@ -5,29 +5,33 @@ import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
-import { columnsPOS } from '@/components/admin/tables/columns/columnsPOS';
+import { columnsUserSystem } from '@/components/admin/tables/columns/columnsUserSystem';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
+// Import Interface
+import { Event as EventInterface } from '@/interfaces/event';
 
-const POS = () => {
+const AdminUser = () => {
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
     const breadcrumb = [
-        { page: ts('dashboard'), href: '/panel/pos' },
+        { page: ts('admin.admin'), href: '/panel/admin' },
+        { page: ts('admin.user'), href: '' }
     ]
+    const buttonBread =  { text: tb('add_user_system'), href: '/panel/admin/user/create' }
 
     const data = useMemo(() => [
-        { id: '1', event: 'test', type_sale: 'Cash', delivery: 'Ticket', amount: 2, price: '$1200', sell_date: '2023-02-02' },
-        { id: '2', event: 'test2', type_sale: 'Card', delivery: 'Digital', amount: 4, price: '$1200', sell_date: '2023-02-02' },
+        { id: '1', name: 'José Alfredo Demostenez', email: "jose.alfredo.demo@gmail.com", login: "Facebook", last: "2022-03-08", created: "2022-03-08" },
+        { id: '2', name: 'Mariano Figueroa', email: "mariano.figueroa@hotmail.com", login: "Google", last: "2022-03-08", created: "2022-03-09" },
     ], []);
-    const columns = columnsPOS();
+    const columns = columnsUserSystem();
 
     return (
         <>
             {/* Breadcrumb section */}
             <div>
-                <Heading breadcrumb={breadcrumb} />
+                <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
             {/* Admin section */}
             <div className="flex flex-1 pt-6">
@@ -49,8 +53,8 @@ const POS = () => {
     );
 };
 
-POS.Layout = AdminLayout;
-export default POS;
+AdminUser.Layout = AdminLayout;
+export default AdminUser;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

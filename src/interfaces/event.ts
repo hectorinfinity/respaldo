@@ -138,6 +138,13 @@ export interface EventSubcategory {
     status?: boolean
 }
 
+export interface EventSubsubcategory {
+    category_id: string
+    subcategory_id: string
+    subsubcategory: BasicTranslate[]
+    status?: boolean
+}
+
 export interface EventSupplier {
     user_id?: string | null
     name: string

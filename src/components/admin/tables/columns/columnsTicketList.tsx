@@ -39,33 +39,33 @@ export function columnsTicketList() {
     columnHelper.accessor('event', {
       id: 'event',
       header: () => tcc('ticket.list.event'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('date', {
       id: 'date',
       header: () => tcc('ticket.list.date'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('available', {
       id: 'available',
       header: () => tcc('ticket.list.available'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('sold', {
       id: 'sold',
       header: () => tcc('ticket.list.sold'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('income', {
       id: 'income',
       header: () => tcc('ticket.list.income'),
-      cell: info => info.getValue()
+      cell: props => props.getValue()
     }),
     columnHelper.accessor('status', {
       id: 'status',
       header: () => tcc('status'),
-      cell: info => (
-        <Status text={info.getValue()}/>
+      cell: props => (
+        <Status text={props.getValue()}/>
       ),
     }),
     columnHelper.accessor('options', {
