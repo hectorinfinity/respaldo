@@ -15,10 +15,10 @@ const ProfileBilling = () => {
 
     const cards = [
         { id: "129182", name: "Arturo Villalpando Sánchez", type: "credit", number: "3828", exp: "09/28" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "12912", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "12982", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "12182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "19182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
     ]
 
     const breadcrumb = [
@@ -46,7 +46,7 @@ const ProfileBilling = () => {
                             <div className="md:flex md:items-center md:justify-between">
                                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                                     {cards.map((card) => (
-                                        <CustomCard id={card.id} name={card.name} type={card.type} number={card.number} exp={card.exp} />
+                                        <CustomCard key={card.id} id={card.id} name={card.name} type={card.type} number={card.number} exp={card.exp} />
                                     ))}
                                 </div>
                             </div>

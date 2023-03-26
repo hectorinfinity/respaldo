@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { useTranslations } from "next-intl";
 import {
     getFilteredRowModel,
 
@@ -17,7 +18,7 @@ import {
 // Helpers
 import { CurrentColor } from "@/helpers/currentColor";
 // Components
-import { SearchInput, DOTS, PaginationTable } from './index';
+import { SearchInput, DOTS, PaginationTable } from './components/index';
 // Icons
 import {
     ChevronDownIcon,
@@ -39,6 +40,8 @@ type Props= {
 }
 
 export const BasicTable = ({ columns, defaultData }: Props) => {
+    const t = useTranslations("table");
+
     const currentColor = CurrentColor();
     const [data, setData] = useState(() => [...defaultData])
     const [sorting, setSorting] = useState<SortingState>([])
@@ -77,8 +80,6 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
         totalPageCount: table.getPageCount(),
         currentPage: table.getState().pagination.pageIndex
     });
-
-    console.log(rowSelection);
 
     return (
         <>
@@ -162,11 +163,11 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
                     <div className="sm:flex sm:flex-1 sm:items-center sm:justify-between">
                         <div className=''>
                             <p className="text-sm text-gray-700">
-                                Page <span className="font-medium">
-                                {table.getState().pagination.pageIndex + 1}</span> of <span className="font-medium">
+                                {t('page')} <span className="font-medium">
+                                {table.getState().pagination.pageIndex + 1}</span> {t('of')} <span className="font-medium">
                                 {table.getPageCount()}
-                                </span> of{' '}
-                                <span className="font-medium">{table.getPrePaginationRowModel().rows.length}</span> results
+                                </span> {t('of')}{' '}
+                                <span className="font-medium">{table.getPrePaginationRowModel().rows.length}</span> {t('results')}
                             </p>
                         </div>
                         <div  className='flex justify-center'>
@@ -177,7 +178,7 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
                                     onClick={() => table.setPageIndex(0)}
                                     disabled={!table.getCanPreviousPage()}
                                 >
-                                    <span className="sr-only">Init</span>
+                                    <span className="sr-only">{t('init')}</span>
                                     <ChevronDoubleLeftIcon className="h-5 w-5" aria-hidden="true" />
                                 </button>
                                 <button
@@ -186,7 +187,7 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
                                     onClick={() => table.previousPage()}
                                     disabled={!table.getCanPreviousPage()}
                                 >
-                                    <span className="sr-only">Previous</span>
+                                    <span className="sr-only">{t('previous')}</span>
                                     <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                                 </button>
                                 {paginationRange?.map((pageNumber, index) => {
@@ -220,7 +221,7 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
                                     onClick={() => table.nextPage()}
                                     disabled={!table.getCanNextPage()}
                                 >
-                                    <span className="sr-only">Next</span>
+                                    <span className="sr-only">{t('next')}</span>
                                     <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                                 </button>
                                 <button
@@ -229,13 +230,13 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
                                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                                     disabled={!table.getCanNextPage()}
                                 >
-                                    <span className="sr-only">End</span>
+                                    <span className="sr-only">{t('end')}</span>
                                     <ChevronDoubleRightIcon className="h-5 w-5" aria-hidden="true" />
                                 </button>
                             </nav>
                         </div>
                         <div className=''>
-                            Showing:&nbsp;
+                            {t('showing')}:&nbsp;
                             <select
                                 value={table.getState().pagination.pageSize}
                                 onChange={e => {
@@ -245,7 +246,7 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
                             >
                                 {[10, 20, 30, 40, 50].map(pageSize => (
                                     <option key={pageSize} value={pageSize}>
-                                        {pageSize} results
+                                        {pageSize} {t('results')}
                                     </option>
                                 ))}
                             </select>

@@ -76,7 +76,7 @@
     }
   },
   
-  "Landing_Comment_Btns": "/////////////////////////////////////// Landing Page Contact US Button",
+  "Landing_Comment_Btns": "/////////////////////////////////////// Buttons",
   "btn": {
     "form_back": "Back to form",
 
@@ -93,7 +93,153 @@
     "form_save": "Save",
     "form_send": "Send",
 
-    "new_card": "Add new card"
+    "form_clear_filters": "Clear Filters",
+    "form_apply_filters": "Apply Filters",
+
+    "new_card": "Add new card",
+
+    "add_event": "Create Event",
+    "add_discount": "Create Discount",
+    "add_event_special_category": "Create Spacial Category",
+
+    "add_event_category": "Create Category",
+    "add_event_subcategory": "Create Subcategory",
+    "add_event_subsubcategory": "Create Sub-Subcategory",
+    "add_event_supplier": "Create Supplier",
+    "add_event_tag": "Create Tags",
+    "add_event_venue": "Create Venue",
+    "add_event_venue_category": "Create Venue Category",
+
+    "add_ticket": "Create Ticket",
+    "add_user_app": "Create APP User",
+    "add_user_pos": "Create POS User",
+
+    "add_user_system": "Create System User"
+  },
+
+  "Landing_Comment_Table": "/////////////////////////////////////// Tables",
+  "table": {
+    "page": "Page",
+    "of": "of",
+    "results": "results",
+
+    "init": "Init",
+    "previous": "Previous",
+    "next": "Next",
+    "end": "End",
+
+    "showing": "Showing"
+  },
+
+  "Landing_Comment_Table_Columns": "/////////////////////////////////////// Tables Columns",
+  "table_columns": {
+    "status": "Status",
+    "option": "Options",
+    "event": {
+      "event": {
+        "event": "Event",
+        "category": "Category",
+        "visit": "Visits",
+        "like": "Likes",
+        "assisted": "Assisted",
+        "shared": "Shared"
+      },
+      "discount": {
+        "name": "Name",
+        "cuopon": "Cuopon",
+        "discount": "Discount",
+        "limit": "Limit",
+        "exchanges": "Exchanges",
+        "init_at": "Init At",
+        "expires_at": "Expires At",
+        "status": "Status"
+      },
+      "special": {
+        "category": "Special Category",
+        "owner": "Owner",
+        "created": "Created Date"
+      }
+    },
+    "ticket": {
+      "list": {
+        "event": "Event",
+        "date": "Date",
+        "available": "Available",
+        "sold": "Sold",
+        "income": "Income"
+      },
+      "user": {
+        "name": "Name",
+        "email": "Email",
+        "event": "Event",
+        "location": "Location",
+        "created": "Created Date"
+      }
+    },
+    "admin": {
+      "event": {
+        "icon": "Icon",
+        "category": "Category",
+        "subcategory": "Subcategory",
+        "subsubcategory": "Sub-Subcategory",
+        "supplier": {
+          "supplier": "Supplier",
+          "url": "URL"
+        },
+        "tag": "Tag",
+        "venue": {
+          "name": "Name",
+          "category": "Venue Category",
+          "city": "City",
+          "state": "State",
+          "country": "Country",
+          "created": "Created Date"
+        }
+      },
+      "user": {
+        "name": "Name",
+        "email": "Email",
+        "login": "Login By",
+        "last": "Last Login",
+        "requested": "Requested Date",
+        "created": "Created Date"
+      }
+    },
+    "dashboard": {
+      "pos": {
+        "event": "Event",
+        "type_sale": "Type of Sale",
+        "delivery": "Delivery",
+        "amount": "Amount",
+        "price": "Price",
+        "sell_date": "Sell Date"
+      },
+      "ticket": {
+        "section": "Section",
+        "amount": "Amount",
+        "available": "Available",
+        "sold": "Sold",
+        "attendance": "Attendance",
+        "earns": "Earns",
+
+        "phase": "Phase",
+        "start_at": "Start At",
+        "end_at": "End At"
+      },
+      "top": {
+        "event": "Event",
+        "visit": "Visits",
+        "sold": "Sold",
+        "attend": "Attend",
+        "click": "Click to Buy"
+      },
+      "user": {
+        "event": "Event",
+        "event_date": "Event Date",
+        "limit_date": "Payday Limit",
+        "pending": "Pending Payment"
+      }
+    }
   },
   
   "Landing_Comment_About": "/////////////////////////////////////// Landing Page About Section",
@@ -303,6 +449,21 @@
     "text_up_to": "up to"
   },
 
+  "Panel_Event_Comment": "/////////////////////////////////////// Panel Event ",
+  "Panel_Event": {
+    "discount": "or drag and drop"
+  },
+
+  "Panel_Event_Discount_Comment": "/////////////////////////////////////// Panel Event Discount",
+  "Panel_Event_Discount": {
+    "discount": "or drag and drop"
+  },
+
+  "Panel_Event_Special_Comment": "/////////////////////////////////////// Panel Event Special Category",
+  "Panel_Event_Special": {
+    "sepcial": "Sepcial Category"
+  },
+
   
 
   "Panel_Comment_Menu": "/////////////////////////////////////// Panel Menu Section",
@@ -319,6 +480,9 @@
   "Panel_SideBar": {
     "dashboard": "Dashboard",
     "user": "User",
+    "actions": {
+      "create": "Create"
+    },
     "profile": {
       "favorite": "Favorites",
       "info": "Personal Information",
@@ -345,6 +509,7 @@
     },
     "ticket": {
       "ticket": "Tickets",
+      "list": "List",
       "refund": "Refund",
       "user": {
         "user": "Users",
@@ -378,8 +543,16 @@
   "Forms": "/////////////////////////////////////// Forms",
   "Common_Forms": {
     "rs_photo": "user photo",
+    "loading": "Loading",
+
+    "field_categories": "Categories",
+    "field_subcategories": "Subcategories",
+    "field_sub-subcategories": "Sub-Subategories",
+    "field_range_date": "Range Date",
+    "field_location": "Location",
 
     "field_lang": "Lenguage",
+    "field_add_lang": "Add Language",
     "field_search": "Search",
     "auto_search": "search",
     "place_search": "Search...",
@@ -452,10 +625,11 @@
     "auto_cfdi": "CFDI",
 
     "field_front_id": "Front ID",
-    "field_back_id": "Front ID",
+    "field_back_id": "Back ID",
     "field_selfie": "Selfie",
     "field_upload_file": "Upload a file",
 
+    "field_notification": "Notifications",
     "field_tags": "Tags",
 
     "field_start": "Start",
@@ -467,6 +641,31 @@
     "field_months_without": "Months Whitout Interests",
     "field_month": "Months",
     "field_months": "Months",
-    "field_quota": "Quota"
+    "field_quota": "Quota",
+
+    "field_header": "Upload an image for your Header",
+    "field_icon": "Upload an icon for your category",
+    "field_color": "Pick a color for your category"
+  },
+
+  "Public_Comment": "/////////////////////////////////////// Public Comment",
+  "Public": {
+    "commons": {
+      "events": "Events",
+      "categories": "Categories",
+      "recommended_evenets": "Recommended Events"
+    },
+    "home": {
+      "new_events": "New Events",
+      "featured_events": "Feature Events"
+    },
+    "search": {
+      "filters": "Filters",
+      "sort": "Sort",
+      "results_of": "Results of",
+      "no_results": "We couldn't find any results for",
+      "view_grid": "View Grid",
+      "close_menu": "Close Menu"
+    }
   }
 }

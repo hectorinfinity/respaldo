@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { EventServiceCategory } from 'interfaces/event';
+import axios from '@/lib/axios';
+import { EventServiceCategory } from '@/interfaces/event';
 
 export const getEventsServicesCategories = async () => {
     const { data } = await axios.get(`/events/services/categories/`);

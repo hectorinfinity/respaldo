@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { AdvertisementRegion } from 'interfaces/advertisement';
+import axios from '@/lib/axios';
+import { AdvertisementRegion } from '@/interfaces/advertisement';
 
 export const getAdvertisementsRegions = async () => {
     const { data } = await axios.get(`/advertisements/regions/`);

@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { EventSeatmap } from 'interfaces/event';
+import axios from '@/lib/axios';
+import { EventSeatmap } from '@/interfaces/event';
 
 export const getEventsSeatmaps = async () => {
     const { data } = await axios.get(`/events/seatmaps/`);

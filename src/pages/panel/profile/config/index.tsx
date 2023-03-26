@@ -70,7 +70,7 @@ const ProfileConfig = () => {
                                             checked={emailNewsEnabled}
                                             onChange={setEmailNewsEnabled}
                                             className={classNames(
-                                                emailNewsEnabled ? `bg-${currentColor}` : 'bg-gray-200',
+                                                emailNewsEnabled ? `bg-${currentColor}` : 'bg-gray-300',
                                                 `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:${currentColor} focus:ring-offset-2 sm:ml-auto`
                                             )}
                                         >
@@ -108,7 +108,7 @@ const ProfileConfig = () => {
                                         </Switch>
                                     </div>
                                 </div>
-                                <p className='flex flex-1 justify-start py-2 text-customForm'>
+                                <div className='flex flex-1 justify-start py-2 text-customForm'>
                                     <div className='w-10'>App</div>
                                     <div>
                                         <Switch
@@ -128,7 +128,7 @@ const ProfileConfig = () => {
                                             />
                                         </Switch>
                                     </div>
-                                </p>
+                                </div>
                             </div>
                         </div>
                         {/* Buttons section */}

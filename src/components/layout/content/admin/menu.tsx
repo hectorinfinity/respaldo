@@ -24,8 +24,10 @@ export const Menu = ({path, color}: Props) => {
     const navigation = [
         { name: tm('dashboard'), icon: Squares2X2Icon, current: path.split('/').length<3, href: '/panel/' },
         { name: tm('profile'), icon: UsersIcon, current: path.includes('profile'), href: '/panel/profile' },
-        { name: tm('event'), icon: CalendarIcon, current: path.includes('event'), href: '/panel/event' },
-        { name: tm('pos'), icon: BanknotesIcon, current: path.includes('pos'), href: '/panel/pos' },
+        { name: tm('event'), icon: CalendarIcon, 
+            current: ((path.includes('event') && path.split('/').length<4) || path.includes('event/discount') || path.includes('event/special')), 
+            href: '/panel/event' },
+        { name: tm('pos'), icon: BanknotesIcon, current: path.includes('pos') && path.split('/').length<4, href: '/panel/pos' },
         { name: tm('ticket'), icon: TicketIcon, current: path.includes('ticket')?true:false, href: '/panel/ticket' },
         { name: tm('admin'), icon: AdjustmentsVerticalIcon, current: path.includes('admin')?true:false, href: '/panel/admin' },
     ]
@@ -38,6 +40,7 @@ export const Menu = ({path, color}: Props) => {
                         <div className="space-x-3 md:ml-6 sm:flex sm:space-x-6 md:space-x-8">
                             {navigation.map((item) => (
                                 <Link
+                                    key={item.name}
                                     href={item.href}
                                     className={classNames(
                                         item.current

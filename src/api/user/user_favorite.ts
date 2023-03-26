@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { UserFavorite } from 'interfaces/user';
+import axios from '@/lib/axios';
+import { UserFavorite } from '@/interfaces/user';
 
 export const getUsersFavorites = async () => {
     const { data } = await axios.get(`/users/favorites/`);
