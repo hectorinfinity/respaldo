@@ -5,7 +5,7 @@ import { logout_firebase, on_auth_state_has_changed } from '@/lib/firebase_auth'
 
 type Status = 'authenticated' | 'no-authenticated' | 'checking'
 
-export const AuthContext = createContext({} as { change_status: (status: Status) => void, statusAuth: Status })
+export const AuthContext = createContext({} as { change_status: (status: Status) => void, statusAuth: Status, login: (id_token: string, uid: string, providerId: string) => Promise<void>; })
 
 export const AuthProvider = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 
@@ -54,7 +54,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element | JSX.Element
     <AuthContext.Provider
       value={{
         change_status,
-        statusAuth
+        statusAuth,
+        login
       }}
     >
       {children}

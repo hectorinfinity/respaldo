@@ -1,8 +1,8 @@
-import { CustomError } from "./customError";
-import { CustomLabel } from "./customLabel";
-import { CustomCancel } from './customCancel';
+import { CustomError } from "./CustomError";
+import { CustomLabel } from "./CustomLabel";
+import { CustomCancel } from './CustomCancel';
 import { CustomDelete } from './CustomDelete';
-import { CustomSubmit } from './customSubmit';
+import { CustomSubmit } from './CustomSubmit';
 
 export {
     CustomError,

@@ -1,5 +1,6 @@
 import axios from '@/lib/axios';
 import { User } from '@/interfaces/user';
+import { Role } from "@/interfaces/user";
 
 type UserLogin = { uid: string, id_token: string }
 
@@ -10,6 +11,7 @@ interface AuthResponse {
         token_type: string
     }
     providerId: string
+    role: Role
 }
 
 export const userLogin = async (login: UserLogin) => {
