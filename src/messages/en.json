@@ -546,7 +546,13 @@
     "loading": "Loading",
 
     "field_categories": "Categories",
+    "field_category": "Category",
+    "field_select_category": "Select Category...",
+    
     "field_subcategories": "Subcategories",
+    "field_subcategory": "Subcategory",
+    "field_select_subcategory": "Select Subcategory...",
+
     "field_sub-subcategories": "Sub-Subategories",
     "field_range_date": "Range Date",
     "field_location": "Location",
