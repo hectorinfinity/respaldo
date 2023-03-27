@@ -562,6 +562,23 @@
     "field_event": "Event",
     "field_select_event": "Select the event...",
 
+    "field_event_datetime": "Select event datetime",
+    "field_select_event_datetime": "Select event datetime...",
+
+    "field_event_seatmap": "Select event seatmap",
+    "field_select_event_seatmap": "Select event seatmap...",
+
+    "field_cuopon": "Cuopon",
+    "field_discount": "Discount",
+    "field_limit": "Tickets Limit",
+    "field_init_at": "Init at",
+    "field_expired_at": "Expires at",
+
+    "field_url": "URL",
+    "field_type": "Type",
+    "field_data_url": "Data URL",
+    "field_key": "Key",
+
     "field_name": "Name",
     "field_description": "Description",
 

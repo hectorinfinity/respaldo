@@ -14,7 +14,6 @@ import { FormStyles } from '@/helpers';
 
 const ProfileCardCreate = () => {
     const t = useTranslations("Panel_SideBar");
-    const tc = useTranslations("Common_Forms");
 
     const breadcrumb = [
         { page: t('user'), href: '/panel/profile' },

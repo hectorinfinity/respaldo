@@ -14,7 +14,7 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 import { FormStyles } from '@/helpers';
 import { AddressForm } from '@/components/forms/forms';
 
-const Profile = () => {
+const TicketPosUserCreate = () => {
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
 
@@ -110,8 +110,8 @@ const Profile = () => {
     );
 };
 
-Profile.Layout = AdminLayout;
-export default Profile;
+TicketPosUserCreate.Layout = AdminLayout;
+export default TicketPosUserCreate;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
