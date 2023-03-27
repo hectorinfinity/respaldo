@@ -94,6 +94,136 @@ const MapPin = (props) => (
   </svg>
 );
 
+const SearchIcon = (props) => (
+  <svg
+    width={23}
+    height={21}
+    viewBox="0 0 23 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M10.039.026C4.779.026.5 4.11.5 9.131c0 5.02 4.279 9.105 9.539 9.105 1.608 0 3.188-.364 4.524-1.066.107.122.225.236.354.338l2.725 2.601c.252.27.559.489.902.642a2.89 2.89 0 0 0 2.202.062c.352-.134.672-.334.94-.59.268-.256.478-.561.618-.897a2.547 2.547 0 0 0-.065-2.102 2.67 2.67 0 0 0-.672-.86l-2.726-2.602a2.705 2.705 0 0 0-.436-.338c.736-1.275 1.2-2.758 1.2-4.319 0-5.02-4.28-9.105-9.54-9.105l-.026.026Zm0 2.601c3.788 0 6.813 2.888 6.813 6.504 0 1.717-.654 3.304-1.799 4.475l-.082.078a2.669 2.669 0 0 0-.354.338c-1.199 1.04-2.834 1.639-4.606 1.639-3.788 0-6.813-2.888-6.813-6.504 0-3.616 3.025-6.504 6.813-6.504l.028-.026Z"
+      fill="#616161"
+    />
+  </svg>
+);
+
+const ChevronLeft = (props) => (
+  <svg
+    viewBox="0 0 24 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="m14 16.5-4-4 4-4"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* const ClockOutline = (props) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  > */}
+    <mask
+      id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={9}
+      y={7}
+      width={6}
+      height={11}
+    >
+      <path
+        className="fill-current"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M14.707 17.207a1 1 0 0 0 0-1.414L11.414 12.5l3.293-3.293a1 1 0 0 0-1.414-1.414l-4 4a1 1 0 0 0 0 1.414l4 4a1 1 0 0 0 1.414 0Z"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path className="fill-current" d="M0 .5h24v24H0z" />
+      {/* x={1}
+      y={1}
+      width={18}
+      height={18}
+    >
+      <path d="M10.834 5.833a.833.833 0 0 0-1.667 0V10c0 .221.088.433.244.59l2.5 2.5a.833.833 0 0 0 1.179-1.18l-2.256-2.255V5.833Z" />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10 1.667a8.333 8.333 0 1 0 0 16.666 8.333 8.333 0 0 0 0-16.666ZM3.334 10a6.667 6.667 0 1 1 13.333 0 6.667 6.667 0 0 1-13.333 0Z"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path d="M0 0h20v20H0z" /> */}
+    </g>
+  </svg>
+);
+
+const ChevronRight = (props) => (
+  <svg
+    viewBox="0 0 24 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="m10 8.5 4 4-4 4"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <mask
+      id="chevron-right"
+      // const PersonOutline = (props) => (
+      //   <svg
+      //     viewBox="0 0 20 20"
+      //     fill="none"
+      //     xmlns="http://www.w3.org/2000/svg"
+      //     {...props}
+      //   >
+      //     <mask
+      //       id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={9}
+      y={7}
+      width={6}
+      height={11}
+      // x={4}
+      // y={1}
+      // width={12}
+      // height={18}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M9.293 7.793a1 1 0 0 0 0 1.414l3.293 3.293-3.293 3.293a1 1 0 1 0 1.414 1.414l4-4a1 1 0 0 0 0-1.414l-4-4a1 1 0 0 0-1.414 0Z"
+        className="fill-current"
+      />
+    </mask>
+    <g mask="url(#chevron-right)">
+      <path className="fill-current" d="M0 .5h24v24H0z" />
+      {/* d="M10 1.667A4.167 4.167 0 1 0 10 10a4.167 4.167 0 0 0 0-8.333ZM7.5 5.833a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Z"
+      />
+      <path d="M6.566 14.066a2.5 2.5 0 0 1 1.768-.733h3.333a2.5 2.5 0 0 1 2.5 2.5V17.5a.833.833 0 1 0 1.667 0v-1.667a4.167 4.167 0 0 0-4.167-4.166H8.334a4.167 4.167 0 0 0-4.167 4.166V17.5a.833.833 0 1 0 1.667 0v-1.667a2.5 2.5 0 0 1 .732-1.767Z" />
+    </mask>
+    <g mask="url(#a)"> */}
+      <path d="M0 0h20v20H0z" />
+    </g>
+  </svg>
+);
+
 const ClockOutline = (props) => (
   <svg
     viewBox="0 0 20 20"
@@ -194,6 +324,9 @@ export type props = {
     | 'heart-solid'
     | 'circle-check-outline'
     | 'map-pin'
+    | 'search-icon'
+    | 'chevron-left'
+    | 'chevron-right'
     | 'clock-outline'
     | 'person-outline'
     | 'calendar-outline';
@@ -210,12 +343,21 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <CircleCheckOutline {...props} />;
     case 'map-pin':
       return <MapPin {...props} />;
+    case 'search-icon':
+      return <SearchIcon {...props} />;
+    case 'chevron-left':
+      return <ChevronLeft {...props} />;
+    case 'chevron-right':
+      return <ChevronRight {...props} />;
     case 'clock-outline':
       return <ClockOutline {...props} />;
     case 'person-outline':
       return <PersonOutline {...props} />;
     case 'calendar-outline':
       return <CalendarOutline {...props} />;
+    default:
+      const _exhaustiveCheck: never = name;
+      return _exhaustiveCheck;
   }
 };
 

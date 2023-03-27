@@ -718,5 +718,26 @@
       "view_grid": "View Grid",
       "close_menu": "Close Menu"
     }
+  },
+
+  "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
+  "Card_Event": {
+    "title": "You are in the virtual queue",
+    "subtitle": "People in front of me",
+    "virtual_queue_id": "ID of the virtual queue: "
+  },
+
+  "Main_Comment_Organisms": "/////////////////////////////////////// Organisms",
+  "List_Card_Category": {
+    "title": "Categories"
+  },
+
+  "Sidebar_Event": {
+    "cost": "Cost: {value}",
+    "date": "Date:",
+    "time": "Time:",
+    "location": "Location:",
+    "button": "Buy Ticket",
+    "payment_methods": "Payment methods:"
   }
 }
