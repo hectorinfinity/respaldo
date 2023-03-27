@@ -16,7 +16,6 @@ import { FormStyles } from '@/helpers';
 import { CustomTag } from '@/components/commons/customTag';
 
 const ProfileFollow = () => {
-    const t = useTranslations("Panel");
     const tc = useTranslations("Common_Forms");
     const ts = useTranslations("Panel_SideBar");
 

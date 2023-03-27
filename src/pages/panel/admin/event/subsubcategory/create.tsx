@@ -1,6 +1,5 @@
 /** @format */
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 import { SketchPicker } from 'react-color'
@@ -12,12 +11,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
-import { CurrentColor, FormStyles } from '@/helpers';
+import { FormStyles } from '@/helpers';
 import { InputLang } from '@/components/forms/lang';
 
 const EventCreateSubsubcategory = () => {
-    const { locales } = useRouter();
-    const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
     const tp = useTranslations('Panel_Profile_Request');
     const tc = useTranslations("Common_Forms");

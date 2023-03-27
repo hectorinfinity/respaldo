@@ -1,6 +1,5 @@
 /** @format */
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
@@ -11,14 +10,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomCancel, CustomSubmit } from '@/components/forms';
-import { CurrentColor } from '@/helpers';
 import { EditorLang } from '@/components/forms/lang';
 
 const AdminPrivacy = () => {
-    const { locales } = useRouter();
-    const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
-    const tc = useTranslations("Common_Forms");
 
     const breadcrumb = [
         { page: t('admin.admin'), href: '/panel/admin' },

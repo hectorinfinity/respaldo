@@ -10,7 +10,7 @@ export const AddressForm = () => {
     return (
         <>
             <div className="grid grid-cols-12 gap-6">
-                <div className="col-span-12 sm:col-span-12">
+                <div className="col-span-12">
                     <CustomLabel field="addressname" name={tc('field_addressname')} required />
                     <input
                         type="text"
@@ -22,7 +22,7 @@ export const AddressForm = () => {
                     />
                 </div>
 
-                <div className="col-span-12 sm:col-span-12">
+                <div className="col-span-12">
                     <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
                     <input
                         type="text"

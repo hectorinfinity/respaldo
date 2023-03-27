@@ -13,7 +13,6 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 import { FormStyles } from '@/helpers';
 
 const ProfileSecurity = () => {
-    const t = useTranslations("Panel");
     const tc = useTranslations("Common_Forms");
     const ts = useTranslations("Panel_SideBar");
 
@@ -32,7 +31,7 @@ const ProfileSecurity = () => {
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9" action="#" method="POST">
                         <div className="grid grid-cols-12 gap-6">
-                            <div className="col-span-12 sm:col-span-4">
+                            <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                                 <CustomLabel field="pass" name={tc('field_pass')} required />
                                 <input
                                     type="password"

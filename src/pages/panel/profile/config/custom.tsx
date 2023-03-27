@@ -9,7 +9,7 @@ import { Heading } from "@/components/headers/admin/heading";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
+import { CustomError, CustomCancel, CustomSubmit } from '@/components/forms';
 // Components
 import { CustomCategory } from '@/components/admin/profile/customCategory';
 

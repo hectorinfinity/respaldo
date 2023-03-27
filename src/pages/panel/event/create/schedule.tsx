@@ -39,7 +39,7 @@ const EventAddress = () => {
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9" action="#" method="POST">
                         <div className="grid grid-cols-12 gap-6">
-                            <div className="flex items-center">
+                            <div className="flex items-center pl-2">
                                 <input
                                     name="date_type"
                                     type="radio"
@@ -50,7 +50,7 @@ const EventAddress = () => {
                                     <CustomLabel field="range" name={tc('field_defined')} />
                                 </span>
                             </div>
-                            <div className="flex items-center">
+                            <div className="flex items-center pl-20 md:pl-10 lg:pl-2">
                                 <input
                                     name="date_type"
                                     type="radio"

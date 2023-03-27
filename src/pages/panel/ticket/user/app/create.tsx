@@ -15,10 +15,9 @@ import { CustomAdd, CustomError, CustomLabel, CustomCancel, CustomSubmit } from 
 // Helpers
 import { FormStyles } from '@/helpers';
 
-const Profile = () => {
+const TicketAppUserCreate = () => {
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
-    const tb = useTranslations("btn");
 
     const breadcrumb = [
         { page: t('ticket.ticket'), href: '/panel/ticket' },
@@ -127,8 +126,8 @@ const Profile = () => {
     );
 };
 
-Profile.Layout = AdminLayout;
-export default Profile;
+TicketAppUserCreate.Layout = AdminLayout;
+export default TicketAppUserCreate;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
