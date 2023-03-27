@@ -8,7 +8,7 @@ import { Heading } from '@/components/headers/admin/heading';
 // Components
 import { CustomCard } from '@/components/admin/profile/customCard';
 
-const ProfileBilling = () => {
+const ProfileCard = () => {
     const t = useTranslations("Panel_Profile_Card");
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
@@ -33,7 +33,6 @@ const ProfileBilling = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
-            {/* Profile section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className='lg:col-span-9'>
@@ -58,8 +57,8 @@ const ProfileBilling = () => {
     );
 };
 
-ProfileBilling.Layout = AdminLayout;
-export default ProfileBilling;
+ProfileCard.Layout = AdminLayout;
+export default ProfileCard;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

@@ -24,8 +24,8 @@ import {
 export function NavigationMenu(path: string) {
     const t = useTranslations("Panel_SideBar");
 
-    //console.log(path)
-    //console.log(path.split('/').length)
+    console.log(path)
+    console.log(path.split('/').length)
 
     const profile_navigation = [
         { name: t('profile.info'), icon: UsersIcon, current: path.split('/').length<4, href: '/panel/profile' },
@@ -45,7 +45,7 @@ export function NavigationMenu(path: string) {
     ]
 
     const event_navigation = [
-        { name: t('event.event'), icon: CalendarIcon, current: path.split('/').length<4, href: '/panel/event/' },
+        { name: t('event.event'), icon: CalendarIcon, current: (path.split('/').length < 4 || (path.split('/').length < 5 && path.includes('event/create'))), href: '/panel/event/' },
         { name: t('event.discount'), icon: MinusCircleIcon, current: path.includes('discount'), href: '/panel/event/discount' },
         { name: t('event.special'), icon: SquaresPlusIcon, current: path.includes('special'), href: '/panel/event/special' },
     ]
@@ -94,7 +94,7 @@ export function NavigationMenu(path: string) {
 
     if(path.includes('profile')) {
         return profile_navigation;
-    } else if((path.includes('event') && path.split('/').length<4) || path.includes('event/discount') || path.includes('event/special')) {
+    } else if((path.includes('event') && path.split('/').length<4) || path.includes('event/create') || path.includes('event/discount') || path.includes('event/special')) {
         return event_navigation;
     } else if(path.includes('ticket')) {
         return ticket_navigation;

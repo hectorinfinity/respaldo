@@ -11,7 +11,7 @@ import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
 import { Event as EventInterface } from '@/interfaces/event';
 
-const TicketList = () => {
+const TicketAppUser = () => {
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
@@ -34,7 +34,6 @@ const TicketList = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className="flow-root">
@@ -54,8 +53,8 @@ const TicketList = () => {
     );
 };
 
-TicketList.Layout = AdminLayout;
-export default TicketList;
+TicketAppUser.Layout = AdminLayout;
+export default TicketAppUser;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

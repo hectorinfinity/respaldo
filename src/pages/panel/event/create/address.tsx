@@ -12,7 +12,7 @@ import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
 
-const ProfileAddress = () => {
+const EventAddress = () => {
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
 
@@ -147,8 +147,8 @@ const ProfileAddress = () => {
     );
 };
 
-ProfileAddress.Layout = AdminLayout;
-export default ProfileAddress;
+EventAddress.Layout = AdminLayout;
+export default EventAddress;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

@@ -60,7 +60,7 @@ export const FormSearchFilter = () => {
 
                 <div className='pt-5'>
                     <fieldset>
-                        <legend className="block text-sm font-medium text-gray-900">{t('field_sub-subcategories')}</legend>
+                        <legend className="block text-sm font-medium text-gray-900">{t('field_subsubcategories')}</legend>
                         <div className="pt-6 space-y-3">
                             <select
                                 id="sex"
@@ -68,7 +68,7 @@ export const FormSearchFilter = () => {
                                 className={FormStyles('select')}
                                 defaultValue={''}
                             >
-                                <option value=''>{t('loading')} {t('field_sub-subcategories')}</option>
+                                <option value=''>{t('loading')} {t('field_select_subsubcategory')}</option>
                             </select>
                         </div>
                     </fieldset>

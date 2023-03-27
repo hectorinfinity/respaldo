@@ -142,7 +142,17 @@
         "visit": "Visits",
         "like": "Likes",
         "assisted": "Assisted",
-        "shared": "Shared"
+        "shared": "Shared",
+        "create": {
+          "date": "Date",
+          "initial_hour": "Initial Hour",
+          "final_hour": "Final Hour",
+          "low_cost": "Low Cost",
+          "regular_cost": "Regular Cost",
+          "hight_cost": "High Cost",
+          "url": "URL",
+          "streaming": "Streaming"
+        }
       },
       "discount": {
         "name": "Name",
@@ -545,6 +555,34 @@
     "rs_photo": "user photo",
     "loading": "Loading",
 
+    "field_name": "Name",
+    "field_description": "Description",
+
+    "field_facebook": "Facebook",
+    "field_instagram": "Instagram",
+    "field_twitter": "Twitter",
+
+    "field_age_limit": "Age Limit",
+    "field_duration": "Duration",
+
+    "field_general": "General",
+    "field_observations": "Observations",
+    "field_service": "Services",
+    "field_restriction": "Restrictions",
+    "field_limit_access": "Limit Access",
+
+    "field_defined": "Defined",
+    "field_range": "Range",
+    "field_initial_date": "Initial Date",
+    "field_final_date": "Final Date",
+
+    "field_supplier": "Supplier",
+    "field_select_supplier": "Select Supplier...",
+
+    "field_special_categories": "Special Categories",
+    "field_special_category": "Special Category",
+    "field_select_special_category": "Select Special Category...",
+
     "field_categories": "Categories",
     "field_category": "Category",
     "field_select_category": "Select Category...",
@@ -553,7 +591,10 @@
     "field_subcategory": "Subcategory",
     "field_select_subcategory": "Select Subcategory...",
 
-    "field_sub-subcategories": "Sub-Subategories",
+    "field_subsubcategories": "Sub-Subategories",
+    "field_subsubcategory": "Sub-Subategory",
+    "field_select_subsubcategory": "Select Sub-Subategory...",
+
     "field_range_date": "Range Date",
     "field_location": "Location",
 
@@ -651,7 +692,11 @@
 
     "field_header": "Upload an image for your Header",
     "field_icon": "Upload an icon for your category",
-    "field_color": "Pick a color for your category"
+    "field_color": "Pick a color for your category",
+
+    "field_event_image_web": "Upload an image for your Event (Web)",
+    "field_event_image_app": "Upload an image for your Event (App)",
+    "field_event_image_flyer": "Upload an image for your Flyer"
   },
 
   "Public_Comment": "/////////////////////////////////////// Public Comment",
