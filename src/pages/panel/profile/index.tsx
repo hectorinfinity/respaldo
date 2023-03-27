@@ -44,11 +44,9 @@ const Profile = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
-                    <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                        {/* Profile section */}
+                    <form className="lg:col-span-9" action="#" method="POST">
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="firstname" name={tc('field_firstname')} />

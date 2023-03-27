@@ -9,9 +9,9 @@ import { columnsDiscount } from '@/components/admin/tables/columns/columnsDiscou
 // Components
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
-import { EventDiscount } from '@/interfaces/event';
+import { EventDiscount as EventDiscountInterface } from '@/interfaces/event';
 
-const EventSpecialCategory = () => {
+const EventDiscount = () => {
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
@@ -33,7 +33,6 @@ const EventSpecialCategory = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className="flow-root">
@@ -53,8 +52,8 @@ const EventSpecialCategory = () => {
     );
 };
 
-EventSpecialCategory.Layout = AdminLayout;
-export default EventSpecialCategory;
+EventDiscount.Layout = AdminLayout;
+export default EventDiscount;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

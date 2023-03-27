@@ -37,10 +37,8 @@ const ProfileConfig = () => {
             </div>
             {/* Admin section */}
             <div className="flex flex-1 pt-6">
-                {/* Bottom section */}
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9" action="#" method="POST">
-                        {/* Profile section */}
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-2">
                                 <CustomLabel field="lang" name={tc('field_lang')} />
@@ -131,7 +129,6 @@ const ProfileConfig = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* Buttons section */}
                         <div className="divide-y divide-gray-200 pt-6">
                             <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
                                 <CustomCancel />

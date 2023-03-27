@@ -13,9 +13,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
 import { CurrentColor, FormStyles } from '@/helpers';
-import { ComboLang, InputLang } from '@/components/admin/lang';
+import { NameDescLang } from '@/components/forms/lang';
 
-const AdminCookie = () => {
+const EventCreateSpecialCategory = () => {
     const { locales } = useRouter();
     const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
@@ -35,11 +35,9 @@ const AdminCookie = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} langBread />
             </div>
-            {/* Profile section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                        {/* Category section */}
                         <div className="py-6 grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12">
                                 <CustomLabel field="header-upload" name={tc('field_header')} required />
@@ -187,7 +185,7 @@ const AdminCookie = () => {
                                     </div>
                                 </div>
                             </div>
-                            <ComboLang lang="es" />
+                            <NameDescLang lang="es" />
                         </div>
 
                         {/* Buttons section */}
@@ -204,8 +202,8 @@ const AdminCookie = () => {
     );
 };
 
-AdminCookie.Layout = AdminLayout;
-export default AdminCookie;
+EventCreateSpecialCategory.Layout = AdminLayout;
+export default EventCreateSpecialCategory;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

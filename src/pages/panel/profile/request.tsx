@@ -11,7 +11,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 
-const ProfileAddress = () => {
+const ProfileRequest = () => {
     const t = useTranslations("Panel_Profile_Request");
     const tc = useTranslations("Common_Forms");
     const ts = useTranslations("Panel_SideBar");
@@ -27,11 +27,9 @@ const ProfileAddress = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                        {/* Profile section */}
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                                 <CustomLabel field="front_id-upload" name={tc('field_front_id')} required />
@@ -144,8 +142,8 @@ const ProfileAddress = () => {
     );
 };
 
-ProfileAddress.Layout = AdminLayout;
-export default ProfileAddress;
+ProfileRequest.Layout = AdminLayout;
+export default ProfileRequest;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

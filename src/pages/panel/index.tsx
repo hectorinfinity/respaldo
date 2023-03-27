@@ -43,7 +43,6 @@ const Panel = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className="flow-root">

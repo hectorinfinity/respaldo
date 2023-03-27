@@ -36,10 +36,11 @@ import {
 
 type Props= {
     columns: any[],
-    defaultData: any[]
+    defaultData: any[],
+    addSchedule?: boolean
 }
 
-export const BasicTable = ({ columns, defaultData }: Props) => {
+export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props) => {
     const t = useTranslations("table");
 
     const currentColor = CurrentColor();
@@ -84,13 +85,19 @@ export const BasicTable = ({ columns, defaultData }: Props) => {
     return (
         <>
             <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
-                <div className="block w-[80%] text-base font-semibold leading-6 text-gray-900">
+                <div className="inline-block w-[100%] text-base font-semibold leading-6 text-gray-900">
                     <SearchInput
                         value={globalFilter ?? ''}
                         onChange={value => setGlobalFilter(String(value))}
                         className="p-2 font-lg shadow border border-block"
                         placeholder="Search..."
                     />
+                    <div className="flex justify-end -mt-10">
+                        <button 
+                        className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-${currentColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${currentColor}`}>
+                            Add Schedule
+                        </button>
+                    </div>
                 </div>
                 { Object.keys(rowSelection).length > 0 ? (
                     <div className="mt-3 flex sm:mt-0 sm:ml-4">

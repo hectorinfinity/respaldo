@@ -22,14 +22,11 @@ const AdminSetting = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9" action="#" method="POST">
-
                         <div className="pt-3 grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
-                                {/* Fees section */}
                                 <div className="block text-md font-bold leading-6 text-customForm">
                                     {tc('field_fees')}
                                 </div>
