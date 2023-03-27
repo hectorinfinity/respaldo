@@ -6,7 +6,8 @@ import { MapPinIcon } from '@heroicons/react/24/solid';
 import { Button } from '@/components/commons';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
-import Icon from './Icon';
+// import Icon from './Icon';
+import { Icon } from "@/components/commons";
 
 export type props = {
   className?: string;
