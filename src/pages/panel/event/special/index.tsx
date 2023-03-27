@@ -1,142 +1,38 @@
 /** @format */
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
-// React Table Column Helper
-import { createColumnHelper } from '@tanstack/react-table';
-// Helpers
-import { CurrentColor } from "@/helpers/currentColor";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
-import { BasicTable, ColumnsTable, CheckboxTable } from '@/components/admin/tables';
-// Fake Data
-import { faker } from '@faker-js/faker';
-// Icons
-import {
-    PencilIcon,
-    TrashIcon
-} from '@heroicons/react/24/outline';
-import Link from 'next/link';
+import { BasicTable } from '@/components/admin/tables';
+import { columnsEventSpecialCategory } from '@/components/admin/tables/columns/columnsEventSpecialCategory';
+// Components
 import { Heading } from '@/components/headers/admin/heading';
-// Category Interface
-interface Category {
-    id: string,
-    name: string
-}
+// Import Interface
+import { EventCategory } from '@/interfaces/event';
 
 const EventSpecialCategory = () => {
-    const t = useTranslations("Panel");
+    const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
-    const currentColor = CurrentColor();
 
     const breadcrumb = [
-        { page: t('user'), href: '/panel/profile' },
-        { page: t('profile.info'), href: '' }
+        { page: ts('event.event'), href: '/panel/event' },
+        { page: ts('event.special'), href: '' }
     ]
-    const buttonBread =  { text: tb('add_special_category'), href: '/panel/event/special/create' }
-
-    // Create new category for Test
-    const newCategory = (): Category => {
-        return {
-            id: faker.datatype.uuid(),
-            name: faker.name.firstName(),
-        }
-    }
+    const buttonBread =  { text: tb('add_event_special_category'), href: '/panel/event/special/create' }
 
     const data = useMemo(() => [
-        { id: '1', name: 'test' },
-        { id: '2', name: 'test2' },
-        { id: '3', name: 'test2' },
-        { id: '4', name: 'test2' },
-        { id: '5', name: 'test2' },
-        { id: '6', name: 'test2' },
-        { id: '7', name: 'test2' },
-        { id: '8', name: 'test2' },
-        { id: '9', name: 'test2' },
-        { id: '10', name: 'test2' },
-        { id: '11', name: 'test2' }
+        { id: '1', category: 'test', owner: 'User Owner', created: '2023-04-05', status: true },
+        { id: '2', category: 'test2', owner: 'User Owner', created: '2023-04-05', status: false },
     ], []);
-    /*
-   const data = useMemo(() => {
-       const arr = []
-       for (let i = 0; i < 1000; i++) {
-         arr.push(newCategory())
-       }
-       return arr
-   }, []);*/
-
-    const columnHelper = createColumnHelper<any>()
-    const columns = [
-        columnHelper.accessor('select', {
-            header: ({ table }) => (
-                <CheckboxTable
-                    {...{
-                        checked: table.getIsAllRowsSelected(),
-                        indeterminate: table.getIsSomeRowsSelected(),
-                        onChange: table.getToggleAllRowsSelectedHandler(),
-                    }}
-                />
-            ),
-            cell: ({ row }) => (
-                <div>
-                    <CheckboxTable
-                        {...{
-                            checked: row.getIsSelected(),
-                            disabled: !row.getCanSelect(),
-                            indeterminate: row.getIsSomeSelected(),
-                            onChange: row.getToggleSelectedHandler(),
-                        }}
-                    />
-                </div>
-            ),
-        }),
-        columnHelper.accessor('id', {
-            cell: info => info.getValue(),
-            footer: info => info.column.id,
-        }),
-        columnHelper.accessor('name', {
-            id: 'lastName',
-            header: () => 'Special Category Name',
-            cell: info => info.getValue()
-        }), columnHelper.accessor('options', {
-            id: 'options',
-            header: () => 'Options',
-            cell: props => (
-                <div className='flex justify-start'>
-                    <Link href={`/panel/events/special/edit/${props.row.original.id}`} className="px-1">
-                        <PencilIcon className={`w-4 h-4 hover:text-${currentColor}`} />
-                    </Link>
-                    <Link href={`/panel/events/special/delete/${props.row.original.id}`} className="px-1">
-                        <TrashIcon className={`w-4 h-4 hover:text-${currentColor}`} />
-                    </Link>
-                </div>
-            ),
-        }),
-    ];
-    /*
-    const columnsTest = [
-        columnHelper.accessor('id', {
-            id: 'id',
-            cell: info => info.getValue(),
-            footer: info => info.column.id,
-        }),
-        columnHelper.accessor('name', {
-            id: 'lastName',
-            header: () => 'Special Category Name',
-            cell: info => info.getValue()
-        }),
-    ];
-
-    const columns = ColumnsTable(columnsTest);
-    console.log("Columns: ", ColumnsTable(columnsTest));
-    */
+    const columns = columnsEventSpecialCategory();
+   
     return (
         <>
             {/* Breadcrumb section */}
             <div>
                 <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className="flow-root">

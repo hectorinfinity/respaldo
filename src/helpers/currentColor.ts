@@ -6,9 +6,9 @@ export function CurrentColor() {
     if(router.pathname.includes('panel')) {
         if (router.pathname.includes('profile')) {
             return "customGreen";
-        } else if (router.pathname.includes('event')) {
+        } else if ((router.pathname.includes('event') && router.pathname.split('/').length<4)  || router.pathname.includes('event/create') || router.pathname.includes('event/discount') || router.pathname.includes('event/special')) {
             return "customBlue";
-        } else if (router.pathname.includes('pos')) {
+        } else if (router.pathname.includes('pos') && router.pathname.split('/').length<4) {
             return "customDaisy";
         } else if (router.pathname.includes('ticket')) {
             return "customPurple";

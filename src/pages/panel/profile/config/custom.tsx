@@ -13,7 +13,7 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 // Components
 import { CustomCategory } from '@/components/admin/profile/customCategory';
 
-const ProfileBilling = () => {
+const ProfileCustom = () => {
     const t = useTranslations("Panel_Profile_Category");
     const ts = useTranslations("Panel_SideBar");
 
@@ -24,18 +24,18 @@ const ProfileBilling = () => {
     ]
 
     const categories = [
-        { name: "Artes Visuales", src: "/images/events/category/artes-visuales.png", selected: true },
+        { name: "Artes Visuales", src: "/images/events/category/arts.png", selected: true },
         { name: "Cine", src: "/images/events/category/cine.png", selected: false },
-        { name: "Danza", src: "/images/events/category/danza.png", selected: true },
-        { name: "Artes Visuales", src: "/images/events/category/artes-visuales.png", selected: true },
+        { name: "Danza", src: "/images/events/category/dance.png", selected: true },
+        { name: "Artes Visuales", src: "/images/events/category/arts.png", selected: true },
         { name: "Cine", src: "/images/events/category/cine.png", selected: false },
-        { name: "Danza", src: "/images/events/category/danza.png", selected: true },
-        { name: "Artes Visuales", src: "/images/events/category/artes-visuales.png", selected: true },
+        { name: "Danza", src: "/images/events/category/dance.png", selected: true },
+        { name: "Artes Visuales", src: "/images/events/category/arts.png", selected: true },
         { name: "Cine", src: "/images/events/category/cine.png", selected: false },
-        { name: "Danza", src: "/images/events/category/danza.png", selected: true },
-        { name: "Artes Visuales", src: "/images/events/category/artes-visuales.png", selected: true },
+        { name: "Danza", src: "/images/events/category/dance.png", selected: true },
+        { name: "Artes Visuales", src: "/images/events/category/arts.png", selected: true },
         { name: "Cine", src: "/images/events/category/cine.png", selected: false },
-        { name: "Danza", src: "/images/events/category/danza.png", selected: true },
+        { name: "Danza", src: "/images/events/category/dance.png", selected: true },
         
     ]
 
@@ -45,12 +45,9 @@ const ProfileBilling = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
-                {/* Bottom section */}
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                        {/* Profile section */}
                         <div className='lg:col-span-9'>
                             <div>
                                 <div className="grid text-stone-500 text-20 ">
@@ -81,8 +78,8 @@ const ProfileBilling = () => {
     );
 };
 
-ProfileBilling.Layout = AdminLayout;
-export default ProfileBilling;
+ProfileCustom.Layout = AdminLayout;
+export default ProfileCustom;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

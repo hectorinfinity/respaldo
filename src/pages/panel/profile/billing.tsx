@@ -27,11 +27,9 @@ const ProfileBilling = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Profile section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                        {/* Profile section */}
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="businessname" name={tc('field_businessname')} required />

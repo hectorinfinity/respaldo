@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { AdvertisementOrder } from 'interfaces/advertisement';
+import axios from '@/lib/axios';
+import { AdvertisementOrder } from '@/interfaces/advertisement';
 
 export const getAdvertisementsOrders = async () => {
     const { data } = await axios.get(`/advertisements/orders/`);

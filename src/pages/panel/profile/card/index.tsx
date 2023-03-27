@@ -8,17 +8,17 @@ import { Heading } from '@/components/headers/admin/heading';
 // Components
 import { CustomCard } from '@/components/admin/profile/customCard';
 
-const ProfileBilling = () => {
+const ProfileCard = () => {
     const t = useTranslations("Panel_Profile_Card");
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
     const cards = [
         { id: "129182", name: "Arturo Villalpando Sánchez", type: "credit", number: "3828", exp: "09/28" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "12912", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "12982", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "12182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
+        { id: "19182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
     ]
 
     const breadcrumb = [
@@ -33,7 +33,6 @@ const ProfileBilling = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
-            {/* Profile section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className='lg:col-span-9'>
@@ -46,7 +45,7 @@ const ProfileBilling = () => {
                             <div className="md:flex md:items-center md:justify-between">
                                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                                     {cards.map((card) => (
-                                        <CustomCard id={card.id} name={card.name} type={card.type} number={card.number} exp={card.exp} />
+                                        <CustomCard key={card.id} id={card.id} name={card.name} type={card.type} number={card.number} exp={card.exp} />
                                     ))}
                                 </div>
                             </div>
@@ -58,8 +57,8 @@ const ProfileBilling = () => {
     );
 };
 
-ProfileBilling.Layout = AdminLayout;
-export default ProfileBilling;
+ProfileCard.Layout = AdminLayout;
+export default ProfileCard;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

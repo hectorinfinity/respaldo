@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { EventTag } from 'interfaces/event';
+import axios from '@/lib/axios';
+import { EventTag } from '@/interfaces/event';
 
 export const getEventsTags = async () => {
     const { data } = await axios.get(`/events/tags/`);

@@ -12,7 +12,7 @@ import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
 
-const ProfileAddress = () => {
+const ProfileSecurity = () => {
     const t = useTranslations("Panel");
     const tc = useTranslations("Common_Forms");
     const ts = useTranslations("Panel_SideBar");
@@ -28,11 +28,9 @@ const ProfileAddress = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Admin section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
-                    <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                        {/* Profile section */}
+                    <form className="lg:col-span-9" action="#" method="POST">
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-4">
                                 <CustomLabel field="pass" name={tc('field_pass')} required />
@@ -86,8 +84,8 @@ const ProfileAddress = () => {
     );
 };
 
-ProfileAddress.Layout = AdminLayout;
-export default ProfileAddress;
+ProfileSecurity.Layout = AdminLayout;
+export default ProfileSecurity;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

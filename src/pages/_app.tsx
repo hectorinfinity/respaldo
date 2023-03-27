@@ -23,6 +23,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+// React Quill
+import 'react-quill/dist/quill.snow.css'
 
 export default function App({ Component, pageProps }: CustomAppProps) {
   const Layout: CustomNextComponent | typeof Fragment = Component.Layout

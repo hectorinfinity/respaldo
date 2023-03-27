@@ -1,5 +1,5 @@
-import axios from 'lib/axios';
-import { PostTag } from 'interfaces/post';
+import axios from '@/lib/axios';
+import { PostTag } from '@/interfaces/post';
 
 export const getPostsTags = async () => {
     const { data } = await axios.get(`/posts/tags/`);

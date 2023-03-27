@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 // Helpers
 import { CurrentColor } from '@/helpers/currentColor';
 
-export function CheckboxTable({
+export function Checkbox({
     indeterminate,
     className = '',
     ...rest

@@ -6,7 +6,7 @@ import MainLayout from "@/components/layout/main";
 import { HeroSlider, CategorySlider } from "@/components/landing/slider/index";
 import { Content } from "@/components/landing/search/content";
 
-const Home = () => {
+const Search = () => {
     return (
         <div className="bg-white">
             {/*
@@ -29,8 +29,8 @@ const Home = () => {
     );
 };
 
-Home.Layout = MainLayout;
-export default Home;
+Search.Layout = MainLayout;
+export default Search;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

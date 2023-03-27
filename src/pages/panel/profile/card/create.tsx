@@ -12,7 +12,7 @@ import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
 
-const ProfileBilling = () => {
+const ProfileCardCreate = () => {
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
 
@@ -28,7 +28,6 @@ const ProfileBilling = () => {
             <div>
                 <Heading breadcrumb={breadcrumb} />
             </div>
-            {/* Profile section */}
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     Stripe Form
@@ -38,8 +37,8 @@ const ProfileBilling = () => {
     );
 };
 
-ProfileBilling.Layout = AdminLayout;
-export default ProfileBilling;
+ProfileCardCreate.Layout = AdminLayout;
+export default ProfileCardCreate;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

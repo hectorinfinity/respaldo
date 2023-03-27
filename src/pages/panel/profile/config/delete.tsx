@@ -13,7 +13,7 @@ import * as yup from "yup";
 import { CustomDelete } from '@/components/forms';
 import { FormStyles } from '@/helpers';
 
-const ProfileConfig = () => {
+const ProfileDelete = () => {
     const t = useTranslations("Panel_Profile_Delete");
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
@@ -32,10 +32,8 @@ const ProfileConfig = () => {
             </div>
             {/* Admin section */}
             <div className="flex flex-1 pt-6">
-                {/* Bottom section */}
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9" action="#" method="POST">
-                        {/* Profile section */}
                         <div>
                             <div className="grid text-stone-500 text-20 ">
                                 {t('message')}
@@ -68,7 +66,6 @@ const ProfileConfig = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* Buttons section */}
                         <div className="divide-y divide-gray-200 pt-6">
                             <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
                                 <CustomDelete text={tb('form_delete_account')} />
@@ -81,8 +78,8 @@ const ProfileConfig = () => {
     );
 };
 
-ProfileConfig.Layout = AdminLayout;
-export default ProfileConfig;
+ProfileDelete.Layout = AdminLayout;
+export default ProfileDelete;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
