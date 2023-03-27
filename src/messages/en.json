@@ -92,6 +92,7 @@
     "form_cancel": "Cancel",
     "form_save": "Save",
     "form_send": "Send",
+    "form_add": "Add",
 
     "form_clear_filters": "Clear Filters",
     "form_apply_filters": "Apply Filters",
@@ -554,6 +555,12 @@
   "Common_Forms": {
     "rs_photo": "user photo",
     "loading": "Loading",
+
+    "field_rol": "Rol",
+    "field_select_rol": "Select Rol...",
+
+    "field_event": "Event",
+    "field_select_event": "Select the event...",
 
     "field_name": "Name",
     "field_description": "Description",

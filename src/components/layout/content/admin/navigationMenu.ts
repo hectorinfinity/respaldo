@@ -24,8 +24,8 @@ import {
 export function NavigationMenu(path: string) {
     const t = useTranslations("Panel_SideBar");
 
-    console.log(path)
-    console.log(path.split('/').length)
+    //console.log(path)
+    //console.log(path.split('/').length)
 
     const profile_navigation = [
         { name: t('profile.info'), icon: UsersIcon, current: path.split('/').length<4, href: '/panel/profile' },
