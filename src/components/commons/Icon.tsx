@@ -74,9 +74,114 @@ const MapPin = (props) => (
   </svg>
 );
 
+const SearchIcon = (props) => (
+  <svg width={23} height={21} viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path
+      d="M10.039.026C4.779.026.5 4.11.5 9.131c0 5.02 4.279 9.105 9.539 9.105 1.608 0 3.188-.364 4.524-1.066.107.122.225.236.354.338l2.725 2.601c.252.27.559.489.902.642a2.89 2.89 0 0 0 2.202.062c.352-.134.672-.334.94-.59.268-.256.478-.561.618-.897a2.547 2.547 0 0 0-.065-2.102 2.67 2.67 0 0 0-.672-.86l-2.726-2.602a2.705 2.705 0 0 0-.436-.338c.736-1.275 1.2-2.758 1.2-4.319 0-5.02-4.28-9.105-9.54-9.105l-.026.026Zm0 2.601c3.788 0 6.813 2.888 6.813 6.504 0 1.717-.654 3.304-1.799 4.475l-.082.078a2.669 2.669 0 0 0-.354.338c-1.199 1.04-2.834 1.639-4.606 1.639-3.788 0-6.813-2.888-6.813-6.504 0-3.616 3.025-6.504 6.813-6.504l.028-.026Z"
+      fill="#616161"
+    />
+  </svg>
+);
+
+const ChevronLeft = (props) => (
+  <svg viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="m14 16.5-4-4 4-4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+    <mask
+      id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={9}
+      y={7}
+      width={6}
+      height={11}
+    >
+      <path
+        className="fill-current"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M14.707 17.207a1 1 0 0 0 0-1.414L11.414 12.5l3.293-3.293a1 1 0 0 0-1.414-1.414l-4 4a1 1 0 0 0 0 1.414l4 4a1 1 0 0 0 1.414 0Z"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path className="fill-current" d="M0 .5h24v24H0z" />
+    </g>
+  </svg>
+);
+
+const ChevronRight = (props) => (
+  <svg viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="m10 8.5 4 4-4 4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+    <mask
+      id="chevron-right"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={9}
+      y={7}
+      width={6}
+      height={11}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M9.293 7.793a1 1 0 0 0 0 1.414l3.293 3.293-3.293 3.293a1 1 0 1 0 1.414 1.414l4-4a1 1 0 0 0 0-1.414l-4-4a1 1 0 0 0-1.414 0Z"
+        className="fill-current"
+      />
+    </mask>
+    <g mask="url(#chevron-right)">
+      <path className="fill-current" d="M0 .5h24v24H0z" />
+    </g>
+  </svg>
+);
+
+const Calendar = (props) => (
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M13.333 1.5a1 1 0 0 1 1 1v.667H15a2.667 2.667 0 0 1 2.667 2.666v10A2.667 2.667 0 0 1 15 18.5H5a2.667 2.667 0 0 1-2.667-2.667v-10A2.667 2.667 0 0 1 5 3.167h.667V2.5a1 1 0 1 1 2 0v.667h4.666V2.5a1 1 0 0 1 1-1Zm2.334 4.333v2.334H4.333V5.833c0-.368.299-.666.667-.666h.667v.666a1 1 0 1 0 2 0v-.666h4.666v.666a1 1 0 1 0 2 0v-.666H15c.368 0 .667.298.667.666Zm0 4.334H4.333v5.666c0 .368.299.667.667.667h10a.667.667 0 0 0 .667-.667v-5.666Zm-9 1.333a1 1 0 0 0-1 1v1.667a1 1 0 0 0 1 1h1.666a1 1 0 0 0 1-1V12.5a1 1 0 0 0-1-1H6.667Z"
+      className="fill-current"
+    />
+    <mask
+      id="calendar-icon"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={2}
+      y={1}
+    >
+      <path
+        d="M6.667 11.667a.833.833 0 0 0-.834.833v1.667c0 .46.373.833.834.833h1.666c.46 0 .834-.373.834-.833V12.5a.833.833 0 0 0-.834-.833H6.667Z"
+        className="fill-current"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M13.333 1.667c.46 0 .834.373.834.833v.834H15a2.5 2.5 0 0 1 2.5 2.5v10a2.5 2.5 0 0 1-2.5 2.5H5a2.5 2.5 0 0 1-2.5-2.5v-10a2.5 2.5 0 0 1 2.5-2.5h.833V2.5a.833.833 0 0 1 1.667 0v.834h5V2.5c0-.46.373-.833.833-.833Zm2.5 4.167v2.5H4.167v-2.5C4.167 5.374 4.54 5 5 5h.833v.834a.833.833 0 0 0 1.667 0V5h5v.834a.833.833 0 1 0 1.667 0V5H15c.46 0 .833.373.833.834Zm0 4.166H4.167v5.834c0 .46.373.833.833.833h10c.46 0 .833-.373.833-.833V10Z"
+        className="fill-current"
+      />
+    </mask>
+    <g mask="url(#calendar-icon)">
+      <path className="fill-current" d="M0 0h20v20H0z" />
+    </g>
+  </svg>
+);
+
 export type props = {
   className?: string;
-  name: 'heart-outline' | 'heart-solid' | 'circle-check-outline' | 'map-pin';
+  name:
+    | 'heart-outline'
+    | 'heart-solid'
+    | 'circle-check-outline'
+    | 'map-pin'
+    | 'search-icon'
+    | 'chevron-left'
+    | 'chevron-right'
+    | 'calendar';
 };
 
 const Icon: React.FC<props> = ({ name, ...props }) => {
@@ -90,7 +195,14 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <CircleCheckOutline {...props} />;
     case 'map-pin':
       return <MapPin {...props} />;
-
+    case 'search-icon':
+      return <SearchIcon {...props} />;
+    case 'chevron-left':
+      return <ChevronLeft {...props} />;
+    case 'chevron-right':
+      return <ChevronRight {...props} />;
+    case 'calendar':
+      return <Calendar {...props} />;
     default:
       const _exhaustiveCheck: never = name;
       return _exhaustiveCheck;

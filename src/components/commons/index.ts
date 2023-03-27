@@ -9,3 +9,5 @@ export { default as Switcher } from './Switcher';
 export { default as AnimateTransition } from './AnimateTransition';
 export { default as Avatar } from './Avatar';
 export { default as Panel } from './Panel';
+export { default as Icon } from './Icon';
+export { default as WillAttend } from './WillAttend';
