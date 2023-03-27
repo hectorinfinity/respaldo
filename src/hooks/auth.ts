@@ -11,8 +11,8 @@ export function useMutationLogin() {
 
   return useMutation(userLogin, {
     onSuccess: (user) => {
-      queryClient.setQueryData([key], () => [user]);
-      queryClient.invalidateQueries([key]); // Remove cache en refetch data
+      queryClient.setQueryData([key], () => [{ ...user, role: user.role }]);
+      queryClient.invalidateQueries([key]);
     },
   });
 }
@@ -22,11 +22,34 @@ export function useMutationRegister() {
 
   return useMutation(userRegister, {
     onSuccess: (user) => {
-      queryClient.setQueryData([key], () => [user]);
+      queryClient.setQueryData([key], () => [{ ...user, role: user.role }]);
       queryClient.invalidateQueries([key]);
     },
   });
 }
+
+// changed
+// export function useMutationLogin() {
+//   const queryClient = useQueryClient();
+
+//   return useMutation(userLogin, {
+//     onSuccess: (user) => {
+//       queryClient.setQueryData([key], () => [user]);
+//       queryClient.invalidateQueries([key]); // Remove cache en refetch data
+//     },
+//   });
+// }
+
+// export function useMutationRegister() {
+//   const queryClient = useQueryClient();
+
+//   return useMutation(userRegister, {
+//     onSuccess: (user) => {
+//       queryClient.setQueryData([key], () => [user]);
+//       queryClient.invalidateQueries([key]);
+//     },
+//   });
+// }
 
 interface UserAuth {
   user: User | null,

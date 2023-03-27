@@ -34,7 +34,12 @@ const SidebarEvent: React.FC<props> = ({
   const t = useTranslations('Sidebar_Event');
   const locale = useLocale();
   return (
-    <aside className={classNames('shadow-xl inline-block rounded-xl overflow-hidden', className)}>
+    <aside
+      className={classNames(
+        'shadow-xl inline-block rounded-xl overflow-hidden',
+        className
+      )}
+    >
       <div className="h-6 bg-customPink" />
       <div className="px-10 flex justify-between items-center gap-10 py-5">
         <p>
@@ -63,7 +68,7 @@ const SidebarEvent: React.FC<props> = ({
         <ul className="mt-10">
           <li>
             <span className="font-semibold flex items-center gap-1.5">
-              <Icon name="calendar" className="w-4 h-4 text-black" />
+              <Icon name="calendar-outline" className="w-4 h-4 text-black" />
               {t('date')}
             </span>
             <p>

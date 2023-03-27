@@ -8,6 +8,7 @@ export type Role = 'SUPER_ADMIN' | 'ADMIN' | 'PROMOTER' | 'EDITOR' | 'USER'
 export interface User {
     uid: string
     id_token: string
+    role?: Role | null;
     roles?: string[] | Role[]
     firstname?: string | null
     surname?: string | null

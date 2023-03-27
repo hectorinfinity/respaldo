@@ -2,7 +2,12 @@ import React from 'react';
 import { classNames } from '@/helpers';
 
 const HeartOutline = (props) => (
-  <svg viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    viewBox="0 0 21 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <path
       d="M9.519 5.504h1c0-1.378.522-2.578 1.338-3.46.845-.887 1.943-1.433 3.156-1.433 1.241 0 2.336.548 3.152 1.428a5.154 5.154 0 0 1 1.343 3.465c0 1.379-.524 2.58-1.34 3.462l-8.149 8.798-8.146-8.796A5.154 5.154 0 0 1 .53 5.504c0-1.378.523-2.578 1.338-3.46C2.713 1.157 3.811.611 5.025.611c1.24 0 2.335.548 3.151 1.428A5.154 5.154 0 0 1 9.52 5.504Z"
       stroke="#9D9D9D"
@@ -11,7 +16,12 @@ const HeartOutline = (props) => (
 );
 
 const HeartSolid = (props) => (
-  <svg viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    viewBox="0 0 21 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <path
       d="M5.025.111c-1.373 0-2.597.62-3.52 1.59A5.552 5.552 0 0 0 .03 5.505a5.65 5.65 0 0 0 1.473 3.801L10.02 18.5l8.515-9.195a5.552 5.552 0 0 0 1.473-3.801 5.654 5.654 0 0 0-1.473-3.802c-.9-.97-2.123-1.59-3.521-1.59-1.374 0-2.597.62-3.521 1.59a5.552 5.552 0 0 0-1.473 3.802 5.654 5.654 0 0 0-1.474-3.802C7.647.732 6.424.112 5.026.112Z"
       fill="#F9BB35"
@@ -20,7 +30,12 @@ const HeartSolid = (props) => (
 );
 
 const CircleCheckOutline = (props) => (
-  <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    viewBox="0 0 10 10"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -61,7 +76,12 @@ const MapPin = (props) => (
       <path fill="#171717" d="M2.941.803h14.118V19.36H2.941z" />
     </g>
     <defs>
-      <pattern id="a" patternContentUnits="objectBoundingBox" width={1} height={1}>
+      <pattern
+        id="a"
+        patternContentUnits="objectBoundingBox"
+        width={1}
+        height={1}
+      >
         <use xlinkHref="#c" transform="matrix(.00505 0 0 .00527 0 -.004)" />
       </pattern>
       <image
@@ -75,7 +95,14 @@ const MapPin = (props) => (
 );
 
 const SearchIcon = (props) => (
-  <svg width={23} height={21} viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    width={23}
+    height={21}
+    viewBox="0 0 23 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <path
       d="M10.039.026C4.779.026.5 4.11.5 9.131c0 5.02 4.279 9.105 9.539 9.105 1.608 0 3.188-.364 4.524-1.066.107.122.225.236.354.338l2.725 2.601c.252.27.559.489.902.642a2.89 2.89 0 0 0 2.202.062c.352-.134.672-.334.94-.59.268-.256.478-.561.618-.897a2.547 2.547 0 0 0-.065-2.102 2.67 2.67 0 0 0-.672-.86l-2.726-2.602a2.705 2.705 0 0 0-.436-.338c.736-1.275 1.2-2.758 1.2-4.319 0-5.02-4.28-9.105-9.54-9.105l-.026.026Zm0 2.601c3.788 0 6.813 2.888 6.813 6.504 0 1.717-.654 3.304-1.799 4.475l-.082.078a2.669 2.669 0 0 0-.354.338c-1.199 1.04-2.834 1.639-4.606 1.639-3.788 0-6.813-2.888-6.813-6.504 0-3.616 3.025-6.504 6.813-6.504l.028-.026Z"
       fill="#616161"
@@ -84,8 +111,25 @@ const SearchIcon = (props) => (
 );
 
 const ChevronLeft = (props) => (
-  <svg viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="m14 16.5-4-4 4-4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+  <svg
+    viewBox="0 0 24 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="m14 16.5-4-4 4-4"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* const ClockOutline = (props) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  > */}
     <mask
       id="a"
       style={{
@@ -106,15 +150,48 @@ const ChevronLeft = (props) => (
     </mask>
     <g mask="url(#a)">
       <path className="fill-current" d="M0 .5h24v24H0z" />
+      {/* x={1}
+      y={1}
+      width={18}
+      height={18}
+    >
+      <path d="M10.834 5.833a.833.833 0 0 0-1.667 0V10c0 .221.088.433.244.59l2.5 2.5a.833.833 0 0 0 1.179-1.18l-2.256-2.255V5.833Z" />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10 1.667a8.333 8.333 0 1 0 0 16.666 8.333 8.333 0 0 0 0-16.666ZM3.334 10a6.667 6.667 0 1 1 13.333 0 6.667 6.667 0 0 1-13.333 0Z"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path d="M0 0h20v20H0z" /> */}
     </g>
   </svg>
 );
 
 const ChevronRight = (props) => (
-  <svg viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="m10 8.5 4 4-4 4" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+  <svg
+    viewBox="0 0 24 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="m10 8.5 4 4-4 4"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
     <mask
       id="chevron-right"
+      // const PersonOutline = (props) => (
+      //   <svg
+      //     viewBox="0 0 20 20"
+      //     fill="none"
+      //     xmlns="http://www.w3.org/2000/svg"
+      //     {...props}
+      //   >
+      //     <mask
+      //       id="a"
       style={{
         maskType: 'alpha',
       }}
@@ -123,6 +200,10 @@ const ChevronRight = (props) => (
       y={7}
       width={6}
       height={11}
+      // x={4}
+      // y={1}
+      // width={12}
+      // height={18}
     >
       <path
         fillRule="evenodd"
@@ -133,40 +214,105 @@ const ChevronRight = (props) => (
     </mask>
     <g mask="url(#chevron-right)">
       <path className="fill-current" d="M0 .5h24v24H0z" />
+      {/* d="M10 1.667A4.167 4.167 0 1 0 10 10a4.167 4.167 0 0 0 0-8.333ZM7.5 5.833a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Z"
+      />
+      <path d="M6.566 14.066a2.5 2.5 0 0 1 1.768-.733h3.333a2.5 2.5 0 0 1 2.5 2.5V17.5a.833.833 0 1 0 1.667 0v-1.667a4.167 4.167 0 0 0-4.167-4.166H8.334a4.167 4.167 0 0 0-4.167 4.166V17.5a.833.833 0 1 0 1.667 0v-1.667a2.5 2.5 0 0 1 .732-1.767Z" />
+    </mask>
+    <g mask="url(#a)"> */}
+      <path d="M0 0h20v20H0z" />
     </g>
   </svg>
 );
 
-const Calendar = (props) => (
-  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M13.333 1.5a1 1 0 0 1 1 1v.667H15a2.667 2.667 0 0 1 2.667 2.666v10A2.667 2.667 0 0 1 15 18.5H5a2.667 2.667 0 0 1-2.667-2.667v-10A2.667 2.667 0 0 1 5 3.167h.667V2.5a1 1 0 1 1 2 0v.667h4.666V2.5a1 1 0 0 1 1-1Zm2.334 4.333v2.334H4.333V5.833c0-.368.299-.666.667-.666h.667v.666a1 1 0 1 0 2 0v-.666h4.666v.666a1 1 0 1 0 2 0v-.666H15c.368 0 .667.298.667.666Zm0 4.334H4.333v5.666c0 .368.299.667.667.667h10a.667.667 0 0 0 .667-.667v-5.666Zm-9 1.333a1 1 0 0 0-1 1v1.667a1 1 0 0 0 1 1h1.666a1 1 0 0 0 1-1V12.5a1 1 0 0 0-1-1H6.667Z"
-      className="fill-current"
-    />
+const ClockOutline = (props) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
     <mask
-      id="calendar-icon"
+      id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={1}
+      y={1}
+      width={18}
+      height={18}
+    >
+      <path d="M10.834 5.833a.833.833 0 0 0-1.667 0V10c0 .221.088.433.244.59l2.5 2.5a.833.833 0 0 0 1.179-1.18l-2.256-2.255V5.833Z" />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10 1.667a8.333 8.333 0 1 0 0 16.666 8.333 8.333 0 0 0 0-16.666ZM3.334 10a6.667 6.667 0 1 1 13.333 0 6.667 6.667 0 0 1-13.333 0Z"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path d="M0 0h20v20H0z" />
+    </g>
+  </svg>
+);
+
+const PersonOutline = (props) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <mask
+      id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={4}
+      y={1}
+      width={12}
+      height={18}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10 1.667A4.167 4.167 0 1 0 10 10a4.167 4.167 0 0 0 0-8.333ZM7.5 5.833a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Z"
+      />
+      <path d="M6.566 14.066a2.5 2.5 0 0 1 1.768-.733h3.333a2.5 2.5 0 0 1 2.5 2.5V17.5a.833.833 0 1 0 1.667 0v-1.667a4.167 4.167 0 0 0-4.167-4.166H8.334a4.167 4.167 0 0 0-4.167 4.166V17.5a.833.833 0 1 0 1.667 0v-1.667a2.5 2.5 0 0 1 .732-1.767Z" />
+    </mask>
+    <g mask="url(#a)">
+      <path d="M0 0h20v20H0z" />
+    </g>
+  </svg>
+);
+
+const CalendarOutline = (props) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <mask
+      id="a"
       style={{
         maskType: 'alpha',
       }}
       maskUnits="userSpaceOnUse"
       x={2}
       y={1}
+      width={16}
+      height={18}
     >
-      <path
-        d="M6.667 11.667a.833.833 0 0 0-.834.833v1.667c0 .46.373.833.834.833h1.666c.46 0 .834-.373.834-.833V12.5a.833.833 0 0 0-.834-.833H6.667Z"
-        className="fill-current"
-      />
+      <path d="M6.667 11.667a.833.833 0 0 0-.834.833v1.667c0 .46.373.833.834.833h1.666c.46 0 .834-.373.834-.833V12.5a.833.833 0 0 0-.834-.833H6.667Z" />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M13.333 1.667c.46 0 .834.373.834.833v.834H15a2.5 2.5 0 0 1 2.5 2.5v10a2.5 2.5 0 0 1-2.5 2.5H5a2.5 2.5 0 0 1-2.5-2.5v-10a2.5 2.5 0 0 1 2.5-2.5h.833V2.5a.833.833 0 0 1 1.667 0v.834h5V2.5c0-.46.373-.833.833-.833Zm2.5 4.167v2.5H4.167v-2.5C4.167 5.374 4.54 5 5 5h.833v.834a.833.833 0 0 0 1.667 0V5h5v.834a.833.833 0 1 0 1.667 0V5H15c.46 0 .833.373.833.834Zm0 4.166H4.167v5.834c0 .46.373.833.833.833h10c.46 0 .833-.373.833-.833V10Z"
-        className="fill-current"
+        d="M13.333 1.667c.46 0 .834.373.834.833v.833H15a2.5 2.5 0 0 1 2.5 2.5v10a2.5 2.5 0 0 1-2.5 2.5H5a2.5 2.5 0 0 1-2.5-2.5v-10a2.5 2.5 0 0 1 2.5-2.5h.833V2.5a.833.833 0 0 1 1.667 0v.833h5V2.5c0-.46.373-.833.833-.833Zm2.5 4.166v2.5H4.167v-2.5C4.167 5.373 4.54 5 5 5h.833v.833a.833.833 0 0 0 1.667 0V5h5v.833a.833.833 0 1 0 1.667 0V5H15c.46 0 .833.373.833.833Zm0 4.167H4.167v5.833c0 .46.373.834.833.834h10c.46 0 .833-.373.833-.834V10Z"
       />
     </mask>
-    <g mask="url(#calendar-icon)">
-      <path className="fill-current" d="M0 0h20v20H0z" />
+    <g mask="url(#a)">
+      <path d="M0 0h20v20H0z" />
     </g>
   </svg>
 );
@@ -181,7 +327,9 @@ export type props = {
     | 'search-icon'
     | 'chevron-left'
     | 'chevron-right'
-    | 'calendar';
+    | 'clock-outline'
+    | 'person-outline'
+    | 'calendar-outline';
 };
 
 const Icon: React.FC<props> = ({ name, ...props }) => {
@@ -201,8 +349,12 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <ChevronLeft {...props} />;
     case 'chevron-right':
       return <ChevronRight {...props} />;
-    case 'calendar':
-      return <Calendar {...props} />;
+    case 'clock-outline':
+      return <ClockOutline {...props} />;
+    case 'person-outline':
+      return <PersonOutline {...props} />;
+    case 'calendar-outline':
+      return <CalendarOutline {...props} />;
     default:
       const _exhaustiveCheck: never = name;
       return _exhaustiveCheck;
