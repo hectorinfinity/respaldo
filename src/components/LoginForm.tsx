@@ -1,29 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
-import { ProviderType } from "@/lib/firebase_auth";
+import { AuthContext } from "@/context/auth/auth_provider";
+import { sign_in_with_credentials, sing_in, ProviderType } from "@/lib/firebase_auth";
 
-interface LoginFormProps {
-    email: string;
-    setEmail: React.Dispatch<React.SetStateAction<string>>;
-    password: string;
-    setPassword: React.Dispatch<React.SetStateAction<string>>;
-    handleLogin: (provider: ProviderType | "credentials") => Promise<void>;
-    loading: boolean;
-}
+const LoginForm = () => {
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [loading, setLoading] = useState(false);
+    const { login } = useContext(AuthContext);
 
-const LoginForm: React.FC<LoginFormProps> = ({
-    email,
-    setEmail,
-    password,
-    setPassword,
-    handleLogin,
-    loading,
-}) => {
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         await handleLogin("credentials");
+    };
+
+    const handleLogin = async (provider: ProviderType | "credentials") => {
+        setLoading(true);
+
+        try {
+            let result;
+
+            if (provider === "credentials") {
+                result = await sign_in_with_credentials({ email, password });
+            } else {
+                result = await sing_in(provider);
+            }
+
+            if (result.error) {
+                console.log("Error logging in:", result.error);
+            } else {
+                if (result.user) {
+                    const { id_token, uid, providerId } = result.user;
+                    await login(id_token, uid, providerId);
+                    console.log("User login info:", result.user);
+                    router.push("/");
+                } else {
+                    console.log("Error: User object is undefined");
+                }
+            }
+        } catch (error) {
+            console.log("Error logging in:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
