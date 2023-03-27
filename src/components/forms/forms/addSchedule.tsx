@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
 
 
-export const addSchedule = () => {
+export const AddSchedule = () => {
     const [open, setOpen] = useState(true)
 
     const cancelButtonRef = useRef(null)
