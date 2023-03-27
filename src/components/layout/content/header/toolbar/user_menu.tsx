@@ -8,6 +8,7 @@ import { logout_firebase } from "@/lib/firebase_auth";
 import { classNames } from "@/helpers";
 // Icons
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export const UserMenu = () => {
     const { user: existUser, queryClient, isLoading } = useUserAuthObserver()
@@ -18,8 +19,8 @@ export const UserMenu = () => {
     }
 
     const userNavigation = [
-        { name: 'Your Profile', href: '#' },
-        { name: 'Settings', href: '#' },
+        { name: 'Your Profile', href: '/panel/profile' },
+        { name: 'Settings', href: '/panel/profile/config' },
         { name: 'Sign out', href: { logout_ } },
     ]
 
@@ -47,15 +48,16 @@ export const UserMenu = () => {
                         {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                    <button
-                                        onClick={() => item.href}
-                                        className={classNames(
-                                            active ? 'bg-gray-100' : '',
-                                            'block py-2 px-4 text-sm text-gray-700'
-                                        )}
-                                    >
-                                        {item.name}
-                                    </button>
+                                    <Link href={`${item.href}`}>
+                                        <button
+                                            className={classNames(
+                                                active ? 'bg-gray-100' : '',
+                                                'block py-2 px-4 text-sm text-gray-700'
+                                            )}
+                                        >
+                                            {item.name}
+                                        </button>
+                                    </Link>
                                 )}
                             </Menu.Item>
                         ))}

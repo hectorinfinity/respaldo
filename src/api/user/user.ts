@@ -3,13 +3,13 @@ import { User } from '@/interfaces/user';
 
 export const getMe = async () => {
     const { data } = await axios.get(`/users/me`);
-    
+
     return data;
 };
 
 export const getUsers = async () => {
     const { data } = await axios.get(`/users/`);
-    
+
     return data;
 };
 

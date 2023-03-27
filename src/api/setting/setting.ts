@@ -3,7 +3,7 @@ import { Settings } from '@/interfaces/setting';
 
 export const getSettings = async () => {
     const { data } = await axios.get(`/settings/`);
-    
+
     return data;
 };
 
