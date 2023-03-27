@@ -6,7 +6,7 @@ import { MapPinIcon } from '@heroicons/react/24/solid';
 import { Button } from '@/components/commons';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
-import Icon from './Icon';
+import { Icon } from '@/components/commons';
 
 export type props = {
   className?: string;
@@ -36,7 +36,10 @@ const CardEvent: React.FC<props> = ({
       )}
     >
       <Button
-        className={classNames('absolute z-20 top-3', layout == 'grid' ? 'right-3' : 'left-3')}
+        className={classNames(
+          'absolute z-20 top-3',
+          layout == 'grid' ? 'right-3' : 'left-3'
+        )}
         color="white"
         shape="pill"
         iconLeft={
@@ -47,7 +50,12 @@ const CardEvent: React.FC<props> = ({
           )
         }
       />
-      <div className={classNames('relative', layout == 'grid' ? 'aspect-[4/3]' : 'aspect-square w-72 ')}>
+      <div
+        className={classNames(
+          'relative',
+          layout == 'grid' ? 'aspect-[4/3]' : 'aspect-square w-72 '
+        )}
+      >
         <Image src={image} alt="" fill className="object-cover" />
 
         <div
@@ -59,24 +67,39 @@ const CardEvent: React.FC<props> = ({
         >
           <Icon
             name="circle-check-outline"
-            className={classNames('w-3 h-3', willAttend ? 'text-white' : 'text-black')}
+            className={classNames(
+              'w-3 h-3',
+              willAttend ? 'text-white' : 'text-black'
+            )}
           />
           i will atend
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col items-start">
-        <div className="bg-purple-700 h-5 w-full" />
+      <div className="flex flex-col items-start flex-1">
+        <div className="w-full h-5 bg-purple-700" />
 
-        <div className={classNames(layout == 'column' && 'flex h-full items-center')}>
+        <div
+          className={classNames(
+            layout == 'column' && 'flex h-full items-center'
+          )}
+        >
           <div className={classNames('p-5')}>
-            <span className="block text-black font-semibold break-words text-xl">{name}</span>
-            <div className={classNames('my-5', layout == 'column' && 'flex gap-3')}>
-              <span className="block text-gray-500">{format(date, 'EEEE, dd MMMM yyyy')}</span>
-              <span className="block text-gray-500">{format(date, 'HH:mm')}</span>
+            <span className="block text-xl font-semibold text-black break-words">
+              {name}
+            </span>
+            <div
+              className={classNames('my-5', layout == 'column' && 'flex gap-3')}
+            >
+              <span className="block text-gray-500">
+                {format(date, 'EEEE, dd MMMM yyyy')}
+              </span>
+              <span className="block text-gray-500">
+                {format(date, 'HH:mm')}
+              </span>
             </div>
 
-            <p className="text-black break-words flex font-semibold items-center gap-2">
+            <p className="flex items-center gap-2 font-semibold text-black break-words">
               <Icon name="map-pin" />
               {location}
             </p>
