@@ -8,7 +8,7 @@ import { classNames } from '@/helpers'
 import { SearchInput } from './searchInput'
 import { CategorySeparator } from './categorySeparator'
 import { FormSearchFilter } from '@/components/forms'
-import { EventCardGridLayout, EventCardListLayout } from '../event/';
+import { EventCardGridLayout, EventCardListLayout } from '../event/cards/';
 // Icons
 import { Bars3Icon, FunnelIcon, Squares2X2Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid'

@@ -92,6 +92,7 @@
     "form_save": "Save",
     "form_send": "Send",
     "form_add": "Add",
+    "form_trace": "Trace Route",
 
     "form_clear_filters": "Clear Filters",
     "form_apply_filters": "Apply Filters",
@@ -739,6 +740,22 @@
       "no_results": "We couldn't find any results for",
       "view_grid": "View Grid",
       "close_menu": "Close Menu"
+    },
+    "event": {
+      "product_info": "Product Information",
+      "share_on": "Share event on",
+
+      "cost": "Cost",
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "buy": "Buy Ticket",
+
+      "supplier": "Supplier",
+
+      "description": "Description",
+      "information": "Information",
+      "location_map": "Location Map"
     }
   }
 }
