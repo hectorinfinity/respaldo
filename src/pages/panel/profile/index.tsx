@@ -28,8 +28,8 @@ const validationSchema = yup.object().shape({
 });
 
 const Profile = () => {
-    const [submitted, setSubmitted] = useState(false);
-    const [submittedError, setSubmittedError] = useState(false);
+    // const [submitted, setSubmitted] = useState(false);
+    // const [submittedError, setSubmittedError] = useState(false);
     // const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
@@ -39,8 +39,8 @@ const Profile = () => {
         resolver: yupResolver(validationSchema),
     });
     const onSubmitHandler = (data: IProfile) => {
-        setSubmitted(false);
-        setSubmittedError(true);
+        // setSubmitted(false);
+        // setSubmittedError(true);
         console.log({ data });
         reset();
         // Handle Submit Form
@@ -91,6 +91,7 @@ const Profile = () => {
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="surname" name={tc('field_surname')} />
                                 <input
+                                    {...register('surname')}
                                     type="text"
                                     name="surname"
                                     id="surname"
@@ -109,6 +110,7 @@ const Profile = () => {
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="username" name={tc('field_username')} />
                                         <input
+                                            {...register('username')}
                                             type="text"
                                             name="username"
                                             id="username"
@@ -116,11 +118,12 @@ const Profile = () => {
                                             placeholder={tc('field_username')}
                                             className={FormStyles('input')}
                                         />
-                                        <CustomError error={errors.surname?.message} />
+                                        <CustomError error={errors.username?.message} />
                                     </div>
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="email" name={tc('field_email')} />
                                         <input
+                                            {...register('email')}
                                             type="email"
                                             name="email"
                                             id="email"
@@ -133,6 +136,7 @@ const Profile = () => {
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="sex" name={tc('field_sex')} />
                                         <select
+                                            {...register('sex')}
                                             id="sex"
                                             name="sex"
                                             className={FormStyles('select')}
@@ -149,6 +153,7 @@ const Profile = () => {
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="birthday" name={tc('field_birthday')} />
                                         <input
+                                            {...register('birthday')}
                                             type="date"
                                             name="birthday"
                                             id="birthday"
@@ -156,7 +161,7 @@ const Profile = () => {
                                             placeholder={tc('field_birthday')}
                                             className={FormStyles('input')}
                                         />
-                                        {errors.birthday && <CustomError error={errors.birthday?.message} />}
+                                        <CustomError error={errors.birthday?.message} />
                                     </div>
                                 </div>
                             </div>
@@ -211,6 +216,7 @@ const Profile = () => {
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="phone" name={tc('field_phone')} />
                                 <input
+                                    {...register('phone')}
                                     type="tel"
                                     name="phone"
                                     id="phone"
