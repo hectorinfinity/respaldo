@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import CardEvent, { props } from './CardEvent';
+import CardEvent, { props } from '@/components/main/commons/CardEvent';
 import { faker } from '@faker-js/faker';
 
 export default {
@@ -21,6 +21,7 @@ NotWillAttend.args = {
   name: faker.name.jobTitle(),
   date: faker.date.past(),
   location: faker.address.city(),
+  color: 'bg-customDaisy',
 };
 
 export const WillAttend: StoryFn<props> = Template.bind({});
@@ -31,6 +32,7 @@ WillAttend.args = {
   date: faker.date.past(),
   location: faker.address.city(),
   willAttend: true,
+  color: 'bg-customBlueNight',
 };
 
 export const Column: StoryFn<props> = Template.bind({});
@@ -40,4 +42,5 @@ Column.args = {
   name: faker.name.jobTitle(),
   date: faker.date.past(),
   location: faker.address.city(),
+  color: 'bg-customPurple',
 };
