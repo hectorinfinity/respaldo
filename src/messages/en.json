@@ -764,7 +764,6 @@
   "List_Card_Category": {
     "title": "Categories"
   },
-
   "Sidebar_Event": {
     "cost": "Cost: {value}",
     "date": "Date:",
@@ -772,5 +771,22 @@
     "location": "Location:",
     "button": "Buy Ticket",
     "payment_methods": "Payment methods:"
+  },
+  "Card_Event_Details": {
+    "read_more": "Read more...",
+    "shared_event": "Shared event:",
+    "event_details": "Event Details",
+    "restrictions": "Restrictions:",
+    "general": "General:",
+    "observations": "Observations:",
+    "services": "Services:",
+    "limited_access": "Limited access:"
+  },
+  "List_Card_Event_Recommendation": {
+    "title": "Recommendations near the event",
+    "food": "Food",
+    "lodging": "Lodging",
+    "activities": "Activities",
+    "view_more": "View More"
   }
 }
