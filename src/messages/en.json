@@ -699,6 +699,7 @@
 
     "field_notification": "Notifications",
     "field_tags": "Tags",
+    "auto_tags": "tags",
 
     "field_start": "Start",
     "field_end": "End",
