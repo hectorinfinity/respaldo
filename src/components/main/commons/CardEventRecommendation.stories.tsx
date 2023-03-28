@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import CardEventRecommendation, { props } from './CardEventRecommendation';
-import {faker} from '@faker-js/faker'
+import CardEventRecommendation, { props } from '@/components/main/commons/CardEventRecommendation';
+import { faker } from '@faker-js/faker';
 
 export default {
   title: 'Molecules/CardEventRecommendation',
@@ -10,4 +10,10 @@ export default {
 
 const Template: StoryFn<props> = (args) => <CardEventRecommendation {...args} />;
 
-export const Default = Template.bind({});
+export const Default: StoryFn<props> = Template.bind({});
+Default.args = {
+  category: faker.commerce.department(),
+  name: faker.lorem.words(4),
+  location: faker.address.streetAddress(),
+  image: faker.image.cats(),
+};
