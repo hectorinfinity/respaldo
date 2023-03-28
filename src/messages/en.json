@@ -747,6 +747,17 @@
     "subtitle": "People in front of me",
     "virtual_queue_id": "ID of the virtual queue: "
   },
+  "Card_Event_Order": {
+    "time": "Time",
+    "date": "Date",
+    "tickets": "Tickets",
+    "location": "Location",
+    "name": "Name",
+    "row": "Row",
+    "seat": "Seat",
+    "section": "Section",
+    "payment_method": "Payment method"
+  },
 
   "Main_Comment_Organisms": "/////////////////////////////////////// Organisms",
   "List_Card_Category": {
