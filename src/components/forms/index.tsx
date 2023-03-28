@@ -1,4 +1,4 @@
-import { CustomAdd, CustomCancel, CustomDelete, CustomFilters, CustomSubmit } from './buttons/index';
+import { CustomAdd, CustomCancel, CustomDelete, CustomFilters, CustomSubmit, CustomTrace } from './buttons/index';
 import { FormSearchFilter } from './forms';
 import { CustomError, CustomLabel } from './labels';
 
@@ -8,6 +8,7 @@ export {
     CustomDelete,
     CustomFilters,
     CustomSubmit,
+    CustomTrace,
 
     FormSearchFilter,
 
