@@ -5,6 +5,7 @@ import formatNumber from 'format-number';
 import { useLocale, useTranslations } from 'next-intl';
 import { format } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
+import Image from 'next/image';
 
 export type props = {
   className?: string;
@@ -17,8 +18,10 @@ export type props = {
   startTime: string;
   endTime: string;
   location: string;
+  category: string;
+  isLoggedIn: boolean;
 };
-// TODO: button "Buy Ticket" is only active when user is logged in
+// TODO: figma issues, different ui
 const SidebarEvent: React.FC<props> = ({
   className,
   cost,
@@ -30,6 +33,8 @@ const SidebarEvent: React.FC<props> = ({
   startDate,
   startTime,
   willAttend,
+  category,
+  isLoggedIn,
 }) => {
   const t = useTranslations('Sidebar_Event');
   const locale = useLocale();
@@ -43,8 +48,9 @@ const SidebarEvent: React.FC<props> = ({
       <div className="h-6 bg-customPink" />
       <div className="px-10 flex justify-between items-center gap-10 py-5">
         <p>
+          <span className="md:hidden text-gray-500 uppercase">{category}</span>
           <span className="block text-2xl font-semibold">{name}</span>
-          <WillAttend className="mt-3" />
+          <WillAttend className="mt-3 hidden md:inline-flex" />
         </p>
         <Button
           color="white"
@@ -65,7 +71,7 @@ const SidebarEvent: React.FC<props> = ({
             value: formatNumber({ prefix: '$', suffix: ' MXN' })(cost),
           })}
         </span>
-        <ul className="mt-10">
+        <ul className="mt-10 space-y-3">
           <li>
             <span className="font-semibold flex items-center gap-1.5">
               <Icon name="calendar-outline" className="w-4 h-4 text-black" />
@@ -87,24 +93,40 @@ const SidebarEvent: React.FC<props> = ({
           </li>
           <li>
             <span className="font-semibold flex items-center gap-1.5">
-              <Icon name="map-pin" className="w-4 h-4 text-black" />
+              <Icon name="clock-outline" className="w-4 h-4 text-black" />
               {t('time')}
             </span>
-            <p>
-              <span>
-                {format(startDate, 'EEEE, dd MMMM yyyy', {
-                  locale: locale == 'en' ? enUS : es,
-                })}
-              </span>{' '}
-              -{' '}
-              <span>
-                {format(endDate, 'dd MMMM yyyy', {
-                  locale: locale == 'en' ? enUS : es,
-                })}
-              </span>
+            <p className="flex gap-2 ">
+              {startTime}
+              {'-'}
+              {endTime}
             </p>
           </li>
+          <li>
+            <span className="font-semibold flex items-center gap-1.5">
+              <Icon name="map-pin-outline" className="w-4 h-4 text-black" />
+              {t('location')}
+            </span>
+            <span>{location}</span>
+          </li>
         </ul>
+
+        <Button disabled={!isLoggedIn} fullWidth className="mt-24">
+          {t('button')}
+        </Button>
+
+        <div className="flex gap-2 flex-col mt-7">
+          <span className="mx-auto text-sm font-semibold">
+            {t('payment_methods')}
+          </span>
+          <div className="mx-auto flex gap-2">
+            <Icon name="visa" className="w-7 h-5" />
+            <Icon name="master-card" className="w-7 h-5" />
+            <Icon name="amex" className="w-7 h-5" />
+            <Icon name="paypal" className="w-7 h-5" />
+            <Icon name="mercado-pago" className="w-7 h-5" />
+          </div>
+        </div>
       </div>
     </aside>
   );
