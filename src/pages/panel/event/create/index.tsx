@@ -19,16 +19,7 @@ import { NameDescLang } from '@/components/forms/lang';
 const EventCreate = () => {
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
-    const tb = useTranslations("btn");
     const tp = useTranslations('Panel_Profile_Request');
-
-    const user = {
-        name: 'Debbie Lewis',
-        handle: 'deblewis',
-        email: 'debbielewis@example.com',
-        imageUrl:
-            'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
-    }
 
     const breadcrumb = [
         { page: t('event.event'), href: '' },
@@ -39,7 +30,7 @@ const EventCreate = () => {
         <>
             {/* Breadcrumb section */}
             <div>
-                <Heading breadcrumb={breadcrumb} />
+                <Heading breadcrumb={breadcrumb} langBread />
             </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">

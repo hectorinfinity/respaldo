@@ -67,15 +67,14 @@
       "newsletter": "Newsletter",
       "program": "Programs",
       "search": "Search"
-    }
-    ,
+    },
     "legal": {
       "cookie": "Cookies Policy",
       "privacy": "Privacy Policy",
       "term": "Terms and Conditions"
     }
   },
-  
+
   "Landing_Comment_Btns": "/////////////////////////////////////// Buttons",
   "btn": {
     "form_back": "Back to form",
@@ -92,6 +91,7 @@
     "form_cancel": "Cancel",
     "form_save": "Save",
     "form_send": "Send",
+    "form_add": "Add",
 
     "form_clear_filters": "Clear Filters",
     "form_apply_filters": "Apply Filters",
@@ -251,7 +251,7 @@
       }
     }
   },
-  
+
   "Landing_Comment_About": "/////////////////////////////////////// Landing Page About Section",
   "About": {
     "page": "About Us",
@@ -277,7 +277,7 @@
   "Landing_Comment_Advert": "/////////////////////////////////////// Landing Page Advert Section",
   "Advert": {
     "page": "Advertisements",
-    
+
     "question": "Do you want to advertise with us?",
     "answer": "We have the following advertising options",
 
@@ -300,13 +300,13 @@
   "Landing_Comment_Contact": "/////////////////////////////////////// Landing Page Contact Section",
   "Contact": {
     "page": "Contact Us",
-    
+
     "title": "Get in touch",
     "subtitle": "We want to know more about you",
 
     "success_title": "Your message has been sent successfully",
     "success_subtitle": "Thank you very much, we will contact you as soon as possible!",
-    
+
     "error_title": "An error occurred",
     "error_subtitle": "Please try again or contact us through our social networks or WhatsApp.",
 
@@ -318,7 +318,7 @@
   "Landing_Comment_Donation": "/////////////////////////////////////// Landing Page Donation Section",
   "Donation": {
     "page": "Donation",
-    
+
     "question": "Do you want your foundation to receive any of our donations?",
     "answer": "Get in touch with us, we will send you the requirements to include in our donation program.",
 
@@ -331,7 +331,7 @@
   "Landing_Comment_Newsletter": "/////////////////////////////////////// Landing Page Newsletter Section",
   "Newsletter": {
     "page": "Newsletter",
-    
+
     "title": "Subscribe to our newsletter",
     "subtitle": "Join our newsletter to stay up to date with cultural news and upcoming events.",
 
@@ -351,7 +351,7 @@
   "Landing_Comment_Partners": "/////////////////////////////////////// Landing Page Partners Section",
   "Partners": {
     "page": "Partners",
-    
+
     "question": "Do you want to be part of our alliances or partners?",
     "answer": "Communicate through any means of contact and lets work together to take culture to another level.",
 
@@ -367,7 +367,7 @@
     "header_title": "Advanced Event Management",
     "header_subtitle": "Promote, sell and manage tickets for your events.",
     "header_start": "Start now, it's free",
-    
+
     "title": "Your Event, Your Rules",
     "subtitle": "Manage all your events in one place.",
 
@@ -417,13 +417,13 @@
   "Access_Comment": "/////////////////////////////////////// Access Section",
   "Access": {
     "title": "Sign in",
-    
+
     "subtitle_new": "New to CTickets",
     "subtitle_new_link": "Sign up for free",
     "subtitle_have": "You have an account?",
 
     "forgot": "Forgot password?",
-    "signin": "Sin in",
+    "signin": "Sign in",
     "signup": "Sign Up",
     "continue": "Or continue with"
   },
@@ -473,8 +473,6 @@
   "Panel_Event_Special": {
     "sepcial": "Sepcial Category"
   },
-
-  
 
   "Panel_Comment_Menu": "/////////////////////////////////////// Panel Menu Section",
   "Panel_Menu": {
@@ -555,6 +553,29 @@
     "rs_photo": "user photo",
     "loading": "Loading",
 
+    "field_rol": "Rol",
+    "field_select_rol": "Select Rol...",
+
+    "field_event": "Event",
+    "field_select_event": "Select the event...",
+
+    "field_event_datetime": "Select event datetime",
+    "field_select_event_datetime": "Select event datetime...",
+
+    "field_event_seatmap": "Select event seatmap",
+    "field_select_event_seatmap": "Select event seatmap...",
+
+    "field_cuopon": "Cuopon",
+    "field_discount": "Discount",
+    "field_limit": "Tickets Limit",
+    "field_init_at": "Init at",
+    "field_expired_at": "Expires at",
+
+    "field_url": "URL",
+    "field_type": "Type",
+    "field_data_url": "Data URL",
+    "field_key": "Key",
+
     "field_name": "Name",
     "field_description": "Description",
 
@@ -586,7 +607,7 @@
     "field_categories": "Categories",
     "field_category": "Category",
     "field_select_category": "Select Category...",
-    
+
     "field_subcategories": "Subcategories",
     "field_subcategory": "Subcategory",
     "field_select_subcategory": "Select Subcategory...",
@@ -603,7 +624,7 @@
     "field_search": "Search",
     "auto_search": "search",
     "place_search": "Search...",
-    
+
     "field_pass": "Password",
     "auto_pass": "current-password",
 
