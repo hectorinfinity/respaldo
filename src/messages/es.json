@@ -132,5 +132,12 @@
     "waiting_room": "SALA DE ESPERA",
     "virtual_queue": "FILA VIRTUAL",
     "select_your_seats": "SELECCIONA TUS ASIENTOS"
+  },
+  "Header_Step_Checkout": {
+    "location": "Ubicacion:"
+  },
+  "Step_Checkout_Quantity": {
+    "select_date_time": "Selecciona fecha y hora",
+    "select_number_of_tickets": "Selecciona el numero de boletos"
   }
 }

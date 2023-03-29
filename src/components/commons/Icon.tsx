@@ -456,15 +456,13 @@ const PlusIcon = (props) => (
 
 const MinusIcon = (props) => (
   <svg
-    width={20}
-    height={20}
     viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <mask
-      id="234d"
+      id="minus-a"
       style={{
         maskType: 'alpha',
       }}
@@ -475,12 +473,12 @@ const MinusIcon = (props) => (
       height={14}
     >
       <path
+        className="fill-current"
         d="M10.833 4.107a.833.833 0 1 0-1.666 0v5.06h-5.06a.833.833 0 0 0 0 1.666h5.06v5.06a.833.833 0 1 0 1.666 0v-5.06h5.06a.833.833 0 0 0 0-1.667h-5.06V4.107Z"
-        fill="#0F1019"
       />
     </mask>
-    <g mask="url(#a)">
-      <path fill="#0F1019" d="M0 0h20v20H0z" />
+    <g mask="url(#minus-a)">
+      <path className="fill-current" d="M0 0h20v20H0z" />
     </g>
     <path stroke="#000" d="M.5.5h19v19H.5z" />
   </svg>
