@@ -33,7 +33,7 @@ const Radio = React.forwardRef<any, props>(
           {...props}
         />
         {label && (
-          <label htmlFor={label} className="ml-2 font-semibold">
+          <label htmlFor={label} className="ml-2">
             {label}
           </label>
         )}

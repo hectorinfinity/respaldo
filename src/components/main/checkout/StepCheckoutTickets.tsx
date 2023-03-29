@@ -23,7 +23,7 @@ const StepCheckoutTickets: React.FC<props> = ({
   return (
     <div className={classNames('rounded-xl shadow-xl', className)}>
       <HeaderStepCheckout name={name} location={location} />
-      <div className="px-24 py-20 space-y-10 [&_label]:text-xl">
+      <div className="px-24 py-20 space-y-10 [&_label]:text-xl [&_label]:font-semibold">
         <Title level="h3">{t('title')}</Title>
 
         <div className="space-y-3">
