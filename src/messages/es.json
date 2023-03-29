@@ -126,5 +126,11 @@
     "lodging": "Hospedaje",
     "activities": "Actividades",
     "view_more": "Ver más"
+  },
+  "Header_Queue": {
+    "lobby": "LOBBY",
+    "waiting_room": "SALA DE ESPERA",
+    "virtual_queue": "FILA VIRTUAL",
+    "select_your_seats": "SELECCIONA TUS ASIENTOS"
   }
 }
