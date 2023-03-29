@@ -835,6 +835,14 @@
   },
   "Step_Checkout_Quantity": {
     "select_date_time": "Select date and time",
-    "select_number_of_tickets": "Select the number of tickets"
+    "select_number_of_tickets": "Select the number of tickets",
+    "price": "Cost {value} each"    
+  },
+  "Step_Checkout_Tickets": {
+    "title": "How do you want to recieve your tickets?",
+    "digital_title": "Digital Ticket",
+    "digital_descripton": "",
+    "pick_title": "Pick up at point of sale",
+    "pick_descripton": ""
   }
 }

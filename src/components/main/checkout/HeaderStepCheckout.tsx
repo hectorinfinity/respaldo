@@ -14,11 +14,11 @@ const HeaderStepCheckout: React.FC<props> = ({ className, name, location }) => {
   return (
     <div
       className={classNames(
-        'border-b-2 border-gray-200 p-7 grid grid-cols-2',
+        'border-b-2 border-gray-200 px-24 py-7 grid grid-cols-2',
         className
       )}
     >
-      <div className="flex items-center justify-center">
+      <div className="">
         <span className="text-xl font-semibold">{name}</span>
       </div>
 

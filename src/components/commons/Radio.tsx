@@ -1,4 +1,4 @@
-import {classNames} from '@/helpers'
+import { classNames } from '@/helpers';
 import React, { FC } from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -7,7 +7,13 @@ export type props = {
   size?: 'small' | 'medium' | 'large';
   label: string;
   error?: string;
-} & Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'size'> &
+} & Omit<
+  React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >,
+  'size'
+> &
   UseFormRegisterReturn;
 const Radio = React.forwardRef<any, props>(
   ({ color = 'primary', label, error, size = 'medium', ...props }, ref) => {
@@ -27,7 +33,7 @@ const Radio = React.forwardRef<any, props>(
           {...props}
         />
         {label && (
-          <label htmlFor={label} className="ml-2 font-medium text-gray-500 dark:text-white ">
+          <label htmlFor={label} className="ml-2 font-semibold">
             {label}
           </label>
         )}
