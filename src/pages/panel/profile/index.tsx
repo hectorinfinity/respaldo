@@ -10,15 +10,41 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
-// Helpers
-import { FormStyles } from '@/helpers';
 // Icons
 import { PlusIcon } from '@heroicons/react/20/solid';
+// Interface
+import { IProfile } from "@/interfaces/profile";
+// Helpers
+import { CurrentColor, FormStyles } from "@/helpers";
+
+const validationSchema = yup.object().shape({
+    firstname: yup.string().min(2).max(32).required(),
+    surname: yup.string().min(2).max(32).required(),
+    username: yup.string().min(2).max(32).required(),
+    email: yup.string().email().required(),
+    sex: yup.string().required(),
+    birthday: yup.date().required(),
+    phone: yup.string().min(10).max(10).required(),
+});
 
 const Profile = () => {
+    // const [submitted, setSubmitted] = useState(false);
+    // const [submittedError, setSubmittedError] = useState(false);
+    // const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
     const tb = useTranslations("btn");
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<IProfile>({
+        resolver: yupResolver(validationSchema),
+    });
+    const onSubmitHandler = (data: IProfile) => {
+        // setSubmitted(false);
+        // setSubmittedError(true);
+        console.log({ data });
+        reset();
+        // Handle Submit Form
+    };
 
     const user = {
         name: 'Debbie Lewis',
@@ -46,11 +72,12 @@ const Profile = () => {
             </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
-                    <form className="lg:col-span-9" action="#" method="POST">
+                    <form className="lg:col-span-9" onSubmit={handleSubmit(onSubmitHandler)} method="POST">
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="firstname" name={tc('field_firstname')} />
                                 <input
+                                    {...register('firstname')}
                                     type="text"
                                     name="firstname"
                                     id="firstname"
@@ -58,11 +85,13 @@ const Profile = () => {
                                     placeholder={tc('field_firstname')}
                                     className={FormStyles('input')}
                                 />
+                                <CustomError error={errors.firstname?.message} />
                             </div>
 
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="surname" name={tc('field_surname')} />
                                 <input
+                                    {...register('surname')}
                                     type="text"
                                     name="surname"
                                     id="surname"
@@ -70,6 +99,8 @@ const Profile = () => {
                                     placeholder={tc('field_surname')}
                                     className={FormStyles('input')}
                                 />
+                                <CustomError error={errors.surname?.message} />
+
                             </div>
                         </div>
 
@@ -79,6 +110,7 @@ const Profile = () => {
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="username" name={tc('field_username')} />
                                         <input
+                                            {...register('username')}
                                             type="text"
                                             name="username"
                                             id="username"
@@ -86,10 +118,12 @@ const Profile = () => {
                                             placeholder={tc('field_username')}
                                             className={FormStyles('input')}
                                         />
+                                        <CustomError error={errors.username?.message} />
                                     </div>
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="email" name={tc('field_email')} />
                                         <input
+                                            {...register('email')}
                                             type="email"
                                             name="email"
                                             id="email"
@@ -97,10 +131,12 @@ const Profile = () => {
                                             placeholder={tc('field_email')}
                                             className={FormStyles('input')}
                                         />
+                                        <CustomError error={errors.email?.message} />
                                     </div>
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="sex" name={tc('field_sex')} />
                                         <select
+                                            {...register('sex')}
                                             id="sex"
                                             name="sex"
                                             className={FormStyles('select')}
@@ -117,13 +153,15 @@ const Profile = () => {
                                     <div className="col-span-12 sm:col-span-6">
                                         <CustomLabel field="birthday" name={tc('field_birthday')} />
                                         <input
-                                            type="text"
+                                            {...register('birthday')}
+                                            type="date"
                                             name="birthday"
                                             id="birthday"
                                             autoComplete={tc('auto_birthday')}
                                             placeholder={tc('field_birthday')}
                                             className={FormStyles('input')}
                                         />
+                                        <CustomError error={errors.birthday?.message} />
                                     </div>
                                 </div>
                             </div>
@@ -178,6 +216,7 @@ const Profile = () => {
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="phone" name={tc('field_phone')} />
                                 <input
+                                    {...register('phone')}
                                     type="tel"
                                     name="phone"
                                     id="phone"
@@ -185,6 +224,8 @@ const Profile = () => {
                                     placeholder={tc('field_phone')}
                                     className={FormStyles('input')}
                                 />
+                                <CustomError error={errors.phone?.message} />
+
                                 <button>
                                     <PlusIcon />
                                 </button>

@@ -1,10 +1,7 @@
-import { EventCardGrid } from "./eventCardGrid";
-import { EventCardGridLayout } from "./eventCardGridLayout";
-import { EventCardListLayout } from "./eventCardListLayout";
-
+import { EventContent } from "./content";
+import { EventLocation } from "./section/eventLocation";
 
 export {
-    EventCardGrid,
-    EventCardGridLayout,
-    EventCardListLayout
+    EventContent,
+    EventLocation
 }

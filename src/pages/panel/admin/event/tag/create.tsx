@@ -9,11 +9,12 @@ import { Heading } from '@/components/headers/admin/heading';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { CustomCancel, CustomSubmit } from '@/components/forms';
-import { InputLang } from '@/components/forms/lang';
+import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
+import { FormStyles } from '@/helpers';
 
 const EventCreateTag = () => {
     const t = useTranslations("Panel_SideBar");
+    const tc = useTranslations("Common_Forms");
 
     const breadcrumb = [
         { page: t('admin.admin'), href: '/panel/admin' },
@@ -26,13 +27,23 @@ const EventCreateTag = () => {
         <>
             {/* Breadcrumb section */}
             <div>
-                <Heading breadcrumb={breadcrumb} langBread />
+                <Heading breadcrumb={breadcrumb} />
             </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
-                    <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
-                        <div className="py-6 grid grid-cols-12 gap-6">
-                            <InputLang lang="es" />
+                    <form className="lg:col-span-9" action="#" method="POST">
+                        <div className="grid grid-cols-12 gap-6">
+                            <div className="col-span-12 sm:col-span-4">
+                                <CustomLabel field='name' name={tc('field_name')} />
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    autoComplete={tc('field_name')}
+                                    placeholder={tc('field_name')}
+                                    className={FormStyles('input')}
+                                />
+                            </div>
                         </div>
                         <div className="divide-y divide-gray-200">
                             <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">

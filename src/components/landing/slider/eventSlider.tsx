@@ -10,7 +10,7 @@ import "swiper/css/keyboard";
 // import required modules
 import { Pagination, Navigation, Mousewheel, Keyboard } from "swiper";
 import { CustomCategory } from "./category/customCategory";
-import { EventCardGrid } from "../event/";
+import { EventCardGrid } from "../event/cards/";
 
 export const EventSlider = () => {
   const categories = [

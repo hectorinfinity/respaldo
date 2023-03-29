@@ -99,10 +99,9 @@
   },
 
   "Main_Comment_Organisms": "/////////////////////////////////////// Organisms",
-  "ListCardCategory": {
+  "List_Card_Category": {
     "title": "Categorías"
   },
-
   "Sidebar_Event": {
     "cost": "Costo: {value}",
     "date": "Fecha:",
@@ -110,6 +109,28 @@
     "location": "Ubicación:",
     "button": "Comprar Boleto",
     "payment_methods": "Formas de pago:"
-
+  },
+  "Card_Event_Details": {
+    "read_more": "Leer mas...",
+    "shared_event": "Compartir evento:",
+    "event_details": "Detalle de evento",
+    "restrictions": "Restricciones:",
+    "general": "General:",
+    "observations": "Observaciones:",
+    "services": "Servicios:",
+    "limited_access": "Accesso limitado:"
+  },
+  "List_Card_Event_Recommendation": {
+    "title": "Recomendaciones cerca del evento",
+    "food": "Comida",
+    "lodging": "Hospedaje",
+    "activities": "Actividades",
+    "view_more": "Ver más"
+  },
+  "Header_Queue": {
+    "lobby": "LOBBY",
+    "waiting_room": "SALA DE ESPERA",
+    "virtual_queue": "FILA VIRTUAL",
+    "select_your_seats": "SELECCIONA TUS ASIENTOS"
   }
 }

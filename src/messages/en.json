@@ -92,6 +92,7 @@
     "form_save": "Save",
     "form_send": "Send",
     "form_add": "Add",
+    "form_trace": "Trace Route",
 
     "form_clear_filters": "Clear Filters",
     "form_apply_filters": "Apply Filters",
@@ -699,6 +700,7 @@
 
     "field_notification": "Notifications",
     "field_tags": "Tags",
+    "auto_tags": "tags",
 
     "field_start": "Start",
     "field_end": "End",
@@ -738,6 +740,22 @@
       "no_results": "We couldn't find any results for",
       "view_grid": "View Grid",
       "close_menu": "Close Menu"
+    },
+    "event": {
+      "product_info": "Product Information",
+      "share_on": "Share event on",
+
+      "cost": "Cost",
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "buy": "Buy Ticket",
+
+      "supplier": "Supplier",
+
+      "description": "Description",
+      "information": "Information",
+      "location_map": "Location Map"
     }
   },
 
@@ -788,5 +806,28 @@
     "location": "Location:",
     "button": "Buy Ticket",
     "payment_methods": "Payment methods:"
+  },
+  "Card_Event_Details": {
+    "read_more": "Read more...",
+    "shared_event": "Shared event:",
+    "event_details": "Event Details",
+    "restrictions": "Restrictions:",
+    "general": "General:",
+    "observations": "Observations:",
+    "services": "Services:",
+    "limited_access": "Limited access:"
+  },
+  "List_Card_Event_Recommendation": {
+    "title": "Recommendations near the event",
+    "food": "Food",
+    "lodging": "Lodging",
+    "activities": "Activities",
+    "view_more": "View More"
+  },
+  "Header_Queue": {
+    "lobby": "LOBBY",
+    "waiting_room": "WAITING ROOM",
+    "virtual_queue": "VIRTUAL QUEUE",
+    "select_your_seats": "SELECT YOUR SEATS"
   }
 }
