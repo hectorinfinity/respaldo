@@ -5,7 +5,8 @@ import CardEventRecommendation, {
 } from '@/components/main/commons/CardEventRecommendation';
 import { props as PaginationProps } from '@/components/commons/Pagination';
 import { Tab } from '@headlessui/react';
-import { Icon } from '@/components/commons';
+import { Button, Icon } from '@/components/commons';
+import { useTranslations } from 'next-intl';
 
 export type props = {
   className?: string;
@@ -19,18 +20,77 @@ const ListCardEventRecommendation: React.FC<props> = ({
   setPageSize,
   totalDocs,
 }) => {
+  const t = useTranslations('List_Card_Event_Recommendation');
   return (
-    <div
-      className={classNames('grid grid-cols-1 md:grid-cols-2 gap-5', className)}
-    >
-      <Tab.Group>
-        <Tab.List>
-          <Tab className="flex gap-2 items-center">
-            {/* <Icon name='' /> */}
-          </Tab>
-        </Tab.List>
-      </Tab.Group>
-    </div>
+    <Tab.Group as="div" className="flex flex-col">
+      <Tab.List className="flex gap-3 mx-auto md:mx-10">
+        <Tab
+          className={({ selected }) =>
+            classNames(
+              'flex gap-2 font-semibold text-lg items-center px-4 py-2 rounded-t-md',
+              selected && 'bg-gray-100'
+            )
+          }
+        >
+          <Icon name="food" />
+          {t('food')}
+        </Tab>
+        <Tab
+          className={({ selected }) =>
+            classNames(
+              'flex gap-2 font-semibold text-lg items-center px-4 py-2 rounded-t-md',
+              selected && 'bg-gray-100'
+            )
+          }
+        >
+          <Icon name="lodging" />
+          {t('lodging')}
+        </Tab>
+        <Tab
+          className={({ selected }) =>
+            classNames(
+              'flex gap-2 font-semibold text-lg items-center px-4 py-2 rounded-t-md',
+              selected && 'bg-gray-100'
+            )
+          }
+        >
+          <Icon name="activities" />
+          {t('activities')}
+        </Tab>
+      </Tab.List>
+      <Tab.Panels className="bg-white rounded-lg p-10 shadow-xl">
+        <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          {items.map((item, idx) => (
+            <CardEventRecommendation {...item} key={idx} />
+          ))}
+          <div className="col-span-2 flex m flex-col">
+            <Button className="mx-auto" color="black" weight="outline">
+              {t('view_more')}
+            </Button>
+          </div>
+        </Tab.Panel>
+        <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          {items.map((item, idx) => (
+            <CardEventRecommendation {...item} key={idx} />
+          ))}
+          <div className="col-span-2 flex m flex-col">
+            <Button className="mx-auto" color="black" weight="outline">
+              {t('view_more')}
+            </Button>
+          </div>
+        </Tab.Panel>
+        <Tab.Panel className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          {items.map((item, idx) => (
+            <CardEventRecommendation {...item} key={idx} />
+          ))}
+          <div className="col-span-2 flex m flex-col">
+            <Button className="mx-auto" color="black" weight="outline">
+              {t('view_more')}
+            </Button>
+          </div>
+        </Tab.Panel>
+      </Tab.Panels>
+    </Tab.Group>
   );
 };
 

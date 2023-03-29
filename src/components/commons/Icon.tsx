@@ -1,6 +1,9 @@
 import React from 'react';
 import { classNames } from '@/helpers';
 import Paypal from 'public/images/assets/main/paypal.png';
+import food from 'public/images/assets/main/fork.png';
+import lodging from 'public/images/assets/main/lodging.png';
+import activities from 'public/images/assets/main/activities.png';
 import Image from 'next/image';
 
 const Logo = (props) => (
@@ -450,38 +453,6 @@ const PlusIcon = (props) => (
     />
   </svg>
 );
-export type props = {
-  className?: string;
-  name:
-    | 'heart-outline'
-    | 'heart-solid'
-    | 'circle-check-outline'
-    | 'map-pin'
-    | 'search-icon'
-    | 'chevron-left'
-    | 'chevron-right'
-    | 'clock-outline'
-    | 'person-outline'
-    | 'calendar-outline'
-    | 'master-card'
-    | 'visa'
-    | 'amex'
-    | 'arrow-left'
-    | 'arrow-right'
-    | 'minus'
-    | 'plus'
-    | 'ouglass-solid'
-    | 'check-solid'
-    | 'logo'
-    | 'map-pin-outline'
-    | 'mercado-pago'
-    | 'paypal'
-    | 'facebook'
-    | 'instagram'
-    | 'twitter'
-    | 'whatsapp'
-    | 'telegram';
-};
 
 const MinusIcon = (props) => (
   <svg
@@ -659,6 +630,59 @@ const Telegram = (props) => (
   </svg>
 );
 
+const Food = (props) => (
+  <div style={{ position: 'relative' }} {...props}>
+    <Image src={food} alt="" className="" fill />
+  </div>
+);
+
+const Lodging = (props) => (
+  <div style={{ position: 'relative' }} {...props}>
+    <Image src={lodging} alt="" className="" fill />
+  </div>
+);
+
+const Activities = (props) => (
+  <div style={{ position: 'relative' }} {...props}>
+    <Image src={activities} alt="" className="" fill />
+  </div>
+);
+
+export type props = {
+  className?: string;
+  name:
+    | 'heart-outline'
+    | 'heart-solid'
+    | 'circle-check-outline'
+    | 'map-pin'
+    | 'search-icon'
+    | 'chevron-left'
+    | 'chevron-right'
+    | 'clock-outline'
+    | 'person-outline'
+    | 'calendar-outline'
+    | 'master-card'
+    | 'visa'
+    | 'amex'
+    | 'arrow-left'
+    | 'arrow-right'
+    | 'minus'
+    | 'plus'
+    | 'ouglass-solid'
+    | 'check-solid'
+    | 'logo'
+    | 'map-pin-outline'
+    | 'mercado-pago'
+    | 'paypal'
+    | 'facebook'
+    | 'instagram'
+    | 'twitter'
+    | 'whatsapp'
+    | 'telegram'
+    | 'food'
+    | 'lodging'
+    | 'activities';
+};
 const Icon: React.FC<props> = ({ name, ...props }) => {
   props.className = classNames('icon', props.className);
   switch (name) {
@@ -716,6 +740,12 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <Whatsapp {...props} />;
     case 'telegram':
       return <Telegram {...props} />;
+    case 'food':
+      return <Food {...props} />;
+    case 'activities':
+      return <Activities {...props} />;
+    case 'lodging':
+      return <Lodging {...props} />;
     default:
       return <></>;
   }

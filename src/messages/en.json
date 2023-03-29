@@ -788,5 +788,11 @@
     "lodging": "Lodging",
     "activities": "Activities",
     "view_more": "View More"
+  },
+  "Header_Queue": {
+    "lobby": "LOBBY",
+    "waiting_room": "WAITING ROOM",
+    "virtual_queue": "VIRTUAL QUEUE",
+    "select_your_seats": "SELECT YOUR SEATS"
   }
 }
