@@ -33,7 +33,7 @@ const CardEventOrder: React.FC<props> = ({
   return (
     <div
       className={classNames(
-        'rounded-2xl shadow-xl overflow-hidden text-sm',
+        'card text-sm',
         className
       )}
     >

@@ -8,6 +8,10 @@ export default {
   component: CardPaymentSuccess,
 } as Meta;
 
-const Template: StoryFn<props> = (args) => <CardPaymentSuccess {...args} />;
+const Template: StoryFn<props> = (args) => <CardPaymentSuccess className="max-w-3xl mx-auto" {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  id:faker.datatype.uuid(),
+  description: faker.lorem.paragraph(),
+};

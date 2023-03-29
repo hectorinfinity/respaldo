@@ -11,3 +11,12 @@ export default {
 const Template: StoryFn<props> = (args) => <CardProgramDetails {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  className: faker.random.word(),
+  image: faker.image.image(),
+  name: faker.lorem.sentence(),
+  startDate: faker.date.future(),
+  endDate: faker.date.future(),
+  location: faker.address.city(),
+  description: faker.lorem.sentences(),
+};

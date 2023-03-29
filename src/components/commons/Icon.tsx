@@ -164,14 +164,13 @@ const ChevronLeft = (props) => (
       height={11}
     >
       <path
-        className="fill-current"
         fillRule="evenodd"
         clipRule="evenodd"
         d="M14.707 17.207a1 1 0 0 0 0-1.414L11.414 12.5l3.293-3.293a1 1 0 0 0-1.414-1.414l-4 4a1 1 0 0 0 0 1.414l4 4a1 1 0 0 0 1.414 0Z"
       />
     </mask>
     <g mask="url(#chevron-left)">
-      <path className="fill-current" d="M0 .5h24v24H0z" />
+      <path d="M0 .5h24v24H0z" />
     </g>
   </svg>
 );
@@ -471,13 +470,13 @@ export type props = {
     | 'plus'
     | 'ouglass-solid'
     | 'check-solid'
-    | 'logo';
+    | 'logo'
+    | 'check-circle-red'
+    | 'check-circle-yellow';
 };
 
 const MinusIcon = (props) => (
   <svg
-    width={20}
-    height={20}
     viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -507,8 +506,6 @@ const MinusIcon = (props) => (
 );
 const OutglassSolid = (props) => (
   <svg
-    width={17}
-    height={15}
     viewBox="0 0 17 15"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -518,6 +515,71 @@ const OutglassSolid = (props) => (
       d="M7.605.019C3.848.019.792 2.936.792 6.522c0 3.586 3.056 6.504 6.813 6.504 1.148 0 2.277-.26 3.231-.762.077.088.161.169.253.242l1.947 1.858c.18.193.399.349.644.458a2.064 2.064 0 0 0 2.244-.377c.192-.183.342-.4.442-.64a1.817 1.817 0 0 0-.047-1.502 1.904 1.904 0 0 0-.48-.615L13.892 9.83a1.97 1.97 0 0 0-.31-.242c.525-.91.856-1.97.856-3.084C14.438 2.917 11.38 0 7.624 0l-.02.019Zm0 1.858c2.706 0 4.867 2.062 4.867 4.645a4.543 4.543 0 0 1-1.344 3.252 1.9 1.9 0 0 0-.253.242c-.856.743-2.024 1.17-3.29 1.17-2.706 0-4.866-2.062-4.866-4.645 0-2.583 2.16-4.646 4.866-4.646l.02-.018Z"
       fill="#616161"
     />
+  </svg>
+);
+const CheckCircleRed = (props) => (
+  <svg
+    viewBox="0 0 102 101"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <circle cx={51} cy={50.5} r={50.5} fill="#E2383D" fillOpacity={0.46} />
+    <circle cx={51} cy={50.5} r={39} fill="#E2383D" stroke="#E2383D" />
+    <mask
+      id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={36}
+      y={35}
+      width={30}
+      height={30}
+    >
+      <path
+        d="M40.626 36.208a2.417 2.417 0 0 0-3.418 3.418L47.582 50 37.208 60.374a2.417 2.417 0 0 0 3.418 3.418L51 53.418l10.374 10.374a2.417 2.417 0 1 0 3.418-3.418L54.418 50l10.374-10.374a2.417 2.417 0 0 0-3.418-3.418L51 46.582 40.626 36.208Z"
+        fill="#0F1019"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path fill="#fff" d="M22 21h58v58H22z" />
+    </g>
+  </svg>
+);
+
+const CheckCircleYellow = (props) => (
+  <svg
+    width={102}
+    height={101}
+    viewBox="0 0 102 101"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <circle cx={51} cy={50.5} r={50.5} fill="#F9BB35" fillOpacity={0.31} />
+    <circle cx={51} cy={50.5} r={39} fill="#F9BB35" stroke="#F9BB35" />
+    <mask
+      id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={34}
+      y={37}
+      width={37}
+      height={27}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M69.425 38.424a2.116 2.116 0 0 1 0 2.992l-21.16 21.161a2.116 2.116 0 0 1-2.993 0l-10.58-10.58a2.116 2.116 0 0 1 2.992-2.993l9.084 9.084 19.665-19.664a2.116 2.116 0 0 1 2.992 0Z"
+        fill="#34D69B"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path fill="#000" d="M25.607 25.108h50.786v50.786H25.607z" />
+    </g>
   </svg>
 );
 
@@ -562,6 +624,10 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <PlusIcon {...props} />;
     case 'ouglass-solid':
       return <OutglassSolid {...props} />;
+    case 'check-circle-red':
+      return <CheckCircleRed {...props} />;
+    case 'check-circle-yellow':
+      return <CheckCircleYellow {...props} />;
     default:
       return <></>;
   }

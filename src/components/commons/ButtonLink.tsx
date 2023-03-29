@@ -41,7 +41,7 @@ const ButtonLink: FC<props> = ({
             ? 'btn-primary-outline'
             : weight == 'ghost'
             ? 'btn-primary-ghost'
-            : weight == 'inline' && 'text-primary-500 dark:text-white rounded-none'
+            : weight == 'inline' && 'text-black rounded-none'
         )
       : color == 'secondary'
       ? classNames(

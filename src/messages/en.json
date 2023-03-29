@@ -758,10 +758,27 @@
     "section": "Section",
     "payment_method": "Payment method"
   },
+  "Card_Payment_Success": {
+    "title": "Your purchase has been made successfully!",
+    "button": "Download my tickets",
+    "purchase": "Purchase"
+  },
+  "Card_Payment_Error": {
+    "title": "We're sorry, but we couldn't complete your purchase",
+    "button": "Try another payment method"
+  },
+  "Card_Program_Details": {
+    "date": "Date",
+    "location": "Location",
+    "description": "Description"
+  },
 
   "Main_Comment_Organisms": "/////////////////////////////////////// Organisms",
   "List_Card_Category": {
     "title": "Categories"
+  },
+  "List_Program_Days": {
+    "program": "Program"
   },
 
   "Sidebar_Event": {

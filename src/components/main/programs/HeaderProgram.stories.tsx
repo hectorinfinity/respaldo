@@ -11,3 +11,7 @@ export default {
 const Template: StoryFn<props> = (args) => <HeaderProgram {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  image: faker.image.imageUrl(),
+  name: faker.random.word,
+};
