@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import CardCategory, { props } from './CardCategory';
+import CardCategory, { props } from '@/components/main/commons/CardCategory';
 import { faker } from '@faker-js/faker';
 
 export default {
@@ -9,7 +9,7 @@ export default {
 } as Meta;
 
 const Template: StoryFn<props> = (args) => (
-  <div className="p-10">
+  <div className={`p-10 ${args.size == 'small' ? 'max-w-xs' : 'max-w-md'} w-full`}>
     <CardCategory {...args} />
   </div>
 );

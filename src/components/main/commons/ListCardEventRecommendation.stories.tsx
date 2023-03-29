@@ -1,13 +1,27 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import ListCardEventRecommendation, { props } from './ListCardEventRecommendation';
-import {faker} from '@faker-js/faker'
+import ListCardEventRecommendation, {
+  props,
+} from './ListCardEventRecommendation';
+import { faker } from '@faker-js/faker';
 
 export default {
   title: 'Organisms/ListCardEventRecommendation',
   component: ListCardEventRecommendation,
 } as Meta;
 
-const Template: StoryFn<props> = (args) => <ListCardEventRecommendation {...args} />;
+const Template: StoryFn<props> = (args) => (
+  <div className="bg-gray-400 p-24 ">
+    <ListCardEventRecommendation {...args} />
+  </div>
+);
 
-export const Default = Template.bind({});
+export const Default: StoryFn<props> = Template.bind({});
+Default.args = {
+  items: Array.from({ length: 4 }, () => ({
+    category: faker.lorem.word(),
+    image: faker.image.cats(),
+    location: faker.address.streetAddress(),
+    name: faker.name.jobTitle(),
+  })),
+};

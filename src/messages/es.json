@@ -90,5 +90,47 @@
     "page": "Publicidad",
     
     "ijd": ""
+  },
+  "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
+  "CardEvent": {
+    "title": "Ya estas en la fila virtual",
+    "subtitle": "Personas delante de mi",
+    "virtual_queue_id": "ID de la fila virtual: "
+  },
+
+  "Main_Comment_Organisms": "/////////////////////////////////////// Organisms",
+  "List_Card_Category": {
+    "title": "Categorías"
+  },
+  "Sidebar_Event": {
+    "cost": "Costo: {value}",
+    "date": "Fecha:",
+    "time": "Hora:",
+    "location": "Ubicación:",
+    "button": "Comprar Boleto",
+    "payment_methods": "Formas de pago:"
+  },
+  "Card_Event_Details": {
+    "read_more": "Leer mas...",
+    "shared_event": "Compartir evento:",
+    "event_details": "Detalle de evento",
+    "restrictions": "Restricciones:",
+    "general": "General:",
+    "observations": "Observaciones:",
+    "services": "Servicios:",
+    "limited_access": "Accesso limitado:"
+  },
+  "List_Card_Event_Recommendation": {
+    "title": "Recomendaciones cerca del evento",
+    "food": "Comida",
+    "lodging": "Hospedaje",
+    "activities": "Actividades",
+    "view_more": "Ver más"
+  },
+  "Header_Queue": {
+    "lobby": "LOBBY",
+    "waiting_room": "SALA DE ESPERA",
+    "virtual_queue": "FILA VIRTUAL",
+    "select_your_seats": "SELECCIONA TUS ASIENTOS"
   }
 }
