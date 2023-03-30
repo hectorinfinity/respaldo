@@ -896,7 +896,7 @@
       },
       "city": {
         "label": "City",
-        "option": ["Select a city"]
+        "option": "Select a city"
       },
       "postal_code": {
         "label": "Postal code",

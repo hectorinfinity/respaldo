@@ -159,7 +159,7 @@
       "alias": "Alias (opcional)",
       "month_fee": {
         "label": "Meses de tasa de interés",
-        "options": ["3 Meses"]
+        "option": "3 Meses"
       },
       "save_my_card": "Guardar mi tarjeta para futuras compras"
     },
@@ -167,16 +167,16 @@
     "fieldset_address": {
       "select_your_address": {
         "label": "Seleeciona tu dirección",
-        "options": ["Nueva dirección"]
+        "option": "Nueva dirección"
       },
       "country": "País",
       "state": {
         "label": "Estado",
-        "options": ["Selecciona un estado"]
+        "option": "Selecciona un estado"
       },
       "city": {
         "label": "Ciudad",
-        "options": ["Selecciona una ciudad"]
+        "option": "Selecciona una ciudad"
       },
       "postal_code": {
         "label": "Código postal",
