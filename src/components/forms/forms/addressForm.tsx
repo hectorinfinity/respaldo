@@ -1,14 +1,21 @@
 import { useTranslations } from "next-intl";
 // Components
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
-import { Autocomplete } from "@react-google-maps/api";
+import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import { useState } from "react";
 import Map from "@/components/forms/forms/map";
 // Helpers
 import { FormStyles } from "@/helpers"
+import { useGoogleMapsAPIKey } from "@/hooks/useGoogleMapsApi";
+
+
 
 export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, markerPosition }) => {
     const [autocomplete, setAutocomplete] = useState(null);
+    const [librariesLoaded, setLibrariesLoaded] = useState(false);
+
+    const { apiKey } = useGoogleMapsAPIKey();
+
 
     const tc = useTranslations("Common_Forms");
     const onAutocompleteLoad = (autocompleteInstance) => {
@@ -27,46 +34,54 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
             onPlaceSelected(address, latLng);
         }
     };
+    const handleLoad = () => {
+        setLibrariesLoaded(true);
+    };
 
     return (
         <>
-            <div className="grid grid-cols-12 gap-6">
-                <div className="col-span-12">
-                    <CustomLabel field="addressname" name={tc('field_addressname')} required />
-                    <input
-                        type="text"
-                        name="addressname"
-                        id="addressname"
-                        autoComplete={tc('auto_addressname')}
-                        placeholder={tc('field_addressname')}
-                        className={FormStyles('input')}
-                    />
-                    <CustomError error={errors.addressname?.message} />
-                </div>
-
-                <div className="col-span-12">
-                    <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
-                    <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
+            <LoadScript
+                googleMapsApiKey={apiKey}
+                libraries={["places"]}
+                onLoad={handleLoad}
+            >
+                <div className="grid grid-cols-12 gap-6">
+                    <div className="col-span-12">
+                        <CustomLabel field="addressname" name={tc('field_addressname')} required />
                         <input
                             type="text"
-                            name="searchaddress"
-                            id="searchaddress"
-                            autoComplete={tc('auto_searchaddress')}
-                            placeholder={tc('field_searchaddress')}
+                            name="addressname"
+                            id="addressname"
+                            autoComplete={tc('auto_addressname')}
+                            placeholder={tc('field_addressname')}
                             className={FormStyles('input')}
                         />
-                    </Autocomplete>
-                </div>
-            </div>
+                        <CustomError error={errors.addressname?.message} />
+                    </div>
 
-            <div className="mt-6 flex flex-col lg:flex-row">
-                <div className="relative isolate bg-white py-10">
-                    <div className="flex justify-start w-screen">
-                        <Map searchAddress={searchAddress} center={{ lat: 22.767649, lng: -102.546273 }} markerPosition={markerPosition} />
+                    <div className="col-span-12">
+                        <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
+                        <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
+                            <input
+                                type="text"
+                                name="searchaddress"
+                                id="searchaddress"
+                                autoComplete={tc('auto_searchaddress')}
+                                placeholder={tc('field_searchaddress')}
+                                className={FormStyles('input')}
+                            />
+                        </Autocomplete>
                     </div>
                 </div>
-            </div>
 
+                <div className="mt-6 flex flex-col lg:flex-row">
+                    <div className="relative isolate bg-white py-10">
+                        <div className="flex justify-start w-screen">
+                            <Map searchAddress={searchAddress} center={{ lat: 22.767649, lng: -102.546273 }} markerPosition={markerPosition} />
+                        </div>
+                    </div>
+                </div>
+            </LoadScript>
             <div className="mt-6 grid grid-cols-12 gap-6">
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="address1" name={tc('field_address1')} required />

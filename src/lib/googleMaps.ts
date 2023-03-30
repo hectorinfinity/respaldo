@@ -1,5 +1,3 @@
-// src/lib/googleMaps.ts
-
 const geocodeAddress = async (address: string): Promise<{ lat: number; lng: number }> => {
     return new Promise((resolve, reject) => {
         if (typeof window === "undefined" || typeof window.google === "undefined") {

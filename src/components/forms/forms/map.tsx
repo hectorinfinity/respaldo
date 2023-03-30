@@ -44,7 +44,7 @@ const Map = ({ searchAddress, center, markerPosition }) => {
         <GoogleMap
             mapContainerStyle={{ width: "100%", height: "450px" }}
             center={position}
-            zoom={14}
+            zoom={17}
             onLoad={onLoad}
         >
             {markerPosition && <Marker position={markerPosition} onLoad={onMarkerLoad} />}
