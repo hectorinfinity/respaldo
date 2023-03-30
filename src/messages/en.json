@@ -619,6 +619,7 @@
 
     "field_range_date": "Range Date",
     "field_location": "Location",
+    "field_select_location": "Select Location",
 
     "field_lang": "Lenguage",
     "field_add_lang": "Add Language",
@@ -755,7 +756,12 @@
 
       "description": "Description",
       "information": "Information",
-      "location_map": "Location Map"
+      "location_map": "Location Map",
+
+      "attend": "I will attend"
+    },
+    "program": {
+      "program": "Program"
     }
   },
 
