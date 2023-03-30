@@ -13,8 +13,27 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 // Helpers
 import { FormStyles } from '@/helpers';
 import { AddressForm } from '@/components/forms/forms';
+import { User } from "@/interfaces/user";
+import { LoadScript } from "@react-google-maps/api";
+
+// cambiar schema
+const validationSchema = yup.object().shape({
+    addressname: yup.string().required("Address name is required"),
+    searchaddress: yup.string(),
+    address1: yup.string().required("Address line 1 is required"),
+    address2: yup.string(),
+    pc: yup.string().required("Postal code is required"),
+    country: yup.string().required("Country is required"),
+    state: yup.string().required("State is required"),
+    city: yup.string().required("City is required"),
+});
 
 const TicketPosUserCreate = () => {
+    const [searchAddress, setSearchAddress] = useState("");
+    const [librariesLoaded, setLibrariesLoaded] = useState(false);
+    const [markerPosition, setMarkerPosition] = useState(null);
+
+    const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
 
@@ -28,6 +47,26 @@ const TicketPosUserCreate = () => {
         { id: 'ROLE_TICKET_OFFICE', name: "ROLE_TICKET_OFFICE" },
         { id: 'ROLE_POS', name: "ROLE_POS" },
     ]
+
+
+    const handleLoad = () => {
+        setLibrariesLoaded(true);
+    };
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
+        resolver: yupResolver(validationSchema),
+    });
+
+    const onSubmitHandler = (data: User) => {
+        // updateUser(data)
+        console.log({ data });
+        reset();
+    };
+
+    const onPlaceSelected = (address, latLng) => {
+        setSearchAddress(address);
+        setMarkerPosition(latLng);
+    };
 
     return (
         <>
@@ -94,7 +133,13 @@ const TicketPosUserCreate = () => {
                             </div>
                         </div>
                         <div className='mt-6'>
-                            <AddressForm />
+                            <LoadScript
+                                googleMapsApiKey={GOOGLE_MAPS_API_KEY}
+                                libraries={["places"]}
+                                onLoad={handleLoad}
+                            >
+                                <AddressForm register={register} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
+                            </LoadScript>
                         </div>
                         {/* Buttons section */}
                         <div className="divide-y divide-gray-200 pt-6">
