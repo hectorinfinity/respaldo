@@ -11,6 +11,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
+import { User } from "@/interfaces/user";
+import { updateUser } from "@/api/user/user";
+
+
+const validationSchema = yup.object().shape({
+    businessname: yup.string().required('Business name is required'),
+    rfc: yup.string().min(13).max(13).required().notRequired(),
+    cfdi: yup.string().min(1).max(40).required('CFDI is required'),
+    pc: yup.string().min(5).max(5).required('Postal code is required'),
+});
 
 const ProfileBilling = () => {
     const t = useTranslations("Panel_SideBar");
@@ -21,6 +31,19 @@ const ProfileBilling = () => {
         { page: t('profile.billing'), href: '' }
     ]
 
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(validationSchema),
+    });
+
+    const onSubmitHandler = (data: User) => {
+        // setSubmitted(false);
+        // setSubmittedError(true);
+        updateUser(data)
+        console.log({ data });
+        reset();
+        // Handle Submit Form
+    };
+
     return (
         <>
             {/* Breadcrumb section */}
@@ -29,11 +52,12 @@ const ProfileBilling = () => {
             </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
-                    <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
+                    <form className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit(onSubmitHandler)} method="POST">
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="businessname" name={tc('field_businessname')} required />
                                 <input
+                                    {...register("businessname")}
                                     type="text"
                                     name="businessname"
                                     id="businessname"
@@ -41,10 +65,12 @@ const ProfileBilling = () => {
                                     placeholder={tc('field_businessname')}
                                     className={FormStyles('input')}
                                 />
+                                <CustomError error={errors.businessname?.message as string} />
                             </div>
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="rfc" name={tc('field_rfc')} />
                                 <input
+                                    {...register("rfc")}
                                     type="text"
                                     name="rfc"
                                     id="rfc"
@@ -52,10 +78,12 @@ const ProfileBilling = () => {
                                     placeholder={tc('field_rfc')}
                                     className={FormStyles('input')}
                                 />
+                                <CustomError error={errors.rfc?.message as string} />
                             </div>
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="cfdi" name={tc('field_cfdi')} required />
                                 <input
+                                    {...register("cfdi")}
                                     type="text"
                                     name="cfdi"
                                     id="cfdi"
@@ -63,10 +91,12 @@ const ProfileBilling = () => {
                                     placeholder={tc('field_cfdi')}
                                     className={FormStyles('input')}
                                 />
+                                <CustomError error={errors.cfdi?.message as string} />
                             </div>
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="pc" name={tc('field_pc')} required />
                                 <input
+                                    {...register("pc")}
                                     type="text"
                                     name="pc"
                                     id="pc"
@@ -74,6 +104,7 @@ const ProfileBilling = () => {
                                     placeholder={tc('field_pc')}
                                     className={FormStyles('input')}
                                 />
+                                <CustomError error={errors.pc?.message as string} />
                             </div>
                         </div>
                         {/* Buttons section */}

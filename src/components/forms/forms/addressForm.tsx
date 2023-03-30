@@ -1,48 +1,87 @@
 import { useTranslations } from "next-intl";
 // Components
-import { CustomLabel } from "../labels"
+import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
+import { Autocomplete, LoadScript } from "@react-google-maps/api";
+import { useState } from "react";
+import Map from "@/components/forms/forms/map";
 // Helpers
 import { FormStyles } from "@/helpers"
+import { useGoogleMapsAPIKey } from "@/hooks/useGoogleMapsApi";
 
-export const AddressForm = () => {
+
+
+export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, markerPosition }) => {
+    const [autocomplete, setAutocomplete] = useState(null);
+    const [librariesLoaded, setLibrariesLoaded] = useState(false);
+
+    const { apiKey } = useGoogleMapsAPIKey();
+
+
     const tc = useTranslations("Common_Forms");
+    const onAutocompleteLoad = (autocompleteInstance) => {
+        setAutocomplete(autocompleteInstance);
+    };
+
+    const onPlaceChanged = () => {
+        if (autocomplete) {
+            const place = autocomplete.getPlace();
+            const address = place.formatted_address;
+            const latLng = {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng(),
+            };
+            console.log("Selected address: ", address, latLng);
+            onPlaceSelected(address, latLng);
+        }
+    };
+    const handleLoad = () => {
+        setLibrariesLoaded(true);
+    };
 
     return (
         <>
-            <div className="grid grid-cols-12 gap-6">
-                <div className="col-span-12">
-                    <CustomLabel field="addressname" name={tc('field_addressname')} required />
-                    <input
-                        type="text"
-                        name="addressname"
-                        id="addressname"
-                        autoComplete={tc('auto_addressname')}
-                        placeholder={tc('field_addressname')}
-                        className={FormStyles('input')}
-                    />
-                </div>
+            <LoadScript
+                googleMapsApiKey={apiKey}
+                libraries={["places"]}
+                onLoad={handleLoad}
+            >
+                <div className="grid grid-cols-12 gap-6">
+                    <div className="col-span-12">
+                        <CustomLabel field="addressname" name={tc('field_addressname')} required />
+                        <input
+                            type="text"
+                            name="addressname"
+                            id="addressname"
+                            autoComplete={tc('auto_addressname')}
+                            placeholder={tc('field_addressname')}
+                            className={FormStyles('input')}
+                        />
+                        <CustomError error={errors.addressname?.message} />
+                    </div>
 
-                <div className="col-span-12">
-                    <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
-                    <input
-                        type="text"
-                        name="searchaddress"
-                        id="searchaddress"
-                        autoComplete={tc('auto_searchaddress')}
-                        placeholder={tc('field_searchaddress')}
-                        className={FormStyles('input')}
-                    />
-                </div>
-            </div>
-
-            <div className="mt-6 flex flex-col lg:flex-row">
-                <div className="relative isolate bg-white py-10">
-                    <div className="flex justify-start w-screen">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d919.7347204632892!2d-102.54627301188026!3d22.767649335671468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86824eb8de657407%3A0x1036f7d9db767840!2sJos%C3%A9%20Sergio%20B%C3%A1ez%20101%2C%20Villas%20del%20Sol%2C%2098067%20Guadalupe%2C%20Zac.!5e0!3m2!1ses-419!2smx!4v1678590382873!5m2!1ses-419!2smx" width="1200" height="450" style={{ border: 0 }} loading="lazy"></iframe>
+                    <div className="col-span-12">
+                        <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
+                        <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
+                            <input
+                                type="text"
+                                name="searchaddress"
+                                id="searchaddress"
+                                autoComplete={tc('auto_searchaddress')}
+                                placeholder={tc('field_searchaddress')}
+                                className={FormStyles('input')}
+                            />
+                        </Autocomplete>
                     </div>
                 </div>
-            </div>
 
+                <div className="mt-6 flex flex-col lg:flex-row">
+                    <div className="relative isolate bg-white py-10">
+                        <div className="flex justify-start w-screen">
+                            <Map searchAddress={searchAddress} center={{ lat: 22.767649, lng: -102.546273 }} markerPosition={markerPosition} />
+                        </div>
+                    </div>
+                </div>
+            </LoadScript>
             <div className="mt-6 grid grid-cols-12 gap-6">
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="address1" name={tc('field_address1')} required />
@@ -113,4 +152,4 @@ export const AddressForm = () => {
             </div>
         </>
     )
-}
+} 
