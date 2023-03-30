@@ -13,6 +13,8 @@ import { updateUser } from "@/api/user/user";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 // Interface
 import { User } from "@/interfaces/user";
+import { useGoogleMapsAPIKey } from "@/hooks/useGoogleMapsApi";
+
 
 
 const validationSchema = yup.object().shape({
@@ -31,7 +33,7 @@ const ProfileAddress = () => {
     const [librariesLoaded, setLibrariesLoaded] = useState(false);
     const [markerPosition, setMarkerPosition] = useState(null);
 
-    const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const GOOGLE_MAPS_API_KEY = useGoogleMapsAPIKey();
 
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");

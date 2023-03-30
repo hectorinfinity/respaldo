@@ -13,6 +13,7 @@ import { CustomError, CustomCancel, CustomSubmit } from '@/components/forms';
 import { AddressForm } from "@/components/forms/forms";
 import { User } from "@/interfaces/user";
 import { LoadScript } from "@react-google-maps/api";
+import { useGoogleMapsAPIKey } from "@/hooks/useGoogleMapsApi";
 
 const validationSchema = yup.object().shape({
     addressname: yup.string().required("Address name is required"),
@@ -30,7 +31,7 @@ const EventAddress = () => {
     const [librariesLoaded, setLibrariesLoaded] = useState(false);
     const [markerPosition, setMarkerPosition] = useState(null);
 
-    const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    const GOOGLE_MAPS_API_KEY = useGoogleMapsAPIKey();
 
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
