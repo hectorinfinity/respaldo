@@ -121,7 +121,7 @@ const StepCheckoutPayment: React.FC<props> = ({
           <Title className="mt-8" level="h4">
             {t('address_card_data')}
           </Title>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid mt-7 grid-cols-1 md:grid-cols-2 gap-5">
             <Select
               options={[
                 {
@@ -149,21 +149,84 @@ const StepCheckoutPayment: React.FC<props> = ({
             />
             <div></div>
 
-            <div className="col-span-2">
-              <TextField
+            <div className="col-span-2 items-end flex gap-5">
+              <Select
+                options={[
+                  {
+                    name: t('fieldset_address.state.option'),
+                    value: '',
+                  },
+                ]}
                 label={t('fieldset_address.state.label')}
                 {...register('state', {
                   required: 'Required',
                 })}
               />
 
+              <Select
+                options={[
+                  {
+                    name: t('fieldset_address.city.option'),
+                    value: '',
+                  },
+                ]}
+                label={t('fieldset_address.city.label')}
+                {...register('city', {
+                  required: 'Required',
+                })}
+              />
+
               <TextField
-                label={t('fieldset_address.state.label')}
-                {...register('state', {
+                label={t('fieldset_address.postal_code.label')}
+                placeholder={t('fieldset_address.postal_code.placeholder')}
+                {...register('postal_code', {
                   required: 'Required',
                 })}
               />
             </div>
+
+            <TextField
+              label={t('fieldset_address.address_1')}
+              {...register('address_1', {
+                required: 'Required',
+              })}
+            />
+
+            <TextField
+              label={t('fieldset_address.address_2')}
+              {...register('address_2', {
+                required: 'Required',
+              })}
+            />
+
+            <div className="flex items-end gap-5">
+              <Select
+                label={t('fieldset_address.phone')}
+                options={[
+                  {
+                    name: '+52',
+                    value: '+52',
+                  },
+                ]}
+                {...register('phone_code', {
+                  required: 'Required',
+                })}
+              />
+              <TextField
+                {...register('phone_number', {
+                  required: 'Required',
+                })}
+              />
+            </div>
+            <TextField
+              label={t('fieldset_address.email.label')}
+              placeholder={t('fieldset_address.email.placeholder')}
+              {...register('email', {
+                required: 'Required',
+              })}
+            />
+
+            <Checkbox label={t('save_address')} {...register('save_address')} />
           </div>
         </Disclosure.Panel>
       </Disclosure>
