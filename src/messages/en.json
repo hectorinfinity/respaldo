@@ -874,10 +874,12 @@
       "new_card": "New Card",
       "card_number": "Card number",
       "holders_name": "Holder's name",
+      "expiration_date": "Expiration date",
+      "cvv": "CVV",
       "alias": "Alias (optional)",
       "month_fee": {
         "label": "Months interest fee",
-        "options": ["3 Months"]
+        "option": "3 Months"
       },
       "save_my_card": "Save my card for future purchases"
     },
@@ -885,16 +887,16 @@
     "fieldset_address": {
       "select_your_address": {
         "label": "Select your address",
-        "options": ["New address"]
+        "option": "New address"
       },
       "country": "Country",
       "state": {
         "label": "State",
-        "options": ["Select a state"]
+        "option": "Select a state"
       },
       "city": {
         "label": "City",
-        "options": ["Select a city"]
+        "option": ["Select a city"]
       },
       "postal_code": {
         "label": "Postal code",

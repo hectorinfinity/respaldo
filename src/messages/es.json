@@ -154,6 +154,8 @@
       "new_card": "Nueva Tarjeta",
       "card_number": "Numero de tarjeta",
       "holders_name": "Nombre del titular",
+      "expiration_date": "Fecha de expiración",
+      "cvv": "CVV",
       "alias": "Alias (opcional)",
       "month_fee": {
         "label": "Meses de tasa de interés",
