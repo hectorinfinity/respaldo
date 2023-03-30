@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { CustomError } from '@/components/forms';
 // Helpers
 import { CurrentColor, FormStyles } from "@/helpers/index";
 // Interface

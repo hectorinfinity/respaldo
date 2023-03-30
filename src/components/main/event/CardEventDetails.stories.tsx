@@ -8,7 +8,7 @@ export default {
   component: CardEventDetails,
 } as Meta;
 
-const Template: StoryFn<props> = (args) => <CardEventDetails {...args} />;
+const Template: StoryFn<props> = (args) => <CardEventDetails className="max-w-5xl mx-auto" {...args} />;
 
 export const Default: StoryFn<props> = Template.bind({});
 Default.args = {

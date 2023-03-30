@@ -782,11 +782,29 @@
     "section": "Section",
     "payment_method": "Payment method"
   },
+  "Card_Payment_Success": {
+    "title": "Your purchase has been made successfully!",
+    "button": "Download my tickets",
+    "purchase": "Purchase"
+  },
+  "Card_Payment_Error": {
+    "title": "We're sorry, but we couldn't complete your purchase",
+    "button": "Try another payment method"
+  },
+  "Card_Program_Details": {
+    "date": "Date",
+    "location": "Location",
+    "description": "Description"
+  },
 
   "Main_Comment_Organisms": "/////////////////////////////////////// Organisms",
   "List_Card_Category": {
     "title": "Categories"
   },
+  "List_Program_Days": {
+    "program": "Program"
+  },
+
   "Sidebar_Event": {
     "cost": "Cost: {value}",
     "date": "Date:",
@@ -817,5 +835,12 @@
     "waiting_room": "WAITING ROOM",
     "virtual_queue": "VIRTUAL QUEUE",
     "select_your_seats": "SELECT YOUR SEATS"
+  },
+  "Header_Step_Checkout": {
+    "location": "Location:"
+  },
+  "Step_Checkout_Quantity": {
+    "select_date_time": "Select date and time",
+    "select_number_of_tickets": "Select the number of tickets"
   }
 }

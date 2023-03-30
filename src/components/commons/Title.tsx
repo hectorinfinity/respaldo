@@ -13,27 +13,27 @@ const Title: FC<props> = ({ className, level = 'h1', children, align = ' left' }
   switch (level) {
     case 'h1':
       return (
-        <h1 className={classNames('text-5xl dark:text-white', style, alignStyle, className)}>{children}</h1>
+        <h1 className={classNames('text-5xl ', style, alignStyle, className)}>{children}</h1>
       );
     case 'h2':
       return (
-        <h2 className={classNames('text-4xl dark:text-white', style, alignStyle, className)}>{children}</h2>
+        <h2 className={classNames('text-4xl ', style, alignStyle, className)}>{children}</h2>
       );
     case 'h3':
       return (
-        <h3 className={classNames('text-3xl dark:text-white', style, alignStyle, className)}>{children}</h3>
+        <h3 className={classNames('text-3xl ', style, alignStyle, className)}>{children}</h3>
       );
     case 'h4':
       return (
-        <h4 className={classNames('text-2xl dark:text-white', style, alignStyle, className)}>{children}</h4>
+        <h4 className={classNames('text-2xl ', style, alignStyle, className)}>{children}</h4>
       );
     case 'h5':
       return (
-        <h5 className={classNames('text-xl dark:text-white', style, alignStyle, className)}>{children}</h5>
+        <h5 className={classNames('text-xl ', style, alignStyle, className)}>{children}</h5>
       );
     case 'h6':
       return (
-        <h6 className={classNames('text-lg dark:text-white', style, alignStyle, className)}>{children}</h6>
+        <h6 className={classNames('text-lg ', style, alignStyle, className)}>{children}</h6>
       );
   }
 };

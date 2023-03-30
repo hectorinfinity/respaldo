@@ -53,7 +53,7 @@ const Button: FC<props> = ({
             : weight == "ghost"
             ? "btn-primary-ghost"
             : weight == "inline" &&
-              "text-primary-500 dark:text-white rounded-none"
+              "text-black rounded-none"
         )
       : color == "black"
       ? classNames(
@@ -63,7 +63,7 @@ const Button: FC<props> = ({
             ? "btn-black-outline"
             : weight == "ghost"
             ? "btn-black-ghost"
-            : weight == "inline" && "text-black-500 rounded-none"
+            : weight == "inline" && "text-black rounded-none"
         )
       : color == "neutral"
       ? classNames(
