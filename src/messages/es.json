@@ -189,5 +189,19 @@
       }
     },
     "save_address": "Guardar dirección"
+  },
+  "Drawer_Search_Filters": {
+    "title": "Filtros",
+    "category": "Categorías",
+    "sub_category": "Sub categoría",
+    "sub_sub_category": "Sub sub categoría",
+    "dates": "Fechas",
+    "initial_date": "Fecha inicial",
+    "finish_date": "Fecha de finalización",
+    "location": {
+      "label": "Ubicacion",
+      "placeholder": "Buscar por país, ciudad"
+    },
+    "button": "Aplicar Filtros"
   }
 }
