@@ -6,10 +6,11 @@ import HeaderStepCheckout, {
 import { UseFormReturn } from 'react-hook-form/dist/types';
 import { Button, Icon, Select, TextField } from '@/components/commons';
 import { useTranslations } from 'next-intl';
-import { faker } from '@faker-js/faker';
+import formatNumber from 'format-number';
 
 export type props = {
   className?: string;
+  price: number;
 } & HeaderStepCheckoutProps &
   UseFormReturn<any>;
 
@@ -17,22 +18,28 @@ const StepCheckoutQuantity: React.FC<props> = ({
   className,
   name,
   location,
+  price,
   ...useFormReturn
 }) => {
   const { register, setValue, watch } = useFormReturn;
   const t = useTranslations('Step_Checkout_Quantity');
+  console.log(watch('datetime'));
   return (
-    <div className={classNames('', className)}>
+    <div className={classNames('rounded-xl shadow-xl', className)}>
       <HeaderStepCheckout name={name} location={location} />
-      <div className="p-7 space-y-10">
+      <div className="px-24 py-20 space-y-10">
         <div className="space-y-3 inline-block">
           <span className="font-semibold">{t('select_date_time')}</span>
-          <TextField className="w-72" type="date" {...register('date')} />s{' '}
+          <TextField
+            className="w-72"
+            type="datetime-local"
+            {...register('datetime')}
+          />
         </div>
 
         <div className="space-y-3">
           <span className="font-semibold">{t('select_number_of_tickets')}</span>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-5 items-center">
             <Button
               onClick={() =>
                 setValue(
@@ -45,15 +52,21 @@ const StepCheckoutQuantity: React.FC<props> = ({
               size="small"
               shape="pill"
               color="neutral"
-              iconLeft={<Icon name="minus" />}
+              iconLeft={<Icon name="minus" className="w-4 h-4" />}
             />
             <span className="font-semibold">{watch('tickets')}</span>
             <Button
               size="small"
               shape="pill"
               onClick={() => setValue('tickets', watch('tickets') + 1)}
-              iconLeft={<Icon name="plus" />}
+              iconLeft={<Icon name="plus" className="w-4 h-4" />}
             />
+
+            <span>
+              {t('price', {
+                value: formatNumber({ prefix: '$', suffix: ' MXN' })(price),
+              })}
+            </span>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ export type props = {
   category: string;
   isLoggedIn: boolean;
 };
-// TODO: figma issues, different ui
+// TODO: time values
 const SidebarEvent: React.FC<props> = ({
   className,
   cost,

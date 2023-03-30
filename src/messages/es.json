@@ -138,6 +138,56 @@
   },
   "Step_Checkout_Quantity": {
     "select_date_time": "Selecciona fecha y hora",
-    "select_number_of_tickets": "Selecciona el numero de boletos"
+    "select_number_of_tickets": "Selecciona el numero de boletos",
+    "price": "Cuesta {value} cada uno"
+  },
+  "Step_Checkout_Tickets": {
+    "title": "¿Cómo quieres recivir tus entradas?",
+    "digital_title": "Boleto Digital",
+    "digital_descripton": "",
+    "pick_title": "Recogida en un punto de venta",
+    "pick_descripton": ""
+  },
+  "Step_Checkout_Payment": {
+    "credit_or_debit": "Tarjeta de crédito o débito",
+    "fieldset_card": {
+      "new_card": "Nueva Tarjeta",
+      "card_number": "Numero de tarjeta",
+      "holders_name": "Nombre del titular",
+      "alias": "Alias (opcional)",
+      "month_fee": {
+        "label": "Meses de tasa de interés",
+        "options": ["3 Meses"]
+      },
+      "save_my_card": "Guardar mi tarjeta para futuras compras"
+    },
+    "address_card_data": "Dirección (Datos de tarjeta)",
+    "fieldset_address": {
+      "select_your_address": {
+        "label": "Seleeciona tu dirección",
+        "options": ["Nueva dirección"]
+      },
+      "country": "País",
+      "state": {
+        "label": "Estado",
+        "options": ["Selecciona un estado"]
+      },
+      "city": {
+        "label": "Ciudad",
+        "options": ["Selecciona una ciudad"]
+      },
+      "postal_code": {
+        "label": "Código postal",
+        "placeholder": "CP"
+      },
+      "address_1": "Dirección 1",
+      "address_2": "Dirección 2",
+      "phone": "Teléfono",
+      "email": {
+        "label": "Email",
+        "placeholder": "ejemplo@correo.com"
+      }
+    },
+    "save_address": "Guardar dirección"
   }
 }
