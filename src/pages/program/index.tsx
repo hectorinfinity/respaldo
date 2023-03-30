@@ -29,9 +29,11 @@ const Program = () => {
         <div className="bg-white">
             <div className="pb-8 lg:pb-8">
                 <div aria-hidden="true" className="relative w-full">
-                    <Image src=""
-                        alt=""
-                        className="w-full h-80 object-cover object-center"
+                    <Image src="/images/events/program/test.png"
+                        alt="Test"
+                        width={1600}
+                        height={320}
+                        className="w-[100%] h-[320px] object-cover object-center"
                     />
                 </div>
                 <div className="w-full h-14 px-4 md:px-16 py-4 lg:py-3 bg-customGreen text-white text-2xl lg:text-3xl font-bold">

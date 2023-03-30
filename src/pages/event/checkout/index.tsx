@@ -1,4 +1,5 @@
 /** @format */
+import { Fragment } from 'react'
 import { GetStaticPropsContext } from "next";
 // Layout and Header
 import MainLayout from "@/components/layout/main";
@@ -7,7 +8,7 @@ import { EventContent, EventLocation } from '@/components/landing/event';
 // Helpers
 import { CurrentColor } from '@/helpers';
 
-export const Event = () => {
+export const Checkout = () => {
     const currentColor = CurrentColor();
 
     return (
@@ -20,8 +21,8 @@ export const Event = () => {
     )
 }
 
-Event.Layout = MainLayout;
-export default Event;
+Checkout.Layout = MainLayout;
+export default Checkout;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
