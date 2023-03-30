@@ -888,5 +888,19 @@
       }
     },
     "save_address": "Save address"
+  },
+  "Drawer_Search_Filters": {
+    "title": "Filters",
+    "category": "Category",
+    "sub_category": "Sub category",
+    "sub_sub_category": "Sub sub category",
+    "dates": "Dates",
+    "initial_date": "Initial date",
+    "finish_date": "Finish date",
+    "location": {
+      "label": "Location",
+      "placeholder": "Search by country,city"
+    },
+    "button": "Aply Filters"
   }
 }

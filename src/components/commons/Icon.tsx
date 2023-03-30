@@ -443,7 +443,7 @@ const PlusIcon = (props) => (
     <mask
       id="plus-icon-a"
       style={{
-        maskType: "alpha",
+        maskType: 'alpha',
       }}
       maskUnits="userSpaceOnUse"
       x={4}
@@ -453,11 +453,11 @@ const PlusIcon = (props) => (
     >
       <path
         d="M11.774 4.119a.833.833 0 1 0-1.667 0v5.06h-5.06a.833.833 0 0 0 0 1.666h5.06v5.059a.833.833 0 1 0 1.667 0v-5.06h5.059a.833.833 0 1 0 0-1.666h-5.06v-5.06Z"
-        className='fill-current'
+        className="fill-current"
       />
     </mask>
     <g mask="url(#plus-icon-a)">
-      <path className='fill-current' d="M.94.012h20v20h-20z" />
+      <path className="fill-current" d="M.94.012h20v20h-20z" />
     </g>
   </svg>
 );
@@ -718,6 +718,35 @@ const Activities = (props) => (
   </div>
 );
 
+const CloseOutline = (props) => (
+  <svg
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <mask
+      id="close-a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={8}
+      y={8}
+      width={16}
+      height={16}
+    >
+      <path
+        d="M10.276 8.39a1.333 1.333 0 1 0-1.885 1.886L14.114 16l-5.723 5.724a1.333 1.333 0 0 0 1.885 1.885L16 17.886l5.724 5.723a1.333 1.333 0 0 0 1.885-1.885L17.886 16l5.724-5.724a1.333 1.333 0 1 0-1.886-1.885L16 14.114l-5.724-5.723Z"
+        className="fill-current"
+      />
+    </mask>
+    <g mask="url(#close-a)">
+      <path className="fill-current" d="M0 0h32v32H0z" />
+    </g>
+  </svg>
+);
+
 export type props = {
   className?: string;
   name:
@@ -753,7 +782,8 @@ export type props = {
     | 'lodging'
     | 'activities'
     | 'check-circle-red'
-    | 'check-circle-yellow';
+    | 'check-circle-yellow'
+    | 'close-outline';
 };
 const Icon: React.FC<props> = ({ name, ...props }) => {
   props.className = classNames('icon', props.className);
@@ -822,6 +852,8 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <Activities {...props} />;
     case 'lodging':
       return <Lodging {...props} />;
+    case 'close-outline':
+      return <CloseOutline {...props} />;
     default:
       return <></>;
   }
