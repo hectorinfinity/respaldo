@@ -836,5 +836,27 @@
   "Step_Checkout_Quantity": {
     "select_date_time": "Select date and time",
     "select_number_of_tickets": "Select the number of tickets"
+  },
+  "Header_Checkout": {
+    "first_step": "Date and quantity of tickets",
+    "second_step": "Seat Selection",
+    "third_step": "Tickets",
+    "fourth_step": "Payment"
+  },
+  "Sidebar_Checkout": {
+    "resume": "Resume",
+    "time": "Time",
+    "date": "Date",
+    "tickets": "Tickets",
+    "add_coupon": "Add coupon",
+    "apply_coupon": "Apply coupon",
+    "subtotal": "Subtotal",
+    "fees": "Fees",
+    "discount": "Discount",
+    "total": "Total",
+    "payment_methods": "Payment methods",
+    "row": "Row",
+    "seat": "Seat",
+    "section": "Section"
   }
 }

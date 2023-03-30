@@ -707,6 +707,41 @@ const Activities = (props) => (
     <Image src={activities} alt="" className="" fill />
   </div>
 );
+const TrashOutline = (props) => (
+  <svg
+
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <mask
+      id="trash-outline"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={2}
+      y={1}
+      width={12}
+      height={14}
+    >
+      <path
+        d="M6.667 6.667c.368 0 .666.298.666.666v4a.667.667 0 0 1-1.333 0v-4c0-.368.298-.666.667-.666ZM10 7.333a.667.667 0 0 0-1.333 0v4a.667.667 0 0 0 1.333 0v-4Z"
+        fill="#0F1019"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M6.667 1.333a1.333 1.333 0 0 0-1.334 1.334V4H2.667a.667.667 0 0 0 0 1.333h.053l.614 7.364a2 2 0 0 0 2 1.97h5.333a2 2 0 0 0 2-1.97l.613-7.364h.053a.667.667 0 1 0 0-1.333h-2.666V2.667a1.333 1.333 0 0 0-1.334-1.334H6.667ZM9.333 4V2.667H6.667V4h2.666ZM4.058 5.333l.606 7.278a.665.665 0 0 1 .003.056.667.667 0 0 0 .666.666h5.334a.667.667 0 0 0 .666-.666c0-.019.001-.037.003-.056l.606-7.278H4.058Z"
+        fill="#0F1019"
+      />
+    </mask>
+    <g mask="url(#trash-outline)">
+      <path fill="#BAB0B0" d="M0 0h16v16H0z" />
+    </g>
+  </svg>
+);
 
 export type props = {
   className?: string;
@@ -743,7 +778,8 @@ export type props = {
     | 'lodging'
     | 'activities'
     | 'check-circle-red'
-    | 'check-circle-yellow';
+    | 'check-circle-yellow'
+    | 'trash-outline';
 };
 const Icon: React.FC<props> = ({ name, ...props }) => {
   props.className = classNames('icon', props.className);
@@ -812,6 +848,8 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <Activities {...props} />;
     case 'lodging':
       return <Lodging {...props} />;
+    case 'trash-outline':
+      return <TrashOutline {...props} />;
     default:
       return <></>;
   }

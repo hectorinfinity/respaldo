@@ -1,16 +1,16 @@
-import '@/styles/globals.css'
-import Head from "next/head"
-import type { NextComponentType } from "next"
-import type { AppProps } from 'next/app'
-import { FC, Fragment } from "react"
+import '@/styles/globals.css';
+import Head from 'next/head';
+import type { NextComponentType } from 'next';
+import type { AppProps } from 'next/app';
+import { FC, Fragment } from 'react';
 // International and Layout manage
-import { NextIntlProvider } from "next-intl";
+import { NextIntlProvider } from 'next-intl';
 type CustomNextComponent = NextComponentType & { Layout?: FC };
 type CustomAppProps = AppProps & { Component: CustomNextComponent };
 // React Query
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { AuthProvider } from "@/context/auth/auth_provider";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { AuthProvider } from '@/context/auth/auth_provider';
 // React Query Config
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,9 +24,10 @@ const queryClient = new QueryClient({
   },
 });
 // React Quill
-import 'react-quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.snow.css';
 import 'swiper/css/bundle';
-
+// Google Maps
+import { Wrapper } from '@googlemaps/react-wrapper';
 
 export default function App({ Component, pageProps }: CustomAppProps) {
   const Layout: CustomNextComponent | typeof Fragment = Component.Layout
@@ -54,7 +55,12 @@ export default function App({ Component, pageProps }: CustomAppProps) {
                   }
                 `}{" "}
               </style> */}
-            <Component {...pageProps} />
+            <Wrapper
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string}
+              libraries={['places']}
+            >
+              <Component {...pageProps} />
+            </Wrapper>
           </Layout>
           <ReactQueryDevtools initialIsOpen={true} />
         </AuthProvider>
@@ -62,4 +68,3 @@ export default function App({ Component, pageProps }: CustomAppProps) {
     </NextIntlProvider>
   );
 }
-
