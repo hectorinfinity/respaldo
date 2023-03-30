@@ -857,6 +857,71 @@
     "payment_methods": "Payment methods",
     "row": "Row",
     "seat": "Seat",
-    "section": "Section"
+    "section": "Section",
+    "select_number_of_tickets": "Select the number of tickets",
+    "price": "Cost {value} each"    
+  },
+  "Step_Checkout_Tickets": {
+    "title": "How do you want to recieve your tickets?",
+    "digital_title": "Digital Ticket",
+    "digital_descripton": "",
+    "pick_title": "Pick up at point of sale",
+    "pick_descripton": ""
+  },
+  "Step_Checkout_Payment": {
+    "credit_or_debit": "Credit or debit card",
+    "fieldset_card": {
+      "new_card": "New Card",
+      "card_number": "Card number",
+      "holders_name": "Holder's name",
+      "alias": "Alias (optional)",
+      "month_fee": {
+        "label": "Months interest fee",
+        "options": ["3 Months"]
+      },
+      "save_my_card": "Save my card for future purchases"
+    },
+    "address_card_data": "Address (Card Data)",
+    "fieldset_address": {
+      "select_your_address": {
+        "label": "Select your address",
+        "options": ["New address"]
+      },
+      "country": "Country",
+      "state": {
+        "label": "State",
+        "options": ["Select a state"]
+      },
+      "city": {
+        "label": "City",
+        "options": ["Select a city"]
+      },
+      "postal_code": {
+        "label": "Postal code",
+        "placeholder": "PC"
+      },
+      "address_1": "Address 1",
+      "address_2": "Address 2",
+      "phone": "Phone",
+      "email": {
+        "label": "Email",
+        "placeholder": "example@mail.com"
+      }
+    },
+    "save_address": "Save address"
+  },
+  "Drawer_Search_Filters": {
+    "title": "Filters",
+    "category": "Category",
+    "sub_category": "Sub category",
+    "sub_sub_category": "Sub sub category",
+    "dates": "Dates",
+    "initial_date": "Initial date",
+    "finish_date": "Finish date",
+    "location": {
+      "label": "Location",
+      "placeholder": "Search by country,city"
+    },
+    "button": "Aply Filters"
   }
 }

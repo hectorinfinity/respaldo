@@ -24,5 +24,6 @@ type StoryComponent = StoryFn<Omit<props, keyof UseFormReturn>>;
 export const Default: StoryComponent = Template.bind({});
 Default.args = {
   location: faker.address.streetAddress(),
-  name: faker.lorem.words(),
+  name: faker.lorem.words(4),
+  price: faker.datatype.number({ min: 50, max: 500 }),
 };

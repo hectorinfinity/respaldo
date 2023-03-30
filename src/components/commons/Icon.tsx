@@ -435,51 +435,61 @@ const CheckSolid = (props) => (
 );
 const PlusIcon = (props) => (
   <svg
-    viewBox="0 0 24 24"
-    data-name="Line Color"
-    xmlns="http://www.w3.org/2000/svg"
-    className="icon line-color"
-    {...props}
-  >
-    <path
-      d="M5 12h14m-7-7v14"
-      style={{
-        fill: 'none',
-        strokeLinecap: 'round',
-        strokeLinejoin: 'round',
-        strokeWidth: 2,
-      }}
-    />
-  </svg>
-);
-
-const MinusIcon = (props) => (
-  <svg
-    viewBox="0 0 20 20"
+    viewBox="0 0 21 21"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <mask
-      id="minus-a"
+      id="plus-icon-a"
       style={{
         maskType: 'alpha',
       }}
       maskUnits="userSpaceOnUse"
-      x={3}
+      x={4}
       y={3}
       width={14}
       height={14}
     >
       <path
+        d="M11.774 4.119a.833.833 0 1 0-1.667 0v5.06h-5.06a.833.833 0 0 0 0 1.666h5.06v5.059a.833.833 0 1 0 1.667 0v-5.06h5.059a.833.833 0 1 0 0-1.666h-5.06v-5.06Z"
         className="fill-current"
-        d="M10.833 4.107a.833.833 0 1 0-1.666 0v5.06h-5.06a.833.833 0 0 0 0 1.666h5.06v5.06a.833.833 0 1 0 1.666 0v-5.06h5.06a.833.833 0 0 0 0-1.667h-5.06V4.107Z"
       />
     </mask>
-    <g mask="url(#minus-a)">
-      <path className="fill-current" d="M0 0h20v20H0z" />
+    <g mask="url(#plus-icon-a)">
+      <path className="fill-current" d="M.94.012h20v20h-20z" />
     </g>
-    <path stroke="#000" d="M.5.5h19v19H.5z" />
+  </svg>
+);
+
+const MinusIcon = (props) => (
+  <svg
+    viewBox="0 0 21 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <mask
+      id="a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={4}
+      y={9}
+      width={14}
+      height={2}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M4.214 10.012c0-.46.373-.833.834-.833h11.785a.833.833 0 0 1 0 1.666H5.048a.833.833 0 0 1-.834-.833Z"
+        className="fill-current"
+      />
+    </mask>
+    <g mask="url(#a)">
+      <path className="fill-current" d="M.94.012h20v20h-20z" />
+    </g>
   </svg>
 );
 const OutglassSolid = (props) => (
@@ -709,7 +719,6 @@ const Activities = (props) => (
 );
 const TrashOutline = (props) => (
   <svg
-
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -739,6 +748,35 @@ const TrashOutline = (props) => (
     </mask>
     <g mask="url(#trash-outline)">
       <path fill="#BAB0B0" d="M0 0h16v16H0z" />
+    </g>
+  </svg>
+);
+
+const CloseOutline = (props) => (
+  <svg
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <mask
+      id="close-a"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={8}
+      y={8}
+      width={16}
+      height={16}
+    >
+      <path
+        d="M10.276 8.39a1.333 1.333 0 1 0-1.885 1.886L14.114 16l-5.723 5.724a1.333 1.333 0 0 0 1.885 1.885L16 17.886l5.724 5.723a1.333 1.333 0 0 0 1.885-1.885L17.886 16l5.724-5.724a1.333 1.333 0 1 0-1.886-1.885L16 14.114l-5.724-5.723Z"
+        className="fill-current"
+      />
+    </mask>
+    <g mask="url(#close-a)">
+      <path className="fill-current" d="M0 0h32v32H0z" />
     </g>
   </svg>
 );
@@ -779,7 +817,8 @@ export type props = {
     | 'activities'
     | 'check-circle-red'
     | 'check-circle-yellow'
-    | 'trash-outline';
+    | 'trash-outline'
+    | 'close-outline';
 };
 const Icon: React.FC<props> = ({ name, ...props }) => {
   props.className = classNames('icon', props.className);
@@ -850,6 +889,8 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <Lodging {...props} />;
     case 'trash-outline':
       return <TrashOutline {...props} />;
+    case 'close-outline':
+      return <CloseOutline {...props} />;
     default:
       return <></>;
   }
