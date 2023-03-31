@@ -11,9 +11,9 @@ const CustomRangeInput = ({ openCalendar, value }: any) => {
     let to = new DateObject(value[1]).format("DD / MMMM / YYYY") || "";
 
     return (
-        <div className='w-full flex flex-row overflow-hidden border-[2px] border-[#7B7B7B] rounded-[4px] '>
-            <input className='w-[48%] py-2 border-r border-r-[#7B7B7B] text-[#7B7B7B] text-center' onFocus={openCalendar} value={from} readOnly />
-            <input className='w-[52%] py-2 text-center text-[#7B7B7B]' onFocus={openCalendar} value={to} readOnly />
+        <div className='w-full flex flex-row overflow-hidden border-[2px] border-customForm rounded-md '>
+            <input className='w-[50%] py-1 text-center text-sm md:text-base border-r border-r-customForm text-customForm' onFocus={openCalendar} value={from} readOnly />
+            <input className='w-[50%] py-1 text-center text-sm md:text-base text-customForm' onFocus={openCalendar} value={to} readOnly />
         </div>
     );
 }
@@ -31,8 +31,8 @@ export const FormSearchFilter = () => {
                         <legend className="block text-sm font-medium text-gray-900">{t('field_categories')}</legend>
                         <div className="pt-6 space-y-3">
                             <select
-                                id="sex"
-                                name="sex"
+                                id="category"
+                                name="category"
                                 className={FormStyles('select')}
                                 defaultValue={''}
                             >
@@ -47,8 +47,8 @@ export const FormSearchFilter = () => {
                         <legend className="block text-sm font-medium text-gray-900">{t('field_subcategories')}</legend>
                         <div className="pt-6 space-y-3">
                             <select
-                                id="sex"
-                                name="sex"
+                                id="subcategory"
+                                name="subcategory"
                                 className={FormStyles('select')}
                                 defaultValue={''}
                             >
@@ -63,8 +63,8 @@ export const FormSearchFilter = () => {
                         <legend className="block text-sm font-medium text-gray-900">{t('field_subsubcategories')}</legend>
                         <div className="pt-6 space-y-3">
                             <select
-                                id="sex"
-                                name="sex"
+                                id="sub_subcategory"
+                                name="sub_subcategory"
                                 className={FormStyles('select')}
                                 defaultValue={''}
                             >
@@ -94,10 +94,10 @@ export const FormSearchFilter = () => {
                         <legend className="block text-sm font-medium text-gray-900">{t('field_location')}</legend>
                         <div className="pt-6 space-y-3">
                             <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                autoComplete="location"
+                                type="text"
+                                name="location"
+                                id="location"
+                                autoComplete={t('field_location')}
                                 placeholder="location"
                                 className={FormStyles('input')}
                             />

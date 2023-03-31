@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+// Card Components
+import { Attend, Favorite } from "./atoms";
 // Icons
-import { HeartIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import { HeartIcon as HeartSolid } from "@heroicons/react/20/solid";
+import { MapPinIcon } from "@heroicons/react/24/outline";
 
 export const EventCardList = () => {
     return (
@@ -11,9 +12,8 @@ export const EventCardList = () => {
             <div className="grid grid-cols-3 h-40 md:h-60 w-[100%] md:px-9 drop-shadow-xl">
                 <div className="h-36 md:h-full relative col-span-1 rounded-l-[2rem]">
                     <Image src="/images/events/event/prueba01.webp" alt="prueba" fill />
-                    <div className="absolute top-0 left-0 m-4 flex h-10 w-10 items-center justify-center rounded-full bg-white drop-shadow-xl">
-                        <HeartIcon name="favoriteB" className="w-5 h-5 text-2xl text-[#1f1f1f]" />
-                    </div>
+                    <Favorite />
+                <Attend />
                 </div>
                 <div className="h-36 md:h-full col-span-2 flex flex-col items-start justify-start rounded-r-[2rem] bg-white border-t-[20px] border-customPurple">
                     <div className="h-full w-full justify-self-center rounded-br-[2rem] ">

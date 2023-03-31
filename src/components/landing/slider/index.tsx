@@ -1,9 +1,11 @@
-import { EventSlider } from "./eventSlider";
 import { CategorySlider } from "./categorySlider";
+import { EventDateSalider } from "./eventDateSlider"
+import { EventSlider } from "./eventSlider";
 import { HeroSlider } from "./heroSlider";
 
 export {
-    EventSlider,
     CategorySlider,
+    EventDateSalider,
+    EventSlider,
     HeroSlider
 }

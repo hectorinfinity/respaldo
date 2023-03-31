@@ -36,7 +36,6 @@ const ProfileCustom = () => {
         { name: "Artes Visuales", src: "/images/events/category/arts.png", selected: true },
         { name: "Cine", src: "/images/events/category/cine.png", selected: false },
         { name: "Danza", src: "/images/events/category/dance.png", selected: true },
-        
     ]
 
     return (

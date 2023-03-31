@@ -1,19 +1,18 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+// Card Components
+import { Attend, Favorite } from "./atoms";
 // Icons
-import { HeartIcon, MapPinIcon } from "@heroicons/react/24/outline";
-import { HeartIcon as HeartSolid } from "@heroicons/react/20/solid";
+import { MapPinIcon } from "@heroicons/react/24/outline";
 
 export const EventCardGrid = () => {
     return (
         <div className="px-8 sm:px-4 py-4 drop-shadow-xl">
             <div className="relative h-64 w-70 lg:w-80 rounded-t-[2rem] border-b-[20px] border-customBlue">
                 <Image src="/images/events/event/prueba01.webp" alt="prueba" fill />
-                <div className="absolute top-0 right-0 m-3 flex h-10 w-10 items-center justify-center rounded-full bg-white drop-shadow-xl">
-                    <HeartIcon name="favoriteD" className="w-6 h-6" />
-                    {/* <HeartSolid name="favoriteE" className="w-6 h-6 text-customYellow" /> */}
-                </div>
+                <Favorite />
+                <Attend />
             </div>
             <div className="w-70 lg:w-80 rounded-b-[2rem] border-x-customForm shadow-lg bg-white">
                 <div className="space-y-3 px-4 py-5">

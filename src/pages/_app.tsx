@@ -56,7 +56,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
                 `}{" "}
               </style> */}
             <Wrapper
-              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string}
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}
               libraries={['places']}
             >
               <Component {...pageProps} />
