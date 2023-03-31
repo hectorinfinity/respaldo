@@ -154,10 +154,12 @@
       "new_card": "Nueva Tarjeta",
       "card_number": "Numero de tarjeta",
       "holders_name": "Nombre del titular",
+      "expiration_date": "Fecha de expiración",
+      "cvv": "CVV",
       "alias": "Alias (opcional)",
       "month_fee": {
         "label": "Meses de tasa de interés",
-        "options": ["3 Meses"]
+        "option": "3 Meses"
       },
       "save_my_card": "Guardar mi tarjeta para futuras compras"
     },
@@ -165,16 +167,16 @@
     "fieldset_address": {
       "select_your_address": {
         "label": "Seleeciona tu dirección",
-        "options": ["Nueva dirección"]
+        "option": "Nueva dirección"
       },
       "country": "País",
       "state": {
         "label": "Estado",
-        "options": ["Selecciona un estado"]
+        "option": "Selecciona un estado"
       },
       "city": {
         "label": "Ciudad",
-        "options": ["Selecciona una ciudad"]
+        "option": "Selecciona una ciudad"
       },
       "postal_code": {
         "label": "Código postal",
@@ -189,5 +191,19 @@
       }
     },
     "save_address": "Guardar dirección"
+  },
+  "Drawer_Search_Filters": {
+    "title": "Filtros",
+    "category": "Categorías",
+    "sub_category": "Sub categoría",
+    "sub_sub_category": "Sub sub categoría",
+    "dates": "Fechas",
+    "initial_date": "Fecha inicial",
+    "finish_date": "Fecha de finalización",
+    "location": {
+      "label": "Ubicacion",
+      "placeholder": "Buscar por país, ciudad"
+    },
+    "button": "Aplicar Filtros"
   }
 }
