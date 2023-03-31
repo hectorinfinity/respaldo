@@ -77,9 +77,9 @@ const CardEvent: React.FC<props> = ({
             layout == 'column' && 'flex h-full items-center'
           )}
         >
-          <div className={classNames('p-5')}>
-            <span className="block text-black font-semibold break-words text-xl">{name}</span>
-            <div className={classNames('my-5', layout == 'column' && 'flex gap-3')}>
+          <div className='p-5'>
+            <span className="block text-black font-semibold break-words text-lg">{name}</span>
+            <div className={classNames('my-3', layout == 'column' && 'flex gap-3')}>
               <span className="block text-customGray">
                 {format(date, 'EEEE, dd MMMM yyyy', {
                   locale: locale == 'en' ? enUS : es,

@@ -8,13 +8,28 @@ export default {
   component: Map,
 } as Meta;
 
-const Template: StoryFn<props> = (args) => <Map className="aspect-video" {...args} />;
+const Template: StoryFn<props> = (args) => (
+  <Map className="aspect-video" {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
-  center: {
-    lat: 40.7127281,
-    lng: -74.0060152,
+  origin: {
+    lat: 45.424721,
+    lng: -75.695,
+  },
+  zoom: 15,
+};
+
+export const WithDestination = Template.bind({});
+WithDestination.args = {
+  origin: {
+    lat: 45.424721,
+    lng: -75.695,
+  },
+  destination: {
+    lat: 44.5,
+    lng: -89.5,
   },
   zoom: 15,
 };

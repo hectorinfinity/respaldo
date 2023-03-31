@@ -780,6 +780,36 @@ const CloseOutline = (props) => (
     </g>
   </svg>
 );
+const RoutesSolid = (props) => (
+  <svg
+    viewBox="0 0 25 25"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <mask
+      id="routes-solid"
+      style={{
+        maskType: 'alpha',
+      }}
+      maskUnits="userSpaceOnUse"
+      x={3}
+      y={2}
+      width={19}
+      height={21}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M18.5 4.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-3 1a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM9 6.5a2.5 2.5 0 1 0 0 5h8a4.5 4.5 0 1 1 0 9h-4.5a1 1 0 1 1 0-2H17a2.5 2.5 0 0 0 0-5H9a4.5 4.5 0 1 1 0-9h3.5a1 1 0 1 1 0 2H9Zm-2.5 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm-3 1a3 3 0 1 1 6 0 3 3 0 0 1-6 0Z"
+        fill="#0F1019"
+      />
+    </mask>
+    <g mask="url(#routes-solid)">
+      <path fill="#0F1019" d="M.5.5h24v24H.5z" />
+    </g>
+  </svg>
+);
 
 export type props = {
   className?: string;
@@ -818,7 +848,8 @@ export type props = {
     | 'check-circle-red'
     | 'check-circle-yellow'
     | 'trash-outline'
-    | 'close-outline';
+    | 'close-outline'
+    | 'routes-solid';
 };
 const Icon: React.FC<props> = ({ name, ...props }) => {
   props.className = classNames('icon', props.className);
@@ -891,6 +922,8 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <TrashOutline {...props} />;
     case 'close-outline':
       return <CloseOutline {...props} />;
+    case 'routes-solid':
+      return <RoutesSolid {...props} />;
     default:
       return <></>;
   }

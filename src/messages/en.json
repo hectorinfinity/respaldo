@@ -925,5 +925,9 @@
       "placeholder": "Search by country,city"
     },
     "button": "Aply Filters"
+  },
+  "Card_Event_Location":{
+    "location_map":"Location Map",
+    "trace_route":"Trace Route"
   }
 }
