@@ -830,6 +830,13 @@
     "activities": "Activities",
     "view_more": "View More"
   },
+  "List_Card_Event": {
+    "order_by": "Order by",
+    "view": "View",
+    "not_results": "Results not found",
+    "relevant": "Relevant",
+    "more_filters": "More filters"
+  },
   "Header_Queue": {
     "lobby": "LOBBY",
     "waiting_room": "WAITING ROOM",
@@ -865,7 +872,7 @@
     "seat": "Seat",
     "section": "Section",
     "select_number_of_tickets": "Select the number of tickets",
-    "price": "Cost {value} each"    
+    "price": "Cost {value} each"
   },
   "Step_Checkout_Tickets": {
     "title": "How do you want to recieve your tickets?",
@@ -932,8 +939,8 @@
     },
     "button": "Aply Filters"
   },
-  "Card_Event_Location":{
-    "location_map":"Location Map",
-    "trace_route":"Trace Route"
+  "Card_Event_Location": {
+    "location_map": "Location Map",
+    "trace_route": "Trace Route"
   }
 }
