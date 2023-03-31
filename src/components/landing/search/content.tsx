@@ -129,7 +129,7 @@ export const Content = () => {
                             <span className="sr-only">{t('search.view_grid')}</span>
                             <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
                         </button>
-                        <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-2">
+                        <button type="button" className="hidden sm:flex -m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-2">
                             <span className="sr-only">{t('search.view_grid')}</span>
                             <Bars3Icon className="h-5 w-5" aria-hidden="true" />
                         </button>

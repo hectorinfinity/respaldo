@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Tab } from '@headlessui/react'
 // Helpers
-import { classNames, CurrentColor } from '@/helpers';
+import { classNames } from '@/helpers';
 // Icons
 import { CalendarDaysIcon, ClockIcon, CurrencyDollarIcon, MapIcon } from '@heroicons/react/24/outline';
 import { EventShare } from './eventShare';

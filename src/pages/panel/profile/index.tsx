@@ -1,5 +1,4 @@
 /** @format */
-import { useState } from 'react';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
@@ -13,18 +12,19 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 // Icons
 import { PlusIcon } from '@heroicons/react/20/solid';
 // Interface
-import { IProfile } from "@/interfaces/profile";
+import { User } from "@/interfaces/user";
 // Helpers
 import { CurrentColor, FormStyles } from "@/helpers";
+import { updateUser } from "@/api/user/user";
 
 const validationSchema = yup.object().shape({
-    firstname: yup.string().min(2).max(32).required(),
-    surname: yup.string().min(2).max(32).required(),
-    username: yup.string().min(2).max(32).required(),
-    email: yup.string().email().required(),
-    sex: yup.string().required(),
-    birthday: yup.date().required(),
-    phone: yup.string().min(10).max(10).required(),
+    firstname: yup.string().min(2).max(32).required('First name is required'),
+    surname: yup.string().min(2).max(32).required('Surname is required'),
+    username: yup.string().min(2).max(32).required('Username is required'),
+    email: yup.string().email().required('Email is required'),
+    sex: yup.string().required('Sex is required'),
+    birthday: yup.date().required('Birthday is required'),
+    phone: yup.string().min(10).max(10).required('Phone is required'),
 });
 
 const Profile = () => {
@@ -35,12 +35,13 @@ const Profile = () => {
     const tc = useTranslations("Common_Forms");
     const tb = useTranslations("btn");
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<IProfile>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });
-    const onSubmitHandler = (data: IProfile) => {
+    const onSubmitHandler = (data: User) => {
         // setSubmitted(false);
         // setSubmittedError(true);
+        updateUser(data)
         console.log({ data });
         reset();
         // Handle Submit Form
@@ -214,17 +215,17 @@ const Profile = () => {
                         </div>
                         <div className="mt-6 lg:mt-0 grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
-                                <CustomLabel field="phone" name={tc('field_phone')} />
+                                <CustomLabel field="phones" name={tc('field_phone')} />
                                 <input
-                                    {...register('phone')}
+                                    {...register('phones')}
                                     type="tel"
-                                    name="phone"
-                                    id="phone"
+                                    name="phones"
+                                    id="phones"
                                     autoComplete={tc('auto_phone')}
                                     placeholder={tc('field_phone')}
                                     className={FormStyles('input')}
                                 />
-                                <CustomError error={errors.phone?.message} />
+                                <CustomError error={errors.phones?.message} />
 
                                 <button>
                                     <PlusIcon />

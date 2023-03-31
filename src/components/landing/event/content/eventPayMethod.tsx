@@ -1,7 +1,9 @@
 import Image from "next/image"
 
 const payMethod = [
-    { name: "MasterCard", image: "/images/brands/mastercard_3x.png" },
+    { name: "Visa", image: "/images/brands/visaBank.png" },
+    { name: "MasterCard", image: "/images/brands/masterBank.png" },
+    { name: "American Express", image: "/images/brands/amexBank.png" },
 ]
 
 export const EventPayMethod = () => {
@@ -11,7 +13,7 @@ export const EventPayMethod = () => {
                 {payMethod.map((item) => (
                     <li key={item.name}>
                         <span className="sr-only">{item.name}</span>
-                        <Image src={item.image} alt={item.name} width={24} height={10} className="object-cover object-center" />
+                        <Image src={item.image} alt={item.name} width={40} height={10} className="object-cover object-center" />
                     </li>
                 ))}
             </ul>

@@ -13,8 +13,24 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 // Helpers
 import { FormStyles } from '@/helpers';
 import { AddressForm } from '@/components/forms/forms';
+import { User } from "@/interfaces/user";
+
+// cambiar schema
+const validationSchema = yup.object().shape({
+    addressname: yup.string().required("Address name is required"),
+    searchaddress: yup.string(),
+    address1: yup.string().required("Address line 1 is required"),
+    address2: yup.string(),
+    pc: yup.string().required("Postal code is required"),
+    country: yup.string().required("Country is required"),
+    state: yup.string().required("State is required"),
+    city: yup.string().required("City is required"),
+});
 
 const TicketPosUserCreate = () => {
+    const [searchAddress, setSearchAddress] = useState("");
+    const [markerPosition, setMarkerPosition] = useState(null);
+
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
 
@@ -28,6 +44,21 @@ const TicketPosUserCreate = () => {
         { id: 'ROLE_TICKET_OFFICE', name: "ROLE_TICKET_OFFICE" },
         { id: 'ROLE_POS', name: "ROLE_POS" },
     ]
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
+        resolver: yupResolver(validationSchema),
+    });
+
+    const onSubmitHandler = (data: User) => {
+        // updateUser(data)
+        console.log({ data });
+        reset();
+    };
+
+    const onPlaceSelected = (address, latLng) => {
+        setSearchAddress(address);
+        setMarkerPosition(latLng);
+    };
 
     return (
         <>
@@ -94,7 +125,7 @@ const TicketPosUserCreate = () => {
                             </div>
                         </div>
                         <div className='mt-6'>
-                            <AddressForm />
+                            <AddressForm register={register} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
                         </div>
                         {/* Buttons section */}
                         <div className="divide-y divide-gray-200 pt-6">

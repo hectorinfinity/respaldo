@@ -1,5 +1,4 @@
 /** @format */
-import { Fragment } from 'react'
 import { GetStaticPropsContext } from "next";
 // Layout and Header
 import MainLayout from "@/components/layout/main";
