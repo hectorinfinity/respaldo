@@ -5,6 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif');
 
 @layer components {
+  .input-label {
+    @apply font-bold text-sm
+  }
   .icon {
     @apply w-6 h-6 fill-current text-black shrink-0;
   }
