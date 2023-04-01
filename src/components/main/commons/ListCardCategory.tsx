@@ -2,7 +2,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import React from 'react';
 import { classNames } from '@/helpers';
-import CardCategory, { props as CardCategoryProps } from '@/components/main/commons/CardCategory';
+import CardCategory, {
+  props as CardCategoryProps,
+} from '@/components/main/commons/CardCategory';
 import { props as PaginationProps } from '@/components/commons/Pagination';
 import { useTranslations } from 'next-intl';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,24 +28,26 @@ const ListCardCategory: React.FC<props> = ({
   size = 'large',
   totalDocs,
 }) => {
-  const t = useTranslations('ListCardCategory');
+  const t = useTranslations('List_Card_Category');
   return (
-    <div className={classNames('flex flex-col', className)}>
-      <span className="inline-block font-semibold mx-auto text-2xl">{t('title')}</span>
-      <div className="mt-10 px-16 relative">
+    <div className={classNames('flex flex-col ', className)}>
+      <span className="inline-block font-bold mx-auto text-3xl">
+        {t('title')}
+      </span>
+      <div className="mt-7 px-16 relative">
         {layout == 'swiper' && (
           <>
             <Button
               weight="ghost"
               shape="pill"
               className="absolute z-10 left-3 top-20 swiper-custom-prev-button"
-              iconLeft={<Icon name="chevron-left" className="text-black" />}
+              iconLeft={<Icon name="chevron-left" className="fill-none" />}
             />
             <Button
               weight="ghost"
               shape="pill"
               className="absolute z-10 right-3 top-20 swiper-custom-next-button"
-              iconLeft={<Icon name="chevron-right" className="text-black" />}
+              iconLeft={<Icon name="chevron-right" className="fill-none" />}
             />
           </>
         )}

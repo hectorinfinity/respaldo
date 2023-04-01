@@ -9,7 +9,7 @@ export type props = {
 // TODO: translate
 const WillAttend: React.FC<props> = ({ className, changeColor = false }) => {
   return (
-    <span
+    <button
       className={classNames(
         'inline-flex text-sm rounded-lg shadow-xl px-2 py-2 font-medium items-center gap-2',
         changeColor ? 'bg-customGreenVan text-white' : 'bg-gray-200 text-black',
@@ -17,7 +17,7 @@ const WillAttend: React.FC<props> = ({ className, changeColor = false }) => {
       )}
     >
       <Icon className="w-3 h-3" name="circle-check-outline" />i will attend
-    </span>
+    </button>
   );
 };
 

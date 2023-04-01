@@ -6,6 +6,9 @@ const nextConfig = {
     locales: ["es", "en"],
     defaultLocale: "es",
   },
+  images: {
+    domains: ["loremflickr.com"]
+  }
 }
 
 module.exports = nextConfig

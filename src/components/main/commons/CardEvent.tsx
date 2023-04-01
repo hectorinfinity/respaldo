@@ -7,7 +7,11 @@ import { format } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
 import { useLocale } from 'next-intl';
 
-type CardEventEnumColorsStrings = 'customPurple' | 'customDaisy' | 'customBlueNight' | 'customYellow';
+type CardEventEnumColorsStrings =
+  | 'customPurple'
+  | 'customDaisy'
+  | 'customBlueNight'
+  | 'customYellow';
 type CardEventEnumColors = `bg-${CardEventEnumColorsStrings}`;
 
 export type props = {
@@ -52,7 +56,7 @@ const CardEvent: React.FC<props> = ({
           willAttend ? (
             <Icon name="heart-solid" className="text-customYellow" />
           ) : (
-            <Icon name="heart-outline" className="text-customGray" />
+            <Icon name="heart-outline" className="text-white" />
           )
         }
       />
@@ -65,7 +69,10 @@ const CardEvent: React.FC<props> = ({
         <Image src={image} alt="" fill className="object-cover" />
         <WillAttend
           changeColor={willAttend}
-          className={classNames('absolute bottom-3', layout == 'grid' ? 'right-3' : 'left-3')}
+          className={classNames(
+            'absolute bottom-3',
+            layout == 'grid' ? 'right-3' : 'left-3'
+          )}
         />
       </div>
 
@@ -77,9 +84,13 @@ const CardEvent: React.FC<props> = ({
             layout == 'column' && 'flex h-full items-center'
           )}
         >
-          <div className='p-5'>
-            <span className="block text-black font-semibold break-words text-lg">{name}</span>
-            <div className={classNames('my-3', layout == 'column' && 'flex gap-3')}>
+          <div className="p-5">
+            <span className="block text-black font-semibold break-words text-lg">
+              {name}
+            </span>
+            <div
+              className={classNames('my-3', layout == 'column' && 'flex gap-3')}
+            >
               <span className="block text-customGray">
                 {format(date, 'EEEE, dd MMMM yyyy', {
                   locale: locale == 'en' ? enUS : es,

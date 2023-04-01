@@ -841,7 +841,8 @@
   },
   "Step_Checkout_Quantity": {
     "select_date_time": "Select date and time",
-    "select_number_of_tickets": "Select the number of tickets"
+    "select_number_of_tickets": "Select the number of tickets",
+    "price": "Cuesta {value} cada uno"
   },
   "Header_Checkout": {
     "first_step": "Date and quantity of tickets",
