@@ -11,3 +11,6 @@ export { default as Avatar } from './Avatar';
 export { default as Panel } from './Panel';
 export { default as WillAttend } from './WillAttend';
 export { default as Icon } from './Icon';
+export { default as Map } from './Map';
+export { default as WrapperLoader } from './WrapperLoader';
+export { default as SwiperControls } from './SwiperControls';

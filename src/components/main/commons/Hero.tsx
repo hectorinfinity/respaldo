@@ -12,7 +12,7 @@ export type props = {
 
 const Hero: React.FC<props> = ({ className, items }) => {
   return (
-    <div>
+    <div className={className}>
       <Swiper
         className="mt-8 h-[300px] sm:h-[500px] "
         modules={[Navigation, Pagination]}
