@@ -11,7 +11,7 @@ const LayoutMain: React.FC<props> = ({ className, children }) => {
   return (
     <div className={classNames('', className)}>
       <Navbar />
-      <div className="mt-14 mb-14">{children}</div>
+      <div>{children}</div>
       <Footer />
     </div>
   );
