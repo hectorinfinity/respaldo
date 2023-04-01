@@ -3,6 +3,14 @@ export interface UserPayment {
     paypal?: string | null
 }
 
+export interface UserCard {
+    stripeId: string
+    card: string
+    type: string
+    name: string
+    exp: string
+}
+
 export interface UserPromoter {
     selfie: string
     id_front: string

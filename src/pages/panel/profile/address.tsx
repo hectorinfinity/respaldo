@@ -8,18 +8,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { AddressForm } from '@/components/forms/forms';
-import { LoadScript } from "@react-google-maps/api";
 import { updateUser } from "@/api/user/user";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 // Interface
-import { User } from "@/interfaces/user";
-
-
+import { Address } from "@/interfaces/serializers/commons";
 
 const validationSchema = yup.object().shape({
     addressname: yup.string().required("Address name is required"),
     searchaddress: yup.string(),
-    address1: yup.string().required("Address line 1 is required"),
+    address: yup.string().required("Address line 1 is required"),
     address2: yup.string(),
     pc: yup.string().required("Postal code is required"),
     country: yup.string().required("Country is required"),
@@ -40,12 +37,12 @@ const ProfileAddress = () => {
         { page: t('profile.address'), href: '' }
     ];
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
+    const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm<Address>({
         resolver: yupResolver(validationSchema),
     });
 
-    const onSubmitHandler = (data: User) => {
-        updateUser(data)
+    const onSubmitHandler = (data: Address) => {
+        // updateUser(data)
         console.log({ data });
         reset();
     };
@@ -63,7 +60,7 @@ const ProfileAddress = () => {
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit(onSubmitHandler)} method="POST">
-                            <AddressForm register={register} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
+                        <AddressForm register={register} setValue={setValue} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
                         <div className="divide-y divide-gray-200 pt-6">
                             <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
                                 <CustomCancel />

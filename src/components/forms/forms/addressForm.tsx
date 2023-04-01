@@ -10,9 +10,13 @@ import { useGoogleMapsAPIKey } from "@/hooks/useGoogleMapsApi";
 
 
 
-export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, markerPosition }) => {
+export const AddressForm = ({ register, setValue, errors, searchAddress, onPlaceSelected, markerPosition }) => {
     const [autocomplete, setAutocomplete] = useState(null);
     const [librariesLoaded, setLibrariesLoaded] = useState(false);
+    const [coords, setCoords] = useState({
+        latitude: "",
+        longitude: ""
+    })
 
     const { apiKey } = useGoogleMapsAPIKey();
 
@@ -25,6 +29,10 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
     const onPlaceChanged = () => {
         if (autocomplete) {
             const place = autocomplete.getPlace();
+            if (!place.geometry || !place.geometry.location) {
+                console.error("No geometry/location data found for the selected address.");
+                return;
+            }
             const address = place.formatted_address;
             const latLng = {
                 lat: place.geometry.location.lat(),
@@ -32,6 +40,20 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
             };
             console.log("Selected address: ", address, latLng);
             onPlaceSelected(address, latLng);
+
+            const components = place.address_components;
+            const getAddressComponent = (type) => components.find((component) => component.types.includes(type));
+
+            setValue("addressname", getAddressComponent("point_of_interest")?.long_name || getAddressComponent("premise")?.long_name || address);
+            setValue("address", (getAddressComponent("street_number")?.long_name || "") + " " + (getAddressComponent("route")?.long_name || ""));
+
+            setValue("address2", getAddressComponent("subpremise")?.long_name || "");
+            setValue("city", getAddressComponent("locality")?.long_name || "");
+            setValue("state", getAddressComponent("administrative_area_level_1")?.long_name || "");
+            setValue("country", getAddressComponent("country")?.long_name || "");
+            setValue("pc", getAddressComponent("postal_code")?.long_name || "");
+            setValue("latitude", latLng.lat.toString());
+            setValue("longitude", latLng.lng.toString());
         }
     };
     const handleLoad = () => {
@@ -49,6 +71,7 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
                     <div className="col-span-12">
                         <CustomLabel field="addressname" name={tc('field_addressname')} required />
                         <input
+                            {...register("addressname")}
                             type="text"
                             name="addressname"
                             id="addressname"
@@ -84,19 +107,21 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
             </LoadScript>
             <div className="mt-6 grid grid-cols-12 gap-6">
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
-                    <CustomLabel field="address1" name={tc('field_address1')} required />
+                    <CustomLabel field="address" name={tc('field_address')} required />
                     <input
+                        {...register("address")}
                         type="text"
-                        name="address1"
-                        id="address1"
-                        autoComplete={tc('auto_address1')}
-                        placeholder={tc('field_address1')}
+                        name="address"
+                        id="address"
+                        autoComplete={tc('auto_address')}
+                        placeholder={tc('field_address')}
                         className={FormStyles('input')}
                     />
                 </div>
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="address2" name={tc('field_address2')} />
                     <input
+                        {...register("address2")}
                         type="text"
                         name="address2"
                         id="address2"
@@ -108,6 +133,7 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="pc" name={tc('field_pc')} required />
                     <input
+                        {...register("pc")}
                         type="text"
                         name="pc"
                         id="pc"
@@ -119,6 +145,7 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="country" name={tc('field_country')} required />
                     <input
+                        {...register("country")}
                         type="text"
                         name="country"
                         id="country"
@@ -130,6 +157,7 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="state" name={tc('field_state')} required />
                     <input
+                        {...register("state")}
                         type="text"
                         name="state"
                         id="state"
@@ -141,6 +169,7 @@ export const AddressForm = ({ register, errors, searchAddress, onPlaceSelected, 
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="city" name={tc('field_city')} required />
                     <input
+                        {...register("city")}
                         type="text"
                         name="city"
                         id="city"

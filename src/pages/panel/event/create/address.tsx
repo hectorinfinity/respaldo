@@ -16,7 +16,7 @@ import { User } from "@/interfaces/user";
 const validationSchema = yup.object().shape({
     addressname: yup.string().required("Address name is required"),
     searchaddress: yup.string(),
-    address1: yup.string().required("Address line 1 is required"),
+    address: yup.string().required("Address line 1 is required"),
     address2: yup.string(),
     pc: yup.string().required("Postal code is required"),
     country: yup.string().required("Country is required"),
@@ -37,7 +37,7 @@ const EventAddress = () => {
         { page: t('profile.address'), href: '' }
     ]
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
+    const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });
 
@@ -61,7 +61,7 @@ const EventAddress = () => {
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9" onSubmit={handleSubmit(onSubmitHandler)} method="POST">
-                        <AddressForm register={register} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
+                        <AddressForm register={register} setValue={setValue} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
                         {/* Buttons section */}
                         <div className="divide-y divide-gray-200 pt-6">
                             <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
