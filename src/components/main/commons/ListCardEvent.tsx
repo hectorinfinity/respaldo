@@ -54,14 +54,14 @@ const ListCardEvent: React.FC<props> = ({
   const [currentLayout, setCurrentLayout] = useState(layout);
   const [drawerFilters, setDrawerFilters] = useState(false);
   const t = useTranslations('List_Card_Event');
-  const { register, formState } = useFormReturn || {};
+  const { register } = useFormReturn || {};
   useEffect(() => {
     function handleResize() {
       const width = window.innerWidth;
       if (width > 992) {
         setCols(4);
       } else if (width > 640) {
-        setCols(2);
+        setCols(3);
       } else {
         setCols(1);
       }
@@ -76,10 +76,10 @@ const ListCardEvent: React.FC<props> = ({
   }, []);
   return (
     <div className={classNames('', className)}>
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row  gap-y-10 sm:justify-between">
         <Title level="h4">{title}</Title>
         {controls && (
-          <div className="flex items-center gap-7">
+          <div className="flex items-center gap-7 order-first sm:order-none">
             <div className="flex items-center gap-5">
               <p className="font-bold whitespace-nowrap">{t('order_by')}:</p>
               <Select
@@ -124,7 +124,7 @@ const ListCardEvent: React.FC<props> = ({
             <div className="relative">
               <Swiper ref={swiperRef} slidesPerView={cols} spaceBetween={50}>
                 {items.map((item, idx) => (
-                  <SwiperSlide key={idx}>
+                  <SwiperSlide className="h-auto" key={idx}>
                     <CardEvent layout="grid" {...item} />
                   </SwiperSlide>
                 ))}

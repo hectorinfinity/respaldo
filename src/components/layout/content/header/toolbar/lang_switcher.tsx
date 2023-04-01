@@ -19,7 +19,7 @@ export const LanguageSwitcher = () => {
           defaultValue={locale}
           onChange={handleLangChange}
         >
-          {locales.map((l, i) => {
+          {locales?.map((l, i) => {
             return (
               <option key={i} value={l}>
                   {l}

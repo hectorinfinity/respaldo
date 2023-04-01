@@ -764,7 +764,10 @@
       "program": "Program"
     }
   },
-
+  "Main_Comment_Commons": "/////////////////////////////////////// Commons",
+  "Ferrors": {
+    "required": "Required"
+  },
   "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
   "Card_Event": {
     "title": "You are in the virtual queue",
@@ -942,5 +945,27 @@
   "Card_Event_Location": {
     "location_map": "Location Map",
     "trace_route": "Trace Route"
+  },
+  "Footer": {
+    "follow_us": "Follow our network",
+    "download_our_app": "Download our app",
+    "help": "Help",
+    "faq": "FAQ's",
+    "contact": "Contact",
+    "information": "Information",
+    "advertisments": "Advertisments",
+    "about_us": "About Us",
+    "donations": "Donations",
+    "partners": "Partners",
+    "privacy_policy": "Privacy policies",
+    "terms_and_conditions": "Terms and conditions",
+    "ticket_info": "Ticket info",
+    "pages": "Pages",
+    "blog": "Blog",
+    "newsletter": "Newlestter",
+    "programs": "Programs",
+    "search": "Search",
+    "subscribe": "Subscribe",
+    "email": "Email"
   }
 }
