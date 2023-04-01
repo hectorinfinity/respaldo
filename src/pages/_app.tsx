@@ -46,15 +46,6 @@ export default function App({ Component, pageProps }: CustomAppProps) {
             />
           </Head>
           <Layout>
-            {/* <style jsx global>
-                {`
-                  *,
-                  html,
-                  body {
-                    font-family: "PP Neue Montreal";
-                  }
-                `}{" "}
-              </style> */}
             <Wrapper
               apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}
               libraries={['places']}

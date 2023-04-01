@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { classNames } from '@/helpers';
 import { Icon } from '@/components/commons';
+import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/solid';
 export type props = {
   className?: string;
   swiperRef: React.MutableRefObject<any>;
@@ -22,13 +23,13 @@ const SwiperControls: React.FC<props> = ({ className, swiperRef }) => {
         className=" absolute top-1/2 transform -translate-y-1/2 -left-10  cursor-pointer"
         onClick={handlePrev}
       >
-        <Icon className="text-primary-500" name="chevron-left" />
+        <ChevronLeftIcon className="w-5 h-5 text-primary-500" />
       </div>
       <div
         className=" absolute top-1/2 transform -translate-y-1/2 -right-10 cursor-pointer"
         onClick={handleNext}
       >
-        <Icon className="text-primary-500 " name="chevron-right" />
+        <ChevronRightIcon className="w-5 h-5 text-primary-500" />
       </div>
     </div>
   );

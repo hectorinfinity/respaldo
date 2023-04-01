@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { classNames } from '@/helpers';
-import { Title, Icon } from '@/components/commons';
+import { Title, Icon, SwiperControls } from '@/components/commons';
 import { useTranslations, useLocale } from 'next-intl';
 import { UseControllerProps } from 'react-hook-form';
 import { format } from 'date-fns';
@@ -96,18 +96,7 @@ const ListProgramDays: React.FC<props> = ({ className, items, ...props }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div
-          className=" absolute top-1/2 transform -translate-y-1/2 -left-10"
-          onClick={handlePrev}
-        >
-          <Icon className="text-primary-500" name="chevron-left" />
-        </div>
-        <div
-          className=" absolute top-1/2 transform -translate-y-1/2 -right-10"
-          onClick={handleNext}
-        >
-          <Icon className="text-primary-500 " name="chevron-right" />
-        </div>
+        <SwiperControls swiperRef={sliderRef} />
       </div>
     </div>
   );
