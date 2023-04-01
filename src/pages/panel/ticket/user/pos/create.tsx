@@ -19,7 +19,7 @@ import { User } from "@/interfaces/user";
 const validationSchema = yup.object().shape({
     addressname: yup.string().required("Address name is required"),
     searchaddress: yup.string(),
-    address1: yup.string().required("Address line 1 is required"),
+    address: yup.string().required("Address line 1 is required"),
     address2: yup.string(),
     pc: yup.string().required("Postal code is required"),
     country: yup.string().required("Country is required"),
@@ -45,7 +45,7 @@ const TicketPosUserCreate = () => {
         { id: 'ROLE_POS', name: "ROLE_POS" },
     ]
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
+    const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });
 
@@ -125,7 +125,7 @@ const TicketPosUserCreate = () => {
                             </div>
                         </div>
                         <div className='mt-6'>
-                            <AddressForm register={register} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
+                            <AddressForm register={register} setValue={setValue} errors={errors} searchAddress={searchAddress} onPlaceSelected={onPlaceSelected} markerPosition={markerPosition} />
                         </div>
                         {/* Buttons section */}
                         <div className="divide-y divide-gray-200 pt-6">

@@ -16,6 +16,7 @@ import { User } from "@/interfaces/user";
 // Helpers
 import { CurrentColor, FormStyles } from "@/helpers";
 import { updateUser } from "@/api/user/user";
+import { useMutation } from "@tanstack/react-query";
 
 const validationSchema = yup.object().shape({
     firstname: yup.string().min(2).max(32).required('First name is required'),
@@ -38,22 +39,24 @@ const Profile = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });
+    console.log("hect")
+    const userMutation = useMutation(updateUser, {
+        onSuccess: () => {
+            console.log('User updated successfully');
+            // reset();
+        },
+        onError: (error) => {
+            console.log('Error updating user:', error);
+        },
+    });
+
     const onSubmitHandler = (data: User) => {
         // setSubmitted(false);
         // setSubmittedError(true);
-        updateUser(data)
-        console.log({ data });
-        reset();
-        // Handle Submit Form
+        console.log("heeey")
+        console.log("data:", data)
+        // userMutation.mutate(data);
     };
-
-    const user = {
-        name: 'Debbie Lewis',
-        handle: 'deblewis',
-        email: 'debbielewis@example.com',
-        imageUrl:
-            'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
-    }
 
     const breadcrumb = [
         { page: t('user'), href: '/panel/profile' },
@@ -175,7 +178,7 @@ const Profile = () => {
                                             className="inline-block h-12 w-12 flex-shrink-0 overflow-hidden rounded-full"
                                             aria-hidden="true"
                                         >
-                                            <img className="h-full w-full rounded-full" src={user.imageUrl} alt="" />
+                                            <img className="h-full w-full rounded-full" src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80" alt="" />
                                         </div>
                                         <div className="relative ml-5">
                                             <input
@@ -196,7 +199,7 @@ const Profile = () => {
                                 </div>
 
                                 <div className="relative hidden overflow-hidden rounded-full lg:block">
-                                    <img className="relative h-40 w-40 rounded-full" src={user.imageUrl} alt="" />
+                                    <img className="relative h-40 w-40 rounded-full" src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80" alt="" />
                                     <label
                                         htmlFor="desktop-user-photo"
                                         className="absolute inset-0 flex h-full w-full items-center justify-center bg-black bg-opacity-75 text-sm font-medium text-white opacity-0 focus-within:opacity-100 hover:opacity-100"

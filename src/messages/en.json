@@ -674,8 +674,8 @@
     "field_searchaddress": "Search with Google...",
     "auto_searchaddress": "Search the address",
 
-    "field_address1": "Address",
-    "auto_address1": "Enter the adddress",
+    "field_address": "Address",
+    "auto_address": "Enter the adddress",
     "field_address2": "Address 2",
     "auto_address2": "Complete the adddress",
     "field_pc": "Postal Code",

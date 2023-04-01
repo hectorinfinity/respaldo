@@ -11,14 +11,15 @@ export interface PaginationParams {
 
 interface AddressName {
     long_name: string
-    short_name: string
+    short_name?: string
 }
 
 export interface Address {
-    latitude: string
-    longitude: string
+
+    latitude?: string
+    longitude?: string
     address: string
-    address2: string
+    address2?: string
     city: string
     state: AddressName
     country: AddressName
