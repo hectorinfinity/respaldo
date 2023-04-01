@@ -17,6 +17,7 @@ export type props = {
   name: string;
   date: Date;
   location: string;
+  favorite:boolean
   willAttend?: boolean;
   color: CardEventEnumColors;
 };
@@ -30,6 +31,7 @@ const CardEvent: React.FC<props> = ({
   location,
   name,
   willAttend = false,
+  favorite = false,
   color = 'bg-customDaisy',
 }) => {
   const locale = useLocale();
@@ -49,7 +51,7 @@ const CardEvent: React.FC<props> = ({
         color="white"
         shape="pill"
         iconLeft={
-          willAttend ? (
+          favorite ? (
             <Icon name="heart-solid" className="text-customYellow" />
           ) : (
             <Icon name="heart-outline" className="text-customGray" />

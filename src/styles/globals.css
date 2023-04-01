@@ -5,6 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif');
 
 @layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-5
+  }
   .input-label {
     @apply font-bold text-sm
   }
@@ -59,4 +62,8 @@
   .input-label {
     @apply text-sm font-medium text-gray-900;
   }
+}
+
+.swiper-slide {
+  height: auto;
 }
