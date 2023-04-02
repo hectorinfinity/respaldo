@@ -728,7 +728,8 @@
     "commons": {
       "events": "Events",
       "categories": "Categories",
-      "recommended_evenets": "Recommended Events"
+      "recommended_events": "Recommended Events",
+      "results": "{length} results for {query}"
     },
     "home": {
       "new_events": "New Events",
