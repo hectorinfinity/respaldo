@@ -6,9 +6,7 @@ import { Icon } from '@/components/commons';
 import { format } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
 import { useLocale } from 'next-intl';
-
-type CardEventEnumColorsStrings = 'customPurple' | 'customDaisy' | 'customBlueNight' | 'customYellow';
-type CardEventEnumColors = `bg-${CardEventEnumColorsStrings}`;
+import parseDate from '@/helpers/parseDate';
 
 export type props = {
   className?: string;
@@ -17,12 +15,13 @@ export type props = {
   name: string;
   date: Date;
   location: string;
-  favorite:boolean
+  favorite?: boolean;
   willAttend?: boolean;
-  color: CardEventEnumColors;
+  color: string;
 };
 // TODO: gray colors
 // TODO: should have time prop
+// TODO: when user is not logged in i will attend and like buttons should not be visible
 const CardEvent: React.FC<props> = ({
   className,
   date,
@@ -32,14 +31,14 @@ const CardEvent: React.FC<props> = ({
   name,
   willAttend = false,
   favorite = false,
-  color = 'bg-customDaisy',
+  color,
 }) => {
   const locale = useLocale();
   return (
     <div
       className={classNames(
         'rounded-xl relative shadow-xl overflow-hidden',
-        layout == 'grid' ? 'inline-block' : 'flex',
+        layout == 'column' && 'flex',
         className
       )}
     >
@@ -54,7 +53,7 @@ const CardEvent: React.FC<props> = ({
           favorite ? (
             <Icon name="heart-solid" className="text-customYellow" />
           ) : (
-            <Icon name="heart-outline" className="text-customGray" />
+            <Icon name="heart-outline" className="text-white" />
           )
         }
       />
@@ -67,28 +66,42 @@ const CardEvent: React.FC<props> = ({
         <Image src={image} alt="" fill className="object-cover" />
         <WillAttend
           changeColor={willAttend}
-          className={classNames('absolute bottom-3', layout == 'grid' ? 'right-3' : 'left-3')}
+          className={classNames(
+            'absolute bottom-3',
+            layout == 'grid' ? 'right-3' : 'left-3'
+          )}
         />
       </div>
 
       <div className="flex-1 flex flex-col items-start">
-        <div className={classNames('h-5 w-full', color)} />
+        <div
+          className={classNames('h-5 w-full')}
+          style={{ backgroundColor: color }}
+        />
 
         <div
           className={classNames(
+            'w-full',
             layout == 'column' && 'flex h-full items-center'
           )}
         >
-          <div className='p-5'>
-            <span className="block text-black font-semibold break-words text-lg">{name}</span>
-            <div className={classNames('my-3', layout == 'column' && 'flex gap-3')}>
+          <div className="p-5">
+            <span
+              title={name}
+              className="block w- truncate text-black font-semibold break-words text-lg"
+            >
+              {name}
+            </span>
+            <div
+              className={classNames('my-3', layout == 'column' && 'flex gap-3')}
+            >
               <span className="block text-customGray">
-                {format(date, 'EEEE, dd MMMM yyyy', {
+                {format(parseDate(date), 'EEEE, dd MMMM yyyy', {
                   locale: locale == 'en' ? enUS : es,
                 })}
               </span>
               <span className="block text-customGray">
-                {format(date, 'HH:mm', {
+                {format(parseDate(date), 'HH:mm', {
                   locale: locale == 'en' ? enUS : es,
                 })}
               </span>

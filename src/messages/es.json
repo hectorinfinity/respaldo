@@ -127,6 +127,13 @@
     "activities": "Actividades",
     "view_more": "Ver más"
   },
+  "List_Card_Event": {
+    "order_by": "Ordenar por",
+    "view": "Vista",
+    "not_results": "Resultados no encontrados",
+    "relevant": "Relevancia",
+    "more_filters": "Más filtros"
+  },
   "Header_Queue": {
     "lobby": "LOBBY",
     "waiting_room": "SALA DE ESPERA",
@@ -205,5 +212,69 @@
       "placeholder": "Buscar por país, ciudad"
     },
     "button": "Aplicar Filtros"
+  },
+  "Footer": {
+    "follow_us": "Sigue nuestras redes",
+    "download_our_app": "Descarga nuestra aplicación",
+    "help": "Ayuda",
+    "faq": "FAQ's",
+    "contact": "Contacto",
+    "information": "Información",
+    "advertisments": "Anuncios",
+    "about_us": "Sobre nosotros",
+    "donations": "Donaciones",
+    "partners": "Socios",
+    "privacy_policy": "Políticas de Privacidad",
+    "terms_and_conditions": "Términos y Condiciones",
+    "ticket_info": "Información de entradas",
+    "pages": "Páginas",
+    "blog": "Blog",
+    "newsletter": "Boletín informativo",
+    "programs": "Programas",
+    "search": "Búsqueda",
+    "subscribe": "Subscribirme",
+    "email": "Email"
+  },
+  "Public_Comment": "/////////////////////////////////////// Public Comment",
+  "Public": {
+    "commons": {
+      "events": "Events",
+      "categories": "Categories",
+      "recommended_events": "Eventos Recomendados",
+      "results": "{length} resultados para {query}"
+    },
+    "home": {
+      "new_events": "Eventos nuevos",
+      "featured_events": "Eventos destacados"
+    },
+    "search": {
+      "filters": "Filters",
+      "sort": "Sort",
+      "results_of": "Results of",
+      "no_results": "We couldn't find any results for",
+      "view_grid": "View Grid",
+      "close_menu": "Close Menu"
+    },
+    "event": {
+      "product_info": "Product Information",
+      "share_on": "Share event on",
+
+      "cost": "Cost",
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "buy": "Buy Ticket",
+
+      "supplier": "Supplier",
+
+      "description": "Description",
+      "information": "Information",
+      "location_map": "Location Map",
+
+      "attend": "I will attend"
+    },
+    "program": {
+      "program": "Program"
+    }
   }
 }

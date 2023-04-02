@@ -152,12 +152,13 @@ const ChevronLeft = (props) => (
   >
     <path
       d="m14 16.5-4-4 4-4"
+      stroke="#0F1019"
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <mask
-      id="chevron-left"
+      id="chevron-left-a"
       style={{
         maskType: 'alpha',
       }}
@@ -171,10 +172,11 @@ const ChevronLeft = (props) => (
         fillRule="evenodd"
         clipRule="evenodd"
         d="M14.707 17.207a1 1 0 0 0 0-1.414L11.414 12.5l3.293-3.293a1 1 0 0 0-1.414-1.414l-4 4a1 1 0 0 0 0 1.414l4 4a1 1 0 0 0 1.414 0Z"
+        fill="#0F1019"
       />
     </mask>
-    <g mask="url(#chevron-left)">
-      <path d="M0 .5h24v24H0z" />
+    <g mask="url(#chevron-left-a)">
+      <path fill="#0F1019" d="M0 .5h24v24H0z" />
     </g>
   </svg>
 );
