@@ -6,9 +6,11 @@ import ListCardEventRecommendation from '@/components/main/commons/ListCardEvent
 import CardEventDetails from '@/components/main/event/CardEventDetails';
 import CardEventLocation from '@/components/main/event/CardEventLocation';
 import SidebarEvent from '@/components/main/event/SidebarEvent';
+import { EventCategory, Event } from '@/interfaces/event';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -16,7 +18,7 @@ const EventDetailed = () => {
   const useFormReturn = useForm();
   const [eventsRecommendations, setEventsRecommendations] = useState([]);
   const t = useTranslations('Public');
-
+  const { query } = useRouter();
   const events = useQuery({
     queryKey: ['events'],
     queryFn: getEvents,
@@ -26,11 +28,15 @@ const EventDetailed = () => {
     queryFn: getEventsCategories,
   });
 
+  const event = useQuery<any>({
+    queryKey: ['event'],
+    queryFn: async () => await readEvent(query?.id as any),
+    enabled: Boolean(query?.id),
+  });
   const category = categories?.data?.[0];
 
   const locale = useLocale();
-  const event = events?.data?.[0];
-  const info = event?.info.content.find((obj) => obj.lang == locale);
+  const info = event?.data?.info.content.find((obj) => obj.lang == locale);
 
   useEffect(() => {
     setEventsRecommendations(
@@ -42,7 +48,6 @@ const EventDetailed = () => {
       }))
     );
   }, []);
-  console.log(event);
   return (
     <div className="section-container space-y-16 mt-16 mb-44">
       <div className="flex justify-between gap-10">
@@ -50,14 +55,14 @@ const EventDetailed = () => {
         <CardEventDetails
           className="flex-1"
           details={
-            event?.content?.find((obj) => obj.lang == locale).description
+            event?.data?.content?.find((obj) => obj.lang == locale).description
           }
           access={info?.access_limit}
           general={info?.general}
           observations={info?.observations}
           restrictions={info?.restrictions}
           services={info?.services}
-          id={event?._id}
+          id={event?.data?._id}
           image="https://loremflickr.com/640/480/cats"
         />
         <SidebarEvent
@@ -69,10 +74,10 @@ const EventDetailed = () => {
           endDate={new Date()}
           startTime="1:00"
           endTime="12:00"
-          id={event?._id}
+          id={event?.data?._id}
           isLoggedIn
           location="Location"
-          name={event?.content?.find((obj) => obj.lang == locale).name}
+          name={event?.data?.content?.find((obj) => obj.lang == locale).name}
           willAttend
         />
       </div>
@@ -84,9 +89,9 @@ const EventDetailed = () => {
           lat: -2.18331,
           lng: -79.8833,
         }}
-        tags={event?.tags?.map((tag) => tag.tag)}
+        tags={event?.data?.tags?.map((obj) => obj.tag)}
       />
-
+      {/** TODO: Event type does not have `created_at` */}
       <ListCardEvent
         loading={events?.isLoading}
         layout="swiper"
@@ -99,11 +104,11 @@ const EventDetailed = () => {
           name: item.content.find((obj) => obj.lang == locale).name,
           date: item.created_at,
           location: 'Location',
-          color: 'purple',
+          category_id: item.category_id?.id,
+          id: item._id,
         }))}
         {...useFormReturn}
       />
-      {/** TODO: no fetch function found for CardRecommendation data */}
       <ListCardEventRecommendation
         items={eventsRecommendations}
         setCurrentPage={() => {}}

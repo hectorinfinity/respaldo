@@ -19,12 +19,12 @@ const CardCategory: React.FC<props> = ({
   size = 'large',
   name,
 }) => {
-  const { query } = useRouter();
+  const { query, pathname } = useRouter();
   return (
     <Link
       shallow
       href={{
-        pathname: `/search`,
+        pathname: pathname == '/program' ? '/program' : '/search',
         query: {
           ...query,
           category: name == query?.category ? null : name,

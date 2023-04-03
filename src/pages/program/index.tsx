@@ -5,15 +5,23 @@ import CardAdvertisment from '@/components/main/commons/CardAdvertisment';
 import Hero from '@/components/main/commons/Hero';
 import ListCardEvent from '@/components/main/commons/ListCardEvent';
 import SidebarSearch from '@/components/main/commons/SidebarSearch';
+import HeaderCategory from '@/components/main/search/HeaderCategory';
 import HeaderSearch from '@/components/main/search/HeaderSearch';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const Program = () => {
-  const useFormReturn = useForm();
+  const useFormReturn = useForm<any>({
+    defaultValues: {
+      initial_date: 'dd/mm/aaaa',
+      finish_date: 'dd/mm/aaaa',
+    },
+  });
+  const { query: queryObj, push, pathname } = useRouter();
   const { watch } = useFormReturn;
   const query = watch('query');
   const t = useTranslations('Public');
@@ -30,6 +38,10 @@ const Program = () => {
     queryFn: getEvents,
   });
 
+  const category = categories?.data?.find((item) =>
+    item.category.find((obj) => obj.name == queryObj?.category)
+  );
+
   useEffect(() => {
     setHeroImages(
       Array.from({ length: 5 }, () => ({
@@ -38,6 +50,33 @@ const Program = () => {
     );
     setImageAdvertisment(faker.image.cats());
   }, []);
+  useEffect(() => {
+    if (query) {
+      push(
+        {
+          pathname: '/program',
+          query: {
+            ...queryObj,
+            query: encodeURIComponent(query),
+          },
+        },
+        undefined,
+        { shallow: true }
+      );
+    } else {
+      delete queryObj?.query;
+      push(
+        {
+          pathname: '/program',
+          query: {
+            ...queryObj,
+          },
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
+  }, [query]);
   return (
     <div className="mb-44 -mt-8">
       <Hero items={heroImages} />
@@ -55,6 +94,14 @@ const Program = () => {
           totalDocs={12}
           {...useFormReturn}
         />
+        {typeof queryObj?.category == 'string' && queryObj?.category !== '' && (
+          <HeaderCategory
+            color={category?.color}
+            image={category?.picture}
+            name={category?.category?.find((obj) => obj.lang == locale).name}
+            size="large"
+          />
+        )}
         <div className="grid grid-cols-6 gap-5 md:gap-10">
           <SidebarSearch
             className="col-span-2 hidden md:block"
@@ -74,7 +121,8 @@ const Program = () => {
               name: item.content.find((obj) => obj.lang == locale).name,
               date: item.created_at,
               location: 'Location',
-              color: 'purple',
+              category_id: item.category_id?.id,
+              id: item._id,
             }))}
             {...useFormReturn}
           />
@@ -101,7 +149,8 @@ const Program = () => {
             name: item.content.find((obj) => obj.lang == locale).name,
             date: item.created_at,
             location: 'Location',
-            color: 'purple',
+            category_id: item.category_id?.id,
+            id: item._id,
           }))}
           {...useFormReturn}
         />

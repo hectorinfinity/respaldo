@@ -80,7 +80,8 @@ const ProgramDetailed = () => {
             name: item.content.find((obj) => obj.lang == locale).name,
             date: item.created_at,
             location: 'Location',
-            color: 'purple',
+            category_id: item.category_id?.id,
+            id: item._id,
           }))}
           {...useFormReturn}
         />
