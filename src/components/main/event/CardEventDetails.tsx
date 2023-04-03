@@ -31,7 +31,7 @@ const CardEventDetails: React.FC<props> = ({
   const t = useTranslations('Card_Event_Details');
   return (
     <div className={classNames('', className)}>
-      <div className="relative w-auto h-72 md:h-96 rounded-md">
+      <div className="relative w-auto h-72 md:h-96 rounded-md overflow-hidden">
         <Image src={image} alt="" className="object-cover" fill />
       </div>
 
@@ -39,11 +39,11 @@ const CardEventDetails: React.FC<props> = ({
         <div className="flex gap-10 ml-auto text-customBlueNight">
           <span className="font-semibold">{t('shared_event')}</span>
           <div className="flex gap-4">
-            <Icon name="facebook" />
-            <Icon name="instagram" />
-            <Icon name="twitter" />
-            <Icon name="whatsapp" />
-            <Icon name="telegram" />
+            <Icon name="facebook" className="text-customBlueNight" />
+            <Icon name="instagram" className="text-customBlueNight" />
+            <Icon name="twitter" className="text-customBlueNight" />
+            <Icon name="whatsapp" className="text-customBlueNight" />
+            <Icon name="telegram" className="text-customBlueNight" />
           </div>
         </div>
       </div>

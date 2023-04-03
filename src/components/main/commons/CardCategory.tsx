@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { classNames } from '@/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export type props = {
   className?: string;
@@ -18,15 +19,17 @@ const CardCategory: React.FC<props> = ({
   size = 'large',
   name,
 }) => {
+  const { query } = useRouter();
   return (
     <Link
       shallow
-      as={{
+      href={{
+        pathname: `/search`,
         query: {
-          category: name,
+          ...query,
+          category: name == query?.category ? null : name,
         },
       }}
-      href={`/search`}
       className={classNames(
         'flex flex-col relative items-center justify-center p-5',
         className
