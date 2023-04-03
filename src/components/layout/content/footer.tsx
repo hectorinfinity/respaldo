@@ -23,6 +23,7 @@ export const Footer = () => {
 
   const currentColor = CurrentColor();
 
+  
   const { register, handleSubmit, formState: { errors }, reset } = useForm<Newslatter>({
     resolver: yupResolver(validationSchema),
   });

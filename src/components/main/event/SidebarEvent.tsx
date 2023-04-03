@@ -20,6 +20,7 @@ export type props = {
   location: string;
   category: string;
   isLoggedIn: boolean;
+  color: string;
 };
 // TODO: time values
 const SidebarEvent: React.FC<props> = ({
@@ -35,6 +36,7 @@ const SidebarEvent: React.FC<props> = ({
   willAttend,
   category,
   isLoggedIn,
+  color,
 }) => {
   const t = useTranslations('Sidebar_Event');
   const locale = useLocale();
@@ -45,7 +47,7 @@ const SidebarEvent: React.FC<props> = ({
         className
       )}
     >
-      <div className="h-6 bg-customPink" />
+      <div className="h-6" style={{ backgroundColor: color }} />
       <div className="px-10 flex justify-between items-center gap-10 py-5">
         <p>
           <span className="md:hidden text-gray-500 uppercase">{category}</span>

@@ -23,7 +23,6 @@ const StepCheckoutQuantity: React.FC<props> = ({
 }) => {
   const { register, setValue, watch } = useFormReturn;
   const t = useTranslations('Step_Checkout_Quantity');
-  console.log(watch('datetime'));
   return (
     <div className={classNames('rounded-xl shadow-xl', className)}>
       <HeaderStepCheckout name={name} location={location} />

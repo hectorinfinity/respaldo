@@ -40,7 +40,10 @@
     "legal": "Legal",
     "newsletter": {
       "title": "Subscribe to our newsletter",
-      "subtitle": "The latest events, news, articles, and resources, sent to your inbox weekly."
+      "subtitle": "The latest events, news, articles, and resources, sent to your inbox weekly.",
+      "email": "Email address",
+      "email_enter": "Enter your email",
+      "subscribe": "Subscribe"
     },
     "continue": {
       "text_first": "By continuing on this site, you agree to be bound by our ",
@@ -728,7 +731,10 @@
     "commons": {
       "events": "Events",
       "categories": "Categories",
-      "recommended_evenets": "Recommended Events"
+      "recommended_events": "Recommended Events",
+      "results": "{length} results for {query}",
+      "search_no_results": "We couldn't find any results for \"{query}\"",
+      "check_words": "Check if the words are spelled correctly."
     },
     "home": {
       "new_events": "New Events",
@@ -764,7 +770,10 @@
       "program": "Program"
     }
   },
-
+  "Main_Comment_Commons": "/////////////////////////////////////// Commons",
+  "Ferrors": {
+    "required": "Required"
+  },
   "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
   "Card_Event": {
     "title": "You are in the virtual queue",
@@ -848,7 +857,8 @@
   },
   "Step_Checkout_Quantity": {
     "select_date_time": "Select date and time",
-    "select_number_of_tickets": "Select the number of tickets"
+    "select_number_of_tickets": "Select the number of tickets",
+    "price": "Cuesta {value} cada uno"
   },
   "Header_Checkout": {
     "first_step": "Date and quantity of tickets",
@@ -942,5 +952,27 @@
   "Card_Event_Location": {
     "location_map": "Location Map",
     "trace_route": "Trace Route"
+  },
+  "Footer": {
+    "follow_us": "Follow our network",
+    "download_our_app": "Download our app",
+    "help": "Help",
+    "faq": "FAQ's",
+    "contact": "Contact",
+    "information": "Information",
+    "advertisments": "Advertisments",
+    "about_us": "About Us",
+    "donations": "Donations",
+    "partners": "Partners",
+    "privacy_policy": "Privacy policies",
+    "terms_and_conditions": "Terms and conditions",
+    "ticket_info": "Ticket info",
+    "pages": "Pages",
+    "blog": "Blog",
+    "newsletter": "Newlestter",
+    "programs": "Programs",
+    "search": "Search",
+    "subscribe": "Subscribe",
+    "email": "Email"
   }
 }

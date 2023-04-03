@@ -54,12 +54,12 @@ const ListCardEvent: React.FC<props> = ({
   const [currentLayout, setCurrentLayout] = useState(layout);
   const [drawerFilters, setDrawerFilters] = useState(false);
   const t = useTranslations('List_Card_Event');
-  const { register, formState } = useFormReturn || {};
+  const { register } = useFormReturn || {};
   useEffect(() => {
     function handleResize() {
       const width = window.innerWidth;
       if (width > 992) {
-        setCols(4);
+        setCols(3);
       } else if (width > 640) {
         setCols(2);
       } else {
@@ -76,13 +76,19 @@ const ListCardEvent: React.FC<props> = ({
   }, []);
   return (
     <div className={classNames('', className)}>
-      <div className="flex justify-between">
-        <Title level="h4">{title}</Title>
+      <div className="flex flex-col sm:flex-row gap-10 sm:justify-between">
+        <Title
+          className={classNames(controls && 'truncate w-[40%]')}
+          level="h4"
+        >
+          {title}
+        </Title>
         {controls && (
-          <div className="flex items-center gap-7">
+          <div className="flex items-center gap-7 order-first sm:order-none">
             <div className="flex items-center gap-5">
               <p className="font-bold whitespace-nowrap">{t('order_by')}:</p>
               <Select
+                className=""
                 options={[{ name: t('relevant'), value: 'relevant' }]}
                 {...register('sortBy')}
               />
@@ -105,6 +111,7 @@ const ListCardEvent: React.FC<props> = ({
                   onClick={() => setCurrentLayout('columns')}
                 />
                 <Button
+                  className="md:hidden"
                   size="small"
                   iconLeft={<AdjustmentsHorizontalIcon className="w-5 h-5" />}
                   color="black"
@@ -123,8 +130,8 @@ const ListCardEvent: React.FC<props> = ({
           {currentLayout == 'swiper' ? (
             <div className="relative">
               <Swiper ref={swiperRef} slidesPerView={cols} spaceBetween={50}>
-                {items.map((item, idx) => (
-                  <SwiperSlide key={idx}>
+                {items?.map((item, idx) => (
+                  <SwiperSlide className="h-auto" key={idx}>
                     <CardEvent layout="grid" {...item} />
                   </SwiperSlide>
                 ))}
@@ -132,14 +139,14 @@ const ListCardEvent: React.FC<props> = ({
               <SwiperControls swiperRef={swiperRef} />
             </div>
           ) : currentLayout == 'grid' ? (
-            <div className="grid grid-cols-1  sm:grid-cols-2 gap-5 md:grid-cols-4">
-              {items.map((item, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:grid-cols-3">
+              {items?.map((item, idx) => (
                 <CardEvent key={idx} layout="grid" {...item} />
               ))}
             </div>
           ) : (
             <div className="flex flex-col gap-5">
-              {items.map((item, idx) => (
+              {items?.map((item, idx) => (
                 <CardEvent key={idx} layout="column" {...item} />
               ))}
             </div>
@@ -148,7 +155,7 @@ const ListCardEvent: React.FC<props> = ({
         <div className="aspect-video card p-8 flex items-center justify-center text-primary-500">
           <CircularProgress color="inherit" />
         </div>
-        <div className="aspect-video card p-6 flex flex-col items-center justify-center text-2xl ">
+        <div className="aspect-video card p-6 flex flex-col items-center justify-center text-2xl">
           <MagnifyingGlassIcon className="w-16 h-16" />
           <p className="font-bold mt-5">{t('not_results')}</p>
         </div>

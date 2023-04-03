@@ -26,7 +26,7 @@ const items = Array.from({ length: 10 }, () => ({
   name: faker.name.jobTitle(),
   date: faker.date.past(),
   location: faker.address.city(),
-  color: 'bg-customDaisy',
+  color: faker.internet.color(),
 }));
 
 export const Default = Template.bind({});
@@ -59,7 +59,7 @@ LayoutSwiper.args = {
 export const WithControls = Template.bind({});
 WithControls.args = {
   title: faker.lorem.word(),
-  layout:"grid",
+  layout: 'grid',
   items,
   loading: false,
   totalDocs: 10,
@@ -69,18 +69,17 @@ WithControls.args = {
 export const Loading = Template.bind({});
 Loading.args = {
   title: faker.lorem.word(),
-  layout:"grid",
+  layout: 'grid',
   items,
   loading: true,
   totalDocs: 10,
   controls: true,
 };
 
-
 export const NotFound = Template.bind({});
 NotFound.args = {
   title: faker.lorem.word(),
-  layout:"grid",
+  layout: 'grid',
   items,
   loading: false,
   totalDocs: 0,

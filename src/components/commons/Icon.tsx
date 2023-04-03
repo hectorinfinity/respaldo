@@ -152,12 +152,13 @@ const ChevronLeft = (props) => (
   >
     <path
       d="m14 16.5-4-4 4-4"
+      stroke="#0F1019"
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <mask
-      id="chevron-left"
+      id="chevron-left-a"
       style={{
         maskType: 'alpha',
       }}
@@ -171,10 +172,11 @@ const ChevronLeft = (props) => (
         fillRule="evenodd"
         clipRule="evenodd"
         d="M14.707 17.207a1 1 0 0 0 0-1.414L11.414 12.5l3.293-3.293a1 1 0 0 0-1.414-1.414l-4 4a1 1 0 0 0 0 1.414l4 4a1 1 0 0 0 1.414 0Z"
+        fill="#0F1019"
       />
     </mask>
-    <g mask="url(#chevron-left)">
-      <path d="M0 .5h24v24H0z" />
+    <g mask="url(#chevron-left-a)">
+      <path fill="#0F1019" d="M0 .5h24v24H0z" />
     </g>
   </svg>
 );
@@ -811,6 +813,108 @@ const RoutesSolid = (props) => (
   </svg>
 );
 
+const EnvelopAddSolid = (props) => (
+  <svg
+    viewBox="0 0 18 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path d="M9.429 12.632c0-2.788 2.305-5.053 5.142-5.053.943 0 1.818.253 2.572.682V1.684c0-.446-.18-.875-.502-1.19A1.73 1.73 0 0 0 15.429 0H1.714C.763 0 0 .75 0 1.684V11.79c0 .447.18.876.502 1.191a1.73 1.73 0 0 0 1.212.494h7.792a5.495 5.495 0 0 1-.077-.842ZM1.714 3.368V1.684l6.857 4.21 6.858-4.21v1.684L8.57 7.58 1.713 3.37ZM15.43 9.263v2.527H18v1.684h-2.571V16h-1.715v-2.526h-2.571V11.79h2.571V9.262h1.715Z" />
+  </svg>
+);
+const InstagramColor = (props) => (
+  <svg
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M9 5.533a3.468 3.468 0 1 0 0 6.936 3.468 3.468 0 0 0 0-6.936Zm0 5.72a2.253 2.253 0 1 1-.001-4.505 2.253 2.253 0 0 1 0 4.505Z"
+      fill="url(#a)"
+    />
+    <path
+      d="M12.604 6.214a.809.809 0 1 0 0-1.617.809.809 0 0 0 0 1.617Z"
+      fill="url(#b)"
+    />
+    <path
+      d="M15.4 4.583a3.454 3.454 0 0 0-1.975-1.974 4.954 4.954 0 0 0-1.64-.315c-.722-.031-.95-.04-2.782-.04-1.831 0-2.066 0-2.782.04a4.93 4.93 0 0 0-1.638.315 3.45 3.45 0 0 0-1.975 1.974 4.939 4.939 0 0 0-.314 1.64c-.033.721-.042.95-.042 2.782s0 2.065.042 2.783c.01.56.117 1.114.314 1.64a3.458 3.458 0 0 0 1.975 1.974 4.939 4.939 0 0 0 1.639.338c.722.031.951.04 2.783.04 1.831 0 2.066 0 2.782-.04a4.96 4.96 0 0 0 1.64-.315A3.459 3.459 0 0 0 15.4 13.45a4.939 4.939 0 0 0 .315-1.639c.032-.722.042-.95.042-2.783 0-1.832 0-2.064-.042-2.782a4.935 4.935 0 0 0-.316-1.663Zm-.914 7.15c-.005.431-.084.86-.233 1.265a2.238 2.238 0 0 1-1.284 1.284 3.74 3.74 0 0 1-1.252.233c-.713.033-.914.041-2.741.041-1.828 0-2.015 0-2.741-.041a3.72 3.72 0 0 1-1.252-.234 2.24 2.24 0 0 1-1.29-1.283 3.81 3.81 0 0 1-.232-1.252c-.033-.712-.04-.913-.04-2.74 0-1.828 0-2.015.04-2.741.004-.432.083-.86.233-1.266a2.24 2.24 0 0 1 1.289-1.284 3.767 3.767 0 0 1 1.252-.233c.713-.032.913-.041 2.741-.041s2.015 0 2.74.041a3.72 3.72 0 0 1 1.253.233A2.244 2.244 0 0 1 14.253 5c.147.402.226.825.233 1.252.032.713.04.914.04 2.741s0 2.024-.031 2.741h-.009Z"
+      fill="url(#c)"
+    />
+    <defs>
+      <linearGradient
+        id="a"
+        x1={8.999}
+        y1={5.533}
+        x2={8.999}
+        y2={12.469}
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#5B4192" />
+        <stop offset={0.339} stopColor="#AF408D" />
+        <stop offset={0.656} stopColor="#E2383D" />
+        <stop offset={0.984} stopColor="#F5BD1B" />
+      </linearGradient>
+      <linearGradient
+        id="b"
+        x1={12.604}
+        y1={4.597}
+        x2={12.604}
+        y2={6.214}
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#5B4192" />
+        <stop offset={0.339} stopColor="#AF408D" />
+        <stop offset={0.656} stopColor="#E2383D" />
+        <stop offset={0.984} stopColor="#F5BD1B" />
+      </linearGradient>
+      <linearGradient
+        id="c"
+        x1={9.005}
+        y1={2.254}
+        x2={9.005}
+        y2={15.781}
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#5B4192" />
+        <stop offset={0.339} stopColor="#AF408D" />
+        <stop offset={0.656} stopColor="#E2383D" />
+        <stop offset={0.984} stopColor="#F5BD1B" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+const FacebookColor = (props) => (
+  <svg
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M13.227 0H.773A.773.773 0 0 0 0 .773v12.454c0 .427.346.773.773.773h6.704V8.579H5.653V6.466h1.824V4.907c0-1.809 1.105-2.793 2.718-2.793.773 0 1.437.057 1.63.083v1.89h-1.118c-.878 0-1.047.418-1.047 1.03v1.348h2.092l-.273 2.113H9.66V14h3.568a.773.773 0 0 0 .773-.773V.773A.773.773 0 0 0 13.227 0Z"
+      fill="#1977F3"
+    />
+  </svg>
+);
+
+const TwitterColor = (props) => (
+  <svg
+    viewBox="0 0 17 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M17 1.658a6.916 6.916 0 0 1-.79.988 7.385 7.385 0 0 1-.954.837c.011.154.017.309.017.464 0 .706-.074 1.404-.223 2.094a10.521 10.521 0 0 1-.649 2.003 10.414 10.414 0 0 1-1.534 2.51 9.473 9.473 0 0 1-2.089 1.872 9.45 9.45 0 0 1-2.544 1.169A10.22 10.22 0 0 1 5.345 14a9.808 9.808 0 0 1-2.784-.4A9.563 9.563 0 0 1 0 12.409c.913.112 1.84.04 2.725-.211a6.962 6.962 0 0 0 2.438-1.254 3.414 3.414 0 0 1-1.552-.398A3.465 3.465 0 0 1 2.403 9.48a3.56 3.56 0 0 1-.494-.985c.11.017.22.032.328.043.417.042.837.005 1.24-.11a3.383 3.383 0 0 1-1.124-.445 3.587 3.587 0 0 1-.884-.779A3.523 3.523 0 0 1 .68 4.962v-.04a3.347 3.347 0 0 0 1.586.445A3.605 3.605 0 0 1 .822 3.288 3.672 3.672 0 0 1 .831 1.5c.076-.299.195-.583.357-.853A9.688 9.688 0 0 0 2.664 2.14a9.927 9.927 0 0 0 3.653 1.877 9.553 9.553 0 0 0 2.058.324 2.678 2.678 0 0 1-.07-.4 4.071 4.071 0 0 1-.021-.408 3.536 3.536 0 0 1 2.13-3.256A3.35 3.35 0 0 1 11.77 0a3.428 3.428 0 0 1 2.549 1.118A6.866 6.866 0 0 0 16.526.26 3.457 3.457 0 0 1 15 2.212a6.854 6.854 0 0 0 2-.553v-.001Z"
+      fill="#1DA1F2"
+    />
+  </svg>
+);
+
 export type props = {
   className?: string;
   name:
@@ -849,7 +953,11 @@ export type props = {
     | 'check-circle-yellow'
     | 'trash-outline'
     | 'close-outline'
-    | 'routes-solid';
+    | 'routes-solid'
+    | 'envelop-add-solid'
+    | 'instagram-color'
+    | 'facebook-color'
+    | 'twitter-color';
 };
 const Icon: React.FC<props> = ({ name, ...props }) => {
   props.className = classNames('icon', props.className);
@@ -924,6 +1032,14 @@ const Icon: React.FC<props> = ({ name, ...props }) => {
       return <CloseOutline {...props} />;
     case 'routes-solid':
       return <RoutesSolid {...props} />;
+    case 'envelop-add-solid':
+      return <EnvelopAddSolid {...props} />;
+    case 'instagram-color':
+      return <InstagramColor {...props} />;
+    case 'facebook-color':
+      return <FacebookColor {...props} />;
+    case 'twitter-color':
+      return <TwitterColor {...props} />;
     default:
       return <></>;
   }
