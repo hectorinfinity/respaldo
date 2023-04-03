@@ -1,9 +1,15 @@
 import { getEvents } from '@/api/event/event';
-import { getEventsCategories } from '@/api/event/event_category';
+import {
+  getEventsCategories,
+  readEventCategory,
+} from '@/api/event/event_category';
+import { Title } from '@/components/commons';
 import MainLayout from '@/components/layout/main';
 import CardAdvertisment from '@/components/main/commons/CardAdvertisment';
 import Hero from '@/components/main/commons/Hero';
 import ListCardEvent from '@/components/main/commons/ListCardEvent';
+import SidebarSearch from '@/components/main/commons/SidebarSearch';
+import HeaderCategory from '@/components/main/search/HeaderCategory';
 import HeaderSearch from '@/components/main/search/HeaderSearch';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
@@ -16,32 +22,54 @@ const Search = () => {
   const useFormReturn = useForm();
   const { watch } = useFormReturn;
   const locale = useLocale();
-  const { replace, query: queryObj } = useRouter();
+  const { replace, push, query: queryObj } = useRouter();
   const t = useTranslations('Public');
   const [heroImages, setHeroImages] = useState([]);
   const [imageAdvertisment, setImageAdvertisment] = useState('');
+
   const categories = useQuery({
     queryKey: ['categories'],
     queryFn: getEventsCategories,
   });
-
   const events = useQuery({
     queryKey: ['events'],
     queryFn: getEvents,
   });
+
+  const category = categories?.data?.find((item) =>
+    item.category.find((obj) => obj.name == queryObj?.category)
+  );
+
   const query = watch('query');
+
   useEffect(() => {
-    replace(
-      `/search`,
-      {
-        query: {
-          category: queryObj?.category && queryObj?.category,
-          query: query && encodeURIComponent(query),
+    if (query) {
+      push(
+        {
+          pathname: `/search`,
+          query: {
+            ...queryObj,
+            query: encodeURIComponent(query),
+          },
         },
-      },
-      { shallow: true }
-    );
-  }, [query, queryObj?.category]);
+        undefined,
+        { shallow: true }
+      );
+    } else {
+      delete queryObj?.query;
+      push(
+        {
+          pathname: `/search`,
+          query: {
+            ...queryObj,
+          },
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
+  }, [query]);
+
   useEffect(() => {
     setHeroImages(
       Array.from({ length: 5 }, () => ({
@@ -54,7 +82,7 @@ const Search = () => {
     <div className="mb-44 -mt-8">
       <Hero items={heroImages} />
 
-      <div className="mt-16 space-y-16 px-5 sm:px-16">
+      <div className="mt-16 space-y-16 section-container">
         <HeaderSearch
           items={categories?.data?.map((item) => ({
             name: item.category.find((obj) => obj.lang == locale).name,
@@ -69,30 +97,77 @@ const Search = () => {
           {...useFormReturn}
         />
 
-        <ListCardEvent
-          controls
-          loading={events?.isLoading}
-          layout="swiper"
-          setCurrentPage={() => {}}
-          setPageSize={() => {}}
-          totalDocs={10}
-          title={
-            query
-              ? t('commons.results', {
-                  length: events.data.length,
-                  query,
-                })
-              : t('commons.recommended_events')
-          }
-          items={events?.data?.map((item) => ({
-            image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale).name,
-            date: item.created_at,
-            location: 'Location',
-            color: 'purple',
-          }))}
-          {...useFormReturn}
-        />
+        {typeof queryObj?.category == 'string' && queryObj?.category !== '' && (
+          <HeaderCategory
+            color={category?.color}
+            image={category?.picture}
+            name={category?.category?.find((obj) => obj.lang == locale).name}
+            size="large"
+          />
+        )}
+        <div className="grid grid-cols-6 gap-5 md:gap-10">
+          <SidebarSearch
+            className="col-span-2 hidden md:block"
+            {...useFormReturn}
+          />
+          {events?.data?.length == 0 && events?.isLoading == false ? (
+            <div className="space-y-10 col-span-6 md:col-span-4">
+              <div className="flex flex-col gap-2">
+                <Title level="h5">
+                  {t('commons.search_no_results', {
+                    query,
+                  })}
+                </Title>
+                <p>{t('commons.check_words')}</p>
+                <hr className="border-gray-400" />
+              </div>
+
+              <ListCardEvent
+                className="md:col-span-4 col-span-6"
+                loading={events?.isLoading}
+                layout="swiper"
+                setCurrentPage={() => {}}
+                setPageSize={() => {}}
+                totalDocs={10}
+                title={t('commons.recommended_events')}
+                items={events?.data?.map((item) => ({
+                  image: 'https://loremflickr.com/640/480/cats',
+                  name: item.content.find((obj) => obj.lang == locale)?.name,
+                  date: item.created_at,
+                  location: 'Location',
+                  color: 'purple',
+                }))}
+                {...useFormReturn}
+              />
+            </div>
+          ) : (
+            <ListCardEvent
+              controls
+              className="md:col-span-4 col-span-6"
+              loading={events?.isLoading}
+              layout="swiper"
+              setCurrentPage={() => {}}
+              setPageSize={() => {}}
+              totalDocs={10}
+              title={
+                query
+                  ? t('commons.results', {
+                      length: events.data.length,
+                      query,
+                    })
+                  : t('commons.recommended_events')
+              }
+              items={events?.data?.map((item) => ({
+                image: 'https://loremflickr.com/640/480/cats',
+                name: item.content.find((obj) => obj.lang == locale).name,
+                date: item.created_at,
+                location: 'Location',
+                color: 'purple',
+              }))}
+              {...useFormReturn}
+            />
+          )}
+        </div>
 
         <CardAdvertisment size="large" image={imageAdvertisment} />
       </div>

@@ -3,7 +3,6 @@ import { classNames } from '@/helpers';
 import { Map, Title, Button, Icon } from '@/components/commons';
 import { useTranslations } from 'next-intl';
 
-
 export type props = {
   className?: string;
   location: string;
@@ -88,7 +87,7 @@ const CardEventLocation: React.FC<props> = ({
         ></Map>
       </div>
       <div className="flex flew-wrap gap-5">
-        {tags.map((tag, idx) => (
+        {tags?.map((tag, idx) => (
           <div
             key={idx}
             className="rounded-lg shadow-sm px-4 py-2 bg-primary-500"

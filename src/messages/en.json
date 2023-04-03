@@ -40,7 +40,10 @@
     "legal": "Legal",
     "newsletter": {
       "title": "Subscribe to our newsletter",
-      "subtitle": "The latest events, news, articles, and resources, sent to your inbox weekly."
+      "subtitle": "The latest events, news, articles, and resources, sent to your inbox weekly.",
+      "email": "Email address",
+      "email_enter": "Enter your email",
+      "subscribe": "Subscribe"
     },
     "continue": {
       "text_first": "By continuing on this site, you agree to be bound by our ",
@@ -729,7 +732,9 @@
       "events": "Events",
       "categories": "Categories",
       "recommended_events": "Recommended Events",
-      "results": "{length} results for {query}"
+      "results": "{length} results for {query}",
+      "search_no_results": "We couldn't find any results for \"{query}\"",
+      "check_words": "Check if the words are spelled correctly."
     },
     "home": {
       "new_events": "New Events",

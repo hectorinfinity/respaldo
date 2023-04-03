@@ -6,10 +6,10 @@
 
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-5
+    @apply max-w-7xl mx-auto px-5 md:px-16;
   }
   .input-label {
-    @apply font-bold text-sm
+    @apply font-bold text-sm whitespace-nowrap;
   }
   .icon {
     @apply w-6 h-6 fill-current text-black shrink-0;
