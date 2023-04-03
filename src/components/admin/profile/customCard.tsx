@@ -1,56 +1,51 @@
-import { useTranslations } from "next-intl";
-import Link from 'next/link';
-// Helpers
-import { CurrentColor } from '@/helpers';
-// Icons
-import { CpuChipIcon, PencilIcon } from '@heroicons/react/20/solid';
+import { useState } from 'react';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import axios from 'axios';
+import { useUserAuthObserver } from "@/hooks/auth";
 
-type Props = {
-    id: string,
-    name: string,
-    type: string,
-    number: string,
-    exp: string
-}
+const CustomCard = ({ onSuccess }) => {
+    const [error, setError] = useState(null);
+    const stripe = useStripe();
+    const elements = useElements();
+    const { user } = useUserAuthObserver();
 
-export const CustomCard = ({ id, name, type, number, exp }: Props) => {
-    const currentColor = CurrentColor();
-    const t = useTranslations("Panel_Profile_Card");
+    console.log(user)
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setError(null);
+
+        if (!stripe || !elements) return;
+
+        const cardElement = elements.getElement(CardElement);
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+        });
+
+        if (error) {
+            setError(error.message);
+        } else {
+            const { data } = await axios.post('/api/stripe/add-card', {
+                paymentMethodId: paymentMethod.id,
+            });
+
+            if (data.error) {
+                setError(data.error.message);
+            } else {
+                onSuccess();
+            }
+        }
+    };
 
     return (
-        <div key={id} className="overflow-hidden rounded-lg bg-white shadow">
-            <div className={`flex flex-1 p-5 w-80 rounded-lg border border-${currentColor} bg-gradient-to-b from-${currentColor} via-${currentColor} to-white`}>
-                <div className="flex flex-col w-[100%] items-left">
-                    <div className="flex justify-between text-sm pt-4">
-                        <div className="text-white">
-                            <CpuChipIcon className='w-6 h-6' aria-hidden="true" />
-                        </div>
-                        <div className='text-customGreen -mt-3'>
-                            <Link href="/panel/profile/card/create">
-                                <div className="border-white bg-white rounded-full w-7 h-7 flex align-middle justify-center py-1">
-                                    <PencilIcon className='w-5 h-5' aria-hidden="true" />
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="py-2 text-md">
-                        <div className="text-white">
-                            XXXX XXXX XXXX {number}
-                        </div>
-                    </div>
-                    <div className="pt-4 text-sm text-customShadow">
-                        {t(type)}
-                    </div>
-                    <div className="flex justify-between text-sm">
-                        <div className="text-customGray">
-                            {name}
-                        </div>
-                        <div className="text-customGray">
-                            {exp}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+        <form onSubmit={handleSubmit}>
+            <CardElement />
+            <button type="submit" disabled={!stripe}>
+                Add Card
+            </button>
+            {error && <div>{error}</div>}
+        </form>
+    );
+};
+
+export { CustomCard };

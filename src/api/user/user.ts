@@ -36,3 +36,9 @@ export const deleteUser = async (id: string) => {
 
     return data;
 }
+
+export const getUserStripeCustomerId = async (userId: string) => {
+    const user = await readUser(userId);
+
+    return user.payment_data.stripe;
+};
