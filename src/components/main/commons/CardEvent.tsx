@@ -18,10 +18,10 @@ export type props = {
   favorite?: boolean;
   willAttend?: boolean;
   color: string;
+  isLoggedIn?: boolean;
 };
 // TODO: gray colors
 // TODO: should have time prop
-// TODO: when user is not logged in i will attend and like buttons should not be visible
 const CardEvent: React.FC<props> = ({
   className,
   date,
@@ -32,6 +32,7 @@ const CardEvent: React.FC<props> = ({
   willAttend = false,
   favorite = false,
   color,
+  isLoggedIn,
 }) => {
   const locale = useLocale();
   return (
@@ -42,21 +43,23 @@ const CardEvent: React.FC<props> = ({
         className
       )}
     >
-      <Button
-        className={classNames(
-          'absolute z-20 top-3',
-          layout == 'grid' ? 'right-3' : 'left-3'
-        )}
-        color="white"
-        shape="pill"
-        iconLeft={
-          favorite ? (
-            <Icon name="heart-solid" className="text-customYellow" />
-          ) : (
-            <Icon name="heart-outline" className="text-white" />
-          )
-        }
-      />
+      {!isLoggedIn && (
+        <Button
+          className={classNames(
+            'absolute z-20 top-3',
+            layout == 'grid' ? 'right-3' : 'left-3'
+          )}
+          color="white"
+          shape="pill"
+          iconLeft={
+            favorite ? (
+              <Icon name="heart-solid" className="text-customYellow" />
+            ) : (
+              <Icon name="heart-outline" className="text-white" />
+            )
+          }
+        />
+      )}
       <div
         className={classNames(
           'relative',
@@ -64,13 +67,15 @@ const CardEvent: React.FC<props> = ({
         )}
       >
         <Image src={image} alt="" fill className="object-cover" />
-        <WillAttend
-          changeColor={willAttend}
-          className={classNames(
-            'absolute bottom-3',
-            layout == 'grid' ? 'right-3' : 'left-3'
-          )}
-        />
+        {!isLoggedIn && (
+          <WillAttend
+            changeColor={willAttend}
+            className={classNames(
+              'absolute bottom-3',
+              layout == 'grid' ? 'right-3' : 'left-3'
+            )}
+          />
+        )}
       </div>
 
       <div className="flex-1 flex flex-col items-start">

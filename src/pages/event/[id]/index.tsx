@@ -12,7 +12,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-// TODO: responsive
 const EventDetailed = () => {
   const useFormReturn = useForm();
   const [eventsRecommendations, setEventsRecommendations] = useState([]);
@@ -104,7 +103,7 @@ const EventDetailed = () => {
         }))}
         {...useFormReturn}
       />
-
+      {/** TODO: no fetch function found for CardRecommendation data */}
       <ListCardEventRecommendation
         items={eventsRecommendations}
         setCurrentPage={() => {}}

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { classNames } from '@/helpers';
 import { Button, Icon, Select, TextField, Title } from '@/components/commons';
 import { useTranslations } from 'next-intl';
 import { UseFormReturn } from 'react-hook-form';
+import { useQuery } from '@tanstack/react-query';
+import { getEventsCategories } from '@/api/event/event_category';
+import DateRangePicker from '@/components/commons/DateRangePicker';
+import { format } from 'date-fns';
 
 export type props = {
   className?: string;
@@ -14,8 +18,23 @@ const SidebarSearch: React.FC<props> = ({
   close,
   ...useFormReturn
 }) => {
-  const { register } = useFormReturn;
+  const { register, control, watch, setValue } = useFormReturn;
+  const categories = useQuery({
+    queryKey: ['categories'],
+    queryFn: getEventsCategories,
+  });
   const t = useTranslations('Drawer_Search_Filters');
+  console.log(categories?.data);
+
+  const dateRange = watch('date-range');
+  useEffect(() => {
+    if (dateRange?.[0]) {
+      setValue('initial_date', format(new Date(dateRange?.[0]), 'dd/mm/yyyy'));
+    }
+    if (dateRange?.[1]) {
+      setValue('finish_date', format(new Date(dateRange?.[1]), 'dd/mm/yyyy'));
+    }
+  }, [dateRange?.[0], dateRange?.[1]]);
   return (
     <div className={classNames('relative h-max', className)}>
       <div
@@ -79,13 +98,17 @@ const SidebarSearch: React.FC<props> = ({
           </div>
 
           <div className="flex flex-col gap-5">
+            <DateRangePicker control={control}>
+              <TextField
+                type="text"
+                readOnly
+                label={t('initial_date')}
+                {...register('initial_date')}
+              />
+            </DateRangePicker>
             <TextField
-              type="date"
-              label={t('initial_date')}
-              {...register('initial_date')}
-            />
-            <TextField
-              type="date"
+              type="text"
+              readOnly
               label={t('finish_date')}
               {...register('finish_date')}
             />
