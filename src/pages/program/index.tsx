@@ -119,7 +119,9 @@ const Program = () => {
             items={events?.data?.map((item) => ({
               image: 'https://loremflickr.com/640/480/cats',
               name: item.content.find((obj) => obj.lang == locale).name,
-              date: item.created_at,
+              startDate: item.created_at,
+              startTime: '1:00',
+              endTime: '12:00',
               location: 'Location',
               category_id: item.category_id?.id,
               id: item._id,
@@ -147,7 +149,9 @@ const Program = () => {
           items={events?.data?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
             name: item.content.find((obj) => obj.lang == locale).name,
-            date: item.created_at,
+            startDate: item.created_at,
+            startTime: '1:00',
+            endTime: '12:00',
             location: 'Location',
             category_id: item.category_id?.id,
             id: item._id,

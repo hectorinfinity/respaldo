@@ -1,4 +1,4 @@
-import { getEvents } from '@/api/event/event';
+import { getEvents, readEvent } from '@/api/event/event';
 import MainLayout from '@/components/layout/main';
 import ListCardEvent from '@/components/main/commons/ListCardEvent';
 import ListCardEventRecommendation from '@/components/main/commons/ListCardEventRecommendation';
@@ -8,6 +8,7 @@ import ListProgramDays from '@/components/main/search/ListProgramDays';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -16,12 +17,19 @@ const ProgramDetailed = () => {
   const { control } = useFormReturn;
   const t = useTranslations('Public');
   const locale = useLocale();
+  const { query } = useRouter();
   const [cardProgramDetails, setCardProgramDetails] = useState<any>();
   const [eventsRecommendations, setEventsRecommendations] = useState([]);
   const [listProgramDays, setListProgramDays] = useState([]);
   const events = useQuery({
     queryKey: ['events'],
     queryFn: getEvents,
+  });
+
+  const event = useQuery({
+    queryKey: ['event'],
+    queryFn: async () => await readEvent(query?.id as any),
+    enabled: Boolean(query?.id),
   });
   useEffect(() => {
     setCardProgramDetails({
@@ -48,26 +56,28 @@ const ProgramDetailed = () => {
     <div>
       <HeaderProgram
         image="https://loremflickr.com/640/480/cats"
-        name="Name of the program"
+        name={event?.data?.content.find((obj) => obj.lang == locale).name}
       />
 
       <div className="mt-16 mb-44 section-container space-y-16">
+        {/** TODO: start and end dates */}
         <CardProgramDetails
           className="mt-16"
-          description={cardProgramDetails?.description}
+          description={
+            event?.data?.content.find((obj) => obj.lang == locale).description
+          }
           endDate={new Date()}
-          image={cardProgramDetails?.image}
-          location={cardProgramDetails?.location}
-          name={cardProgramDetails?.name}
+          image={'https://loremflickr.com/640/480/cats'}
+          location={'Location'}
+          name={event?.data?.content.find((obj) => obj.lang == locale).name}
           startDate={new Date()}
         />
-
+        {/** TODO: list program days fetch missing */}
         <ListProgramDays
           items={listProgramDays}
           name="field"
           control={control}
         />
-        {/** TODO: controlers are different */}
         <ListCardEvent
           loading={events?.isLoading}
           layout="swiper"
@@ -78,16 +88,24 @@ const ProgramDetailed = () => {
           items={events?.data?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
             name: item.content.find((obj) => obj.lang == locale).name,
-            date: item.created_at,
+            startDate: item.created_at,
+            startTime: '1:00',
+            endTime: '12:00',
             location: 'Location',
             category_id: item.category_id?.id,
             id: item._id,
           }))}
           {...useFormReturn}
         />
-        {/** TODO: no fetch function found for CardRecommendation data */}
+
         <ListCardEventRecommendation
-          items={eventsRecommendations}
+          items={events?.data?.map((item) => ({
+            category_id: item.category_id.id,
+            image: 'https://loremflickr.com/640/480/cats',
+            location: 'Location',
+            name: item.content.find((obj) => obj.lang == locale).name,
+            id: item._id,
+          }))}
           setCurrentPage={() => {}}
           setPageSize={() => {}}
           totalDocs={10}

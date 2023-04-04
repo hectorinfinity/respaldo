@@ -820,7 +820,8 @@
     "time": "Time:",
     "location": "Location:",
     "button": "Buy Ticket",
-    "payment_methods": "Payment methods:"
+    "payment_methods": "Payment methods:",
+    "supplier": "Supplier:"
   },
   "Card_Event_Details": {
     "read_more": "Read more...",
