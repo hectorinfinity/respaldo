@@ -19,8 +19,10 @@ NotWillAttend.args = {
   layout: 'grid',
   image: faker.image.cats(),
   name: faker.name.jobTitle(),
-  date: faker.date.past(),
+  startDate: faker.date.past(),
   location: faker.address.city(),
+  startTime: '1:00',
+  endTime: '12:00',
 };
 
 export const WillAttend: StoryFn<props> = Template.bind({});
@@ -28,8 +30,10 @@ WillAttend.args = {
   layout: 'grid',
   image: faker.image.cats(),
   name: faker.name.jobTitle(),
-  date: faker.date.past(),
+  startDate: faker.date.past(),
   location: faker.address.city(),
+  startTime: '1:00',
+  endTime: '12:00',
   willAttend: true,
 };
 
@@ -38,6 +42,8 @@ Column.args = {
   layout: 'column',
   image: faker.image.cats(),
   name: faker.name.jobTitle(),
-  date: faker.date.past(),
+  startDate: faker.date.past(),
+  startTime: '1:00',
+  endTime: '12:00',
   location: faker.address.city(),
 };
