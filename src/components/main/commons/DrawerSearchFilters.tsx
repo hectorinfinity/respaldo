@@ -48,7 +48,7 @@ const DrawerSearchFilters: React.FC<props> = ({
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <div className="pointer-events-auto relative w-screen max-w-md">
+                <div className="pointer-events-auto overflow-y-auto relative w-screen max-w-md">
                   <SidebarSearch close={close} {...useFormReturn} />
                 </div>
               </Transition.Child>

@@ -16,7 +16,6 @@ export type props = {
   services: string;
   access: string;
 };
-// TODO: check href
 const CardEventDetails: React.FC<props> = ({
   className,
   access,
@@ -55,7 +54,7 @@ const CardEventDetails: React.FC<props> = ({
         {details}{' '}
         <Link
           className="text-customBlueNight font-semibold"
-          href={`/events/${id}`}
+          href={`/event/${id}`}
         >
           Read more...
         </Link>

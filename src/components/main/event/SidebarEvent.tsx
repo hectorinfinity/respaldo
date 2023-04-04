@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { format } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
 import Image from 'next/image';
+import parseDate from '@/helpers/parseDate';
 
 export type props = {
   className?: string;
@@ -81,13 +82,13 @@ const SidebarEvent: React.FC<props> = ({
             </span>
             <p>
               <span>
-                {format(startDate, 'EEEE, dd MMMM yyyy', {
+                {format(parseDate(startDate), 'EEEE, dd MMMM yyyy', {
                   locale: locale == 'en' ? enUS : es,
                 })}
               </span>{' '}
               -{' '}
               <span>
-                {format(endDate, 'dd MMMM yyyy', {
+                {format(parseDate(endDate), 'dd MMMM yyyy', {
                   locale: locale == 'en' ? enUS : es,
                 })}
               </span>

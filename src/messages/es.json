@@ -226,6 +226,9 @@
       "label": "Ubicacion",
       "placeholder": "Buscar por país, ciudad"
     },
+    "select_categories_placeholder": "Selecciona categorías",
+    "select_sub_categories_placeholder": "Selecciona sub categorías",
+    "select_sub_subcategories_placeholder": "Selecciona sub subcategorías",
     "button": "Aplicar Filtros"
   },
   "Card_Event_Location": {

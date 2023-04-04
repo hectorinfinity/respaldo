@@ -21,7 +21,6 @@ NotWillAttend.args = {
   name: faker.name.jobTitle(),
   date: faker.date.past(),
   location: faker.address.city(),
-  color: 'bg-customDaisy',
 };
 
 export const WillAttend: StoryFn<props> = Template.bind({});
@@ -32,7 +31,6 @@ WillAttend.args = {
   date: faker.date.past(),
   location: faker.address.city(),
   willAttend: true,
-  color: 'bg-customBlueNight',
 };
 
 export const Column: StoryFn<props> = Template.bind({});
@@ -42,5 +40,4 @@ Column.args = {
   name: faker.name.jobTitle(),
   date: faker.date.past(),
   location: faker.address.city(),
-  color: 'bg-customPurple',
 };
