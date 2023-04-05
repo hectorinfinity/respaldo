@@ -1,6 +1,8 @@
 import React from 'react';
 import { classNames } from '@/helpers';
-import ListCardCategory, { props as ListCardCategoryProps } from '@/components/main/commons/ListCardCategory';
+import ListCardCategory, {
+  props as ListCardCategoryProps,
+} from '@/components/main/commons/ListCardCategory';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { Icon } from '@/components/commons';
 
@@ -8,7 +10,6 @@ export type props = {
   className?: string;
 } & ListCardCategoryProps &
   UseFormReturn<any>;
-// TODO: colors
 const HeaderSearch: React.FC<props> = ({
   className,
   items,

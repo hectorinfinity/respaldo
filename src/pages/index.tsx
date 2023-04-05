@@ -12,8 +12,8 @@ import { getEventsCategories } from '@/api/event/event_category';
 import { useQuery } from '@tanstack/react-query';
 import { getEvents } from '@/api/event/event';
 import Hero from '@/components/main/commons/Hero';
+import { getEventsVenues } from '@/api/event/event_venue';
 
-// TODO: order events by newest and relevance
 const Home = () => {
   const t = useTranslations('Public');
   const locale = useLocale();
@@ -27,7 +27,7 @@ const Home = () => {
     queryKey: ['events'],
     queryFn: getEvents,
   });
-  console.log('query data ', events?.data);
+  console.log('event ', events?.data?.[0]);
   const [heroImages, setHeroImages] = useState([]);
   useEffect(() => {
     setHeroImages(
@@ -63,8 +63,12 @@ const Home = () => {
           items={events?.data?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
             name: item.content.find((obj) => obj.lang == locale).name,
-            date: item.created_at,
+            startDate: item.created_at,
+            startTime: '1:00',
+            endTime: '12:00',
             location: 'Location',
+            category_id: item.category_id?.id,
+            id: item._id,
           }))}
           {...useFormReturn}
         />
@@ -79,9 +83,12 @@ const Home = () => {
           items={events?.data?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
             name: item.content.find((obj) => obj.lang == locale).name,
-            date: item.created_at,
+            startDate: item.created_at,
+            startTime: '1:00',
+            endTime: '12:00',
             location: 'Location',
-            color: 'purple',
+            category_id: item.category_id?.id,
+            id: item._id,
           }))}
           {...useFormReturn}
         />

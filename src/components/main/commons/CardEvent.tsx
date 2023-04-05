@@ -7,114 +7,143 @@ import { format } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
 import { useLocale } from 'next-intl';
 import parseDate from '@/helpers/parseDate';
+import { useQuery } from '@tanstack/react-query';
+import { readEventCategory } from '@/api/event/event_category';
+import Link from 'next/link';
+import { EventCategory } from '@/interfaces/event';
+import { readEventVenue } from '@/api/event/event_venue';
 
 export type props = {
   className?: string;
   layout: 'grid' | 'column';
   image: string;
   name: string;
-  date: Date;
+  startDate: Date;
+  startTime: string;
+  endTime: string;
   location: string;
   favorite?: boolean;
   willAttend?: boolean;
-  color: string;
+  category_id: string;
+  id: string;
+  isLoggedIn?: boolean;
 };
-// TODO: gray colors
 // TODO: should have time prop
-// TODO: when user is not logged in i will attend and like buttons should not be visible
 const CardEvent: React.FC<props> = ({
   className,
-  date,
+  startDate,
+  endTime,
+  startTime,
   image,
   layout,
   location,
   name,
   willAttend = false,
   favorite = false,
-  color,
+  category_id,
+  id,
+  isLoggedIn,
 }) => {
+  const category = useQuery<EventCategory>({
+    queryKey: ['category'],
+    queryFn: async () => await readEventCategory(category_id),
+    enabled: Boolean(category_id),
+  });
+
+  const eventVenue = useQuery({
+    queryKey: ['eventVenue'],
+    queryFn: async () => await readEventVenue(id),
+    enabled: Boolean(id),
+  });
+  // console.log('single event venue', eventVenue?.data);
   const locale = useLocale();
   return (
-    <div
+    <Link
+      href={`/event/${id}`}
       className={classNames(
         'rounded-xl relative shadow-xl overflow-hidden',
-        layout == 'column' && 'flex',
+        layout == 'column' ? 'flex' : 'block',
         className
       )}
     >
-      <Button
+      {isLoggedIn && (
+        <Button
+          className={classNames(
+            'absolute z-20 top-3',
+            layout == 'grid' ? 'right-3' : 'left-3'
+          )}
+          color="white"
+          shape="pill"
+          iconLeft={
+            favorite ? (
+              <Icon name="heart-solid" className="text-customYellow" />
+            ) : (
+              <Icon name="heart-outline" className="text-white" />
+            )
+          }
+        />
+      )}
+      <span
         className={classNames(
-          'absolute z-20 top-3',
-          layout == 'grid' ? 'right-3' : 'left-3'
-        )}
-        color="white"
-        shape="pill"
-        iconLeft={
-          favorite ? (
-            <Icon name="heart-solid" className="text-customYellow" />
-          ) : (
-            <Icon name="heart-outline" className="text-white" />
-          )
-        }
-      />
-      <div
-        className={classNames(
-          'relative',
+          'relative block',
           layout == 'grid' ? 'aspect-[4/3]' : 'aspect-square w-72 '
         )}
       >
         <Image src={image} alt="" fill className="object-cover" />
-        <WillAttend
-          changeColor={willAttend}
-          className={classNames(
-            'absolute bottom-3',
-            layout == 'grid' ? 'right-3' : 'left-3'
-          )}
-        />
-      </div>
+        {isLoggedIn && (
+          <WillAttend
+            changeColor={willAttend}
+            className={classNames(
+              'absolute bottom-3',
+              layout == 'grid' ? 'right-3' : 'left-3'
+            )}
+          />
+        )}
+      </span>
 
-      <div className="flex-1 flex flex-col items-start">
-        <div
-          className={classNames('h-5 w-full')}
-          style={{ backgroundColor: color }}
+      <span className="flex-1 flex flex-col items-start">
+        <span
+          className={classNames('block h-5 w-full')}
+          style={{ backgroundColor: category?.data?.color }}
         />
 
-        <div
+        <span
           className={classNames(
             'w-full',
-            layout == 'column' && 'flex h-full items-center'
+            layout == 'column' ? 'flex h-full items-center' : 'block'
           )}
         >
-          <div className="p-5">
+          <span className="p-5 block">
             <span
               title={name}
               className="block w- truncate text-black font-semibold break-words text-lg"
             >
               {name}
             </span>
-            <div
-              className={classNames('my-3', layout == 'column' && 'flex gap-3')}
+            <span
+              className={classNames(
+                'my-3',
+                layout == 'column' ? 'flex gap-3' : 'block'
+              )}
             >
               <span className="block text-customGray">
-                {format(parseDate(date), 'EEEE, dd MMMM yyyy', {
+                {format(parseDate(startDate), 'EEEE dd MMMM yyyy', {
                   locale: locale == 'en' ? enUS : es,
                 })}
               </span>
-              <span className="block text-customGray">
-                {format(parseDate(date), 'HH:mm', {
-                  locale: locale == 'en' ? enUS : es,
-                })}
+              <span className="flex gap-2 text-customGray">
+                {startTime} <span>-</span> {endTime}
               </span>
-            </div>
+            </span>
 
             <p className="flex items-center gap-2 font-semibold text-black break-words">
               <Icon name="map-pin" />
               {location}
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
+          </span>
+        </span>
+      </span>
+    </Link>
   );
 };
 
