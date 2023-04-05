@@ -60,7 +60,7 @@ const ListCardEventRecommendation: React.FC<props> = ({
       </Tab.List>
       <Tab.Panels className="bg-white rounded-lg p-10 shadow-xl">
         <Tab.Panel className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-          {items.map((item, idx) => (
+          {items?.map((item, idx) => (
             <CardEventRecommendation {...item} key={idx} />
           ))}
           <div className="lg:col-span-2 flex m flex-col">
@@ -70,7 +70,7 @@ const ListCardEventRecommendation: React.FC<props> = ({
           </div>
         </Tab.Panel>
         <Tab.Panel className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-          {items.map((item, idx) => (
+          {items?.map((item, idx) => (
             <CardEventRecommendation {...item} key={idx} />
           ))}
           <div className="lg:col-span-2 flex m flex-col">
@@ -80,7 +80,7 @@ const ListCardEventRecommendation: React.FC<props> = ({
           </div>
         </Tab.Panel>
         <Tab.Panel className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-          {items.map((item, idx) => (
+          {items?.map((item, idx) => (
             <CardEventRecommendation {...item} key={idx} />
           ))}
           <div className="lg:col-span-2 flex m flex-col">

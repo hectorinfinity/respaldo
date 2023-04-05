@@ -1,5 +1,9 @@
 import { getEvents, readEvent } from '@/api/event/event';
-import { getEventsCategories } from '@/api/event/event_category';
+import {
+  getEventsCategories,
+  readEventCategory,
+} from '@/api/event/event_category';
+import { readEventSupplier } from '@/api/event/event_supplier';
 import MainLayout from '@/components/layout/main';
 import ListCardEvent from '@/components/main/commons/ListCardEvent';
 import ListCardEventRecommendation from '@/components/main/commons/ListCardEventRecommendation';
@@ -16,41 +20,40 @@ import { useForm } from 'react-hook-form';
 
 const EventDetailed = () => {
   const useFormReturn = useForm();
-  const [eventsRecommendations, setEventsRecommendations] = useState([]);
   const t = useTranslations('Public');
   const { query } = useRouter();
   const events = useQuery({
     queryKey: ['events'],
     queryFn: getEvents,
   });
-  const categories = useQuery({
-    queryKey: ['categories'],
-    queryFn: getEventsCategories,
-  });
-
-  const event = useQuery<any>({
+  const event = useQuery({
     queryKey: ['event'],
     queryFn: async () => await readEvent(query?.id as any),
     enabled: Boolean(query?.id),
   });
-  const category = categories?.data?.[0];
+  const category = useQuery({
+    queryKey: ['category'],
+    queryFn: async () => await readEventCategory(event?.data?.category_id.id),
+    enabled: Boolean(event?.data?.category_id.id),
+  });
+  const eventSupplier = useQuery({
+    queryKey: ['eventSupplier'],
+    queryFn: async () => readEventSupplier(event?.data?.supplier_id.id),
+    enabled: Boolean(event?.data?.supplier_id.id),
+  });
+  {
+    /**
+     *  TODO: Event interface, category_id is an object no a string
+     *  TODO: fetch event venues
+     *  TODO: no start and end Dats and start and end Times found
+     */
+  }
 
   const locale = useLocale();
   const info = event?.data?.info.content.find((obj) => obj.lang == locale);
-
-  useEffect(() => {
-    setEventsRecommendations(
-      Array.from({ length: 4 }, () => ({
-        category: faker.lorem.word(),
-        image: faker.image.cats(),
-        location: faker.address.streetAddress(),
-        name: faker.name.jobTitle(),
-      }))
-    );
-  }, []);
   return (
     <div className="section-container space-y-16 mt-16 mb-44">
-      <div className="flex justify-between gap-10">
+      <div className="flex flex-col-reverse md:flex-row justify-between gap-10">
         {/** TODO: event does not have `location` attribute or similar */}
         <CardEventDetails
           className="flex-1"
@@ -66,9 +69,11 @@ const EventDetailed = () => {
           image="https://loremflickr.com/640/480/cats"
         />
         <SidebarEvent
-          className="h-max hidden md:block"
-          category={category?.content?.find((obj) => obj.lang == locale).name}
-          color={category?.color}
+          className="h-max"
+          category={
+            category?.data?.content?.find((obj) => obj.lang == locale).name
+          }
+          color={category?.data?.color}
           cost={300}
           startDate={new Date()}
           endDate={new Date()}
@@ -77,6 +82,7 @@ const EventDetailed = () => {
           id={event?.data?._id}
           isLoggedIn
           location="Location"
+          supplier={eventSupplier?.data?.name}
           name={event?.data?.content?.find((obj) => obj.lang == locale).name}
           willAttend
         />
@@ -102,7 +108,9 @@ const EventDetailed = () => {
         items={events?.data?.map((item) => ({
           image: 'https://loremflickr.com/640/480/cats',
           name: item.content.find((obj) => obj.lang == locale).name,
-          date: item.created_at,
+          startDate: item.created_at,
+          startTime: '1:00',
+          endTime: '12:00',
           location: 'Location',
           category_id: item.category_id?.id,
           id: item._id,
@@ -110,7 +118,13 @@ const EventDetailed = () => {
         {...useFormReturn}
       />
       <ListCardEventRecommendation
-        items={eventsRecommendations}
+        items={events?.data?.map((item) => ({
+          category_id: item.category_id.id,
+          image: 'https://loremflickr.com/640/480/cats',
+          location: 'Location',
+          name: item.content.find((obj) => obj.lang == locale).name,
+          id: item._id,
+        }))}
         setCurrentPage={() => {}}
         setPageSize={() => {}}
         totalDocs={10}
