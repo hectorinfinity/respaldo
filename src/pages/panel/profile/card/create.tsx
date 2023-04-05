@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { CustomCard } from '@/components/admin/profile/customCard';
 import AdminLayout from "@/components/layout/admin";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_API_KEY);
 
 const CreateCard = () => {
     const router = useRouter();
