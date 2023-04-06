@@ -28,7 +28,6 @@ const StepCheckoutPayment: React.FC<props> = ({
     formState: { errors },
   } = useFormReturn;
   const t = useTranslations('Step_Checkout_Payment');
-  const onSubmit = () => {};
   return (
     <Elements stripe={stripePromise}>
       <div className={classNames('space-y-5', className)}>
@@ -262,7 +261,7 @@ const StepCheckoutPayment: React.FC<props> = ({
             </div>
           </Disclosure.Panel>
         </Disclosure>
-
+        {/* 
         <Disclosure as="div" className="rounded-xl shadow-lg">
           <Disclosure.Button
             className={classNames(
@@ -275,7 +274,7 @@ const StepCheckoutPayment: React.FC<props> = ({
           </Disclosure.Button>
 
           <Disclosure.Panel></Disclosure.Panel>
-        </Disclosure>
+        </Disclosure> */}
       </div>
     </Elements>
   );

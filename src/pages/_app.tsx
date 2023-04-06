@@ -3,6 +3,9 @@ import Head from 'next/head';
 import type { NextComponentType } from 'next';
 import type { AppProps } from 'next/app';
 import { FC, Fragment } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // International and Layout manage
 import { NextIntlProvider } from 'next-intl';
 type CustomNextComponent = NextComponentType & { Layout?: FC };
@@ -50,6 +53,7 @@ export default function App({ Component, pageProps }: CustomAppProps) {
               apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}
               libraries={['places']}
             >
+              <ToastContainer />
               <Component {...pageProps} />
             </Wrapper>
           </Layout>

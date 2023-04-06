@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
-
-export type props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> &
+import { CurrentColor } from '@/helpers';
+export type props = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> &
   UseFormRegisterReturn & {
     className?: string;
     color?: 'primary';
@@ -10,12 +13,13 @@ export type props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputE
   };
 const Radio = React.forwardRef<any, props>(
   ({ className, color = 'primary', label, error, ...props }, ref) => {
+    const currentColor = CurrentColor();
     return (
       <div className={className}>
         <div className="flex items-center">
           <input
             type="checkbox"
-            className={color == 'primary' && 'checkbox-primary'}
+            className={color == 'primary' && `checkbox-primary bg-${currentColor} text-${currentColor}`}
             ref={ref}
             {...props}
           />

@@ -28,8 +28,8 @@ const FooterCheckout: React.FC<props> = ({
       </div>
       <div>
         <Button
+          type="submit"
           className={classNames(currentStep == 4 && 'hidden')}
-          onClick={() => setCurrentStep((prv) => prv + 1)}
           size="large"
         >
           <p className="font-bold w-32">Next</p>
