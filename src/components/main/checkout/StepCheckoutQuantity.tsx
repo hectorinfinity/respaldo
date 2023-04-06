@@ -23,30 +23,26 @@ const StepCheckoutQuantity: React.FC<props> = ({
 }) => {
   const { register, setValue, watch } = useFormReturn;
   const t = useTranslations('Step_Checkout_Quantity');
+  const [tickets] = watch(['tickets']);
   return (
     <div className={classNames('rounded-xl shadow-xl', className)}>
       <HeaderStepCheckout name={name} location={location} />
       <div className="px-24 py-20 space-y-10">
-        <div className="space-y-3 inline-block">
+        {/* <div className="inline-block space-y-3">
           <span className="font-semibold">{t('select_date_time')}</span>
           <TextField
             className="w-72"
             type="datetime-local"
             {...register('datetime')}
           />
-        </div>
+        </div> */}
 
         <div className="space-y-3">
           <span className="font-semibold">{t('select_number_of_tickets')}</span>
-          <div className="flex gap-5 items-center">
+          <div className="flex items-center gap-5">
             <Button
               onClick={() =>
-                setValue(
-                  'tickets',
-                  watch('tickets') == 0
-                    ? watch('tickets')
-                    : watch('tickets') - 1
-                )
+                setValue('tickets', tickets == 1 ? tickets : tickets - 1)
               }
               size="small"
               shape="pill"
@@ -57,7 +53,7 @@ const StepCheckoutQuantity: React.FC<props> = ({
             <Button
               size="small"
               shape="pill"
-              onClick={() => setValue('tickets', watch('tickets') + 1)}
+              onClick={() => setValue('tickets', tickets + 1)}
               iconLeft={<Icon name="plus" className="w-4 h-4" />}
             />
 

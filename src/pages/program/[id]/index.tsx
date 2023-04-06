@@ -56,7 +56,7 @@ const ProgramDetailed = () => {
     <div>
       <HeaderProgram
         image="https://loremflickr.com/640/480/cats"
-        name={event?.data?.content.find((obj) => obj.lang == locale).name}
+        name={event?.data?.content.find((obj) => obj.lang == locale)?.name}
       />
 
       <div className="mt-16 mb-44 section-container space-y-16">
@@ -64,12 +64,12 @@ const ProgramDetailed = () => {
         <CardProgramDetails
           className="mt-16"
           description={
-            event?.data?.content.find((obj) => obj.lang == locale).description
+            event?.data?.content.find((obj) => obj.lang == locale)?.description
           }
           endDate={new Date()}
           image={'https://loremflickr.com/640/480/cats'}
           location={'Location'}
-          name={event?.data?.content.find((obj) => obj.lang == locale).name}
+          name={event?.data?.content.find((obj) => obj.lang == locale)?.name}
           startDate={new Date()}
         />
         {/** TODO: list program days fetch missing */}
@@ -85,9 +85,9 @@ const ProgramDetailed = () => {
           setPageSize={() => {}}
           totalDocs={10}
           title={t('home.new_events')}
-          items={events?.data?.map((item) => ({
+          items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale).name,
+            name: item.content.find((obj) => obj.lang == locale)?.name,
             startDate: item.created_at,
             startTime: '1:00',
             endTime: '12:00',
@@ -99,11 +99,11 @@ const ProgramDetailed = () => {
         />
 
         <ListCardEventRecommendation
-          items={events?.data?.map((item) => ({
+          items={events?.data?.items?.map((item) => ({
             category_id: item.category_id.id,
             image: 'https://loremflickr.com/640/480/cats',
             location: 'Location',
-            name: item.content.find((obj) => obj.lang == locale).name,
+            name: item.content.find((obj) => obj.lang == locale)?.name,
             id: item._id,
           }))}
           setCurrentPage={() => {}}

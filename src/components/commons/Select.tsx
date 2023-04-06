@@ -1,6 +1,6 @@
 import React from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
-import {classNames} from '@/helpers'
+import { classNames, CurrentColor } from '@/helpers';
 
 export type props = React.DetailedHTMLProps<
   React.SelectHTMLAttributes<HTMLSelectElement>,
@@ -20,21 +20,35 @@ export type props = React.DetailedHTMLProps<
     fullWidth?: boolean;
   };
 const Select = React.forwardRef<any, props>(
-  ({ className, color = 'primary', label, error, options, fullWidth = true, ...props }, ref) => {
+  (
+    {
+      className,
+      color = 'primary',
+      label,
+      error,
+      options,
+      fullWidth = true,
+      ...props
+    },
+    ref
+  ) => {
     const sectionNames: string[] = [];
     options?.forEach((option) => {
-      if (!sectionNames.includes(option.section)) sectionNames.push(option.section);
+      if (!sectionNames.includes(option.section))
+        sectionNames.push(option.section);
     });
     const sections = sectionNames.map((sectionName) => {
       return options.filter((option) => option.section == sectionName);
     });
+    const currentColor = CurrentColor();
     return (
       <div className={classNames(fullWidth && 'w-full', className)}>
         {label && <label className="input-label">{label}</label>}
         <select
           className={classNames(
             'pr-8',
-            color == 'primary' && 'select-primary',
+            color == 'primary' &&
+              `select-primary focus-within:ring-${currentColor}  focus-within:border-${currentColor}`,
             fullWidth && 'w-full',
             label && 'mt-1'
           )}

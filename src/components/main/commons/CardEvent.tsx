@@ -116,7 +116,7 @@ const CardEvent: React.FC<props> = ({
           <span className="p-5 block">
             <span
               title={name}
-              className="block w- truncate text-black font-semibold break-words text-lg"
+              className="block text-lg font-semibold text-black break-words truncate w-"
             >
               {name}
             </span>

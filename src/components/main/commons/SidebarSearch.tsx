@@ -35,8 +35,8 @@ const SidebarSearch: React.FC<props> = ({
   const dateRange = watch('date-range');
   const categoriesArray = categories?.data
     ? categories?.data?.map((item) => ({
-        name: item?.category?.find((obj) => obj.lang == locale).name,
-        value: item?.category?.find((obj) => obj.lang == locale).name,
+        name: item?.category?.find((obj) => obj.lang == locale)?.name,
+        value: item?.category?.find((obj) => obj.lang == locale)?.name,
       }))
     : [];
   const categoriesOptions = [
