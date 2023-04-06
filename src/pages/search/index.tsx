@@ -135,7 +135,7 @@ const Search = () => {
                 setPageSize={() => {}}
                 totalDocs={10}
                 title={t('commons.recommended_events')}
-                items={events?.data?.map((item) => ({
+                items={events?.data?.item?.map((item) => ({
                   image: 'https://loremflickr.com/640/480/cats',
                   name: item.content.find((obj) => obj.lang == locale)?.name,
                   startDate: item.created_at,
@@ -165,7 +165,7 @@ const Search = () => {
                     })
                   : t('commons.recommended_events')
               }
-              items={events?.data?.map((item) => ({
+              items={events?.data?.item?.map((item) => ({
                 image: 'https://loremflickr.com/640/480/cats',
                 name: item.content.find((obj) => obj.lang == locale)?.name,
                 startDate: item.created_at,
