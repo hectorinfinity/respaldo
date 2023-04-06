@@ -28,17 +28,16 @@ const Home = () => {
     queryFn: getEvents,
   });
 
-  const [heroImages, setHeroImages] = useState([]);
-  useEffect(() => {
-    setHeroImages(
-      Array.from({ length: 5 }, () => ({
-        image: faker.image.abstract(),
-      }))
-    );
-  }, []);
   return (
     <div className="mb-44 -mt-8">
-      <Hero items={heroImages} />
+      <Hero
+        items={[
+          {
+            image: '/images/slides/home-slide.png',
+            url: '/images/slides/home-slide.png',
+          },
+        ]}
+      />
       <div className="mt-16 space-y-16 section-container">
         <ListCardCategory
           items={categories?.data?.map((item) => ({

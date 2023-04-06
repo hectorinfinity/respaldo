@@ -12,6 +12,7 @@ import { readEventCategory } from '@/api/event/event_category';
 import Link from 'next/link';
 import { EventCategory } from '@/interfaces/event';
 import { readEventVenue } from '@/api/event/event_venue';
+import { useUserAuthObserver } from '@/hooks/auth';
 
 export type props = {
   className?: string;
@@ -44,6 +45,7 @@ const CardEvent: React.FC<props> = ({
   id,
   isLoggedIn,
 }) => {
+  const { isAuthenticated } = useUserAuthObserver();
   const category = useQuery<EventCategory>({
     queryKey: ['category'],
     queryFn: async () => await readEventCategory(category_id),
@@ -66,7 +68,7 @@ const CardEvent: React.FC<props> = ({
         className
       )}
     >
-      {isLoggedIn && (
+      {isAuthenticated && (
         <Button
           className={classNames(
             'absolute z-20 top-3',
@@ -90,7 +92,7 @@ const CardEvent: React.FC<props> = ({
         )}
       >
         <Image src={image} alt="" fill className="object-cover" />
-        {isLoggedIn && (
+        {isAuthenticated && (
           <WillAttend
             changeColor={willAttend}
             className={classNames(

@@ -30,6 +30,11 @@ const Search = () => {
   const locale = useLocale();
   const { replace, push, query: queryObj } = useRouter();
   const t = useTranslations('Public');
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize, setPageSize] = useState(0);
+  const [totalDocs, setTotalDocs] = useState(10);
+
   const [heroImages, setHeroImages] = useState([]);
   const [imageAdvertisment, setImageAdvertisment] = useState('');
 
@@ -83,6 +88,7 @@ const Search = () => {
     );
     setImageAdvertisment(faker.image.abstract());
   }, []);
+  console.log(events?.data);
   return (
     <div className="-mt-8 mb-44">
       <Hero items={heroImages} />
@@ -96,9 +102,9 @@ const Search = () => {
           }))}
           layout="swiper"
           size="small"
-          setCurrentPage={() => {}}
-          setPageSize={() => {}}
-          totalDocs={12}
+          setCurrentPage={setCurrentPage}
+          setPageSize={setPageSize}
+          totalDocs={totalDocs}
           {...useFormReturn}
         />
 
@@ -115,7 +121,7 @@ const Search = () => {
             className="hidden col-span-2 md:block"
             {...useFormReturn}
           />
-          {events?.data?.items?.length == 0 && events?.isLoading == false ? (
+          {events?.data?.total == 0 && events?.isLoading == false ? (
             <div className="col-span-6 space-y-10 md:col-span-4">
               <div className="flex flex-col gap-2">
                 <Title level="h5">
@@ -130,12 +136,12 @@ const Search = () => {
               <ListCardEvent
                 className="col-span-6 md:col-span-4"
                 loading={events?.isLoading}
-                layout="swiper"
+                layout="grid"
                 setCurrentPage={() => {}}
                 setPageSize={() => {}}
                 totalDocs={10}
                 title={t('commons.recommended_events')}
-                items={events?.data?.map((item) => ({
+                items={events?.data?.items?.map((item) => ({
                   image: 'https://loremflickr.com/640/480/cats',
                   name: item.content.find((obj) => obj.lang == locale)?.name,
                   startDate: item.created_at,
@@ -160,12 +166,12 @@ const Search = () => {
               title={
                 query
                   ? t('commons.results', {
-                      length: events.data.length,
+                      length: events.data.total,
                       query,
                     })
                   : t('commons.recommended_events')
               }
-              items={events?.data?.map((item) => ({
+              items={events?.data?.items?.map((item) => ({
                 image: 'https://loremflickr.com/640/480/cats',
                 name: item.content.find((obj) => obj.lang == locale)?.name,
                 startDate: item.created_at,

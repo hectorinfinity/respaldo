@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { ButtonLink, Icon } from '@/components/commons';
 import Link from 'next/link';
+import { Tab } from '@headlessui/react';
 
 export type props = {
   className?: string;
@@ -47,41 +48,73 @@ const CardEventDetails: React.FC<props> = ({
         </div>
       </div>
 
-      <span className="block font-semibold mt-5 text-lg">
-        {t('event_details')}
-      </span>
-      <p>
-        {details}{' '}
-        <Link
-          className="text-customBlueNight font-semibold"
-          href={`/event/${id}`}
-        >
-          Read more...
-        </Link>
-      </p>
+      <Tab.Group>
+        <Tab.List className="flex items-end">
+          <Tab
+            className={({ selected }) =>
+              classNames(
+                'px-5 py-3 border-b focus:ring-0 focus:outline-none',
+                selected
+                  ? 'border-customGreen text-customGreen'
+                  : 'border-gray-200'
+              )
+            }
+          >
+            {t('description')}
+          </Tab>
+          <Tab
+            className={({ selected }) =>
+              classNames(
+                'px-5 py-3 border-b focus:ring-0 focus:outline-none',
+                selected
+                  ? 'border-customGreen text-customGreen'
+                  : 'border-gray-200'
+              )
+            }
+          >
+            {t('information')}
+          </Tab>
+          <div className="border-b flex-1 border-gray-200"></div>
+        </Tab.List>
+        <Tab.Panels className="mt-5">
+          <Tab.Panel>
+            <p>
+              {details}{' '}
+              <Link
+                className="text-customBlueNight font-semibold"
+                href={`/event/${id}`}
+              >
+                Read more...
+              </Link>
+            </p>
+          </Tab.Panel>
 
-      <ul className="space-y-4 mt-10">
-        <li className="flex gap-4 text-sm">
-          <span className="font-semibold">{t('restrictions')}</span>{' '}
-          <span>{restrictions}</span>
-        </li>
-        <li className="flex gap-4 text-sm">
-          <span className="font-semibold">{t('general')}</span>{' '}
-          <span>{general}</span>
-        </li>
-        <li className="flex gap-4 text-sm">
-          <span className="font-semibold">{t('observations')}</span>{' '}
-          <span>{observations}</span>
-        </li>
-        <li className="flex gap-4 text-sm">
-          <span className="font-semibold">{t('services')}</span>{' '}
-          <span>{services}</span>
-        </li>
-        <li className="flex gap-4 text-sm">
-          <span className="font-semibold">{t('limited_access')}</span>{' '}
-          <span>{access}</span>
-        </li>
-      </ul>
+          <Tab.Panel>
+            <ul className="space-y-4 mt-10">
+              <li className="flex gap-4 text-sm">
+                <span className="font-semibold">{t('restrictions')}</span>{' '}
+                <span>{restrictions}</span>
+              </li>
+              <li className="flex gap-4 text-sm">
+                <span className="font-semibold">{t('general')}</span>{' '}
+                <span>{general}</span>
+              </li>
+              <li className="flex gap-4 text-sm">
+                <span className="font-semibold">{t('observations')}</span>{' '}
+                <span>{observations}</span>
+              </li>
+              <li className="flex gap-4 text-sm">
+                <span className="font-semibold">{t('services')}</span>{' '}
+                <span>{services}</span>
+              </li>
+              <li className="flex gap-4 text-sm">
+                <span className="font-semibold">{t('limited_access')}</span>{' '}
+                <span>{access}</span>
+              </li>
+            </ul>
+          </Tab.Panel>
+        </Tab.Panels>
+      </Tab.Group>
     </div>
   );
 };
