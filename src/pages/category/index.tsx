@@ -21,7 +21,7 @@ const Category = () => {
         setPageSize={() => {}}
         totalDocs={categories.data?.length}
         items={categories?.data?.map((item) => ({
-          name: item.category.find((obj) => obj.lang == locale).name,
+          name: item.category.find((obj) => obj.lang == locale)?.name,
           color: item.color,
           image: item.picture,
         }))}

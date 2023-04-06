@@ -820,7 +820,8 @@
     "time": "Time:",
     "location": "Location:",
     "button": "Buy Ticket",
-    "payment_methods": "Payment methods:"
+    "payment_methods": "Payment methods:",
+    "supplier": "Supplier:"
   },
   "Card_Event_Details": {
     "read_more": "Read more...",
@@ -947,6 +948,9 @@
       "label": "Location",
       "placeholder": "Search by country,city"
     },
+    "select_categories_placeholder": "Selecy categories",
+    "select_sub_categories_placeholder": "Selecy sub categories",
+    "select_sub_subcategories_placeholder": "Selecy sub subcategories",
     "button": "Aply Filters"
   },
   "Card_Event_Location": {

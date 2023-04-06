@@ -11,6 +11,7 @@ import ListCardEvent from '@/components/main/commons/ListCardEvent';
 import SidebarSearch from '@/components/main/commons/SidebarSearch';
 import HeaderCategory from '@/components/main/search/HeaderCategory';
 import HeaderSearch from '@/components/main/search/HeaderSearch';
+import { Event } from '@/interfaces/event';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
@@ -19,7 +20,12 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const Search = () => {
-  const useFormReturn = useForm();
+  const useFormReturn = useForm<any>({
+    defaultValues: {
+      initial_date: 'dd/mm/aaaa',
+      finish_date: 'dd/mm/aaaa',
+    },
+  });
   const { watch } = useFormReturn;
   const locale = useLocale();
   const { replace, push, query: queryObj } = useRouter();
@@ -35,7 +41,6 @@ const Search = () => {
     queryKey: ['events'],
     queryFn: getEvents,
   });
-
   const category = categories?.data?.find((item) =>
     item.category.find((obj) => obj.name == queryObj?.category)
   );
@@ -85,7 +90,7 @@ const Search = () => {
       <div className="mt-16 space-y-16 section-container">
         <HeaderSearch
           items={categories?.data?.map((item) => ({
-            name: item.category.find((obj) => obj.lang == locale).name,
+            name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
             image: item.picture,
           }))}
@@ -101,7 +106,7 @@ const Search = () => {
           <HeaderCategory
             color={category?.color}
             image={category?.picture}
-            name={category?.category?.find((obj) => obj.lang == locale).name}
+            name={category?.category?.find((obj) => obj.lang == locale)?.name}
             size="large"
           />
         )}
@@ -110,7 +115,7 @@ const Search = () => {
             className="hidden col-span-2 md:block"
             {...useFormReturn}
           />
-          {events?.data?.length == 0 && events?.isLoading == false ? (
+          {events?.data?.items?.length == 0 && events?.isLoading == false ? (
             <div className="col-span-6 space-y-10 md:col-span-4">
               <div className="flex flex-col gap-2">
                 <Title level="h5">
@@ -133,9 +138,12 @@ const Search = () => {
                 items={events?.data?.map((item) => ({
                   image: 'https://loremflickr.com/640/480/cats',
                   name: item.content.find((obj) => obj.lang == locale)?.name,
-                  date: item.created_at,
+                  startDate: item.created_at,
+                  startTime: '1:00',
+                  endTime: '12:00',
                   location: 'Location',
-                  color: 'purple',
+                  category_id: item.category_id?.id,
+                  id: item._id,
                 }))}
                 {...useFormReturn}
               />
@@ -159,10 +167,13 @@ const Search = () => {
               }
               items={events?.data?.map((item) => ({
                 image: 'https://loremflickr.com/640/480/cats',
-                name: item.content.find((obj) => obj.lang == locale).name,
-                date: item.created_at,
+                name: item.content.find((obj) => obj.lang == locale)?.name,
+                startDate: item.created_at,
+                startTime: '1:00',
+                endTime: '12:00',
                 location: 'Location',
-                color: 'purple',
+                category_id: item.category_id?.id,
+                id: item._id,
               }))}
               {...useFormReturn}
             />

@@ -20,7 +20,6 @@ import {
 
 export const ToolBar = () => {
   const { user: existUser, queryClient, isLoading } = useUserAuthObserver();
-
   const t = useTranslations('Header_Tool');
   const tc = useTranslations('Common_Forms');
   const currentColor = CurrentColor();

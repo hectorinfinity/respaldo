@@ -23,6 +23,7 @@ const StepCheckoutQuantity: React.FC<props> = ({
 }) => {
   const { register, setValue, watch } = useFormReturn;
   const t = useTranslations('Step_Checkout_Quantity');
+  const [tickets] = watch(['tickets']);
   return (
     <div className={classNames('rounded-xl shadow-xl', className)}>
       <HeaderStepCheckout name={name} location={location} />
@@ -41,12 +42,7 @@ const StepCheckoutQuantity: React.FC<props> = ({
           <div className="flex items-center gap-5">
             <Button
               onClick={() =>
-                setValue(
-                  'tickets',
-                  watch('tickets') == 0
-                    ? watch('tickets')
-                    : watch('tickets') - 1
-                )
+                setValue('tickets', tickets == 1 ? tickets : tickets - 1)
               }
               size="small"
               shape="pill"
@@ -57,7 +53,7 @@ const StepCheckoutQuantity: React.FC<props> = ({
             <Button
               size="small"
               shape="pill"
-              onClick={() => setValue('tickets', watch('tickets') + 1)}
+              onClick={() => setValue('tickets', tickets + 1)}
               iconLeft={<Icon name="plus" className="w-4 h-4" />}
             />
 
