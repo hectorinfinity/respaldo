@@ -5,9 +5,8 @@ import formatNumber from 'format-number';
 import { useLocale, useTranslations } from 'next-intl';
 import { format } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
-import Image from 'next/image';
 import parseDate from '@/helpers/parseDate';
-
+import {useRouter} from 'next/router'
 export type props = {
   className?: string;
   id: string;
@@ -42,6 +41,7 @@ const SidebarEvent: React.FC<props> = ({
   supplier,
 }) => {
   const t = useTranslations('Sidebar_Event');
+  const router = useRouter()
   const locale = useLocale();
   return (
     <aside className={classNames('flex flex-col', className)}>
@@ -118,7 +118,7 @@ const SidebarEvent: React.FC<props> = ({
             </li>
           </ul>
 
-          <Button disabled={!isLoggedIn} fullWidth className="mt-24">
+          <Button disabled={!isLoggedIn} fullWidth className="mt-24" onClick={() => router.push(`/event/${id}/checkout`)}>
             {t('button')}
           </Button>
 

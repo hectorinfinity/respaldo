@@ -1,11 +1,20 @@
 import React, { FC } from 'react';
-import {classNames} from '@/helpers'
+import { classNames } from '@/helpers';
 import Link from 'next/link';
+import { CurrentColor } from '@/helpers';
 
 export type props = {
   className?: string;
   href: string;
-  color?: 'primary' | 'secondary' | 'rainbow' | 'neutral' | 'danger' | 'success' | 'white' | 'none';
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'rainbow'
+    | 'neutral'
+    | 'danger'
+    | 'success'
+    | 'white'
+    | 'none';
   weight?: 'solid' | 'outline' | 'ghost' | 'inline';
   shape?: 'pill' | 'semibrick' | 'brick';
   size?: 'small' | 'medium' | 'large' | 'relative';
@@ -32,11 +41,13 @@ const ButtonLink: FC<props> = ({
   isExternal = false,
   ...props
 }) => {
+  const currentColor = CurrentColor();
+
   const colorStyle = classNames(
     color == 'primary'
       ? classNames(
           weight == 'solid'
-            ? 'btn-primary'
+            ? `btn-primary bg-${currentColor}`
             : weight == 'outline'
             ? 'btn-primary-outline'
             : weight == 'ghost'
@@ -105,7 +116,11 @@ const ButtonLink: FC<props> = ({
         )
   );
   const sizeStyle = classNames(
-    size == 'small' ? 'text-xs' : size == 'medium' ? 'text-sm' : size == 'large' && 'text-sm sm:text-base'
+    size == 'small'
+      ? 'text-xs'
+      : size == 'medium'
+      ? 'text-sm'
+      : size == 'large' && 'text-sm sm:text-base'
   );
 
   const shapeStyle = classNames(

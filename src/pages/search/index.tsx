@@ -84,13 +84,13 @@ const Search = () => {
     setImageAdvertisment(faker.image.abstract());
   }, []);
   return (
-    <div className="mb-44 -mt-8">
+    <div className="-mt-8 mb-44">
       <Hero items={heroImages} />
 
       <div className="mt-16 space-y-16 section-container">
         <HeaderSearch
           items={categories?.data?.map((item) => ({
-            name: item.category.find((obj) => obj.lang == locale).name,
+            name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
             image: item.picture,
           }))}
@@ -106,17 +106,17 @@ const Search = () => {
           <HeaderCategory
             color={category?.color}
             image={category?.picture}
-            name={category?.category?.find((obj) => obj.lang == locale).name}
+            name={category?.category?.find((obj) => obj.lang == locale)?.name}
             size="large"
           />
         )}
         <div className="grid grid-cols-6 gap-5 md:gap-10">
           <SidebarSearch
-            className="col-span-2 hidden md:block"
+            className="hidden col-span-2 md:block"
             {...useFormReturn}
           />
-          {events?.data?.length == 0 && events?.isLoading == false ? (
-            <div className="space-y-10 col-span-6 md:col-span-4">
+          {events?.data?.items?.length == 0 && events?.isLoading == false ? (
+            <div className="col-span-6 space-y-10 md:col-span-4">
               <div className="flex flex-col gap-2">
                 <Title level="h5">
                   {t('commons.search_no_results', {
@@ -128,7 +128,7 @@ const Search = () => {
               </div>
 
               <ListCardEvent
-                className="md:col-span-4 col-span-6"
+                className="col-span-6 md:col-span-4"
                 loading={events?.isLoading}
                 layout="swiper"
                 setCurrentPage={() => {}}
@@ -151,7 +151,7 @@ const Search = () => {
           ) : (
             <ListCardEvent
               controls
-              className="md:col-span-4 col-span-6"
+              className="col-span-6 md:col-span-4"
               loading={events?.isLoading}
               layout="swiper"
               setCurrentPage={() => {}}
@@ -167,7 +167,7 @@ const Search = () => {
               }
               items={events?.data?.map((item) => ({
                 image: 'https://loremflickr.com/640/480/cats',
-                name: item.content.find((obj) => obj.lang == locale).name,
+                name: item.content.find((obj) => obj.lang == locale)?.name,
                 startDate: item.created_at,
                 startTime: '1:00',
                 endTime: '12:00',

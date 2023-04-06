@@ -45,7 +45,7 @@ const CardEventRecommendation: React.FC<props> = ({
 
       <span className="block px-10 my-3">
         <span className="block text-sm lg:text-base">
-          {category?.data?.category?.find((obj) => obj.lang == locale).name}
+          {category?.data?.category?.find((obj) => obj.lang == locale)?.name}
         </span>
         <span className="block lg:text-xl mt-1 font-semibold">{name}</span>
         <p className="text-black text-sm lg:text-base flex gap-1 items-center mt-2 lg:mt-5">

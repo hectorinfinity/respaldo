@@ -18,6 +18,7 @@ export type props = {
   fees: number;
   discount: number;
   total: number;
+  currentStep:number
 } & UseFormReturn<any>;
 
 const SidebarCheckout: React.FC<props> = ({
@@ -31,6 +32,7 @@ const SidebarCheckout: React.FC<props> = ({
   fees,
   discount,
   total,
+  currentStep,
   ...useFormReturn
 }) => {
   const t = useTranslations('Sidebar_Checkout');
@@ -118,16 +120,18 @@ const SidebarCheckout: React.FC<props> = ({
             </div>
           </div>
         </div>
-        <div className="hidden md:block">
-          <TextField
-            label={t('add_coupon')}
-            error={errors.coupon?.message}
-            {...register('coupon')}
-          ></TextField>
-          <div className="flex justify-end mt-3">
-            <Button>{t('apply_coupon')}</Button>
+        {currentStep > 1 && (
+          <div className="hidden md:block">
+            <TextField
+              label={t('add_coupon')}
+              error={errors.coupon?.message}
+              {...register('coupon')}
+            ></TextField>
+            <div className="flex justify-end mt-3">
+              <Button>{t('apply_coupon')}</Button>
+            </div>
           </div>
-        </div>
+        )}
         {spots && <TableSpots className="hidden md:block" />}
         <div>
           <div className="grid w-full grid-cols-2">

@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutMain from '@/components/main/commons/LayoutMain';
+import MainLayout from '@/components/layout/main';
 import ListCardCategory from '@/components/main/commons/ListCardCategory';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -27,7 +27,7 @@ const Home = () => {
     queryKey: ['events'],
     queryFn: getEvents,
   });
-  console.log('event ', events?.data?.[0]);
+
   const [heroImages, setHeroImages] = useState([]);
   useEffect(() => {
     setHeroImages(
@@ -42,7 +42,7 @@ const Home = () => {
       <div className="mt-16 space-y-16 section-container">
         <ListCardCategory
           items={categories?.data?.map((item) => ({
-            name: item.category.find((obj) => obj.lang == locale).name,
+            name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
             image: item.picture,
           }))}
@@ -60,9 +60,9 @@ const Home = () => {
           setPageSize={() => {}}
           totalDocs={10}
           title={t('home.featured_events')}
-          items={events?.data?.map((item) => ({
+          items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale).name,
+            name: item.content.find((obj) => obj.lang == locale)?.name,
             startDate: item.created_at,
             startTime: '1:00',
             endTime: '12:00',
@@ -80,9 +80,9 @@ const Home = () => {
           setPageSize={() => {}}
           totalDocs={10}
           title={t('home.new_events')}
-          items={events?.data?.map((item) => ({
+          items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale).name,
+            name: item.content.find((obj) => obj.lang == locale)?.name,
             startDate: item.created_at,
             startTime: '1:00',
             endTime: '12:00',
@@ -97,7 +97,7 @@ const Home = () => {
   );
 };
 
-Home.Layout = LayoutMain;
+Home.Layout = MainLayout;
 
 export async function getStaticProps({ locale }) {
   return {

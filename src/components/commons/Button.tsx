@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { classNames } from "@/helpers";
 import { CircularProgress } from "@mui/material";
-
+import { CurrentColor } from '@/helpers';
 export type props = {
   className?: string;
   color?:
@@ -43,11 +43,12 @@ const Button: FC<props> = ({
   children,
   ...props
 }) => {
+  const currentColor = CurrentColor();
   const colorStyle = classNames(
     color == "primary"
       ? classNames(
           weight == "solid"
-            ? "btn-primary"
+          ? `btn-primary bg-${currentColor}`
             : weight == "outline"
             ? "btn-primary-outline"
             : weight == "ghost"

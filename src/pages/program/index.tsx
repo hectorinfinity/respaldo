@@ -83,7 +83,7 @@ const Program = () => {
       <div className="mt-16 space-y-16 section-container">
         <HeaderSearch
           items={categories?.data?.map((item) => ({
-            name: item.category.find((obj) => obj.lang == locale).name,
+            name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
             image: item.picture,
           }))}
@@ -98,7 +98,7 @@ const Program = () => {
           <HeaderCategory
             color={category?.color}
             image={category?.picture}
-            name={category?.category?.find((obj) => obj.lang == locale).name}
+            name={category?.category?.find((obj) => obj.lang == locale)?.name}
             size="large"
           />
         )}
@@ -116,9 +116,9 @@ const Program = () => {
             setPageSize={() => {}}
             totalDocs={10}
             title={t('home.new_events')}
-            items={events?.data?.map((item) => ({
+            items={events?.data?.items?.map((item) => ({
               image: 'https://loremflickr.com/640/480/cats',
-              name: item.content.find((obj) => obj.lang == locale).name,
+              name: item.content.find((obj) => obj.lang == locale)?.name,
               startDate: item.created_at,
               startTime: '1:00',
               endTime: '12:00',
@@ -141,14 +141,14 @@ const Program = () => {
           title={
             query
               ? t('commons.results', {
-                  length: events?.data?.length,
+                  length: events?.data?.items?.length,
                   query,
                 })
               : t('commons.recommended_events')
           }
-          items={events?.data?.map((item) => ({
+          items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale).name,
+            name: item.content.find((obj) => obj.lang == locale)?.name,
             startDate: item.created_at,
             startTime: '1:00',
             endTime: '12:00',
