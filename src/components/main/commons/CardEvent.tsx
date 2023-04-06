@@ -73,7 +73,7 @@ const CardEvent: React.FC<props> = ({
         />
       </div>
 
-      <div className="flex-1 flex flex-col items-start">
+      <div className="flex flex-col items-start flex-1">
         <div
           className={classNames('h-5 w-full')}
           style={{ backgroundColor: color }}
@@ -88,7 +88,7 @@ const CardEvent: React.FC<props> = ({
           <div className="p-5">
             <span
               title={name}
-              className="block w- truncate text-black font-semibold break-words text-lg"
+              className="block text-lg font-semibold text-black break-words truncate w-"
             >
               {name}
             </span>

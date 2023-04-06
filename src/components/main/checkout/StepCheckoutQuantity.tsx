@@ -27,18 +27,18 @@ const StepCheckoutQuantity: React.FC<props> = ({
     <div className={classNames('rounded-xl shadow-xl', className)}>
       <HeaderStepCheckout name={name} location={location} />
       <div className="px-24 py-20 space-y-10">
-        <div className="space-y-3 inline-block">
+        {/* <div className="inline-block space-y-3">
           <span className="font-semibold">{t('select_date_time')}</span>
           <TextField
             className="w-72"
             type="datetime-local"
             {...register('datetime')}
           />
-        </div>
+        </div> */}
 
         <div className="space-y-3">
           <span className="font-semibold">{t('select_number_of_tickets')}</span>
-          <div className="flex gap-5 items-center">
+          <div className="flex items-center gap-5">
             <Button
               onClick={() =>
                 setValue(

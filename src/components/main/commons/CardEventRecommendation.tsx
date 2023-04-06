@@ -11,22 +11,28 @@ export type props = {
   image: string;
 };
 
-const CardEventRecommendation: React.FC<props> = ({ className, category, location, name, image }) => {
+const CardEventRecommendation: React.FC<props> = ({
+  className,
+  category,
+  location,
+  name,
+  image,
+}) => {
   return (
     <div
       className={classNames(
-        'inline-flex overflow-hidden items-center bg-white rounded-xl shadow-xl',
+        'flex overflow-hidden items-center bg-white rounded-xl shadow-xl',
         className
       )}
     >
-      <div className="relative h-52 aspect-[12/9]">
+      <div className="relative h-full w-24 md:w-auto shrink-0 md:h-52 aspect-[12/9]">
         <Image className="object-cover" fill alt="" src={image} />
       </div>
 
-      <div className="px-10">
-        <span className="block">{category}</span>
-        <span className="block text-xl mt-1 font-semibold">{name}</span>
-        <p className="text-black flex gap-1 items-center mt-5">
+      <div className="px-10 my-3">
+        <span className="block text-sm lg:text-base">{category}</span>
+        <span className="block lg:text-xl mt-1 font-semibold">{name}</span>
+        <p className="text-black text-sm lg:text-base flex gap-1 items-center mt-2 lg:mt-5">
           <Icon name="map-pin" className="w-4 h-4" />
           {location}
         </p>

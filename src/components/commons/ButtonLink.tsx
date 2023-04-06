@@ -47,7 +47,7 @@ const ButtonLink: FC<props> = ({
     color == 'primary'
       ? classNames(
           weight == 'solid'
-            ? `btn-primary ${currentColor}`
+            ? `btn-primary bg-${currentColor}`
             : weight == 'outline'
             ? 'btn-primary-outline'
             : weight == 'ghost'

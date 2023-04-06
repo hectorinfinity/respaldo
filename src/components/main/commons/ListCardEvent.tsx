@@ -59,9 +59,9 @@ const ListCardEvent: React.FC<props> = ({
     function handleResize() {
       const width = window.innerWidth;
       if (width > 992) {
-        setCols(4);
-      } else if (width > 640) {
         setCols(3);
+      } else if (width > 640) {
+        setCols(2);
       } else {
         setCols(1);
       }
@@ -78,7 +78,7 @@ const ListCardEvent: React.FC<props> = ({
     <div className={classNames('', className)}>
       <div className="flex flex-col sm:flex-row gap-10 sm:justify-between">
         <Title
-          className={classNames(controls && 'truncate w-[35%]')}
+          className={classNames(controls && 'truncate w-[40%]')}
           level="h4"
         >
           {title}
@@ -111,6 +111,7 @@ const ListCardEvent: React.FC<props> = ({
                   onClick={() => setCurrentLayout('columns')}
                 />
                 <Button
+                  className="md:hidden"
                   size="small"
                   iconLeft={<AdjustmentsHorizontalIcon className="w-5 h-5" />}
                   color="black"
@@ -138,7 +139,7 @@ const ListCardEvent: React.FC<props> = ({
               <SwiperControls swiperRef={swiperRef} />
             </div>
           ) : currentLayout == 'grid' ? (
-            <div className="grid grid-cols-1  sm:grid-cols-2 gap-5 md:grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:grid-cols-3">
               {items?.map((item, idx) => (
                 <CardEvent key={idx} layout="grid" {...item} />
               ))}

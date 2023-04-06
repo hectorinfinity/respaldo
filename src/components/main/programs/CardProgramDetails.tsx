@@ -4,6 +4,7 @@ import { Title } from '@/components/commons';
 import { format } from 'date-fns';
 import { es, enUS } from 'date-fns/locale';
 import { useLocale, useTranslations } from 'next-intl';
+import parseDate from '@/helpers/parseDate';
 
 export type props = {
   className?: string;
@@ -28,15 +29,15 @@ const CardProgramDetails: React.FC<props> = ({
   return (
     <div className={classNames('', className)}>
       <div className="max-w-3xl mx-auto text-center sm:text-left">
-        <p className=" text-2xl" > {name}</p>
+        <p className=" text-2xl"> {name}</p>
         <div className="flex flex-col sm:flex-row justify-between gap-3 text-lg font-bold">
           <p>
             {t('date')}:{' '}
-            {format(startDate, 'dd MMM', {
+            {format(parseDate(startDate), 'dd MMM', {
               locale: locale == 'en' ? enUS : es,
             })}{' '}
             -{' '}
-            {format(endDate, 'dd MMM', {
+            {format(parseDate(endDate), 'dd MMM', {
               locale: locale == 'en' ? enUS : es,
             })}
           </p>

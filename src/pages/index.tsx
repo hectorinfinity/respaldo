@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <div className="mb-44 -mt-8">
       <Hero items={heroImages} />
-      <div className="mt-16 px-5 space-y-16 sm:px-16">
+      <div className="mt-16 space-y-16 section-container">
         <ListCardCategory
           items={categories?.data?.map((item) => ({
             name: item.category.find((obj) => obj.lang == locale).name,

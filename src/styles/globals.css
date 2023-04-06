@@ -6,10 +6,10 @@
 
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-5
+    @apply px-5 mx-auto max-w-7xl md:px-16;
   }
   .input-label {
-    @apply font-bold text-sm
+    @apply text-sm font-bold whitespace-nowrap;
   }
   .icon {
     @apply w-6 h-6 text-black fill-current shrink-0;
@@ -57,7 +57,7 @@
     @apply w-4 h-4 text-primary-500 focus:ring-primary-500;
   }
   .select-primary {
-    @apply block px-3 py-2 text-sm font-medium transition bg-white border border-gray-700 rounded-lg placeholder:text-gray-500 focus:ring-1 focus:ring-primary-500 focus:border-primary-500;
+    @apply block px-3 py-2 text-sm font-medium transition bg-white border border-gray-700 rounded-lg placeholder:text-gray-500 focus:ring-1 ;
   }
   .input-label {
     @apply text-sm font-medium text-gray-900;
