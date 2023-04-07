@@ -1,9 +1,16 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
+import { ClockIcon, LinkIcon } from '@heroicons/react/24/outline'
+import { CustomLabel } from '../labels'
+import { useTranslations } from 'next-intl'
+import { FormStyles } from '@/helpers'
+import { CustomCancel, CustomSubmit } from '../buttons'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
 
 export const AddSchedule = () => {
+    const t = useTranslations("Panel_Event_Add_Schedule");
+    const tc = useTranslations("Common_Forms");
     const [open, setOpen] = useState(true)
 
     const cancelButtonRef = useRef(null)
@@ -34,40 +41,204 @@ export const AddSchedule = () => {
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
-                                <div>
-                                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                                        <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
-                                    </div>
-                                    <div className="mt-3 text-center sm:mt-5">
-                                        <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                                            Payment successful
-                                        </Dialog.Title>
-                                        <div className="mt-2">
-                                            <p className="text-sm text-gray-500">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam laudantium explicabo
-                                                pariatur iste dolorem animi vitae error totam. At sapiente aliquam accusamus facere veritatis.
-                                            </p>
+                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6">
+                                <form className="lg:col-span-9" action="#" method="POST">
+                                    <div className="grid grid-cols-12 gap-6">
+                                        <div className="col-span-12 border-b-2 flex justify-between">
+                                            <div>
+                                                <span className='text-2xl'>{t('title')}</span>
+                                            </div>
+                                            <div>
+                                                <button
+                                                    type="button"
+                                                    className="mt-3 inline-flex justify-end bg-white px-3 py-2 text-sm font-semibold hover:bg-gray-50 sm:mt-0"
+                                                    onClick={() => setOpen(false)}
+                                                    ref={cancelButtonRef}
+                                                >
+                                                    <XMarkIcon className='w-5 h-5' />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-12 sm:col-span-6 lg:col-span-6">
+                                            <CustomLabel field="initial_hour" name={tc('field_initial_hour')} required />
+                                            <div className="relative rounded-md shadow-sm">
+                                                <input
+                                                    type="text"
+                                                    name="initial_hour"
+                                                    id="initial_hour"
+                                                    autoComplete={tc('field_initial_hour')}
+                                                    placeholder={tc('field_initial_hour')}
+                                                    className={FormStyles('input')}
+                                                />
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                                    <ClockIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-12 sm:col-span-6 lg:col-span-6">
+                                            <CustomLabel field="final_hour" name={tc('field_final_hour')} required />
+                                            <div className="relative rounded-md shadow-sm">
+                                                <input
+                                                    type="text"
+                                                    name="final_hour"
+                                                    id="final_hour"
+                                                    autoComplete={tc('field_final_hour')}
+                                                    placeholder={tc('field_final_hour')}
+                                                    className={FormStyles('input')}
+                                                />
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                                    <ClockIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+                                            <CustomLabel field="low_cost" name={tc('field_low_cost')} />
+                                            <input
+                                                type="text"
+                                                name="low_cost"
+                                                id="low_cost"
+                                                autoComplete={tc('field_low_cost')}
+                                                placeholder={tc('field_low_cost')}
+                                                className={FormStyles('input')}
+                                            />
+                                        </div>
+                                        <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+                                            <CustomLabel field="regular_cost" name={tc('field_regular_cost')} required />
+                                            <input
+                                                type="text"
+                                                name="regular_cost"
+                                                id="regular_cost"
+                                                autoComplete={tc('field_regular_cost')}
+                                                placeholder={tc('field_regular_cost')}
+                                                className={FormStyles('input')}
+                                            />
+                                        </div>
+                                        <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+                                            <CustomLabel field="high_cost" name={tc('field_high_cost')} />
+                                            <input
+                                                type="text"
+                                                name="high_cost"
+                                                id="high_cost"
+                                                autoComplete={tc('field_high_cost')}
+                                                placeholder={tc('field_high_cost')}
+                                                className={FormStyles('input')}
+                                            />
+                                        </div>
+                                        <div className="col-span-12 sm:col-span-6 lg:col-span-6">
+                                            <CustomLabel field="url" name={tc('field_url')} required />
+                                            <div className="relative rounded-md shadow-sm">
+                                                <input
+                                                    type="text"
+                                                    name="url"
+                                                    id="url"
+                                                    autoComplete={tc('field_url')}
+                                                    placeholder={tc('field_url')}
+                                                    className={FormStyles('input')}
+                                                />
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                                    <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-12 sm:col-span-6 lg:col-span-6">
+                                            <CustomLabel field="streaming" name={tc('field_streaming')} required />
+                                            <div className="relative rounded-md shadow-sm">
+                                                <input
+                                                    type="text"
+                                                    name="streaming"
+                                                    id="streaming"
+                                                    autoComplete={tc('field_streaming')}
+                                                    placeholder={tc('field_streaming')}
+                                                    className={FormStyles('input')}
+                                                />
+                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                                    <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-12">
+                                            <span className='text-lg'>{t('reply')}</span>
+                                        </div>
+                                        <div className="col-span-4 sm:col-span-3 text-center">
+                                            <CustomLabel field="monday" name={tc('field_monday')} />
+                                            <input
+                                                type="checkbox"
+                                                name="monday"
+                                                id="monday"
+                                                aria-describedby={tc('field_monday')}
+                                                className={FormStyles('checkbox')}
+                                            />
+                                        </div>
+                                        <div className="col-span-4 sm:col-span-3 text-center">
+                                            <CustomLabel field="tuesday" name={tc('field_tuesday')} />
+                                            <input
+                                                type="checkbox"
+                                                name="tuesday"
+                                                id="tuesday"
+                                                aria-describedby={tc('field_tuesday')}
+                                                className={FormStyles('checkbox')}
+                                            />
+                                        </div>
+                                        <div className="col-span-4 sm:col-span-3 text-center">
+                                            <CustomLabel field="wednesday" name={tc('field_wednesday')} />
+                                            <input
+                                                type="checkbox"
+                                                name="wednesday"
+                                                id="wednesday"
+                                                aria-describedby={tc('field_wednesday')}
+                                                className={FormStyles('checkbox')}
+                                            />
+                                        </div>
+                                        <div className="col-span-4 sm:col-span-3 text-center">
+                                            <CustomLabel field="thursday" name={tc('field_thursday')} />
+                                            <input
+                                                type="checkbox"
+                                                name="thursday"
+                                                id="thursday"
+                                                aria-describedby={tc('field_thursday')}
+                                                className={FormStyles('checkbox')}
+                                            />
+                                        </div>
+                                        <div className="col-span-4 sm:col-span-3 text-center">
+                                            <CustomLabel field="friday" name={tc('field_friday')} />
+                                            <input
+                                                type="checkbox"
+                                                name="friday"
+                                                id="friday"
+                                                aria-describedby={tc('field_friday')}
+                                                className={FormStyles('checkbox')}
+                                            />
+                                        </div>
+                                        <div className="col-span-4 sm:col-span-3 text-center">
+                                            <CustomLabel field="saturday" name={tc('field_saturday')} />
+                                            <input
+                                                type="checkbox"
+                                                name="saturday"
+                                                id="saturday"
+                                                aria-describedby={tc('field_saturday')}
+                                                className={FormStyles('checkbox')}
+                                            />
+                                        </div>
+                                        <div className="col-span-4 sm:col-span-3 text-center">
+                                            <CustomLabel field="sunday" name={tc('field_sunday')} />
+                                            <input
+                                                type="checkbox"
+                                                name="sunday"
+                                                id="sunday"
+                                                aria-describedby={tc('field_sunday')}
+                                                className={FormStyles('checkbox')}
+                                            />
                                         </div>
                                     </div>
-                                </div>
-                                <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                                    <button
-                                        type="button"
-                                        className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
-                                        onClick={() => setOpen(false)}
-                                    >
-                                        Deactivate
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
-                                        onClick={() => setOpen(false)}
-                                        ref={cancelButtonRef}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
+
+                                    {/* Buttons section */}
+                                    <div className="divide-y divide-gray-200 pt-6">
+                                        <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
+                                            <CustomCancel />
+                                            <CustomSubmit />
+                                        </div>
+                                    </div>
+                                </form>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>
