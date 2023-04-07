@@ -2,7 +2,7 @@ import React from 'react';
 import { classNames } from '@/helpers';
 import { useTranslations } from 'next-intl';
 import { Icon } from '@/components/commons';
-
+import { CurrentColor } from '@/helpers';
 export type props = {
   className?: string;
   currentStep: number;
@@ -10,6 +10,7 @@ export type props = {
 
 const HeaderCheckout: React.FC<props> = ({ className, currentStep }) => {
   const t = useTranslations('Header_Checkout');
+  const currentColor = CurrentColor();
   const steps = [
     t('first_step'),
     t('second_step'),
@@ -28,9 +29,9 @@ const HeaderCheckout: React.FC<props> = ({ className, currentStep }) => {
                   className={classNames(
                     'rounded-full transition duration-500 ease-in-out h-12 w-12 py-3 border-2  flex items-center justify-center',
                     currentStep > stepNumber
-                      ? 'bg-primary-500'
+                      ?`bg-${currentColor}`
                       : 'bg-white border-gray-200',
-                    currentStep == stepNumber && 'border-primary-500'
+                    currentStep == stepNumber && `border-${currentColor}`
                   )}
                 >
                   {currentStep > stepNumber ? (
@@ -48,7 +49,7 @@ const HeaderCheckout: React.FC<props> = ({ className, currentStep }) => {
                   className={classNames(
                     'flex-auto border-t-2 transition duration-500 ease-in-out ',
                     currentStep > stepNumber
-                      ? 'border-primary-500'
+                      ? `border-${currentColor}`
                       : 'border-gray-200'
                   )}
                 ></div>

@@ -15,41 +15,69 @@ import { Event, EventVenue } from '@/interfaces/event';
 import { useForm } from 'react-hook-form';
 import { useLocale } from 'next-intl';
 import { faker } from '@faker-js/faker';
-
+import { toast } from 'react-toastify';
+import { useEvent } from '@/hooks/event/event';
+import { useEventSchedule } from '@/hooks/event/event_schedule';
+type FormData = {
+  tickets: number;
+  tickets_option: 'digital' | 'pick_up';
+};
 const index = () => {
   const router = useRouter();
   const { id } = router.query;
   const locale = useLocale();
 
-  const useFormReturn = useForm({
+  const useFormReturn = useForm<FormData>({
     defaultValues: {
       tickets: 1,
+      tickets_option: 'digital',
     },
   });
-  const { watch } = useFormReturn;
-  const { data: event } = useQuery<Event>({
-    queryKey: ['event'],
-    queryFn: async () => await readEvent(id as any),
-    enabled: Boolean(id),
-  });
-  const { data: eventVenue } = useQuery<EventVenue>({
-    queryKey: ['event_venue'],
-    queryFn: async () => await readEventVenue(id as any),
-    enabled: Boolean(id),
-  });
+  const { watch, handleSubmit } = useFormReturn;
+  const { data: event } = useEvent(id as string);
+
   const [currentStep, setCurrentStep] = useState(1);
   const [tickets] = watch(['tickets']);
   const content = event?.content.find((content) => content.lang == locale);
+  const name = content?.name;
+  const location = 'Mexico';
+  const onSubmit = (formData: FormData) => {
+    try {
+      if (currentStep == 1) {
+        console.log('1');
+        setCurrentStep(2);
+      } else if (currentStep == 2) {
+        setCurrentStep(3);
+      } else if (currentStep == 3) {
+        setCurrentStep(4);
+      } else {
+        toast.success('SuccessF');
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   return (
-    <div className="py-20 section-container ">
+    <form
+      className="py-20 section-container "
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <HeaderCheckout currentStep={currentStep} />
-      <div className="flex gap-10 mt-16">
+      <div className="flex flex-col md:flex-row gap-10 mt-24">
         <div className="basis-3/4">
           {currentStep == 1 ? (
             <StepCheckoutQuantity
-              name={content?.name}
+              name={name}
+              location={location}
               price={100}
-              location="Mexico"
+              {...useFormReturn}
+            />
+          ) : currentStep == 2 ? (
+            <StepCheckoutSeats />
+          ) : currentStep == 3 ? (
+            <StepCheckoutTickets
+              name={name}
+              location={location}
               {...useFormReturn}
             />
           ) : (
@@ -61,23 +89,24 @@ const index = () => {
             {...{ currentStep, setCurrentStep }}
           />
         </div>
-        <SidebarCheckout
-          className="basiss-1/4"
-          {...{
-            image: faker.image.imageUrl(),
-            name: content?.name,
-            date: faker.date.future(),
-            countTickets: tickets,
-            subtotal: faker.datatype.number(),
-            fees: faker.datatype.number(),
-            discount: faker.datatype.number(),
-            total: faker.datatype.number(),
-            currentStep,
-            ...useFormReturn,
-          }}
-        />
+        <div className="basis-1/4">
+          <SidebarCheckout
+            {...{
+              image: faker.image.imageUrl(),
+              name: content?.name,
+              date: faker.date.future(),
+              countTickets: tickets,
+              subtotal: faker.datatype.number(),
+              fees: faker.datatype.number(),
+              discount: faker.datatype.number(),
+              total: faker.datatype.number(),
+              currentStep,
+              ...useFormReturn,
+            }}
+          />
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 

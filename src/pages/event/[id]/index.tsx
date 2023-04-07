@@ -117,7 +117,7 @@ const EventDetailed = () => {
         }))}
         {...useFormReturn}
       />
-      <ListCardEventRecommendation
+      {/* <ListCardEventRecommendation
         items={events?.data?.items?.map((item) => ({
           category_id: item.category_id.id,
           image: 'https://loremflickr.com/640/480/cats',
@@ -128,7 +128,7 @@ const EventDetailed = () => {
         setCurrentPage={() => {}}
         setPageSize={() => {}}
         totalDocs={10}
-      />
+      /> */}
     </div>
   );
 };
