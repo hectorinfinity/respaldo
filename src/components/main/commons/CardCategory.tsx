@@ -27,7 +27,7 @@ const CardCategory: React.FC<props> = ({
         pathname: pathname == '/program' ? '/program' : '/search',
         query: {
           ...query,
-          category: name == query?.category ? null : name,
+          category: name,
         },
       }}
       className={classNames(

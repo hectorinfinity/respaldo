@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ButtonLink, Icon } from '@/components/commons';
 import Link from 'next/link';
 import { Tab } from '@headlessui/react';
+import { useRouter } from 'next/router';
 
 export type props = {
   className?: string;
@@ -28,6 +29,16 @@ const CardEventDetails: React.FC<props> = ({
   services,
   id,
 }) => {
+  const handleShare = (text: string) => {
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        url: window.location.href,
+        text,
+      });
+    }
+  };
+
   const t = useTranslations('Card_Event_Details');
   return (
     <div className={classNames('', className)}>
@@ -36,14 +47,34 @@ const CardEventDetails: React.FC<props> = ({
       </div>
 
       <div className="flex flex-col my-5">
-        <div className="flex gap-10 ml-auto text-customBlueNight">
+        <div className="flex gap-10 ml-auto text-gray-500">
           <span className="font-semibold">{t('shared_event')}</span>
           <div className="flex gap-4">
-            <Icon name="facebook" className="text-customBlueNight" />
-            <Icon name="instagram" className="text-customBlueNight" />
-            <Icon name="twitter" className="text-customBlueNight" />
-            <Icon name="whatsapp" className="text-customBlueNight" />
-            <Icon name="telegram" className="text-customBlueNight" />
+            <Icon
+              onClick={() => handleShare('Facebook')}
+              name="facebook"
+              className="text-gray-500 cursor-pointer"
+            />
+            <Icon
+              onClick={() => handleShare('Instagram')}
+              name="instagram"
+              className="text-gray-500 cursor-pointer"
+            />
+            <Icon
+              onClick={() => handleShare('Twitter')}
+              name="twitter"
+              className="text-gray-500 cursor-pointer"
+            />
+            <Icon
+              onClick={() => handleShare('Whatsapp')}
+              name="whatsapp"
+              className="text-gray-500 cursor-pointer"
+            />
+            <Icon
+              onClick={() => handleShare('Telegram')}
+              name="telegram"
+              className="text-gray-500 cursor-pointer"
+            />
           </div>
         </div>
       </div>
@@ -81,7 +112,7 @@ const CardEventDetails: React.FC<props> = ({
             <p>
               {details}{' '}
               <Link
-                className="text-customBlueNight font-semibold"
+                className="text-gray-500 font-semibold"
                 href={`/event/${id}`}
               >
                 Read more...
