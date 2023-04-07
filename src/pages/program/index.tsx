@@ -84,7 +84,7 @@ const Program = ({ categories }) => {
         ]}
       />
       <div className="mt-16 space-y-16 section-container">
-        <HeaderSearch
+        {/* <HeaderSearch
           items={categories?.map((item) => ({
             name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
@@ -163,7 +163,7 @@ const Program = ({ categories }) => {
             id: item._id,
           }))}
           {...useFormReturn}
-        />
+        /> */}
 
         <CardAdvertisment
           image="/images/advertisements/anunciate_aqui.png"
