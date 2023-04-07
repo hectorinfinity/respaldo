@@ -16,7 +16,7 @@ export type props = {
   className?: string;
 } & UseFormReturn<any>;
 
-const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_API_KEY);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 // TODO: move Elements component to `_app`
 const StepCheckoutPayment: React.FC<props> = ({
