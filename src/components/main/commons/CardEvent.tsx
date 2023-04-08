@@ -13,7 +13,12 @@ import Link from 'next/link';
 import { EventCategory } from '@/interfaces/event';
 import { readEventVenue } from '@/api/event/event_venue';
 import { useUserAuthObserver } from '@/hooks/auth';
-import { useUserFavorites } from '@/hooks/user/user_favorites';
+import {
+  useMutationCreateFavorite,
+  useUserFavorites,
+} from '@/hooks/user/user_favorites';
+import { useUserAttends } from '@/hooks/user/user_attends';
+import { useUsers } from '@/hooks/user/user';
 
 export type props = {
   className?: string;
@@ -44,10 +49,16 @@ const CardEvent: React.FC<props> = ({
   color,
   id,
 }) => {
-  const { isAuthenticated } = useUserAuthObserver();
-  const favorites = useUserFavorites();
-  // console.log('favorites ', favorites?.data);
+  const { isAuthenticated, user } = useUserAuthObserver();
+  const { data: favorites } = useUserFavorites();
+  const { mutate: createFavorite } = useMutationCreateFavorite();
+  const attends = useUserAttends();
+  // console.log(favorites?.filter((item) => item.user_id.id == user._id));
+  // console.log(favorites);
+  const event = favorites?.filter((item) => item.user_id.id == user._id);
+  const handleAddFavorite = () => {};
   const locale = useLocale();
+  console.log(event);
   return (
     <Link
       href={`/event/${id}`}
@@ -59,6 +70,7 @@ const CardEvent: React.FC<props> = ({
     >
       {isAuthenticated && (
         <Button
+          onClick={handleAddFavorite}
           className={classNames(
             'absolute z-20 top-3',
             layout == 'grid' ? 'right-3' : 'left-3'

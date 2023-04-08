@@ -15,8 +15,10 @@ export function useUserFavorites() {
   return useQuery<UserFavorite[]>([key], getUsersFavorites);
 }
 
-export function useUserFavorite(user_id: string) {
-  return useQuery<UserFavorite>([key, user_id], () =>
-    readUserFavorite(user_id as any)
-  );
+export function useUserFavorite(id: string) {
+  return useQuery<UserFavorite>([key, id], () => readUserFavorite(id as any));
+}
+
+export function useMutationCreateFavorite() {
+  return useMutation(createUserFavorite);
 }
