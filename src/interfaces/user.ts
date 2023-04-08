@@ -32,7 +32,7 @@ export interface User {
   promoter?: UserPromoter | null;
   verified?: boolean;
   status?: boolean;
-  _id: string;
+  _id?: string;
 }
 
 export interface UserBanner {
