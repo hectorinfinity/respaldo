@@ -797,7 +797,7 @@
     "required": "Required"
   },
   "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
-  "Card_Event": {
+  "Card_Event_Queue": {
     "title": "You are in the virtual queue",
     "subtitle": "People in front of me",
     "virtual_queue_id": "ID of the virtual queue: "
@@ -842,7 +842,8 @@
     "time": "Time:",
     "location": "Location:",
     "button": "Buy Ticket",
-    "payment_methods": "Payment methods:"
+    "payment_methods": "Payment methods:",
+    "supplier": "Supplier:"
   },
   "Card_Event_Details": {
     "read_more": "Read more...",

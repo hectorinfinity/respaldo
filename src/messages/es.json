@@ -123,7 +123,8 @@
     "time": "Hora:",
     "location": "Ubicación:",
     "button": "Comprar Boleto",
-    "payment_methods": "Formas de pago:"
+    "payment_methods": "Formas de pago:",
+    "supplier": "Proveedor:"
   },
   "Card_Event_Details": {
     "read_more": "Leer mas...",
@@ -295,7 +296,7 @@
       "information": "Information",
       "location_map": "Location Map",
 
-      "attend": "I will attend"
+      "attend": "Asistiré"
     },
     "program": {
       "program": "Program"

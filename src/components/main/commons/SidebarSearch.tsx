@@ -35,8 +35,8 @@ const SidebarSearch: React.FC<props> = ({
   const dateRange = watch('date-range');
   const categoriesArray = categories?.data
     ? categories?.data?.map((item) => ({
-        name: item?.category?.find((obj) => obj.lang == locale).name,
-        value: item?.category?.find((obj) => obj.lang == locale).name,
+        name: item?.category?.find((obj) => obj.lang == locale)?.name,
+        value: item?.category?.find((obj) => obj.lang == locale)?.name,
       }))
     : [];
   const categoriesOptions = [
@@ -92,6 +92,25 @@ const SidebarSearch: React.FC<props> = ({
       } else {
         delete query?.sub_category;
       }
+
+      if (dateRange?.[0]) {
+        updatedQuery = {
+          ...updatedQuery,
+          initial_date: new Date(dateRange?.[0])?.toISOString(),
+        };
+      } else {
+        delete query?.initial_date;
+      }
+
+      if (dateRange?.[1]) {
+        updatedQuery = {
+          ...updatedQuery,
+          finish_date: new Date(dateRange?.[1])?.toISOString(),
+        };
+      } else {
+        delete query?.finish_date;
+      }
+
       push(
         {
           pathname: pathname == '/search' ? '/search' : '/program',
@@ -104,7 +123,14 @@ const SidebarSearch: React.FC<props> = ({
       );
       setFormSubmitted(false);
     }
-  }, [category, sub_category, sub_sub_category, formSubmitted]);
+  }, [
+    category,
+    sub_category,
+    sub_sub_category,
+    formSubmitted,
+    dateRange?.[0],
+    dateRange?.[1],
+  ]);
   return (
     <div className={classNames('relative h-max', className)}>
       <div

@@ -14,9 +14,6 @@ export default {
 
 const Template: StoryFn<props> = (args) => {
   const { control, watch, register, setValue } = useForm();
-  //   console.log(
-  //     watch('date-range')?.map((date) => new Date(date?.format?.('MMMM D YYYY')))
-  //   );
 
   useEffect(() => {
     if (watch('date-range')?.[0]) {

@@ -17,13 +17,13 @@ const HeaderQueue: React.FC<props> = ({
 }) => {
   const t = useTranslations('Header_Queue');
   return (
-    <div className={classNames('bg-gray-400 p-10 flex flex-col', className)}>
-      <span className="block font-bold text-4xl text-center text-white">
+    <div className={classNames(' flex flex-col', className)}>
+      <span className="block text-2xl font-bold text-center text-white sm:text-4xl">
         {name}
       </span>
-      <span className="block text-center mt-1 text-white">{location}</span>
+      <span className="block mt-1 text-center text-white">{location}</span>
 
-      <div className="flex items-center mt-9 w-[87%] mx-auto">
+      <div className="flex items-center w-full mx-auto text-sm mt-9">
         <div className="relative flex-1">
           <div className="flex items-center">
             <div
@@ -39,7 +39,7 @@ const HeaderQueue: React.FC<props> = ({
               )}
             />
           </div>
-          <span className="w-32 text-sm absolute top-0 mt-5 -ml-14 text-center whitespace-nowrap text-white">
+          <span className="absolute top-0 w-32 mt-5 text-sm text-center text-white -ml-14 whitespace-nowrap">
             {t('lobby')}
           </span>
         </div>
@@ -58,7 +58,7 @@ const HeaderQueue: React.FC<props> = ({
               )}
             />
           </div>
-          <span className="w-32 text-sm absolute top-0 mt-5 -ml-14 text-center whitespace-nowrap text-white">
+          <span className="absolute top-0 w-32 mt-5 text-sm text-center text-white -ml-14 whitespace-nowrap">
             {t('waiting_room')}
           </span>
         </div>
@@ -77,7 +77,7 @@ const HeaderQueue: React.FC<props> = ({
               )}
             />
           </div>
-          <span className="w-32 text-sm absolute top-0 mt-5 -ml-14 text-center whitespace-nowrap text-white">
+          <span className="absolute top-0 w-32 mt-5 text-sm text-center text-white -ml-14 whitespace-nowrap">
             {t('virtual_queue')}
           </span>
         </div>
@@ -90,7 +90,7 @@ const HeaderQueue: React.FC<props> = ({
               )}
             />
           </div>
-          <span className="w-32 text-sm absolute top-0 mt-5 -ml-14 text-center whitespace-nowrap text-white">
+          <span className="absolute top-0 w-32 mt-5 text-sm text-center text-white -ml-14 whitespace-nowrap">
             {t('select_your_seats')}
           </span>
         </div>

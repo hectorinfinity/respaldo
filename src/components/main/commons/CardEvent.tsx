@@ -11,13 +11,16 @@ import { useQuery } from '@tanstack/react-query';
 import { readEventCategory } from '@/api/event/event_category';
 import Link from 'next/link';
 import { EventCategory } from '@/interfaces/event';
+import { readEventVenue } from '@/api/event/event_venue';
 
 export type props = {
   className?: string;
   layout: 'grid' | 'column';
   image: string;
   name: string;
-  date: Date;
+  startDate: Date;
+  startTime: string;
+  endTime: string;
   location: string;
   favorite?: boolean;
   willAttend?: boolean;
@@ -25,11 +28,12 @@ export type props = {
   id: string;
   isLoggedIn?: boolean;
 };
-// TODO: gray colors
 // TODO: should have time prop
 const CardEvent: React.FC<props> = ({
   className,
-  date,
+  startDate,
+  endTime,
+  startTime,
   image,
   layout,
   location,
@@ -45,6 +49,13 @@ const CardEvent: React.FC<props> = ({
     queryFn: async () => await readEventCategory(category_id),
     enabled: Boolean(category_id),
   });
+
+  const eventVenue = useQuery({
+    queryKey: ['eventVenue'],
+    queryFn: async () => await readEventVenue(id),
+    enabled: Boolean(id),
+  });
+  // console.log('single event venue', eventVenue?.data);
   const locale = useLocale();
   return (
     <Link
@@ -55,7 +66,7 @@ const CardEvent: React.FC<props> = ({
         className
       )}
     >
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <Button
           className={classNames(
             'absolute z-20 top-3',
@@ -79,7 +90,7 @@ const CardEvent: React.FC<props> = ({
         )}
       >
         <Image src={image} alt="" fill className="object-cover" />
-        {!isLoggedIn && (
+        {isLoggedIn && (
           <WillAttend
             changeColor={willAttend}
             className={classNames(
@@ -105,7 +116,7 @@ const CardEvent: React.FC<props> = ({
           <span className="p-5 block">
             <span
               title={name}
-              className="block w- truncate text-black font-semibold break-words text-lg"
+              className="block text-lg font-semibold text-black break-words truncate w-"
             >
               {name}
             </span>
@@ -116,14 +127,12 @@ const CardEvent: React.FC<props> = ({
               )}
             >
               <span className="block text-customGray">
-                {format(parseDate(date), 'EEEE, dd MMMM yyyy', {
+                {format(parseDate(startDate), 'EEEE dd MMMM yyyy', {
                   locale: locale == 'en' ? enUS : es,
                 })}
               </span>
-              <span className="block text-customGray">
-                {format(parseDate(date), 'HH:mm', {
-                  locale: locale == 'en' ? enUS : es,
-                })}
+              <span className="flex gap-2 text-customGray">
+                {startTime} <span>-</span> {endTime}
               </span>
             </span>
 

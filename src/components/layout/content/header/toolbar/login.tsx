@@ -55,7 +55,7 @@ export const Login = ({ currentColor }: Props) => {
     useAuthWithProvider();
 
   return (
-    <Menu as="div" className="relative z-10 inline-block text-left">
+    <Menu as="div" className="relative z-50 inline-block text-left">
       <Menu.Button
         className={`relative flex w-[28vw] md:w-40 h-full items-center justify-center space-x-2 bg-${currentColor} pr-[7.5px]`}
       >
@@ -65,10 +65,10 @@ export const Login = ({ currentColor }: Props) => {
           <div className="my-[1.5px] h-[12px] w-[12px] rounded-full bg-black"></div>
           <div className="my-[1.5px] h-[12px] w-[12px] rounded-full bg-black"></div>
         </div>
-        <p className="text-sm text-white font-bold uppercase tracking-tighter">
+        <p className="text-sm font-bold tracking-tighter text-white uppercase md:text-lg">
           {t('title')}
         </p>
-        <ChevronDownIcon className="h-5 w-5 text-white" aria-hidden="true" />
+        <ChevronDownIcon className="w-5 h-5 text-white" aria-hidden="true" />
       </Menu.Button>
       <Transition
         as={Fragment}
@@ -82,7 +82,7 @@ export const Login = ({ currentColor }: Props) => {
         <Menu.Items className="absolute right-0 w-[20rem] md:w-[30rem] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="flex min-h-full flex-col justify-center sm:px-6 lg:px-8 relative z-[9999999999]">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-              <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+              <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">
                 {t('title')}
               </h2>
               <p className="mt-2 text-center text-sm text-[#8D8D8D]">
@@ -97,7 +97,7 @@ export const Login = ({ currentColor }: Props) => {
             </div>
 
             <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
-              <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+              <div className="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
                 <form
                   onSubmit={handleSubmit(onSubmitHandler)}
                   method="POST"
@@ -137,11 +137,11 @@ export const Login = ({ currentColor }: Props) => {
                         id="remember-me"
                         name="remember-me"
                         type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-customGreen focus:loginHover"
+                        className="w-4 h-4 border-gray-300 rounded text-customGreen focus:loginHover"
                       />
                       <label
                         htmlFor="remember-me"
-                        className="ml-2 block text-sm text-gray-900"
+                        className="block ml-2 text-sm text-gray-900"
                       >
                         {tc('field_remember')}
                       </label>
@@ -160,7 +160,7 @@ export const Login = ({ currentColor }: Props) => {
                   <div>
                     <button
                       type="submit"
-                      className="flex w-full justify-center rounded-md bg-customGreen py-2 px-3 text-sm font-semibold text-white shadow-sm hover:loginHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="flex justify-center w-full px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm bg-customGreen hover:loginHover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                       {t('signin')}
                     </button>
@@ -173,21 +173,21 @@ export const Login = ({ currentColor }: Props) => {
                       <div className="w-full border-t border-gray-300" />
                     </div>
                     <div className="relative flex justify-center text-sm">
-                      <span className="bg-white px-2 text-gray-500">
+                      <span className="px-2 text-gray-500 bg-white">
                         {t('continue')}
                       </span>
                     </div>
                   </div>
 
-                  <div className="mt-6 grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-3 gap-3 mt-6">
                     <div>
                       <button
                         onClick={() => login_provider('facebook')}
-                        className="inline-flex w-full justify-center rounded-md bg-white py-2 px-4 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
+                        className="inline-flex justify-center w-full px-4 py-2 text-gray-500 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                       >
                         <span className="sr-only">Log in with Facebook</span>
                         <svg
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                           aria-hidden="true"
                           fill="currentColor"
                           viewBox="0 0 20 20"
@@ -204,11 +204,11 @@ export const Login = ({ currentColor }: Props) => {
                     <div>
                       <button
                         onClick={() => login_provider('google')}
-                        className="inline-flex w-full justify-center rounded-md bg-white py-2 px-4 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
+                        className="inline-flex justify-center w-full px-4 py-2 text-gray-500 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                       >
                         <span className="sr-only">Log in with Google</span>
                         <svg
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                           aria-hidden="true"
                           fill="currentColor"
                           viewBox="0 0 20 20"
@@ -221,11 +221,11 @@ export const Login = ({ currentColor }: Props) => {
                     <div>
                       <button
                         onClick={() => login_provider('apple')}
-                        className="inline-flex w-full justify-center rounded-md bg-white py-2 px-4 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
+                        className="inline-flex justify-center w-full px-4 py-2 text-gray-500 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                       >
                         <span className="sr-only">Log in with Apple</span>
                         <svg
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                           aria-hidden="true"
                           fill="currentColor"
                           viewBox="0 0 20 20"

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
-import {classNames} from '@/helpers'
+import { classNames, CurrentColor } from '@/helpers';
 
 export type props = React.DetailedHTMLProps<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -15,12 +15,28 @@ export type props = React.DetailedHTMLProps<
     fullWidth?: boolean;
   };
 const TextArea = React.forwardRef<any, props>(
-  ({ className, color = 'primary', label, error, type = 'text', fullWidth = true, ...props }, ref) => {
+  (
+    {
+      className,
+      color = 'primary',
+      label,
+      error,
+      type = 'text',
+      fullWidth = true,
+      ...props
+    },
+    ref
+  ) => {
+    const currentColor = CurrentColor();
     return (
       <div className={classNames(fullWidth && 'w-full', className)}>
         {label && <label className="input-label">{label}</label>}
         <textarea
-          className={classNames('textfield-primary', fullWidth && 'w-full', label && 'mt-1')}
+          className={classNames(
+            `textfield-primary focus-within:ring-${currentColor}  focus-within:border-${currentColor}`,
+            fullWidth && 'w-full',
+            label && 'mt-1'
+          )}
           ref={ref}
           {...props}
         />

@@ -23,5 +23,7 @@ Default.args = {
     image: faker.image.cats(),
     location: faker.address.streetAddress(),
     name: faker.name.jobTitle(),
+    category_id: faker.datatype.uuid(),
+    id: faker.datatype.uuid(),
   })),
 };
