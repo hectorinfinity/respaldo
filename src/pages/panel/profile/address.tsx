@@ -1,5 +1,5 @@
 /** @format */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 import AdminLayout from "@/components/layout/admin";
@@ -8,15 +8,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { AddressForm } from '@/components/forms/forms';
-import { updateUser } from "@/api/user/user";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 // Interface
 import { Address } from "@/interfaces/serializers/commons";
-import { useMutation } from '@tanstack/react-query';
-
+import { useQueryClient } from "@tanstack/react-query";
+import { useMutationUpdateUser } from "@/hooks/user/user";
+import { User } from "@/interfaces/user";
 
 const validationSchema = yup.object().shape({
-    addressname: yup.string().required("Address name is required"),
+    // addressname: yup.string().required("Address name is required"),
     searchaddress: yup.string(),
     address: yup.string().required("Address line 1 is required"),
     address2: yup.string(),
@@ -27,6 +27,7 @@ const validationSchema = yup.object().shape({
 });
 
 const ProfileAddress = () => {
+    const [uid, setUid] = useState("");
     const [searchAddress, setSearchAddress] = useState("");
     const [markerPosition, setMarkerPosition] = useState(null);
 
@@ -39,22 +40,63 @@ const ProfileAddress = () => {
         { page: t('profile.address'), href: '' }
     ];
 
+    const queryClient = useQueryClient()
+    const userData = queryClient.getQueryData(["user"])
+
     const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm<Address>({
-        resolver: yupResolver(validationSchema),
+        resolver: yupResolver(validationSchema)
     });
+    useEffect(() => {
+        if (userData) {
+            console.log("[user]", userData)
+            const user = userData?.[0]?.user;
+            setUid(user.uid)
+            // setValue("addressname", user?.address?.address)
+            setValue("address", user?.address?.address);
+            setValue("address2", user?.address?.address2);
+            setValue("zipcode", user?.address?.zipcode);
+            setValue("country", user?.address?.country);
+            setValue("state", user?.address?.state);
+            setValue("city", user?.address?.city);
 
-    const { mutate: updateUserMutation, isLoading } = useMutation(updateUser, {
-        onSuccess: () => {
-            // reset();
-        },
-    });
+        }
+    }, [userData, setValue, uid]);
 
-    const onSubmitHandler = (data) => {
-        // updateUser(data)
-        console.log(data);
-        updateUserMutation(data);
-        reset();
+    const { mutate: updateUser, isError, error } = useMutationUpdateUser();
+    if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
+
+    // const onSubmitHandler = (data: User) => {
+
+    //     const updatedData = { ...data, birthday: formattedBirthday, uid };
+    //     console.log("UPDATED DATA:", updatedData);
+    //     updateUser(updatedData);
+    // };
+
+    const onSubmitHandler = (data: Address) => {
+        const user: User = userData?.[0]?.user;
+        const address: Address = {
+            latitude: data.latitude,
+            longitude: data.longitude,
+            address: data.address,
+            address2: data.address2,
+            city: data.city,
+            state: {
+                long_name: `${data.state}`,
+                short_name: "",
+            },
+            country: {
+                long_name: `${data.country}`,
+                short_name: "",
+            },
+            zipcode: data.zipcode,
+        };
+        console.log("UPDATED ADDRESS:", address);
+        const updatedUser: User = { ...user, address: address };
+        updateUser(updatedUser);
+        // reset();
     };
+
+
 
     const onPlaceSelected = (address, latLng) => {
         setSearchAddress(address);

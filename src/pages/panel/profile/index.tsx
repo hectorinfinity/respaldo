@@ -60,7 +60,6 @@ const Profile = () => {
 
     useEffect(() => {
         if (userData) {
-            console.log("[user]", userData)
             const user = userData[0].user;
             setUid(user.uid)
             setValue("firstname", user.firstname);

@@ -15,7 +15,7 @@ interface AddressName {
 }
 
 export interface Address {
-
+    addressname?: string
     latitude?: string
     longitude?: string
     address: string

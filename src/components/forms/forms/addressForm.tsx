@@ -1,11 +1,13 @@
 import { useTranslations } from "next-intl";
 // Components
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
-import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
+import { Autocomplete } from "@react-google-maps/api";
 import { useState } from "react";
 import Map from "@/components/forms/forms/map";
 // Helpers
 import { FormStyles } from "@/helpers"
+
+
 
 export const AddressForm = ({ register, setValue, errors, searchAddress, onPlaceSelected, markerPosition }) => {
     const [autocomplete, setAutocomplete] = useState(null);
@@ -38,7 +40,7 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
             const components = place.address_components;
             const getAddressComponent = (type) => components.find((component) => component.types.includes(type));
 
-            setValue("addressname", getAddressComponent("point_of_interest")?.long_name || getAddressComponent("premise")?.long_name || address);
+            // setValue("addressname", getAddressComponent("point_of_interest")?.long_name || getAddressComponent("premise")?.long_name || address);
             setValue("address", (getAddressComponent("street_number")?.long_name || "") + " " + (getAddressComponent("route")?.long_name || ""));
 
             setValue("address2", getAddressComponent("subpremise")?.long_name || "");
@@ -57,7 +59,7 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
     return (
         <>
             <div className="grid grid-cols-12 gap-6">
-                <div className="col-span-12">
+                {/* <div className="col-span-12">
                     <CustomLabel field="addressname" name={tc('field_addressname')} required />
                     <input
                         {...register("addressname")}
@@ -69,7 +71,7 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
                         className={FormStyles('input')}
                     />
                     <CustomError error={errors.addressname?.message} />
-                </div>
+                </div> */}
 
                 <div className="col-span-12">
                     <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />

@@ -39,7 +39,10 @@ const CustomCard = ({ onSuccess }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <CardElement />
+            <div className="w-[500px]">
+                <CardElement />
+
+            </div>
             <button type="submit" disabled={!stripe}>
                 Add Card
             </button>

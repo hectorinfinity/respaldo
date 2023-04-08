@@ -26,6 +26,7 @@ export const readUser = async (id: string) => {
 }
 
 export const updateUser = async (user: User) => {
+    console.log("updateUser from mutation: user:", user)
     const { data } = await axios.put(`/users/${user.uid}`, user);
 
     return data;
@@ -42,3 +43,4 @@ export const getUserStripeCustomerId = async (userId: string) => {
 
     return user.payment_data.stripe;
 };
+
