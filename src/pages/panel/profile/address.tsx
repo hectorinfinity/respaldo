@@ -12,13 +12,15 @@ import { updateUser } from "@/api/user/user";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 // Interface
 import { Address } from "@/interfaces/serializers/commons";
+import { useMutation } from '@tanstack/react-query';
+
 
 const validationSchema = yup.object().shape({
     addressname: yup.string().required("Address name is required"),
     searchaddress: yup.string(),
     address: yup.string().required("Address line 1 is required"),
     address2: yup.string(),
-    pc: yup.string().required("Postal code is required"),
+    zipcode: yup.string().required("Postal code is required"),
     country: yup.string().required("Country is required"),
     state: yup.string().required("State is required"),
     city: yup.string().required("City is required"),
@@ -41,9 +43,16 @@ const ProfileAddress = () => {
         resolver: yupResolver(validationSchema),
     });
 
-    const onSubmitHandler = (data: Address) => {
+    const { mutate: updateUserMutation, isLoading } = useMutation(updateUser, {
+        onSuccess: () => {
+            // reset();
+        },
+    });
+
+    const onSubmitHandler = (data) => {
         // updateUser(data)
-        console.log({ data });
+        console.log(data);
+        updateUserMutation(data);
         reset();
     };
 
