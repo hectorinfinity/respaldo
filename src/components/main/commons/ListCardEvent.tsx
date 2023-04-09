@@ -25,15 +25,17 @@ import {
 } from '@heroicons/react/24/outline';
 import { useTranslations } from 'next-intl';
 import DrawerSearchFilters from '@/components/main/commons/DrawerSearchFilters';
+import { EventCategory } from '@/interfaces/event';
 
 export type props = {
   className?: string;
   title: string;
   layout?: 'grid' | 'columns' | 'swiper';
   controls?: boolean;
-  items?: CardEventProps[];
+  items: CardEventProps[];
   loading: boolean;
   totalDocs: number;
+  categories?: EventCategory[];
 } & PaginationProps &
   UseFormReturn<any>;
 
@@ -47,6 +49,7 @@ const ListCardEvent: React.FC<props> = ({
   totalDocs,
   setPageSize,
   setCurrentPage,
+  categories,
   ...useFormReturn
 }) => {
   const swiperRef = useRef(null);
@@ -169,6 +172,7 @@ const ListCardEvent: React.FC<props> = ({
         />
       )}
       <DrawerSearchFilters
+        categories={categories}
         isOpen={drawerFilters}
         close={() => setDrawerFilters(false)}
         {...useFormReturn}

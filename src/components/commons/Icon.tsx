@@ -958,6 +958,7 @@ export type props = {
     | 'instagram-color'
     | 'facebook-color'
     | 'twitter-color';
+  onClick?: () => void;
 };
 const Icon: React.FC<props> = ({ name, ...props }) => {
   props.className = classNames('icon', props.className);
