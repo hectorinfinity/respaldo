@@ -12,20 +12,18 @@ import { useRouter } from 'next/router';
 
 export type props = {
   className?: string;
+  categories: EventCategory[];
   close?: () => void;
 } & UseFormReturn;
 
 const SidebarSearch: React.FC<props> = ({
   className,
   close,
+  categories,
   ...useFormReturn
 }) => {
   const { register, control, watch, setValue } = useFormReturn;
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const categories = useQuery<EventCategory[]>({
-    queryKey: ['categories'],
-    queryFn: getEventsCategories,
-  });
   const { push, query, pathname } = useRouter();
   const t = useTranslations('Drawer_Search_Filters');
   const locale = useLocale();
@@ -33,8 +31,8 @@ const SidebarSearch: React.FC<props> = ({
   const sub_category = watch('sub_category');
   const sub_sub_category = watch('sub_sub_category');
   const dateRange = watch('date-range');
-  const categoriesArray = categories?.data
-    ? categories?.data?.map((item) => ({
+  const categoriesArray = categories
+    ? categories?.map((item) => ({
         name: item?.category?.find((obj) => obj.lang == locale)?.name,
         value: item?.category?.find((obj) => obj.lang == locale)?.name,
       }))
@@ -67,8 +65,8 @@ const SidebarSearch: React.FC<props> = ({
   }, [dateRange?.[0], dateRange?.[1]]);
   useEffect(() => {
     if (formSubmitted) {
-      let updatedQuery = query;
-      if (category) {
+      let updatedQuery = { ...query };
+      if (category && category !== '') {
         updatedQuery = {
           ...updatedQuery,
           category,
@@ -180,12 +178,7 @@ const SidebarSearch: React.FC<props> = ({
               <TextField
                 type="text"
                 readOnly
-                icon={
-                  <Icon
-                    name="calendar-outline"
-                    className="pointer-events-none"
-                  />
-                }
+                icon={<Icon name="calendar-outline" />}
                 iconPosition="right"
                 label={t('initial_date')}
                 {...register('initial_date')}
@@ -194,9 +187,7 @@ const SidebarSearch: React.FC<props> = ({
             <TextField
               type="text"
               readOnly
-              icon={
-                <Icon name="calendar-outline" className="pointer-events-none" />
-              }
+              icon={<Icon name="calendar-outline" />}
               iconPosition="right"
               label={t('finish_date')}
               {...register('finish_date')}

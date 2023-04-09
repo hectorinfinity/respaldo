@@ -706,7 +706,8 @@
   "Card_Event_Details": {
     "read_more": "Read more...",
     "shared_event": "Shared event:",
-    "event_details": "Event Details",
+    "description": "Description",
+    "information": "Information",
     "restrictions": "Restrictions:",
     "general": "General:",
     "observations": "Observations:",

@@ -119,7 +119,8 @@
   "Card_Event_Details": {
     "read_more": "Leer mas...",
     "shared_event": "Compartir evento:",
-    "event_details": "Detalle de evento",
+    "description": "Descripción",
+    "information": "Información",
     "restrictions": "Restricciones:",
     "general": "General:",
     "observations": "Observaciones:",

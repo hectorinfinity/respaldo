@@ -12,10 +12,17 @@ import { readEventCategory } from '@/api/event/event_category';
 import Link from 'next/link';
 import { EventCategory } from '@/interfaces/event';
 import { readEventVenue } from '@/api/event/event_venue';
+import { useUserAuthObserver } from '@/hooks/auth';
+import {
+  useMutationCreateFavorite,
+  useUserFavorites,
+} from '@/hooks/user/user_favorites';
+import { useUserAttends } from '@/hooks/user/user_attends';
+import { useUsers } from '@/hooks/user/user';
 
 export type props = {
   className?: string;
-  layout: 'grid' | 'column';
+  layout?: 'grid' | 'column';
   image: string;
   name: string;
   startDate: Date;
@@ -24,9 +31,8 @@ export type props = {
   location: string;
   favorite?: boolean;
   willAttend?: boolean;
-  category_id: string;
+  color: string;
   id: string;
-  isLoggedIn?: boolean;
 };
 // TODO: should have time prop
 const CardEvent: React.FC<props> = ({
@@ -35,28 +41,24 @@ const CardEvent: React.FC<props> = ({
   endTime,
   startTime,
   image,
-  layout,
+  layout = 'grid',
   location,
   name,
   willAttend = false,
   favorite = false,
-  category_id,
+  color,
   id,
-  isLoggedIn,
 }) => {
-  const category = useQuery<EventCategory>({
-    queryKey: ['category'],
-    queryFn: async () => await readEventCategory(category_id),
-    enabled: Boolean(category_id),
-  });
-
-  const eventVenue = useQuery({
-    queryKey: ['eventVenue'],
-    queryFn: async () => await readEventVenue(id),
-    enabled: Boolean(id),
-  });
-  // console.log('single event venue', eventVenue?.data);
+  const { isAuthenticated, user } = useUserAuthObserver();
+  const { data: favorites } = useUserFavorites();
+  const { mutate: createFavorite } = useMutationCreateFavorite();
+  const attends = useUserAttends();
+  // console.log(favorites?.filter((item) => item.user_id.id == user._id));
+  // console.log(favorites);
+  const event = favorites?.filter((item) => item.user_id.id == user._id);
+  const handleAddFavorite = () => {};
   const locale = useLocale();
+  console.log(event);
   return (
     <Link
       href={`/event/${id}`}
@@ -66,8 +68,9 @@ const CardEvent: React.FC<props> = ({
         className
       )}
     >
-      {isLoggedIn && (
+      {isAuthenticated && (
         <Button
+          onClick={handleAddFavorite}
           className={classNames(
             'absolute z-20 top-3',
             layout == 'grid' ? 'right-3' : 'left-3'
@@ -90,7 +93,7 @@ const CardEvent: React.FC<props> = ({
         )}
       >
         <Image src={image} alt="" fill className="object-cover" />
-        {isLoggedIn && (
+        {isAuthenticated && (
           <WillAttend
             changeColor={willAttend}
             className={classNames(
@@ -104,7 +107,7 @@ const CardEvent: React.FC<props> = ({
       <span className="flex-1 flex flex-col items-start">
         <span
           className={classNames('block h-5 w-full')}
-          style={{ backgroundColor: category?.data?.color }}
+          style={{ backgroundColor: color }}
         />
 
         <span
