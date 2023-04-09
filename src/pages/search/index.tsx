@@ -49,10 +49,10 @@ const Search = ({ categories }) => {
   const category = categories?.find((item) =>
     item.category.find((obj) => obj.name == queryObj?.category)
   );
-  console.log(events?.data);
+  // console.log(events?.data);
   const [heroImages, setHeroImages] = useState([]);
   useEffect(() => {
-    console.log(queryObj?.page);
+    // console.log(queryObj?.page);
     setPagination(queryObj);
     events.refetch();
   }, [
@@ -138,7 +138,9 @@ const Search = ({ categories }) => {
                 title={t('commons.recommended_events')}
                 items={events?.data?.items?.map((item) => ({
                   image: 'https://loremflickr.com/640/480/cats',
-                  name: item.content.find((obj) => obj.lang == locale)?.name,
+                  name:
+                    item.content.find((obj) => obj.lang == locale)?.name ||
+                    item.content.find((obj) => obj.lang == 'es')?.name,
                   startDate: new Date(),
                   startTime: '1:00',
                   endTime: '12:00',
@@ -169,7 +171,9 @@ const Search = ({ categories }) => {
               }
               items={events?.data?.items?.map((item) => ({
                 image: 'https://loremflickr.com/640/480/cats',
-                name: item.content.find((obj) => obj.lang == locale)?.name,
+                name:
+                  item.content.find((obj) => obj.lang == locale)?.name ||
+                  item.content.find((obj) => obj.lang == 'es')?.name,
                 startDate: new Date(),
                 startTime: '1:00',
                 endTime: '12:00',

@@ -23,6 +23,11 @@ export interface Address {
   zipcode: string;
 }
 
+export interface Collection {
+  id: string;
+  collection: string;
+}
+
 export interface BasicTranslate {
   lang: string;
   name: string;

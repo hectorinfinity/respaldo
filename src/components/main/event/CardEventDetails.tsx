@@ -6,6 +6,13 @@ import { ButtonLink, Icon } from '@/components/commons';
 import Link from 'next/link';
 import { Tab } from '@headlessui/react';
 import { useRouter } from 'next/router';
+import {
+  FacebookOutlined,
+  Instagram,
+  Telegram,
+  Twitter,
+  WhatsApp,
+} from '@mui/icons-material';
 
 export type props = {
   className?: string;
@@ -49,31 +56,27 @@ const CardEventDetails: React.FC<props> = ({
       <div className="flex flex-col my-5">
         <div className="flex gap-10 ml-auto text-gray-500">
           <span className="font-semibold">{t('shared_event')}</span>
-          <div className="flex gap-4">
-            <Icon
+          <div className="flex gap-2">
+            <FacebookOutlined
+              className="cursor-pointer text-gray-400 hover:text-current"
               onClick={() => handleShare('Facebook')}
-              name="facebook"
-              className="text-gray-500 cursor-pointer"
             />
-            <Icon
+            <Instagram
+              className="cursor-pointer text-gray-400 hover:text-current"
               onClick={() => handleShare('Instagram')}
-              name="instagram"
-              className="text-gray-500 cursor-pointer"
             />
-            <Icon
+            <Twitter
+              className="cursor-pointer text-gray-400 hover:text-current"
               onClick={() => handleShare('Twitter')}
-              name="twitter"
-              className="text-gray-500 cursor-pointer"
+            />
+            <WhatsApp
+              className="cursor-pointer text-gray-400 hover:text-current"
+              onClick={() => handleShare('WhatsApp')}
             />
             <Icon
-              onClick={() => handleShare('Whatsapp')}
-              name="whatsapp"
-              className="text-gray-500 cursor-pointer"
-            />
-            <Icon
-              onClick={() => handleShare('Telegram')}
               name="telegram"
-              className="text-gray-500 cursor-pointer"
+              className="cursor-pointer text-gray-400 hover:text-current w-6 h-6"
+              onClick={() => handleShare('Telegram')}
             />
           </div>
         </div>
@@ -109,15 +112,7 @@ const CardEventDetails: React.FC<props> = ({
         </Tab.List>
         <Tab.Panels className="mt-5">
           <Tab.Panel>
-            <p>
-              {details}{' '}
-              <Link
-                className="text-gray-500 font-semibold"
-                href={`/event/${id}`}
-              >
-                Read more...
-              </Link>
-            </p>
+            <p>{details} </p>
           </Tab.Panel>
 
           <Tab.Panel>
