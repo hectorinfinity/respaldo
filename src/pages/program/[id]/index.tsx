@@ -5,6 +5,8 @@ import ListCardEventRecommendation from '@/components/main/commons/ListCardEvent
 import CardProgramDetails from '@/components/main/programs/CardProgramDetails';
 import HeaderProgram from '@/components/main/programs/HeaderProgram';
 import ListProgramDays from '@/components/main/search/ListProgramDays';
+import { useEvent } from '@/hooks/event/event';
+import { useEventScheduleTimetable } from '@/hooks/event/event_schedules_timetables';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
@@ -26,11 +28,8 @@ const ProgramDetailed = () => {
     queryFn: getEvents,
   });
 
-  const event = useQuery({
-    queryKey: ['event'],
-    queryFn: async () => await readEvent(query?.id as any),
-    enabled: Boolean(query?.id),
-  });
+  const event = useEvent(query?.id as string);
+  const eventScheduleTimetable = useEventScheduleTimetable(query?.id as string);
   useEffect(() => {
     setCardProgramDetails({
       image: faker.image.cats(),

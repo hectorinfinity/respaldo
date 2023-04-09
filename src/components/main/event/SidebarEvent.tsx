@@ -6,7 +6,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import { format } from 'date-fns';
 import { enUS, es } from 'date-fns/locale';
 import parseDate from '@/helpers/parseDate';
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router';
+import { useUserAuthObserver } from '@/hooks/auth';
 export type props = {
   className?: string;
   id: string;
@@ -19,7 +20,6 @@ export type props = {
   endTime: string;
   location: string;
   category: string;
-  isLoggedIn: boolean;
   color: string;
   supplier: string;
 };
@@ -36,12 +36,12 @@ const SidebarEvent: React.FC<props> = ({
   startTime,
   willAttend,
   category,
-  isLoggedIn,
   color,
   supplier,
 }) => {
   const t = useTranslations('Sidebar_Event');
-  const router = useRouter()
+  const { isAuthenticated } = useUserAuthObserver();
+  const router = useRouter();
   const locale = useLocale();
   return (
     <aside className={classNames('flex flex-col', className)}>
@@ -53,11 +53,11 @@ const SidebarEvent: React.FC<props> = ({
               {category}
             </span>
             <span className="block text-2xl font-semibold">{name}</span>
-            {isLoggedIn && (
+            {isAuthenticated && (
               <WillAttend className="mt-3 hidden md:inline-flex" />
             )}
           </p>
-          {isLoggedIn && (
+          {isAuthenticated && (
             <Button
               color="white"
               shape="pill"
@@ -118,9 +118,15 @@ const SidebarEvent: React.FC<props> = ({
             </li>
           </ul>
 
-          <Button disabled={!isLoggedIn} fullWidth className="mt-24" onClick={() => router.push(`/event/${id}/checkout`)}>
-            {t('button')}
-          </Button>
+          {isAuthenticated && (
+            <Button
+              fullWidth
+              className="mt-24"
+              onClick={() => router.push(`/event/${id}/checkout`)}
+            >
+              {t('button')}
+            </Button>
+          )}
 
           <div className="flex gap-2 flex-col mt-7">
             <span className="mx-auto text-sm font-semibold">
