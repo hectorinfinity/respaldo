@@ -33,10 +33,9 @@ const EventAddress = () => {
     const tc = useTranslations("Common_Forms");
 
     const breadcrumb = [
-        { page: t('user'), href: '/panel/profile' },
-        { page: t('profile.address'), href: '' }
+        { page: t('event.event'), href: '' },
+        { page: t('actions.create'), href: '' }
     ]
-
     const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });

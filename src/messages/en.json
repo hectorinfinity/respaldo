@@ -407,6 +407,11 @@
   "Panel_Event_Special": {
     "sepcial": "Sepcial Category"
   },
+  "Panel_Event_Add_Schedule_Comment:": "/////////////////////////////////////// Panel Event Add Schedule",
+  "Panel_Event_Add_Schedule": {
+    "title": "Add Schedule",
+    "reply": "Reply the information the next days:"
+  },
   "Panel_Comment_Menu": "/////////////////////////////////////// Panel Menu Section",
   "Panel_Menu": {
     "dashboard": "Dashboard",
@@ -497,6 +502,7 @@
     "field_init_at": "Init at",
     "field_expired_at": "Expires at",
     "field_url": "URL",
+    "field_streaming": "Streaming URL",
     "field_type": "Type",
     "field_data_url": "Data URL",
     "field_key": "Key",
@@ -610,7 +616,22 @@
     "field_color": "Pick a color for your category",
     "field_event_image_web": "Upload an image for your Event (Web)",
     "field_event_image_app": "Upload an image for your Event (App)",
-    "field_event_image_flyer": "Upload an image for your Flyer"
+    "field_event_image_flyer": "Upload an image for your Flyer",
+
+    "field_initial_hour": "Initial Hour",
+    "field_final_hour": "Final Hour",
+
+    "field_low_cost": "Low Cost",
+    "field_regular_cost": "Regular Cost",
+    "field_high_cost": "High Cost",
+
+    "field_monday": "Monday",
+    "field_tuesday": "Tuesday",
+    "field_wednesday": "Wednesday",
+    "field_thursday": "Thursday",
+    "field_friday": "Friday",
+    "field_saturday": "Saturday",
+    "field_sunday": "Sunday"
   },
   "Public_Comment": "/////////////////////////////////////// Public Comment",
   "Public": {

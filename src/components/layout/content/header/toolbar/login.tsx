@@ -65,7 +65,7 @@ export const Login = ({ currentColor }: Props) => {
           <div className="my-[1.5px] h-[12px] w-[12px] rounded-full bg-black"></div>
           <div className="my-[1.5px] h-[12px] w-[12px] rounded-full bg-black"></div>
         </div>
-        <p className="text-sm font-bold tracking-tighter text-white uppercase md:text-lg">
+        <p className="text-sm text-white font-bold uppercase tracking-tighter">
           {t('title')}
         </p>
         <ChevronDownIcon className="w-5 h-5 text-white" aria-hidden="true" />
