@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { GoogleMap, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { geocodeAddress } from "@/lib/googleMaps";
 import debounce from "lodash.debounce";
+import { useGoogleMapsAPIKey } from "@/hooks/useGoogleMapsApi";
+
+const { apiKey } = useGoogleMapsAPIKey();
 
 const Map = ({ searchAddress, center, markerPosition }) => {
     const [map, setMap] = useState(null);
@@ -40,15 +43,23 @@ const Map = ({ searchAddress, center, markerPosition }) => {
         console.log("marker: ", marker);
     };
 
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: apiKey,
+        libraries: ["places"],
+    });
+
     return (
-        <GoogleMap
-            mapContainerStyle={{ width: "100%", height: "450px" }}
-            center={position}
-            zoom={17}
-            onLoad={onLoad}
-        >
-            {markerPosition && <Marker position={markerPosition} onLoad={onMarkerLoad} />}
-        </GoogleMap>
+        <>
+            {isLoaded && <GoogleMap
+                mapContainerStyle={{ width: "100%", height: "450px" }}
+                center={position}
+                zoom={17}
+                onLoad={onLoad}
+            >
+                {markerPosition && <Marker position={markerPosition} onLoad={onMarkerLoad} />}
+            </GoogleMap>}
+        </>
     );
 };
 export default Map;

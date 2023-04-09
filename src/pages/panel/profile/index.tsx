@@ -1,22 +1,21 @@
 /** @format */
+import { useState, useEffect } from "react";
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { Heading } from '@/components/headers/admin/heading';
 // Forms
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
-// Icons
-import { PlusIcon } from '@heroicons/react/20/solid';
 // Interface
 import { User } from "@/interfaces/user";
 // Helpers
 import { CurrentColor, FormStyles } from "@/helpers";
-import { updateUser } from "@/api/user/user";
-import { useMutation } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
+import { useMutationUpdateUser } from "@/hooks/user/user";
 
 const validationSchema = yup.object().shape({
     firstname: yup.string().min(2).max(32).required('First name is required'),
@@ -25,37 +24,76 @@ const validationSchema = yup.object().shape({
     email: yup.string().email().required('Email is required'),
     sex: yup.string().required('Sex is required'),
     birthday: yup.date().required('Birthday is required'),
-    phone: yup.string().min(10).max(10).required('Phone is required'),
+    phones: yup.array().of(
+        yup.object().shape({
+            phone: yup.string().min(10).max(10).required('Phone is required'),
+            type: yup.string().required('Phone type is required'),
+        })
+    ),
 });
 
 const Profile = () => {
     // const [submitted, setSubmitted] = useState(false);
     // const [submittedError, setSubmittedError] = useState(false);
+    const [uid, setUid] = useState("");
     // const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
     const tb = useTranslations("btn");
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>({
+    const { register, handleSubmit, control, formState: { errors }, reset, setValue } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });
-    console.log("hect")
-    const userMutation = useMutation(updateUser, {
-        onSuccess: () => {
-            console.log('User updated successfully');
-            // reset();
-        },
-        onError: (error) => {
-            console.log('Error updating user:', error);
-        },
+
+    const addPhone = () => {
+        append({ phone: '', type: '' });
+    };
+
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: 'phones',
     });
 
+    const queryClient = useQueryClient()
+    const userData = queryClient.getQueryData(["user"])
+
+
+    useEffect(() => {
+        if (userData) {
+            const user = userData[0].user;
+            setUid(user.uid)
+            setValue("firstname", user.firstname);
+            setValue("surname", user.surname);
+            setValue("username", user.username);
+            setValue("email", user.email);
+            setValue("sex", user.sex);
+            if (user.birthday) {
+                const date = new Date(user.birthday);
+                const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+                setValue("birthday", formattedDate as any);
+            }
+            if (user.phones && user.phones.length > 0) {
+                user.phones.map((phone, index) => {
+                    setValue(`phones[${index}].phone` as any, phone.phone);
+                    setValue(`phones[${index}].type` as any, phone.type);
+
+                });
+            }
+        }
+    }, [userData, setValue, uid]);
+
+    const { mutate: updateUser, isError, error } = useMutationUpdateUser();
+    if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
+
+
     const onSubmitHandler = (data: User) => {
-        // setSubmitted(false);
-        // setSubmittedError(true);
-        console.log("heeey")
-        console.log("data:", data)
-        // userMutation.mutate(data);
+        const formattedBirthday = data.birthday
+            ? new Date(data.birthday)
+            : null;
+
+        const updatedData = { ...data, birthday: formattedBirthday, uid };
+        console.log("UPDATED DATA:", updatedData);
+        updateUser(updatedData);
     };
 
     const breadcrumb = [
@@ -77,6 +115,7 @@ const Profile = () => {
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9" onSubmit={handleSubmit(onSubmitHandler)} method="POST">
+
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="firstname" name={tc('field_firstname')} />
@@ -216,25 +255,61 @@ const Profile = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-6 lg:mt-0 grid grid-cols-12 gap-6">
-                            <div className="col-span-12 sm:col-span-6">
-                                <CustomLabel field="phones" name={tc('field_phone')} />
-                                <input
-                                    {...register('phones')}
-                                    type="tel"
-                                    name="phones"
-                                    id="phones"
-                                    autoComplete={tc('auto_phone')}
-                                    placeholder={tc('field_phone')}
-                                    className={FormStyles('input')}
-                                />
-                                <CustomError error={errors.phones?.message} />
+                        <div className="col-span-12 sm:col-span-6">
+                            <CustomLabel field={`phones[0].phone`} name={tc('field_phone')} />
+                            <input
+                                {...register(`phones.0.phone`)}
+                                type="tel"
+                                name={`phones[0].phone`}
+                                id={`phones[0].phone`}
+                                autoComplete={tc('auto_phone')}
+                                placeholder={tc('field_phone')}
+                                className={FormStyles('input')}
+                            />
+                            <CustomError error={errors?.phones?.[0]?.phone?.message} />
+                            <CustomLabel field={`phones[0].type`} name={tc('field_phone_type')} />
+                            <input
+                                {...register(`phones.0.type`)}
+                                type="text"
+                                name={`phones[0].type`}
+                                id={`phones[0].type`}
+                                autoComplete={tc('auto_phone_type')}
+                                placeholder={tc('field_phone_type')}
+                                className={FormStyles('input')}
+                            />
+                            <CustomError error={errors?.phones?.[0]?.message} />
 
-                                <button>
-                                    <PlusIcon />
-                                </button>
-                            </div>
+                            {/* {fields.map((field, index) => (
+                                <div key={field.id}>
+                                    <CustomLabel field={`phones[${index}].phone`} name={tc('field_phone')} />
+                                    <input
+                                        {...register(`phones[${index}].phone`)}
+                                        type="tel"
+                                        name={`phones[${index}].phone`}
+                                        id={`phones[${index}].phone`}
+                                        autoComplete={tc('auto_phone')}
+                                        placeholder={tc('field_phone')}
+                                        className={FormStyles('input')}
+                                    />
+                                    <CustomError error={errors?.phones?.[index]?.phone?.message} />
+                                    <CustomLabel field={`phones[${index}].type`} name={tc('field_phone_type')} />
+                                    <input
+                                        {...register(`phones[${index}].type`)}
+                                        type="text"
+                                        name={`phones[${index}].type`}
+                                        id={`phones[${index}].type`}
+                                        autoComplete={tc('auto_phone_type')}
+                                        placeholder={tc('field_phone_type')}
+                                        className={FormStyles('input')}
+                                    />
+                                    <CustomError error={errors?.phones?.[index]?.message} />
+                                </div>
+                            ))}
+                            <button type="button" onClick={addPhone}>
+                                Add
+                            </button> */}
                         </div>
+
                         {/* Buttons section */}
                         <div className="divide-y divide-gray-200 pt-6">
                             <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
