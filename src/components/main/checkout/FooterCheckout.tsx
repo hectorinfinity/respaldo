@@ -15,21 +15,26 @@ const FooterCheckout: React.FC<props> = ({
 }) => {
   return (
     <div className={classNames('flex items-center justify-between', className)}>
-      {currentStep !== 1 && (
+      <div>
         <Button
+          className={classNames(currentStep == 1 && 'hidden')}
           weight="inline"
           iconLeft={<Icon name="arrow-left" />}
           size="large"
           onClick={() => setCurrentStep((prv) => prv - 1)}
         >
-          <p className="font-extrabold">Go back</p>
+          <p className="font-bold">Go back</p>
         </Button>
-      )}
-      {currentStep !== 4 && (
-        <Button  onClick={() => setCurrentStep((prv) => prv + 1)} size="large">
-          <p className="font-extrabold w-32">Next</p>
+      </div>
+      <div>
+        <Button
+          type="submit"
+          className={classNames(currentStep == 4 && 'hidden')}
+          size="large"
+        >
+          <p className="font-bold w-32">Next</p>
         </Button>
-      )}
+      </div>
     </div>
   );
 };

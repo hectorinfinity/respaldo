@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getMe, getUsers, createUser, readUser, updateUser, deleteUser } from '@/api/user/user'
+import { User } from "@/interfaces/user";
 
 const key = "user";
 
@@ -28,11 +29,22 @@ export function useUser(user_id: string) {
 
 export function useMutationUpdateUser() {
   const queryClient = useQueryClient();
-
   return useMutation(updateUser, {
-    onSuccess: (user) => {
-      queryClient.setQueryData([key], (prevUser: any) => prevUser.concat(user));
+    onSuccess: (data) => {
+      console.log('Data returned by updateUser:', data);
+      const updatedUser = data;
+      queryClient.setQueryData([key], (prevUsers: any) => {
+        return prevUsers.map((user: User) => {
+          if (user.uid === updatedUser.uid) {
+            return { ...user, ...updatedUser };
+          }
+          return user;
+        });
+      });
       queryClient.invalidateQueries([key]);
     },
   });
 }
+
+
+

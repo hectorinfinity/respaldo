@@ -1,13 +1,14 @@
 import React from 'react';
 import { classNames } from '@/helpers';
 import { Icon } from '@/components/commons';
+import { useTranslations } from 'next-intl';
 
 export type props = {
   className?: string;
   changeColor?: boolean;
 };
-// TODO: translate
 const WillAttend: React.FC<props> = ({ className, changeColor = false }) => {
+  const t = useTranslations('Public');
   return (
     <button
       className={classNames(
@@ -16,7 +17,8 @@ const WillAttend: React.FC<props> = ({ className, changeColor = false }) => {
         className
       )}
     >
-      <Icon className="w-3 h-3" name="circle-check-outline" />i will attend
+      <Icon className="w-3 h-3" name="circle-check-outline" />
+      {t('event.attend')}
     </button>
   );
 };

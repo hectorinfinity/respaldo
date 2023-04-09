@@ -7,38 +7,34 @@ import ListCardEvent from '@/components/main/commons/ListCardEvent';
 import SidebarSearch from '@/components/main/commons/SidebarSearch';
 import HeaderCategory from '@/components/main/search/HeaderCategory';
 import HeaderSearch from '@/components/main/search/HeaderSearch';
+import { useEvents } from '@/hooks/event/event';
+import { useEventsSpecialsCategories } from '@/hooks/event/event_special_category';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const Program = () => {
+const Program = ({ categories }) => {
   const useFormReturn = useForm<any>({
     defaultValues: {
       initial_date: 'dd/mm/aaaa',
       finish_date: 'dd/mm/aaaa',
     },
   });
-  const { query: queryObj, push, pathname } = useRouter();
+  const { query: queryObj, push } = useRouter();
   const { watch } = useFormReturn;
   const query = watch('query');
   const t = useTranslations('Public');
   const locale = useLocale();
   const [heroImages, setHeroImages] = useState([]);
   const [imageAdvertisment, setImageAdvertisment] = useState('');
-  const categories = useQuery({
-    queryKey: ['categories'],
-    queryFn: getEventsCategories,
-  });
 
-  const events = useQuery({
-    queryKey: ['events'],
-    queryFn: getEvents,
-  });
-
-  const category = categories?.data?.find((item) =>
+  const events = useEventsSpecialsCategories();
+  console.log(events?.data);
+  const category = categories?.find((item) =>
     item.category.find((obj) => obj.name == queryObj?.category)
   );
 
@@ -79,11 +75,18 @@ const Program = () => {
   }, [query]);
   return (
     <div className="mb-44 -mt-8">
-      <Hero items={heroImages} />
+      <Hero
+        items={[
+          {
+            image: '/images/slides/search-slide.png',
+            url: '/images/slides/search-slide.png',
+          },
+        ]}
+      />
       <div className="mt-16 space-y-16 section-container">
-        <HeaderSearch
-          items={categories?.data?.map((item) => ({
-            name: item.category.find((obj) => obj.lang == locale).name,
+        {/* <HeaderSearch
+          items={categories?.map((item) => ({
+            name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
             image: item.picture,
           }))}
@@ -98,16 +101,18 @@ const Program = () => {
           <HeaderCategory
             color={category?.color}
             image={category?.picture}
-            name={category?.category?.find((obj) => obj.lang == locale).name}
+            name={category?.category?.find((obj) => obj.lang == locale)?.name}
             size="large"
           />
         )}
         <div className="grid grid-cols-6 gap-5 md:gap-10">
           <SidebarSearch
+            categories={categories}
             className="col-span-2 hidden md:block"
             {...useFormReturn}
           />
           <ListCardEvent
+            categories={categories}
             className="col-span-6 md:col-span-4"
             controls
             loading={events?.isLoading}
@@ -118,10 +123,12 @@ const Program = () => {
             title={t('home.new_events')}
             items={events?.data?.map((item) => ({
               image: 'https://loremflickr.com/640/480/cats',
-              name: item.content.find((obj) => obj.lang == locale).name,
-              date: item.created_at,
+              name: item.category.find((obj) => obj.lang == locale)?.name,
+              startDate: item.initial_date as unknown as Date,
+              startTime: '1:00',
+              endTime: '12:00',
               location: 'Location',
-              category_id: item.category_id?.id,
+              color: item.color,
               id: item._id,
             }))}
             {...useFormReturn}
@@ -131,6 +138,7 @@ const Program = () => {
         <hr className="bg-gray-700 border-[1.3px]" />
 
         <ListCardEvent
+          categories={categories}
           loading={events?.isLoading}
           layout="swiper"
           setCurrentPage={() => {}}
@@ -144,18 +152,23 @@ const Program = () => {
                 })
               : t('commons.recommended_events')
           }
-          items={events?.data?.map((item) => ({
+          items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale).name,
-            date: item.created_at,
+            name: item.content.find((obj) => obj.lang == locale)?.name,
+            startDate: item.created_at as unknown as Date,
+            startTime: '1:00',
+            endTime: '12:00',
             location: 'Location',
-            category_id: item.category_id?.id,
+            category_id: item.category_id?._id,
             id: item._id,
           }))}
           {...useFormReturn}
-        />
+        /> */}
 
-        <CardAdvertisment image={imageAdvertisment} size="large" />
+        <CardAdvertisment
+          image="/images/advertisements/anunciate_aqui.png"
+          size="large"
+        />
       </div>
     </div>
   );
@@ -164,9 +177,13 @@ const Program = () => {
 Program.Layout = MainLayout;
 
 export async function getStaticProps({ locale }) {
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/events/categories/`
+  );
   return {
     props: {
       messages: (await import(`@/messages/${locale}.json`)).default,
+      categories: data,
     },
   };
 }
