@@ -13,34 +13,29 @@ import { useQuery } from '@tanstack/react-query';
 import { getEvents } from '@/api/event/event';
 import Hero from '@/components/main/commons/Hero';
 import { getEventsVenues } from '@/api/event/event_venue';
+import { useEvents } from '@/hooks/event/event';
+import { useCategories } from '@/hooks/event/category';
 
 const Home = () => {
   const t = useTranslations('Public');
   const locale = useLocale();
   const useFormReturn = useForm();
-  const categories = useQuery({
-    queryKey: ['categories'],
-    queryFn: getEventsCategories,
-  });
+  const categories = useCategories();
+  const events = useEvents();
 
-  const events = useQuery({
-    queryKey: ['events'],
-    queryFn: getEvents,
-  });
-
-  const [heroImages, setHeroImages] = useState([]);
-  useEffect(() => {
-    setHeroImages(
-      Array.from({ length: 5 }, () => ({
-        image: faker.image.abstract(),
-      }))
-    );
-  }, []);
   return (
-    <div className="mb-44 -mt-8">
-      <Hero items={heroImages} />
+    <div className="-mt-8 mb-44">
+      <Hero
+        items={[
+          {
+            image: '/images/slides/home-slide.png',
+            url: '/images/slides/home-slide.png',
+          },
+        ]}
+      />
       <div className="mt-16 space-y-16 section-container">
         <ListCardCategory
+        className="max-w-5xl mx-auto"
           items={categories?.data?.map((item) => ({
             name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
@@ -63,11 +58,11 @@ const Home = () => {
           items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
             name: item.content.find((obj) => obj.lang == locale)?.name,
-            startDate: item.created_at,
+            startDate: item.created_at as unknown as Date,
             startTime: '1:00',
             endTime: '12:00',
             location: 'Location',
-            category_id: item.category_id?.id,
+            color: item.category_id?.color,
             id: item._id,
           }))}
           {...useFormReturn}
@@ -83,11 +78,11 @@ const Home = () => {
           items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
             name: item.content.find((obj) => obj.lang == locale)?.name,
-            startDate: item.created_at,
+            startDate: item.created_at as unknown as Date,
             startTime: '1:00',
             endTime: '12:00',
             location: 'Location',
-            category_id: item.category_id?.id,
+            color: item.category_id?.color,
             id: item._id,
           }))}
           {...useFormReturn}

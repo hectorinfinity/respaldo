@@ -7,6 +7,7 @@ import {
   deleteEventSchedule,
 } from '@/api/event/event_schedule';
 import { EventSchedule } from '@/interfaces/event';
+import { WithDocs } from '@/interfaces/serializers/commons';
 
 const key = 'event_schedule';
 
@@ -15,5 +16,7 @@ export function useEventSchedules() {
 }
 
 export function useEventSchedule(event_schedule_id: string) {
-  return useQuery<EventSchedule>([key, event_schedule_id], () => readEventSchedule(event_schedule_id as any));
+  return useQuery<EventSchedule>([key, event_schedule_id], () =>
+    readEventSchedule(event_schedule_id as any)
+  );
 }

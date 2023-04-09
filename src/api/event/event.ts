@@ -1,31 +1,33 @@
 import axios from '@/lib/axios';
 import { Event } from '@/interfaces/event';
 
-export const getEvents = async () => {
-    const { data } = await axios.get(`/events/`);
-    return data;
+export const getEvents = async (pagination) => {
+  const { data } = await axios.get(`/events/`, {
+    params: pagination,
+  });
+  return data;
 };
 
 export const createEvent = async (event: Event) => {
-    const { data } = await axios.post(`/events/`, event);
+  const { data } = await axios.post(`/events/`, event);
 
-    return data;
-}
+  return data;
+};
 
 export const readEvent = async (id: number) => {
-    const { data } = await axios.get(`/events/${id}`);
+  const { data } = await axios.get(`/events/${id}`);
 
-    return data;
-}
+  return data;
+};
 
 export const updateEvent = async (id: number, event: Event) => {
-    const { data } = await axios.put(`/events/${id}`, event);
+  const { data } = await axios.put(`/events/${id}`, event);
 
-    return data;
-}
+  return data;
+};
 
 export const deleteEvent = async (id: number) => {
-    const { data } = await axios.delete(`/events/${id}`);
+  const { data } = await axios.delete(`/events/${id}`);
 
-    return data;
-}
+  return data;
+};

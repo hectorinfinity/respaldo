@@ -13,6 +13,7 @@ import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/componen
 import { FormStyles } from '@/helpers';
 import { User } from "@/interfaces/user";
 import { updateUser } from "@/api/user/user";
+import { useMutationUpdateUser } from "@/hooks/user/user";
 
 
 const validationSchema = yup.object().shape({
@@ -31,6 +32,9 @@ const ProfileBilling = () => {
         { page: t('profile.billing'), href: '' }
     ]
 
+    const { mutate: updateUser, isError, error } = useMutationUpdateUser();
+    if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(validationSchema),
     });
@@ -40,7 +44,7 @@ const ProfileBilling = () => {
         // setSubmittedError(true);
         updateUser(data)
         console.log({ data });
-        reset();
+        // reset();
         // Handle Submit Form
     };
 

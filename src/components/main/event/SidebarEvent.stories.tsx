@@ -31,6 +31,5 @@ Default.args = {
   location: faker.address.streetAddress(),
   name: faker.name.jobTitle(),
   willAttend: faker.datatype.boolean(),
-  isLoggedIn: faker.datatype.boolean(),
   category: faker.lorem.word(),
 };

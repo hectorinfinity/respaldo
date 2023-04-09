@@ -13,19 +13,11 @@ const ProfileCard = () => {
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
-    const cards = [
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "credit", number: "3828", exp: "09/28" },
-        { id: "12912", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "12982", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "12182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "19182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-    ]
-
     const breadcrumb = [
         { page: ts('user'), href: '/panel/profile' },
         { page: ts('profile.card.name'), href: '' }
     ]
-    const buttonBread =  { text: tb('new_card'), href: '/panel/profile/card/create' }
+    const buttonBread = { text: tb('new_card'), href: '/panel/profile/card/create' }
 
     return (
         <div>
@@ -44,9 +36,7 @@ const ProfileCard = () => {
                         <div>
                             <div className="md:flex md:items-center md:justify-between">
                                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                                    {cards.map((card) => (
-                                        <CustomCard key={card.id} id={card.id} name={card.name} type={card.type} number={card.number} exp={card.exp} />
-                                    ))}
+                                    {/* map of all the customer cards */}
                                 </div>
                             </div>
                         </div>

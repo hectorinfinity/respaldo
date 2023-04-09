@@ -1,12 +1,11 @@
 import { useTranslations } from "next-intl";
 // Components
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
-import { Autocomplete, LoadScript } from "@react-google-maps/api";
+import { Autocomplete } from "@react-google-maps/api";
 import { useState } from "react";
 import Map from "@/components/forms/forms/map";
 // Helpers
 import { FormStyles } from "@/helpers"
-import { useGoogleMapsAPIKey } from "@/hooks/useGoogleMapsApi";
 
 
 
@@ -17,9 +16,6 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
         latitude: "",
         longitude: ""
     })
-
-    const { apiKey } = useGoogleMapsAPIKey();
-
 
     const tc = useTranslations("Common_Forms");
     const onAutocompleteLoad = (autocompleteInstance) => {
@@ -44,14 +40,14 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
             const components = place.address_components;
             const getAddressComponent = (type) => components.find((component) => component.types.includes(type));
 
-            setValue("addressname", getAddressComponent("point_of_interest")?.long_name || getAddressComponent("premise")?.long_name || address);
+            // setValue("addressname", getAddressComponent("point_of_interest")?.long_name || getAddressComponent("premise")?.long_name || address);
             setValue("address", (getAddressComponent("street_number")?.long_name || "") + " " + (getAddressComponent("route")?.long_name || ""));
 
             setValue("address2", getAddressComponent("subpremise")?.long_name || "");
             setValue("city", getAddressComponent("locality")?.long_name || "");
             setValue("state", getAddressComponent("administrative_area_level_1")?.long_name || "");
             setValue("country", getAddressComponent("country")?.long_name || "");
-            setValue("pc", getAddressComponent("postal_code")?.long_name || "");
+            setValue("zipcode", getAddressComponent("postal_code")?.long_name || "");
             setValue("latitude", latLng.lat.toString());
             setValue("longitude", latLng.lng.toString());
         }
@@ -62,49 +58,43 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
 
     return (
         <>
-            <LoadScript
-                googleMapsApiKey={apiKey}
-                libraries={["places"]}
-                onLoad={handleLoad}
-            >
-                <div className="grid grid-cols-12 gap-6">
-                    <div className="col-span-12">
-                        <CustomLabel field="addressname" name={tc('field_addressname')} required />
+            <div className="grid grid-cols-12 gap-6">
+                {/* <div className="col-span-12">
+                    <CustomLabel field="addressname" name={tc('field_addressname')} required />
+                    <input
+                        {...register("addressname")}
+                        type="text"
+                        name="addressname"
+                        id="addressname"
+                        autoComplete={tc('auto_addressname')}
+                        placeholder={tc('field_addressname')}
+                        className={FormStyles('input')}
+                    />
+                    <CustomError error={errors.addressname?.message} />
+                </div> */}
+
+                <div className="col-span-12">
+                    <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
+                    <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
                         <input
-                            {...register("addressname")}
                             type="text"
-                            name="addressname"
-                            id="addressname"
-                            autoComplete={tc('auto_addressname')}
-                            placeholder={tc('field_addressname')}
+                            name="searchaddress"
+                            id="searchaddress"
+                            autoComplete={tc('auto_searchaddress')}
+                            placeholder={tc('field_searchaddress')}
                             className={FormStyles('input')}
                         />
-                        <CustomError error={errors.addressname?.message} />
-                    </div>
+                    </Autocomplete>
+                </div>
+            </div>
 
-                    <div className="col-span-12">
-                        <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
-                        <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
-                            <input
-                                type="text"
-                                name="searchaddress"
-                                id="searchaddress"
-                                autoComplete={tc('auto_searchaddress')}
-                                placeholder={tc('field_searchaddress')}
-                                className={FormStyles('input')}
-                            />
-                        </Autocomplete>
+            <div className="mt-6 flex flex-col lg:flex-row">
+                <div className="relative isolate bg-white py-10">
+                    <div className="flex justify-start w-screen">
+                        <Map searchAddress={searchAddress} center={{ lat: 22.767649, lng: -102.546273 }} markerPosition={markerPosition} />
                     </div>
                 </div>
-
-                <div className="mt-6 flex flex-col lg:flex-row">
-                    <div className="relative isolate bg-white py-10">
-                        <div className="flex justify-start w-screen">
-                            <Map searchAddress={searchAddress} center={{ lat: 22.767649, lng: -102.546273 }} markerPosition={markerPosition} />
-                        </div>
-                    </div>
-                </div>
-            </LoadScript>
+            </div>
             <div className="mt-6 grid grid-cols-12 gap-6">
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
                     <CustomLabel field="address" name={tc('field_address')} required />
@@ -131,12 +121,12 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
                     />
                 </div>
                 <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
-                    <CustomLabel field="pc" name={tc('field_pc')} required />
+                    <CustomLabel field="zipcode" name={tc('field_pc')} required />
                     <input
-                        {...register("pc")}
+                        {...register("zipcode")}
                         type="text"
-                        name="pc"
-                        id="pc"
+                        name="zipcode"
+                        id="zipcode"
                         autoComplete={tc('auto_pc')}
                         placeholder={tc('field_pc')}
                         className={FormStyles('input')}

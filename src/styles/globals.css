@@ -6,7 +6,7 @@
 
 @layer components {
   .section-container {
-    @apply px-5 mx-auto max-w-7xl md:px-16;
+    @apply px-5 mx-auto max-w-[1600px] md:px-16;
   }
   .input-label {
     @apply text-sm font-bold whitespace-nowrap;
@@ -66,4 +66,5 @@
 
 .swiper-slide {
   height: auto;
+  padding-bottom:20px;
 }

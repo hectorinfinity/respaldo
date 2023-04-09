@@ -12,10 +12,17 @@ import { readEventCategory } from '@/api/event/event_category';
 import Link from 'next/link';
 import { EventCategory } from '@/interfaces/event';
 import { readEventVenue } from '@/api/event/event_venue';
+import { useUserAuthObserver } from '@/hooks/auth';
+import {
+  useMutationCreateFavorite,
+  useUserFavorites,
+} from '@/hooks/user/user_favorites';
+import { useUserAttends } from '@/hooks/user/user_attends';
+import { useUsers } from '@/hooks/user/user';
 
 export type props = {
   className?: string;
-  layout: 'grid' | 'column';
+  layout?: 'grid' | 'column';
   image: string;
   name: string;
   startDate: Date;
@@ -24,9 +31,8 @@ export type props = {
   location: string;
   favorite?: boolean;
   willAttend?: boolean;
-  category_id: string;
+  color: string;
   id: string;
-  isLoggedIn?: boolean;
 };
 // TODO: should have time prop
 const CardEvent: React.FC<props> = ({
@@ -35,39 +41,34 @@ const CardEvent: React.FC<props> = ({
   endTime,
   startTime,
   image,
-  layout,
+  layout = 'grid',
   location,
   name,
   willAttend = false,
   favorite = false,
-  category_id,
+  color,
   id,
-  isLoggedIn,
 }) => {
-  const category = useQuery<EventCategory>({
-    queryKey: ['category'],
-    queryFn: async () => await readEventCategory(category_id),
-    enabled: Boolean(category_id),
-  });
-
-  const eventVenue = useQuery({
-    queryKey: ['eventVenue'],
-    queryFn: async () => await readEventVenue(id),
-    enabled: Boolean(id),
-  });
-  // console.log('single event venue', eventVenue?.data);
+  const { isAuthenticated, user } = useUserAuthObserver();
+  const { data: favorites } = useUserFavorites();
+  const { mutate: createFavorite } = useMutationCreateFavorite();
+  const attends = useUserAttends();
+  const event = favorites?.filter((item) => item?.user_id?.id == user?._id);
+  const handleAddFavorite = () => {};
   const locale = useLocale();
+  const slug = name.replace(' ', '-')
+
   return (
-    <Link
-      href={`/event/${id}`}
+    <div
       className={classNames(
-        'rounded-xl relative shadow-xl overflow-hidden',
+        'card rounded-xl relative shadow-xl overflow-hidden',
         layout == 'column' ? 'flex' : 'block',
         className
       )}
     >
-      {isLoggedIn && (
+      {isAuthenticated && (
         <Button
+          onClick={handleAddFavorite}
           className={classNames(
             'absolute z-20 top-3',
             layout == 'grid' ? 'right-3' : 'left-3'
@@ -83,14 +84,15 @@ const CardEvent: React.FC<props> = ({
           }
         />
       )}
-      <span
+      <Link
+        href={`/event/${slug}?id=${id}`}
         className={classNames(
           'relative block',
           layout == 'grid' ? 'aspect-[4/3]' : 'aspect-square w-72 '
         )}
       >
         <Image src={image} alt="" fill className="object-cover" />
-        {isLoggedIn && (
+        {isAuthenticated && (
           <WillAttend
             changeColor={willAttend}
             className={classNames(
@@ -99,12 +101,12 @@ const CardEvent: React.FC<props> = ({
             )}
           />
         )}
-      </span>
+      </Link>
 
-      <span className="flex-1 flex flex-col items-start">
+      <span className="flex flex-col items-start flex-1">
         <span
           className={classNames('block h-5 w-full')}
-          style={{ backgroundColor: category?.data?.color }}
+          style={{ backgroundColor: color }}
         />
 
         <span
@@ -113,7 +115,7 @@ const CardEvent: React.FC<props> = ({
             layout == 'column' ? 'flex h-full items-center' : 'block'
           )}
         >
-          <span className="p-5 block">
+          <Link href={`/event/${slug}?id=${id}`} className="block p-5">
             <span
               title={name}
               className="block text-lg font-semibold text-black break-words truncate w-"
@@ -140,10 +142,10 @@ const CardEvent: React.FC<props> = ({
               <Icon name="map-pin" />
               {location}
             </p>
-          </span>
+          </Link>
         </span>
       </span>
-    </Link>
+    </div>
   );
 };
 
