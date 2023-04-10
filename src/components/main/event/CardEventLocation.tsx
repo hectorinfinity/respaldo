@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { classNames } from '@/helpers';
 import { Map, Title, Button, Icon } from '@/components/commons';
 import { useTranslations } from 'next-intl';
-
+import { CurrentColor } from '@/helpers';
+import { CustomTag } from '@/components/commons/customTag';
 export type props = {
   className?: string;
   location: string;
@@ -17,6 +18,7 @@ const CardEventLocation: React.FC<props> = ({
   tags,
 }) => {
   const [userLocation, setUserLocation] = useState(null);
+  const currentColor = CurrentColor();
   const t = useTranslations('Card_Event_Location');
   async function handleTraceRoute() {
     const getUserLocation = (): Promise<google.maps.LatLngLiteral> => {
@@ -88,12 +90,7 @@ const CardEventLocation: React.FC<props> = ({
       </div>
       <div className="flex flew-wrap gap-5">
         {tags?.map((tag, idx) => (
-          <div
-            key={idx}
-            className="rounded-lg shadow-sm px-4 py-2 bg-primary-500"
-          >
-            {tag}
-          </div>
+          <CustomTag key={idx} name={tag} />
         ))}
       </div>
     </div>

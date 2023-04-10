@@ -14,7 +14,8 @@ import { EventCategory } from '@/interfaces/event';
 import { readEventVenue } from '@/api/event/event_venue';
 import { useUserAuthObserver } from '@/hooks/auth';
 import {
-  useMutationCreateFavorite,
+  useMutationAddFavorite,
+  useMutationRemoveFavorite,
   useUserFavorites,
 } from '@/hooks/user/user_favorites';
 import { useUserAttends } from '@/hooks/user/user_attends';
@@ -45,32 +46,60 @@ const CardEvent: React.FC<props> = ({
   location,
   name,
   willAttend = false,
-  favorite = false,
   color,
   id,
 }) => {
   const { isAuthenticated, user } = useUserAuthObserver();
   const { data: favorites } = useUserFavorites();
-  const { mutate: createFavorite } = useMutationCreateFavorite();
-  const attends = useUserAttends();
-  // console.log(favorites?.filter((item) => item.user_id.id == user._id));
-  // console.log(favorites);
-  const event = favorites?.filter((item) => item.user_id.id == user._id);
-  const handleAddFavorite = () => {};
+  const { mutate: addFavorite } = useMutationAddFavorite();
+  const { mutate: removeFavorite } = useMutationRemoveFavorite();
   const locale = useLocale();
-  console.log(event);
+  const favorite = favorites
+    ?.filter((item) => item.user_id.id == user._id)
+    .find((item) => item.events_likes.find((event) => event.id == id));
+
+  const attend = favorites
+    ?.filter((item) => item.user_id.id == user._id)
+    .find((item) => item.events_attends.find((attend) => attend.id == id));
+  // console.log(favorites?.filter((item) => item.user_id.id == user._id));
+  const handleAddFavorite = (e) => {
+    e.preventDefault();
+    if (!favorite) {
+      addFavorite({
+        event_id: id,
+      });
+    } else {
+      removeFavorite({
+        event_id: id,
+      });
+    }
+  };
+  const slug = name.replace(' ', '-')
+
+  const handleAddAttend = () => {
+    if (!attend) {
+      addFavorite({
+        event_type: 'attend',
+        event_id: id,
+      });
+    } else {
+      removeFavorite({
+        event_type: 'attend',
+        event_id: id,
+      });
+    }
+  };
   return (
-    <Link
-      href={`/event/${id}`}
+    <div
       className={classNames(
-        'rounded-xl relative shadow-xl overflow-hidden',
+        'card rounded-xl relative shadow-xl overflow-hidden',
         layout == 'column' ? 'flex' : 'block',
         className
       )}
     >
       {isAuthenticated && (
         <Button
-          onClick={handleAddFavorite}
+          onClick={(e) => handleAddFavorite(e)}
           className={classNames(
             'absolute z-20 top-3',
             layout == 'grid' ? 'right-3' : 'left-3'
@@ -86,7 +115,8 @@ const CardEvent: React.FC<props> = ({
           }
         />
       )}
-      <span
+      <Link
+        href={`/event/${slug}?id=${id}`}
         className={classNames(
           'relative block',
           layout == 'grid' ? 'aspect-[4/3]' : 'aspect-square w-72 '
@@ -95,16 +125,17 @@ const CardEvent: React.FC<props> = ({
         <Image src={image} alt="" fill className="object-cover" />
         {isAuthenticated && (
           <WillAttend
-            changeColor={willAttend}
+            onClick={handleAddAttend}
+            changeColor={Boolean(attend)}
             className={classNames(
               'absolute bottom-3',
               layout == 'grid' ? 'right-3' : 'left-3'
             )}
           />
         )}
-      </span>
+      </Link>
 
-      <span className="flex-1 flex flex-col items-start">
+      <span className="flex flex-col items-start flex-1">
         <span
           className={classNames('block h-5 w-full')}
           style={{ backgroundColor: color }}
@@ -116,7 +147,7 @@ const CardEvent: React.FC<props> = ({
             layout == 'column' ? 'flex h-full items-center' : 'block'
           )}
         >
-          <span className="p-5 block">
+          <Link href={`/event/${slug}?id=${id}`} className="block p-5">
             <span
               title={name}
               className="block text-lg font-semibold text-black break-words truncate w-"
@@ -143,10 +174,10 @@ const CardEvent: React.FC<props> = ({
               <Icon name="map-pin" />
               {location}
             </p>
-          </span>
+          </Link>
         </span>
       </span>
-    </Link>
+    </div>
   );
 };
 
