@@ -1,5 +1,4 @@
 /** @format */
-import { useEffect, useState } from 'react';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
@@ -8,13 +7,11 @@ import { Heading } from '@/components/headers/admin/heading';
 // Components
 import { CustomCard } from '@/components/admin/profile/customCard';
 // queries
-import { useCreateUserCard, useUserCard } from "@/hooks/user/user_card"
-import { useMutationUpdateUser } from "@/hooks/user/user";
+import { useUserCard } from "@/hooks/user/user_card"
 import { useQueryClient } from "@tanstack/react-query";
 import { User } from "@/interfaces/user";
 
 const ProfileCard = () => {
-    const [stripeSecret, setStripeSecret] = useState(null)
     const t = useTranslations("Panel_Profile_Card");
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
@@ -26,10 +23,10 @@ const ProfileCard = () => {
     const buttonBread = { text: tb('new_card'), href: '/panel/profile/card/create' }
 
     const queryClient = useQueryClient()
-    const userData = queryClient.getQueryData(["user"])
+    // const userData = queryClient.getQueryData(["user"])
 
 
-    const user: User = userData?.[0]?.user;
+    // const user: User = userData?.[0]?.user;
 
     // //get all user cards
     const { data: userCradsData, isLoading, isSuccess } = useUserCard()
@@ -38,7 +35,7 @@ const ProfileCard = () => {
     }
     if (isSuccess) {
         queryClient.invalidateQueries(["user"])
-        queryClient.invalidateQueries(["user:card:get"])
+        queryClient.invalidateQueries(["user", "get card"])
     }
     console.log(JSON.stringify(userCradsData.data, null, 1))
 
@@ -65,7 +62,7 @@ const ProfileCard = () => {
     //     }
     // }, [])
 
-    const paymentMethods = userCradsData?.data
+    // const paymentMethods = userCradsData?.data
 
     return (
         <div>

@@ -10,13 +10,13 @@ export const CardForm = () => {
     const stripe = useStripe();
     const elements = useElements();
 
-    const { isLoading, data } = useCreateUserCard()
+    const { isLoading, data: userCardData } = useCreateUserCard()
 
     const router = useRouter()
     const queryClient = useQueryClient()
 
     if (isLoading) return <h2>Loading...</h2>
-    console.log(data)
+    console.log(userCardData)
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
@@ -27,7 +27,7 @@ export const CardForm = () => {
 
         const cardElement = elements.getElement(CardElement);
 
-        const { error, setupIntent } = await stripe.confirmCardSetup(data?.client_secret, {
+        const { error, setupIntent } = await stripe.confirmCardSetup(userCardData?.client_secret, {
             payment_method: {
                 card: cardElement,
             },
@@ -53,7 +53,7 @@ export const CardForm = () => {
             </button>
             {error && <div className="error-message">{error}</div>}
             {success && <div className="success-message">{success}</div>}
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <pre>{JSON.stringify(userCardData, null, 2)}</pre>
         </form>
     );
 };

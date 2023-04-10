@@ -10,11 +10,11 @@ import { User } from "@/interfaces/user";
 const key = 'user';
 
 export function useUserCard() {
-    return useQuery([key, { card: "get" }], getUserCard);
+    return useQuery([key, "get card"], getUserCard);
 }
 
 export function useCreateUserCard() {
-    return useQuery([key], createUserCard);
+    return useQuery([key, "post card"], createUserCard);
 }
 
 export function useUpdateUsersCard() {
