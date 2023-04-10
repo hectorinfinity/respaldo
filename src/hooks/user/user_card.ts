@@ -7,10 +7,10 @@ import {
 } from '@/api/user/user_card'
 import { User } from "@/interfaces/user";
 
-const key = 'user:card';
+const key = 'user';
 
 export function useUserCard() {
-    return useQuery([key + ":get"], getUserCard);
+    return useQuery([key, { card: "get" }], getUserCard);
 }
 
 export function useCreateUserCard() {

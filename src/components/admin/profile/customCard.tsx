@@ -29,7 +29,7 @@ export const CustomCard = ({ id, name, type, number, expMonth, expYear }: Props)
                             <CpuChipIcon className='w-6 h-6' aria-hidden="true" />
                         </div>
                         <div className='text-customGreen -mt-3'>
-                            <Link href="/panel/profile/card/create">
+                            <Link href="/panel/profile/card/update">
                                 <div className="border-white bg-white rounded-full w-7 h-7 flex align-middle justify-center py-1">
                                     <PencilIcon className='w-5 h-5' aria-hidden="true" />
                                 </div>

@@ -27,12 +27,18 @@ const ProfileCard = () => {
 
     const queryClient = useQueryClient()
     const userData = queryClient.getQueryData(["user"])
+
+
     const user: User = userData?.[0]?.user;
 
     // //get all user cards
-    const { data: userCradsData, isLoading } = useUserCard()
+    const { data: userCradsData, isLoading, isSuccess } = useUserCard()
     if (isLoading) {
         return <div>Loading...</div>;
+    }
+    if (isSuccess) {
+        queryClient.invalidateQueries(["user"])
+        queryClient.invalidateQueries(["user:card:get"])
     }
     console.log(JSON.stringify(userCradsData.data, null, 1))
 
