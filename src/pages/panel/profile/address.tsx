@@ -48,7 +48,6 @@ const ProfileAddress = () => {
     });
     useEffect(() => {
         if (userData) {
-            console.log("[user]", userData)
             const user = userData?.[0]?.user;
             setUid(user.uid)
             // setValue("addressname", user?.address?.address)
