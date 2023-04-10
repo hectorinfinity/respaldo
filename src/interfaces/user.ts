@@ -1,6 +1,6 @@
 import { AdvertisementOrderItem } from './advertisement';
 import { Event, EventCategory, EventSubcategory } from './event';
-import { Phone, Address, Tax } from './serializers/commons';
+import { Phone, Address, Tax, Collection } from './serializers/commons';
 import {
   UserSettings,
   UserPayment,
@@ -58,12 +58,9 @@ export interface UserCostum {
 }
 
 export interface UserFavorite {
-  user_id: {
-    id: string;
-    collection: string;
-  };
-  events_likes: Event[];
-  events_attends: Event[];
+  user_id: Collection;
+  events_likes: Collection[];
+  events_attends: Collection[];
 }
 
 export interface UserFollow {

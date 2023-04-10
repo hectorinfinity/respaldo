@@ -12,7 +12,7 @@ export type props = {
   className?: string;
   id: string;
   name: string;
-  willAttend: boolean;
+  willAttend?: boolean;
   cost: number;
   startDate: Date;
   endDate: Date;
@@ -34,7 +34,7 @@ const SidebarEvent: React.FC<props> = ({
   name,
   startDate,
   startTime,
-  willAttend,
+  willAttend = false,
   category,
   color,
   supplier,

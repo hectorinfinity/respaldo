@@ -57,7 +57,9 @@ const Home = () => {
           title={t('home.featured_events')}
           items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale)?.name,
+            name:
+              item.content.find((obj) => obj.lang == locale)?.name ||
+              item.content.find((obj) => obj.lang == 'es')?.name,
             startDate: item.created_at as unknown as Date,
             startTime: '1:00',
             endTime: '12:00',
@@ -77,7 +79,9 @@ const Home = () => {
           title={t('home.new_events')}
           items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale)?.name,
+            name:
+              item.content.find((obj) => obj.lang == locale)?.name ||
+              item.content.find((obj) => obj.lang == 'es')?.name,
             startDate: item.created_at as unknown as Date,
             startTime: '1:00',
             endTime: '12:00',

@@ -35,14 +35,18 @@ const EventDetailed = () => {
   const eventSupplier = useEventSupplier(event?.data?.supplier_id?.id);
 
   const locale = useLocale();
-  const info = event?.data?.info.content.find((obj) => obj.lang == locale);
+  const info =
+    event?.data?.info.content.find((obj) => obj.lang == locale) ||
+    event?.data?.info.content.find((obj) => obj.lang == 'es');
   return (
     <div className="mt-16 space-y-16 section-container mb-44">
       <div className="flex flex-col-reverse justify-between gap-10 md:flex-row">
         <CardEventDetails
           className="flex-1"
           details={
-            event?.data?.content?.find((obj) => obj.lang == locale)?.description
+            event?.data?.content?.find((obj) => obj.lang == locale)
+              ?.description ||
+            event?.data?.content?.find((obj) => obj.lang == 'es')?.description
           }
           access={info?.access_limit}
           general={info?.general}
@@ -55,7 +59,8 @@ const EventDetailed = () => {
         <SidebarEvent
           className="h-max"
           category={
-            category?.data?.content?.find((obj) => obj.lang == locale)?.name
+            category?.data?.content?.find((obj) => obj.lang == locale)?.name ||
+            category?.data?.content?.find((obj) => obj.lang == 'es')?.name
           }
           color={category?.data?.color}
           cost={300}
@@ -66,8 +71,10 @@ const EventDetailed = () => {
           id={event?.data?._id}
           location="Location"
           supplier={eventSupplier?.data?.name}
-          name={event?.data?.content?.find((obj) => obj.lang == locale)?.name}
-          willAttend
+          name={
+            event?.data?.content?.find((obj) => obj.lang == locale)?.name ||
+            event?.data?.content?.find((obj) => obj.lang == 'es')?.name
+          }
         />
       </div>
       <CardEventLocation

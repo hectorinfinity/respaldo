@@ -46,33 +46,6 @@ const Program = ({ categories }) => {
     );
     setImageAdvertisment(faker.image.cats());
   }, []);
-  useEffect(() => {
-    if (query) {
-      push(
-        {
-          pathname: '/program',
-          query: {
-            ...queryObj,
-            query: encodeURIComponent(query),
-          },
-        },
-        undefined,
-        { shallow: true }
-      );
-    } else {
-      delete queryObj?.query;
-      push(
-        {
-          pathname: '/program',
-          query: {
-            ...queryObj,
-          },
-        },
-        undefined,
-        { shallow: true }
-      );
-    }
-  }, [query]);
   return (
     <div className="mb-44 -mt-8">
       <Hero
@@ -84,7 +57,7 @@ const Program = ({ categories }) => {
         ]}
       />
       <div className="mt-16 space-y-16 section-container">
-        {/* <HeaderSearch
+        <HeaderSearch
           items={categories?.map((item) => ({
             name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
@@ -105,7 +78,7 @@ const Program = ({ categories }) => {
             size="large"
           />
         )}
-        <div className="grid grid-cols-6 gap-5 md:gap-10">
+        {/* <div className="grid grid-cols-6 gap-5 md:gap-10">
           <SidebarSearch
             categories={categories}
             className="col-span-2 hidden md:block"
