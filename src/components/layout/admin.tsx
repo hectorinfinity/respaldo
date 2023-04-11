@@ -114,7 +114,7 @@ function AdminLayout({ children }: PropsWithChildren<{}>): ReactElement {
               aria-labelledby="primary-heading"
               className="p-10 flex flex-col overflow-y-auto lg:order-last"
             >
-              <main className="container mx-auto px-2 sm:px-3 lg:px-4">
+              <main className={` ${!hasSideBar ? "container mx-auto" : "mx-auto max-w-[100%] sm:px-6 lg:px-8"} px-2 sm:px-3 lg:px-4`}>
                 {children}
               </main>
             </section>

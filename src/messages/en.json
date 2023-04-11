@@ -631,7 +631,11 @@
     "field_thursday": "Thursday",
     "field_friday": "Friday",
     "field_saturday": "Saturday",
-    "field_sunday": "Sunday"
+    "field_sunday": "Sunday",
+
+    "field_requested": "Requested At",
+    "field_accept": "Accept",
+    "field_comment": "Comment"
   },
   "Public_Comment": "/////////////////////////////////////// Public Comment",
   "Public": {
@@ -880,5 +884,29 @@
     "search": "Search",
     "subscribe": "Subscribe",
     "email": "Email"
+  }, 
+  "Panel_Dashboard_Comment": "//////////////////////////////////////// Panel Dashboard Comment",
+  "Panel_Dashboard": {
+    "pending": "Pending Payments",
+    
+    "my_ticket": "My Tickets",
+    "old_ticket": "My Old Tickets",
+    "favorite": "Favorites",
+    "assist": "I Will Asist",
+    
+    "active": "Active Events",
+    "visit": "Visits",
+    "attend": "Attend",
+    "shared": "Shared",
+
+    "available": "Available",
+    "sold": "Sold",
+    "attendance": "Attendance",
+    "earns": "Earns",
+
+    "likes": "Likes",
+    "assisted": "Assisted",
+
+    "top_events": "Top 5 Events"
   }
 }

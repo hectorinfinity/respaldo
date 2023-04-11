@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 
 export const TopEvents = () => {
     const t = useTranslations("table_columns");
+    const td = useTranslations("Panel_Promoter_Dashboard");
 
     const columns = [
         t('dashboard.top.event'), 
@@ -17,8 +18,8 @@ export const TopEvents = () => {
 
     return (
         <div className="mt-8 flow-root">
-            <h1>TOP 5 Events</h1>
-            <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <span className="text-2xl">{td('top_events')}</span>
+            <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-3">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                     <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                         <table className="min-w-full divide-y divide-gray-300">
