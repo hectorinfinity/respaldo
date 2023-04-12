@@ -11,7 +11,7 @@ import ListCardEvent from '@/components/main/commons/ListCardEvent';
 import SidebarSearch from '@/components/main/commons/SidebarSearch';
 import HeaderCategory from '@/components/main/search/HeaderCategory';
 import HeaderSearch from '@/components/main/search/HeaderSearch';
-import { useEventCategories } from '@/hooks/event/category';
+import { useEventCategories } from '@/hooks/event/event_category';
 import { useEvents, useInfinteEvents } from '@/hooks/event/event';
 import { Event } from '@/interfaces/event';
 import { faker } from '@faker-js/faker';

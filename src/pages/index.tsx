@@ -14,7 +14,7 @@ import { getEvents } from '@/api/event/event';
 import Hero from '@/components/main/commons/Hero';
 import { getEventsVenues } from '@/api/event/event_venue';
 import { useEvents } from '@/hooks/event/event';
-import { useCategories } from '@/hooks/event/category';
+import { useCategories } from '@/hooks/event/event_category';
 
 const Home = () => {
   const t = useTranslations('Public');

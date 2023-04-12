@@ -36,17 +36,17 @@ import {
 
 type Props= {
     columns: any[],
-    defaultData: any[],
-    addSchedule?: boolean
+    defaultData?: any[] ,
+    addSchedule?: boolean,
+    deleteOption?:(id:string)=>void,
+    exportOption?:(id:string)=>void,
 }
 
-export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props) => {
+export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOption, exportOption }: Props) => {
     const t = useTranslations("table");
-
     const currentColor = CurrentColor();
-    const [data, setData] = useState(() => [...defaultData])
+    const [data, setData] = useState(()=>[...defaultData]);
     const [sorting, setSorting] = useState<SortingState>([])
-
     const [rowSelection, setRowSelection] = useState({})
     const [globalFilter, setGlobalFilter] = useState('')
 
@@ -54,9 +54,9 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props)
         data,
         columns,
         state: {
-            sorting,
-            globalFilter,
-            rowSelection,
+        sorting,
+        globalFilter,
+        rowSelection,
         },
         enableRowSelection: true,
         onRowSelectionChange: setRowSelection,
@@ -76,7 +76,6 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props)
         debugHeaders: true,
         debugColumns: false,
     })
-    
     const paginationRange = PaginationTable({
         totalPageCount: table.getPageCount(),
         currentPage: table.getState().pagination.pageIndex
@@ -92,27 +91,34 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props)
                         className="p-2 font-lg shadow border border-block"
                         placeholder="Search..."
                     />
+                    { addSchedule ? (
                     <div className="flex justify-end -mt-10">
                         <button 
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-${currentColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${currentColor}`}>
                             Add Schedule
                         </button>
                     </div>
+                    ): ''}
                 </div>
-                { Object.keys(rowSelection).length > 0 ? (
+                { Object.keys(rowSelection).length > 0 && (deleteOption && exportOption) ? (
                     <div className="mt-3 flex sm:mt-0 sm:ml-4">
+                        { deleteOption ? (
                         <button
-                        type="button"
+                        type="button" 
+                        
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                         >
-                            <TrashIcon className={`w-4 h-4 mr-2`} />({Object.keys(rowSelection).length})
+                            <TrashIcon className={`w-4 h-4 mr-2`}/>({Object.keys(rowSelection).length})
                         </button>
+                        ) : '' }
+                        { exportOption ? (
                         <button
                         type="button"
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                         >
                             <ArrowUpTrayIcon className={`w-4 h-4 mr-2`} />({Object.keys(rowSelection).length})
                         </button>
+                        ) : '' }
                     </div>
                     ) : ('')
                 }
@@ -154,7 +160,8 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props)
                     ))}
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                    {table.getRowModel().rows.map(row => (
+                    {table.getRowModel().rows.map(row =>{
+                     return(
                         <tr key={row.id}>
                             {row.getVisibleCells().map(cell => (
                                 <td key={cell.id} className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
@@ -162,7 +169,7 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props)
                                 </td>
                             ))}
                         </tr>
-                    ))}
+                    )})}
                 </tbody>
             </table>
             <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">

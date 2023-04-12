@@ -17,6 +17,7 @@ import { CurrentColor, FormStyles } from "@/helpers";
 import { useQueryClient } from "@tanstack/react-query";
 import { useMutationUpdateUser } from "@/hooks/user/user";
 
+
 const validationSchema = yup.object().shape({
     firstname: yup.string().min(2).max(32).required('First name is required'),
     surname: yup.string().min(2).max(32).required('Surname is required'),
@@ -33,54 +34,45 @@ const validationSchema = yup.object().shape({
 });
 
 const Profile = () => {
-    // const [submitted, setSubmitted] = useState(false);
-    // const [submittedError, setSubmittedError] = useState(false);
-    const [uid, setUid] = useState("");
     // const currentColor = CurrentColor();
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
     const tb = useTranslations("btn");
 
-    const { register, handleSubmit, control, formState: { errors }, reset, setValue } = useForm<User>({
+    const { register, handleSubmit, control, formState: { errors }, setValue } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });
-
-    const addPhone = () => {
-        append({ phone: '', type: '' });
-    };
 
     const { fields, append, remove } = useFieldArray({
         control,
         name: 'phones',
     });
 
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
     const userData = queryClient.getQueryData(["user"])
-
+    const user = userData?.[0]?.user
 
     useEffect(() => {
-        if (userData) {
-            const user = userData[0].user;
-            setUid(user.uid)
-            setValue("firstname", user.firstname);
-            setValue("surname", user.surname);
-            setValue("username", user.username);
-            setValue("email", user.email);
-            setValue("sex", user.sex);
-            if (user.birthday) {
-                const date = new Date(user.birthday);
+        if (user) {
+            setValue("firstname", user?.firstname);
+            setValue("surname", user?.surname);
+            setValue("username", user?.username);
+            setValue("email", user?.email);
+            setValue("sex", user?.sex);
+            if (user?.birthday) {
+                const date = new Date(user?.birthday);
                 const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
                 setValue("birthday", formattedDate as any);
             }
-            if (user.phones && user.phones.length > 0) {
-                user.phones.map((phone, index) => {
+            if (user?.phones && user?.phones.length > 0) {
+                user?.phones.map((phone, index) => {
                     setValue(`phones[${index}].phone` as any, phone.phone);
                     setValue(`phones[${index}].type` as any, phone.type);
 
                 });
             }
         }
-    }, [userData, setValue, uid]);
+    }, [user, setValue]);
 
     const { mutate: updateUser, isError, error } = useMutationUpdateUser();
     if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
@@ -91,7 +83,7 @@ const Profile = () => {
             ? new Date(data.birthday)
             : null;
 
-        const updatedData = { ...data, birthday: formattedBirthday, uid };
+        const updatedData = { ...data, birthday: formattedBirthday };
         console.log("UPDATED DATA:", updatedData);
         updateUser(updatedData);
     };
