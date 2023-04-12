@@ -17,6 +17,7 @@ import { CurrentColor, FormStyles, classNames } from '@/helpers';
 import { LinkIcon } from '@heroicons/react/24/solid';
 // Interface
 import { Address } from "@/interfaces/serializers/commons";
+import { CalendarIcon } from '@heroicons/react/24/outline';
 
 const validationSchema = yup.object().shape({
     // addressname: yup.string().required("Address name is required"),
@@ -56,7 +57,7 @@ const EventCreateAdditional = () => {
                 <div className="w-screen min-h-0 overflow-hidden">
                     <form className="lg:col-span-9 px-2" action="#" method="POST">
                         <div className="mt-6 grid grid-cols-12 gap-6 mb-6">
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
+                            <div className="col-span-12">
                                 <CustomLabel field="event" name={tc('field_event')} />
                                 <select
                                     id="event"
@@ -68,14 +69,14 @@ const EventCreateAdditional = () => {
                                 </select>
                             </div>
                             <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="date" name={tc('field_date')} />
+                                <CustomLabel field="date" name={tc('field_event_date')} />
                                 <select
                                     id="date"
                                     name="date"
                                     className={FormStyles('select')}
                                     defaultValue={''}
                                 >
-                                    <option value=''>{tc('field_date')}</option>
+                                    <option value='all'>{tc('field_event_date')}</option>
                                 </select>
                             </div>
                             <div className="col-span-12 sm:col-span-6 lg:col-span-6">
@@ -86,64 +87,128 @@ const EventCreateAdditional = () => {
                                     className={FormStyles('select')}
                                     defaultValue={''}
                                 >
-                                    <option value=''>{tc('field_schedule')}</option>
+                                    <option value='all'>{tc('field_schedule')}</option>
                                 </select>
+                            </div>
+                            <div className='col-span-12'>
+                                <span className='text-customRed'>Nota:</span> Si dejas "Todas" seleccionado en el campo de fechas u horas, está configuración se aplicará al evento en general, es decir a todas las fechas y horas.
                             </div>
                         </div>
 
                         <div className="mt-6 grid grid-cols-12 gap-6">
-                            <div className="col-span-12">Information</div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="quota" name={tc('field_quota')} />
-                                <input
-                                    type="text"
-                                    name="quota"
-                                    id="quota"
-                                    autoComplete={tc('field_quota')}
-                                    placeholder={tc('field_quota')}
-                                    className={FormStyles('input')}
-                                />
-                            </div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="url" name={tc('field_url')} />
-                                <div className="relative rounded-md shadow-sm">
-                                    <input
-                                        type="text"
-                                        name="url"
-                                        id="url"
-                                        autoComplete={tc('field_url')}
-                                        placeholder={tc('field_url')}
-                                        className={FormStyles('input')}
-                                    />
-                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <div className="col-span-12">Tickets</div>
+                            <div className="col-span-12 sm:col-span-4">
+                                <div className="relative flex items-start">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            id="resale"
+                                            aria-describedby="resale-description"
+                                            name="resale"
+                                            type="checkbox"
+                                            className={FormStyles('checkbox')}
+                                        />
+                                    </div>
+                                    <div className="ml-3 text-sm leading-6">
+                                        <CustomLabel field="resale" name={tc('field_resale')} />
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="generic_rules" name={tc('field_generic_rules')} />
+                            <div className="col-span-12 sm:col-span-4">
+                                <CustomLabel field="starting_date" name={tc('field_starting_date')} />
+                                <div className="relative rounded-md shadow-sm">
+                                    <input
+                                        type="text"
+                                        name="starting_date"
+                                        id="starting_date"
+                                        autoComplete={tc('field_starting_date')}
+                                        placeholder={tc('field_starting_date')}
+                                        className={FormStyles('input')}
+                                    />
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-span-12 sm:col-span-4">
+                                <CustomLabel field="ending_date" name={tc('field_ending_date')} />
+                                <div className="relative rounded-md shadow-sm">
+                                    <input
+                                        type="text"
+                                        name="ending_date"
+                                        id="ending_date"
+                                        autoComplete={tc('field_ending_date')}
+                                        placeholder={tc('field_ending_date')}
+                                        className={FormStyles('input')}
+                                    />
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-span-12 sm:col-span-4">
+                                <div className="relative flex items-start">
+                                    <div className="flex h-6 items-center">
+                                        <input
+                                            id="reserve"
+                                            aria-describedby="reserve-description"
+                                            name="reserve"
+                                            type="checkbox"
+                                            className={FormStyles('checkbox')}
+                                        />
+                                    </div>
+                                    <div className="ml-3 text-sm leading-6">
+                                        <CustomLabel field="resale" name={tc('field_resale')} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-span-12 sm:col-span-4">
+                                <CustomLabel field="cost_porcentage" name={tc('field_cost_porcentage')} />
                                 <input
                                     type="text"
-                                    name="generic_rules"
-                                    id="generic_rules"
-                                    autoComplete={tc('field_generic_rules')}
-                                    placeholder={tc('field_generic_rules')}
+                                    name="cost_porcentage"
+                                    id="cost_porcentage"
+                                    autoComplete={tc('field_cost_porcentage')}
+                                    placeholder={tc('field_cost_porcentage')}
                                     className={FormStyles('input')}
                                 />
                             </div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="children_rules" name={tc('field_children_rules')} />
+                            <div className="col-span-12 sm:col-span-4">
+                                <CustomLabel field="pay_limit" name={tc('field_pay_limit')} />
                                 <input
                                     type="text"
-                                    name="children_rules"
-                                    id="children_rules"
-                                    autoComplete={tc('field_children_rules')}
-                                    placeholder={tc('field_children_rules')}
+                                    name="pay_limit"
+                                    id="pay_limit"
+                                    autoComplete={tc('field_pay_limit')}
+                                    placeholder={tc('field_pay_limit')}
                                     className={FormStyles('input')}
                                 />
                             </div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="accessible" name={tc('field_accessible')} />
+                        </div>
+
+                        <div className="mt-6 grid grid-cols-12 gap-6">
+                            <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+                                <CustomLabel field="free_event" name={tc('field_free_event')} />
+                                <Switch.Group as="div" className="flex items-center">
+                                    <Switch
+                                        checked={accessible}
+                                        onChange={setAccessible}
+                                        className={classNames(
+                                            accessible ? `bg-${currentColor}` : `bg-gray-200`,
+                                            `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
+                                        )}
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            className={classNames(
+                                                accessible ? 'translate-x-5' : 'translate-x-0',
+                                                'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                                            )}
+                                        />
+                                    </Switch>
+                                </Switch.Group>
+                            </div>
+                            <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+                                <CustomLabel field="charity" name={tc('field_charity')} />
                                 <Switch.Group as="div" className="flex items-center">
                                     <Switch
                                         checked={accessible}
@@ -166,218 +231,166 @@ const EventCreateAdditional = () => {
                         </div>
 
                         <div className="mt-6 grid grid-cols-12 gap-6">
-                            <div className="col-span-12">Social Media</div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="facebook" name={tc('field_facebook')} />
-                                <div className="relative rounded-md shadow-sm">
-                                    <input
-                                        type="text"
-                                        name="facebook"
-                                        id="facebook"
-                                        autoComplete={tc('field_facebook')}
-                                        placeholder={tc('field_facebook')}
-                                        className={FormStyles('input')}
-                                    />
-                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                    </div>
-                                </div>
+                            <div className="col-span-12 sm:col-span-2 lg:col-span-3">
+                                <CustomLabel field="sell_limit" name={tc('field_sell_limit')} />
+                                <input
+                                    type="text"
+                                    name="sell_limit"
+                                    id="sell_limit"
+                                    autoComplete={tc('field_sell_limit')}
+                                    placeholder={tc('field_sell_limit')}
+                                    className={FormStyles('input')}
+                                />
                             </div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="instagram" name={tc('field_instagram')} />
-                                <div className="relative rounded-md shadow-sm">
-                                    <input
-                                        type="text"
-                                        name="instagram"
-                                        id="instagram"
-                                        autoComplete={tc('field_instagram')}
-                                        placeholder={tc('field_instagram')}
-                                        className={FormStyles('input')}
-                                    />
-                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="twitter" name={tc('field_twitter')} />
-                                <div className="relative rounded-md shadow-sm">
-                                    <input
-                                        type="text"
-                                        name="twitter"
-                                        id="twitter"
-                                        autoComplete={tc('field_twitter')}
-                                        placeholder={tc('field_twitter')}
-                                        className={FormStyles('input')}
-                                    />
-                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-6 grid grid-cols-12 gap-6">
-                            <div className="col-span-12">Parking</div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
+                            <div className="col-span-12 sm:col-span-2 lg:col-span-3">
                                 <CustomLabel field="currency" name={tc('field_currency')} />
-                                <select
-                                    id="currency"
+                                <input
+                                    type="text"
                                     name="currency"
-                                    className={FormStyles('select')}
-                                    defaultValue={''}
-                                >
-                                    <option value=''>{tc('field_currency')}</option>
-
-                                </select>
-                            </div>
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                <CustomLabel field="cost" name={tc('field_cost')} />
-                                <input
-                                    type="text"
-                                    name="cost"
-                                    id="cost"
-                                    autoComplete={tc('field_cost')}
-                                    placeholder={tc('field_cost')}
+                                    id="currency"
+                                    autoComplete={tc('field_currency')}
+                                    placeholder={tc('field_currency')}
                                     className={FormStyles('input')}
                                 />
                             </div>
-                        </div>
-
-                        <div className="mt-6 grid grid-cols-12 gap-6">
-                            <div className="col-span-12 md:col-span-6">
-                                <div className='grid grid-cols-12 gap-6'>
-                                    <div className="col-span-12">Box Office</div>
-                                    <div className="col-span-12 sm:col-span-6 lg:col-span-6">
-                                        <CustomLabel field="box_office" name={tc('field_box_office')} />
-                                        <input
-                                            type="text"
-                                            name="box_office"
-                                            id="box_office"
-                                            autoComplete={tc('field_box_office')}
-                                            placeholder={tc('field_box_office')}
-                                            className={FormStyles('input')}
-                                        />
+                            <div className="col-span-12 sm:col-span-2 lg:col-span-3">
+                                <CustomLabel field="sale_start" name={tc('field_sale_start')} />
+                                <div className="relative rounded-md shadow-sm">
+                                    <input
+                                        type="text"
+                                        name="sale_start"
+                                        id="sale_start"
+                                        autoComplete={tc('field_sale_start')}
+                                        placeholder={tc('field_sale_start')}
+                                        className={FormStyles('input')}
+                                    />
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-span-12 md:col-span-6">
-                                <div className='grid grid-cols-12 gap-6'>
-                                    <div className="col-span-12">Payment</div>
-                                    <div className="col-span-12 sm:col-span-6 lg:col-span-4">
-                                        <CustomLabel field="cash" name={tc('field_cash')} />
-                                        <Switch.Group as="div" className="flex items-center">
-                                            <Switch
-                                                checked={accessible}
-                                                onChange={setAccessible}
-                                                className={classNames(
-                                                    accessible ? `bg-${currentColor}` : `bg-gray-200`,
-                                                    `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
-                                                )}
-                                            >
-                                                <span
-                                                    aria-hidden="true"
-                                                    className={classNames(
-                                                        accessible ? 'translate-x-5' : 'translate-x-0',
-                                                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
-                                                    )}
-                                                />
-                                            </Switch>
-                                        </Switch.Group>
-                                    </div>
-                                    <div className="col-span-12 sm:col-span-6 lg:col-span-4">
-                                        <CustomLabel field="credit" name={tc('field_credit')} />
-                                        <Switch.Group as="div" className="flex items-center">
-                                            <Switch
-                                                checked={accessible}
-                                                onChange={setAccessible}
-                                                className={classNames(
-                                                    accessible ? `bg-${currentColor}` : `bg-gray-200`,
-                                                    `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
-                                                )}
-                                            >
-                                                <span
-                                                    aria-hidden="true"
-                                                    className={classNames(
-                                                        accessible ? 'translate-x-5' : 'translate-x-0',
-                                                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
-                                                    )}
-                                                />
-                                            </Switch>
-                                        </Switch.Group>
-                                    </div>
-                                    <div className="col-span-12 sm:col-span-6 lg:col-span-4">
-                                        <CustomLabel field="debit" name={tc('field_debit')} />
-                                        <Switch.Group as="div" className="flex items-center">
-                                            <Switch
-                                                checked={accessible}
-                                                onChange={setAccessible}
-                                                className={classNames(
-                                                    accessible ? `bg-${currentColor}` : `bg-gray-200`,
-                                                    `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
-                                                )}
-                                            >
-                                                <span
-                                                    aria-hidden="true"
-                                                    className={classNames(
-                                                        accessible ? 'translate-x-5' : 'translate-x-0',
-                                                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
-                                                    )}
-                                                />
-                                            </Switch>
-                                        </Switch.Group>
+                            <div className="col-span-12 sm:col-span-2 lg:col-span-3">
+                                <CustomLabel field="pre_sale_start" name={tc('field_pre_sale_start')} />
+                                <div className="relative rounded-md shadow-sm">
+                                    <input
+                                        type="text"
+                                        name="pre_sale_start"
+                                        id="pre_sale_start"
+                                        autoComplete={tc('field_pre_sale_start')}
+                                        placeholder={tc('field_pre_sale_start')}
+                                        className={FormStyles('input')}
+                                    />
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <CalendarIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div className="mt-6 grid grid-cols-12 gap-6">
-                            <div className="col-span-6">Schedule</div>
-                            <div className="col-span-6 text-right">
-                                <CustomAdd />
+                            <div className="col-span-12">
+                                <CustomLabel field="enable_months" name={tc('field_enable_months')} />
                             </div>
-                            <div className="col-span-12 sm:col-span-4">
-                                <CustomLabel field="day" name={tc('field_day')} />
-                                <input
-                                    type="text"
-                                    name="day"
-                                    id="v"
-                                    autoComplete={tc('field_day')}
-                                    placeholder={tc('field_day')}
-                                    className={FormStyles('input')}
-                                />
+                            <div className="col-span-12 sm:col-span-2">
+                                <div className="relative flex items-start">
+                                    <div className="flex h-6 items-center">
+                                        <Switch.Group as="div" className="flex items-center">
+                                            <Switch
+                                                checked={accessible}
+                                                onChange={setAccessible}
+                                                className={classNames(
+                                                    accessible ? `bg-${currentColor}` : `bg-gray-200`,
+                                                    `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
+                                                )}
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    className={classNames(
+                                                        accessible ? 'translate-x-5' : 'translate-x-0',
+                                                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                                                    )}
+                                                />
+                                            </Switch>
+                                        </Switch.Group>
+                                    </div>
+                                    <div className="ml-3 text-sm leading-6">
+                                        <CustomLabel field="three_months" name={tc('field_three_months')} />
+                                    </div>
+                                </div>
                             </div>
-                            <div className="col-span-12 sm:col-span-4">
-                                <CustomLabel field="start" name={tc('field_start')} />
-                                <input
-                                    type="text"
-                                    name="start"
-                                    id="start"
-                                    autoComplete={tc('field_start')}
-                                    placeholder={tc('field_start')}
-                                    className={FormStyles('input')}
-                                />
+                            <div className="col-span-12 sm:col-span-2">
+                                <div className="relative flex items-start">
+                                    <div className="flex h-6 items-center">
+                                        <Switch.Group as="div" className="flex items-center">
+                                            <Switch
+                                                checked={accessible}
+                                                onChange={setAccessible}
+                                                className={classNames(
+                                                    accessible ? `bg-${currentColor}` : `bg-gray-200`,
+                                                    `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
+                                                )}
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    className={classNames(
+                                                        accessible ? 'translate-x-5' : 'translate-x-0',
+                                                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                                                    )}
+                                                />
+                                            </Switch>
+                                        </Switch.Group>
+                                    </div>
+                                    <div className="ml-3 text-sm leading-6">
+                                        <CustomLabel field="six_months" name={tc('field_six_months')} />
+                                    </div>
+                                </div>
                             </div>
-                            <div className="col-span-12 sm:col-span-4">
-                                <CustomLabel field="end" name={tc('field_end')} />
-                                <input
-                                    type="text"
-                                    name="end"
-                                    id="end"
-                                    autoComplete={tc('field_end')}
-                                    placeholder={tc('field_end')}
-                                    className={FormStyles('input')}
-                                />
+                            <div className="col-span-12 sm:col-span-2">
+                                <div className="relative flex items-start">
+                                    <div className="flex h-6 items-center">
+                                        <Switch.Group as="div" className="flex items-center">
+                                            <Switch
+                                                checked={accessible}
+                                                onChange={setAccessible}
+                                                className={classNames(
+                                                    accessible ? `bg-${currentColor}` : `bg-gray-200`,
+                                                    `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
+                                                )}
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    className={classNames(
+                                                        accessible ? 'translate-x-5' : 'translate-x-0',
+                                                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                                                    )}
+                                                />
+                                            </Switch>
+                                        </Switch.Group>
+                                    </div>
+                                    <div className="ml-3 text-sm leading-6">
+                                        <CustomLabel field="nine_months" name={tc('field_nine_months')} />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div className="mt-6 grid grid-cols-12 gap-6">
-                            <div className="col-span-6">Templates</div>
-                            <div className="col-span-6 text-right">
-                                <CustomAdd />
-                            </div>
-                            <div className="col-span-12 sm:col-span-4">
-                                
+                            <div className="col-span-12 sm:col-span-6">
+                                <div className="relative flex items-start">
+                                    <div className="flex rounded-2xl shadow-xl p-2">
+                                        <div className="sm:shrink">
+                                            <p className="text-lg font-semibold tracking-tight text-gray-900">Commissions of months without interest (these commissions will be added two the fees):</p>
+                                            <div className='flex justify-between'>
+                                                <p className="mt-2 text-base leading-7 text-gray-600">
+                                                    5% for 3
+                                                </p>
+                                                <p className="mt-2 text-base leading-7 text-gray-600">
+                                                    7.5% for 6
+                                                </p>
+                                                <p className="mt-2 text-base leading-7 text-gray-600">
+                                                    10% for 9
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -389,8 +402,8 @@ const EventCreateAdditional = () => {
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     );
 };
