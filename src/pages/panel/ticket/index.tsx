@@ -1,48 +1,50 @@
 /** @format */
+import { useEffect, useMemo, useState } from 'react';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
-import { Heading } from "@/components/headers/admin/heading";
-import { CurrentColor } from "@/helpers";
+import { BasicTable } from '@/components/admin/tables';
+import { columnsTicketList } from '@/components/admin/tables/columns/columnsTicketList';
+// Components
+import { Heading } from '@/components/headers/admin/heading';
+// Import Interface
+import { Event as EventInterface } from '@/interfaces/event';
 
-const Ticket = () => {
-    const currentColor = CurrentColor();
-
-    const t = useTranslations("Panel");
+const TicketList = () => {
     const ts = useTranslations("Panel_SideBar");
+    const tb = useTranslations("btn");
 
     const breadcrumb = [
         { page: ts('ticket.ticket'), href: '/panel/ticket' },
-        { page: ts('dashboard'), href: '' }
+        { page: ts('ticket.list'), href: '' }
     ]
+    const buttonBread =  { text: tb('add_ticket'), href: '/panel/ticket/create' }
 
-    const stats = [
-        { name: 'Total Subscribers', stat: '71,897' },
-        { name: 'Avg. Open Rate', stat: '58.16%' },
-        { name: 'Avg. Click Rate', stat: '24.57%' },
-        { name: 'Avg. Click Rate2', stat: '24.57%' },
-        { name: 'Avg. Click Rated', stat: '24.57%' },
-    ]
+    const data = useMemo(() => [
+        { id: '1', event: 'Alicia en el país de las maravillas', date: "2024-01-01 14:00", available: 100, sold: 100, income: 100, status: 'sold out' },
+        { id: '2', event: 'Hell & Heaven - Preferente', date: "2025-02-03 14:00 - 18:00", available: 100, sold: 100, income: 100, status: 'active' },
+    ], []);
+    const columns = columnsTicketList();
 
     return (
         <>
             {/* Breadcrumb section */}
             <div>
-                <Heading breadcrumb={breadcrumb} />
+                <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className="flow-root">
-                        <h3 className="text-base font-semibold leading-6 text-gray-900">Last 30 days</h3>
-                        <dl className="grid sm:grid-cols-2 lg:grid-cols-5 mt-5 gap-5">
-                            {stats.map((item) => (
-                                <div key={item.name} className={`overflow-hidden rounded-lg bg-white border border-b-[12px] border-customGreen px-4 py-5 shadow sm:p-6`}>
-                                    <dt className="truncate text-sm font-medium text-customGray">{item.name}</dt>
-                                    <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{item.stat}</dd>
+                        <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                                    <div className="min-w-full divide-y divide-gray-300">
+                                        <BasicTable columns={columns} defaultData={data} />
+                                    </div>
                                 </div>
-                            ))}
-                        </dl>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,8 +52,8 @@ const Ticket = () => {
     );
 };
 
-Ticket.Layout = AdminLayout;
-export default Ticket;
+TicketList.Layout = AdminLayout;
+export default TicketList;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

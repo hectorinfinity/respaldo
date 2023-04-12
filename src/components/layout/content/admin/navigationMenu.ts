@@ -51,8 +51,7 @@ export function NavigationMenu(path: string) {
     ]
     
     const ticket_navigation = [
-        { name: t('dashboard'), icon: Squares2X2Icon, current: path.split('/').length<4, href: '/panel/ticket/' },
-        { name: t('ticket.ticket'), icon: TicketIcon, current: path.includes('list'), href: '/panel/ticket/list' },
+        { name: t('ticket.ticket'), icon: TicketIcon, current: path.split('/').length<4, href: '/panel/ticket' },
         /*{ name: t('ticket.refund'), icon: ReceiptRefundIcon, current: path.includes('refund'), href: '/panel/ticket/refund' },*/
         {
             name: t('ticket.user.user'), icon: UsersIcon, children: [

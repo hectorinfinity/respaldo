@@ -37,10 +37,12 @@ import {
 type Props= {
     columns: any[],
     defaultData: any[],
+    deleteOption?: boolean,
+    exportOption?: boolean,
     addSchedule?: boolean
 }
 
-export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props) => {
+export const BasicTable = ({ columns, defaultData, deleteOption = false, exportOption = false, addSchedule = false }: Props) => {
     const t = useTranslations("table");
 
     const currentColor = CurrentColor();
@@ -92,27 +94,33 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false }: Props)
                         className="p-2 font-lg shadow border border-block"
                         placeholder="Search..."
                     />
+                    { addSchedule ? (
                     <div className="flex justify-end -mt-10">
                         <button 
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-${currentColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${currentColor}`}>
                             Add Schedule
                         </button>
                     </div>
+                    ): ''}
                 </div>
-                { Object.keys(rowSelection).length > 0 ? (
+                { Object.keys(rowSelection).length > 0 && (deleteOption && exportOption) ? (
                     <div className="mt-3 flex sm:mt-0 sm:ml-4">
+                        { deleteOption ? (
                         <button
                         type="button"
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                         >
                             <TrashIcon className={`w-4 h-4 mr-2`} />({Object.keys(rowSelection).length})
                         </button>
+                        ) : '' }
+                        { exportOption ? (
                         <button
                         type="button"
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                         >
                             <ArrowUpTrayIcon className={`w-4 h-4 mr-2`} />({Object.keys(rowSelection).length})
                         </button>
+                        ) : '' }
                     </div>
                     ) : ('')
                 }
