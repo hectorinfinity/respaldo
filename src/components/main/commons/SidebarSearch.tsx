@@ -9,6 +9,7 @@ import DateRangePicker from '@/components/commons/DateRangePicker';
 import { format } from 'date-fns';
 import { EventCategory } from '@/interfaces/event';
 import { useRouter } from 'next/router';
+import { CalendarIcon } from '@heroicons/react/20/solid';
 
 export type props = {
   className?: string;
@@ -178,7 +179,7 @@ const SidebarSearch: React.FC<props> = ({
               <TextField
                 type="text"
                 readOnly
-                icon={<Icon name="calendar-outline" />}
+                icon={<CalendarIcon className="w-5 h-5" />}
                 iconPosition="right"
                 label={t('initial_date')}
                 {...register('initial_date')}
@@ -187,7 +188,7 @@ const SidebarSearch: React.FC<props> = ({
             <TextField
               type="text"
               readOnly
-              icon={<Icon name="calendar-outline" />}
+              icon={<CalendarIcon className="w-5 h-5" />}
               iconPosition="right"
               label={t('finish_date')}
               {...register('finish_date')}

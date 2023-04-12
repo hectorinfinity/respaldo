@@ -11,7 +11,7 @@ import ListCardEventRecommendation from '@/components/main/commons/ListCardEvent
 import CardEventDetails from '@/components/main/event/CardEventDetails';
 import CardEventLocation from '@/components/main/event/CardEventLocation';
 import SidebarEvent from '@/components/main/event/SidebarEvent';
-import { useEventCategory } from '@/hooks/event/category';
+import { useEventCategory } from '@/hooks/event/event_category';
 import { useEvent, useEvents } from '@/hooks/event/event';
 import { useEventScheduleTimetable } from '@/hooks/event/event_schedules_timetables';
 import { useEventSeatmap, useEventSeatmaps } from '@/hooks/event/event_seatmap';
@@ -27,29 +27,26 @@ import { useForm } from 'react-hook-form';
 const EventDetailed = () => {
   const useFormReturn = useForm();
   const t = useTranslations('Public');
-  const { query } = useRouter();
+  const router = useRouter();
+  const {id} = router.query
   const events = useEvents();
-  const event = useEvent(query?.id as string);
+  const event = useEvent(id as string);
   const category = useEventCategory(event?.data?.category_id?._id);
   const eventSupplier = useEventSupplier(event?.data?.supplier_id?.id);
-  {
-    /**
-     *  TODO: Event interface, category_id is an object no a string
-     *  TODO: fetch event venues
-     *  TODO: no start and end Dats and start and end Times found
-     */
-  }
-  console.log(event?.data);
+
   const locale = useLocale();
-  const info = event?.data?.info.content.find((obj) => obj.lang == locale);
+  const info =
+    event?.data?.info.content.find((obj) => obj.lang == locale) ||
+    event?.data?.info.content.find((obj) => obj.lang == 'es');
   return (
-    <div className="section-container space-y-16 mt-16 mb-44">
-      <div className="flex flex-col-reverse md:flex-row justify-between gap-10">
-        {/** TODO: event does not have `location` attribute or similar */}
+    <div className="mt-16 space-y-16 section-container mb-44">
+      <div className="flex flex-col-reverse justify-between gap-10 md:flex-row">
         <CardEventDetails
           className="flex-1"
           details={
-            event?.data?.content?.find((obj) => obj.lang == locale)?.description
+            event?.data?.content?.find((obj) => obj.lang == locale)
+              ?.description ||
+            event?.data?.content?.find((obj) => obj.lang == 'es')?.description
           }
           access={info?.access_limit}
           general={info?.general}
@@ -62,7 +59,8 @@ const EventDetailed = () => {
         <SidebarEvent
           className="h-max"
           category={
-            category?.data?.content?.find((obj) => obj.lang == locale)?.name
+            category?.data?.content?.find((obj) => obj.lang == locale)?.name ||
+            category?.data?.content?.find((obj) => obj.lang == 'es')?.name
           }
           color={category?.data?.color}
           cost={300}
@@ -73,12 +71,12 @@ const EventDetailed = () => {
           id={event?.data?._id}
           location="Location"
           supplier={eventSupplier?.data?.name}
-          name={event?.data?.content?.find((obj) => obj.lang == locale)?.name}
-          willAttend
+          name={
+            event?.data?.content?.find((obj) => obj.lang == locale)?.name ||
+            event?.data?.content?.find((obj) => obj.lang == 'es')?.name
+          }
         />
       </div>
-
-      {/** TODO: tags does not have `lang` attribute */}
       <CardEventLocation
         location="Location"
         origin={{
@@ -87,7 +85,6 @@ const EventDetailed = () => {
         }}
         tags={event?.data?.tags?.map((obj) => obj.tag)}
       />
-      {/** TODO: Event type does not have `created_at` */}
       <ListCardEvent
         loading={events?.isLoading}
         layout="swiper"
@@ -107,7 +104,7 @@ const EventDetailed = () => {
         }))}
         {...useFormReturn}
       />
-      <ListCardEventRecommendation
+      {/* <ListCardEventRecommendation
         items={events?.data?.items?.map((item) => ({
           category_id: item.category_id._id,
           image: 'https://loremflickr.com/640/480/cats',
@@ -118,7 +115,7 @@ const EventDetailed = () => {
         setCurrentPage={() => {}}
         setPageSize={() => {}}
         totalDocs={10}
-      />
+      /> */}
     </div>
   );
 };

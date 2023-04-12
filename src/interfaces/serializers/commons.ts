@@ -13,14 +13,22 @@ interface AddressName {
 }
 
 export interface Address {
-  latitude?: string;
-  longitude?: string;
-  address: string;
-  address2?: string;
-  city: string;
-  state: AddressName;
-  country: AddressName;
-  zipcode: string;
+  addressname?: string
+  latitude?: string
+  longitude?: string
+  address: string
+  address2?: string
+  city: string
+  state: AddressName
+  country: AddressName
+  short_state?: string
+  short_country?: string
+  zipcode: string
+}
+
+export interface Collection {
+  id: string;
+  collection: string;
 }
 
 export interface BasicTranslate {

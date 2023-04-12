@@ -1,5 +1,4 @@
 /** @format */
-import { useState } from 'react';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
@@ -7,25 +6,65 @@ import AdminLayout from "@/components/layout/admin";
 import { Heading } from '@/components/headers/admin/heading';
 // Components
 import { CustomCard } from '@/components/admin/profile/customCard';
+// queries
+import { useUserCard } from "@/hooks/user/user_card"
+import { useQueryClient } from "@tanstack/react-query";
+import { User } from "@/interfaces/user";
+import { getUserCache } from "@/hooks/user/user";
+
 
 const ProfileCard = () => {
     const t = useTranslations("Panel_Profile_Card");
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
-    const cards = [
-        { id: "129182", name: "Arturo Villalpando Sánchez", type: "credit", number: "3828", exp: "09/28" },
-        { id: "12912", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "12982", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "12182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-        { id: "19182", name: "Arturo Villalpando Sánchez", type: "debit", number: "3415", exp: "09/25" },
-    ]
-
     const breadcrumb = [
         { page: ts('user'), href: '/panel/profile' },
         { page: ts('profile.card.name'), href: '' }
     ]
-    const buttonBread =  { text: tb('new_card'), href: '/panel/profile/card/create' }
+    const buttonBread = { text: tb('new_card'), href: '/panel/profile/card/create' }
+
+    const queryClient = useQueryClient()
+    // const userData = queryClient.getQueryData(["user"])
+
+
+    // const user: User = userData?.[0]?.user;
+
+    // //get all user cards
+    const { data: userCradsData, isLoading, isSuccess } = useUserCard()
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+    if (isSuccess) {
+        queryClient.invalidateQueries(["user"])
+        queryClient.invalidateQueries(["user", "get card"])
+    }
+    console.log(JSON.stringify(userCradsData.data, null, 1))
+
+    //create client secret 
+    // useEffect(() => {
+    //     if (user?.payment_data?.stripe === null) {
+    //         const { mutate: updateUser, isError, error, isSuccess } = useMutationUpdateUser();
+    //         if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
+    //         // if (isSuccess) queryClient.invalidateQueries(["user"])
+
+    //         const addStripeToUser = (stripeSecret: string) => {
+    //             const payment_data = {
+    //                 stripe: stripeSecret,
+    //             };
+    //             const updatedUser: User = { ...user, payment_data: payment_data };
+    //             updateUser(updatedUser);
+    //         };
+    //         const { data: stripeData, } = useCreateUserCard()
+    //         setStripeSecret(stripeData?.client_secret)
+    //         addStripeToUser(stripeSecret)
+
+    //     } else {
+    //         setStripeSecret(user?.payment_data?.stripe)
+    //     }
+    // }, [])
+
+    // const paymentMethods = userCradsData?.data
 
     return (
         <div>
@@ -44,9 +83,29 @@ const ProfileCard = () => {
                         <div>
                             <div className="md:flex md:items-center md:justify-between">
                                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                                    {cards.map((card) => (
-                                        <CustomCard key={card.id} id={card.id} name={card.name} type={card.type} number={card.number} exp={card.exp} />
+                                    {userCradsData && userCradsData.data.map((card: any) => (
+                                        <div key={card?.id}>
+                                            <CustomCard
+                                                id={card.id}
+                                                name={card?.billing_details?.name}
+                                                type={card?.type}
+                                                number={card?.card?.last4}
+                                                expMonth={card?.card?.exp_month}
+                                                expYear={card?.card?.exp_year} />
+                                        </div>
                                     ))}
+                                    {/* <CustomCard id="1" name="Hector Ruiz" type="debit" number="4242" expMonth="03" expYear="2024" /> */}
+                                    {/* <pre>{JSON.stringify(userCradsData.data, null, 1)}</pre>
+                                    {
+                                        <>
+                                            <p>{userCradsData.data[0]?.id}</p>
+                                            <p>{userCradsData.data[0]?.billing_details?.name}</p>
+                                            <p>{userCradsData.data[0]?.type}</p>
+                                            <p>{userCradsData.data[0]?.card?.last4}</p>
+                                            <p>{userCradsData.data[0].card?.exp_month}</p>
+                                            <p>{userCradsData.data[0].card?.exp_year}</p>
+                                        </>
+                                    } */}
                                 </div>
                             </div>
                         </div>

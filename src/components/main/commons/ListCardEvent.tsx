@@ -36,6 +36,9 @@ export type props = {
   loading: boolean;
   totalDocs: number;
   categories?: EventCategory[];
+  isFetchingNextPage?: boolean;
+  hasNextPage?: boolean;
+  fetchNextPage?: () => void;
 } & PaginationProps &
   UseFormReturn<any>;
 
@@ -50,6 +53,9 @@ const ListCardEvent: React.FC<props> = ({
   setPageSize,
   setCurrentPage,
   categories,
+  isFetchingNextPage,
+  hasNextPage,
+  fetchNextPage,
   ...useFormReturn
 }) => {
   const swiperRef = useRef(null);
@@ -162,14 +168,23 @@ const ListCardEvent: React.FC<props> = ({
           <MagnifyingGlassIcon className="w-16 h-16" />
           <p className="font-bold mt-5">{t('not_results')}</p>
         </div>
-      </WrapperLoader>
+      </WrapperLoader>{' '}
       {layout !== 'swiper' && (
-        <Pagination
-          className="mt-5"
-          totalDocs={totalDocs}
-          setPageSize={setPageSize}
-          setCurrentPage={setCurrentPage}
-        />
+        <div className="flex justify-center mt-5">
+          {hasNextPage && (
+            <Button
+              className="mx-auto mt-5"
+              loading={isFetchingNextPage}
+              onClick={() => {
+                if (!isFetchingNextPage) {
+                  fetchNextPage();
+                }
+              }}
+            >
+              Load More
+            </Button>
+          )}
+        </div>
       )}
       <DrawerSearchFilters
         categories={categories}

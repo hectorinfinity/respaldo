@@ -13,14 +13,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
+import { AddSchedule } from '@/components/forms/forms';
 
 const EventAddress = () => {
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
 
     const breadcrumb = [
-        { page: t('user'), href: '/panel/profile' },
-        { page: t('profile.address'), href: '' }
+        { page: t('event.event'), href: '' },
+        { page: t('actions.create'), href: '' }
     ]
 
     const data = useMemo(() => [
@@ -99,6 +100,7 @@ const EventAddress = () => {
                                 <CustomSubmit />
                             </div>
                         </div>
+                        <AddSchedule />
                     </form>
                 </div>
             </div>

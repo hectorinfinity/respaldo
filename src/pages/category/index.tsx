@@ -1,7 +1,7 @@
 import { getEventsCategories } from '@/api/event/event_category';
 import MainLayout from '@/components/layout/main';
 import ListCardCategory from '@/components/main/commons/ListCardCategory';
-import { useEventCategories } from '@/hooks/event/category';
+import { useEventCategories } from '@/hooks/event/event_category';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale } from 'next-intl';
 import React from 'react';
@@ -18,7 +18,9 @@ const Category = ({ categories }) => {
         setPageSize={() => {}}
         totalDocs={categories?.length}
         items={categories?.map((item) => ({
-          name: item.category.find((obj) => obj.lang == locale)?.name,
+          name:
+            item.category.find((obj) => obj.lang == locale)?.name ||
+            item.category.find((obj) => obj.lang == 'es')?.name,
           color: item.color,
           image: item.picture,
         }))}

@@ -26,7 +26,15 @@ export const readUser = async (id: string) => {
 }
 
 export const updateUser = async (user: User) => {
+    console.log("data enter updateUser from mutation: user:", JSON.stringify(user, null, 2))
     const { data } = await axios.put(`/users/${user.uid}`, user);
+
+    return data;
+}
+
+export const updateUserWithId = async (user: any, uid: string) => {
+    console.log("updateUser from mutation: user:", user)
+    const { data } = await axios.put(`/users/${uid}`, user);
 
     return data;
 }
@@ -36,3 +44,10 @@ export const deleteUser = async (id: string) => {
 
     return data;
 }
+
+export const getUserStripeCustomerId = async (userId: string) => {
+    const user = await readUser(userId);
+
+    return user.payment_data.stripe;
+};
+

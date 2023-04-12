@@ -11,15 +11,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
-import { User } from "@/interfaces/user";
+import { Tax } from "@/interfaces/serializers/commons";
 import { updateUser } from "@/api/user/user";
+import { useMutationUpdateUser } from "@/hooks/user/user";
+import { useQueryClient } from "@tanstack/react-query";
+import { User } from "@/interfaces/user";
+import { getUserCache } from "@/hooks/user/user";
 
 
 const validationSchema = yup.object().shape({
-    businessname: yup.string().required('Business name is required'),
+    business_name: yup.string().required('Business name is required'),
     rfc: yup.string().min(13).max(13).required().notRequired(),
     cfdi: yup.string().min(1).max(40).required('CFDI is required'),
-    pc: yup.string().min(5).max(5).required('Postal code is required'),
+    zipcode: yup.string().min(5).max(5).required('Postal code is required'),
 });
 
 const ProfileBilling = () => {
@@ -31,18 +35,35 @@ const ProfileBilling = () => {
         { page: t('profile.billing'), href: '' }
     ]
 
+    const queryClient = useQueryClient()
+    const userData = queryClient.getQueryData(["user"])
+    const user: User = userData?.[0]?.user
+
+    const { mutate: updateUser, isError, error } = useMutationUpdateUser();
+    if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
-    const onSubmitHandler = (data: User) => {
+    const onSubmitHandler = (data: Tax) => {
+        console.log("DATA BILLING:", JSON.stringify(data, null, 2))
+        const tax_data = {
+            business_name: data.business_name,
+            rfc: data.rfc,
+            zipcode: data.zipcode,
+            cfdi: data.cfdi
+        }
+        const updatedData = { ...user, tax_data: tax_data }
         // setSubmitted(false);
         // setSubmittedError(true);
-        updateUser(data)
-        console.log({ data });
-        reset();
+        updateUser(updatedData)
+        // console.log({ data });
+        // reset();
         // Handle Submit Form
     };
+
+    console.log("getUserCache: ", getUserCache())
 
     return (
         <>
@@ -55,17 +76,17 @@ const ProfileBilling = () => {
                     <form className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit(onSubmitHandler)} method="POST">
                         <div className="grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-6">
-                                <CustomLabel field="businessname" name={tc('field_businessname')} required />
+                                <CustomLabel field="business_name" name={tc('field_businessname')} required />
                                 <input
-                                    {...register("businessname")}
+                                    {...register("business_name")}
                                     type="text"
-                                    name="businessname"
-                                    id="businessname"
+                                    name="business_name"
+                                    id="business_name"
                                     autoComplete={tc('auto_businessname')}
                                     placeholder={tc('field_businessname')}
                                     className={FormStyles('input')}
                                 />
-                                <CustomError error={errors.businessname?.message as string} />
+                                <CustomError error={errors.business_name?.message as string} />
                             </div>
                             <div className="col-span-12 sm:col-span-6">
                                 <CustomLabel field="rfc" name={tc('field_rfc')} />
@@ -94,17 +115,17 @@ const ProfileBilling = () => {
                                 <CustomError error={errors.cfdi?.message as string} />
                             </div>
                             <div className="col-span-12 sm:col-span-6">
-                                <CustomLabel field="pc" name={tc('field_pc')} required />
+                                <CustomLabel field="zipcode" name={tc('field_pc')} required />
                                 <input
-                                    {...register("pc")}
+                                    {...register("zipcode")}
                                     type="text"
-                                    name="pc"
-                                    id="pc"
+                                    name="zipcode"
+                                    id="zipcode"
                                     autoComplete={tc('auto_pc')}
                                     placeholder={tc('field_pc')}
                                     className={FormStyles('input')}
                                 />
-                                <CustomError error={errors.pc?.message as string} />
+                                <CustomError error={errors.zipcode?.message as string} />
                             </div>
                         </div>
                         {/* Buttons section */}

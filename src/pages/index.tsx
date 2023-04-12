@@ -14,7 +14,7 @@ import { getEvents } from '@/api/event/event';
 import Hero from '@/components/main/commons/Hero';
 import { getEventsVenues } from '@/api/event/event_venue';
 import { useEvents } from '@/hooks/event/event';
-import { useCategories } from '@/hooks/event/category';
+import { useCategories } from '@/hooks/event/event_category';
 
 const Home = () => {
   const t = useTranslations('Public');
@@ -24,7 +24,7 @@ const Home = () => {
   const events = useEvents();
 
   return (
-    <div className="mb-44 -mt-8">
+    <div className="-mt-8 mb-44">
       <Hero
         items={[
           {
@@ -35,6 +35,7 @@ const Home = () => {
       />
       <div className="mt-16 space-y-16 section-container">
         <ListCardCategory
+        className="max-w-5xl mx-auto"
           items={categories?.data?.map((item) => ({
             name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
@@ -56,7 +57,9 @@ const Home = () => {
           title={t('home.featured_events')}
           items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale)?.name,
+            name:
+              item.content.find((obj) => obj.lang == locale)?.name ||
+              item.content.find((obj) => obj.lang == 'es')?.name,
             startDate: item.created_at as unknown as Date,
             startTime: '1:00',
             endTime: '12:00',
@@ -76,7 +79,9 @@ const Home = () => {
           title={t('home.new_events')}
           items={events?.data?.items?.map((item) => ({
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale)?.name,
+            name:
+              item.content.find((obj) => obj.lang == locale)?.name ||
+              item.content.find((obj) => obj.lang == 'es')?.name,
             startDate: item.created_at as unknown as Date,
             startTime: '1:00',
             endTime: '12:00',
