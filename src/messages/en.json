@@ -904,6 +904,12 @@
     "attendance": "Attendance",
     "earns": "Earns",
 
+    "sold_ticket": "Sold Tickets",
+    "income": "Incomes",
+    "soft_ticket": "Soft Tickets",
+    "hard_ticket": "Hard Tickets",
+    "email_ticket": "Emailed Tickets",
+
     "likes": "Likes",
     "assisted": "Assisted",
 

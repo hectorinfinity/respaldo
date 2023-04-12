@@ -5,9 +5,12 @@ import { BasicTable } from '@/components/admin/tables';
 import { columnsTicketDashboard } from '@/components/admin/tables/columns/columnsTicketDashboard';
 import { columnsTicketPhaseDashboard } from '@/components/admin/tables/columns/columnsTicketPhaseDashboard';
 import { ComplexCard, SimpleCard } from './stats';
+import { CalendarIcon } from '@heroicons/react/24/outline';
+import { CurrentColor } from '@/helpers';
 
 export const TicketDashboard = () => {
     const td = useTranslations("Panel_Dashboard");
+    const currentColor = CurrentColor();
 
     const info = [
         { name: td('active'), amount: '200 M', color: 'customPurple' },
@@ -43,6 +46,21 @@ export const TicketDashboard = () => {
 
     return (
         <>
+            <div className="flex flex-1 pt-6">
+                <div className="w-screen min-h-0 overflow-hidden">
+                    <div className="flex justify-between">
+                        <div className='text-2xl'>
+                            Event Name
+                        </div>
+                        <div className='text-xl'>
+                            <div className="flex items-center">
+                                <CalendarIcon className={`w-5 h-5 text-${currentColor}`} />
+                                <span className='px-2'>Viernes 28 Abril 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
                     <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
