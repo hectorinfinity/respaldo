@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { CardElement, useElements, useStripe, Elements, ExpressCheckoutElement, } from "@stripe/react-stripe-js";
 import { useCreateUserCard } from "@/hooks/user/user_card";
 import { useRouter } from "next/router";
 import { useQueryClient } from "@tanstack/react-query";
@@ -26,12 +26,20 @@ export const CardForm = () => {
         }
 
         const cardElement = elements.getElement(CardElement);
+        const expressCheckoutElement = elements.getElement(ExpressCheckoutElement)
 
         const { error, setupIntent } = await stripe.confirmCardSetup(userCardData?.client_secret, {
             payment_method: {
                 card: cardElement,
             },
         });
+
+        // const session = await stripe. checkout.sessions.create({
+        //     payment_method_types: ['card'],
+        //     mode: 'setup',
+        //     customer: userCardData?.client_secret,
+        //     success_url: 'https://localhost:3000/panel/profile/card/create',
+        // });
 
         if (error) {
             setError(error.message);

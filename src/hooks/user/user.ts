@@ -4,6 +4,13 @@ import { User } from "@/interfaces/user";
 
 const key = "user";
 
+export function getUserCache() {
+  const queryClient = useQueryClient();
+  const data = queryClient.getQueryData([key])
+  return data?.["user"]
+
+}
+
 export function useMe() {
   return useQuery([key], getMe);
 }
@@ -14,7 +21,6 @@ export function useUsers() {
 
 export function useMutationCreateUers() {
   const queryClient = useQueryClient();
-
   return useMutation(createUser, {
     onSuccess: (user) => {
       queryClient.setQueryData([key], (prevUser: any) => prevUser.concat(user));

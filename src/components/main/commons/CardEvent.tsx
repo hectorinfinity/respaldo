@@ -55,7 +55,7 @@ const CardEvent: React.FC<props> = ({
   const { mutate: removeFavorite } = useMutationRemoveFavorite();
   const locale = useLocale();
   const favorite = favorites
-    ?.filter((item) => item.user_id.id == user._id)
+    ?.filter((item) => item.user_id.id === user._id)
     .find((item) => item.events_likes.find((event) => event.id == id));
 
   const attend = favorites
