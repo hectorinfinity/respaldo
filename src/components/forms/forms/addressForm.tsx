@@ -11,11 +11,6 @@ import { FormStyles } from "@/helpers"
 
 export const AddressForm = ({ register, setValue, errors, searchAddress, onPlaceSelected, markerPosition }) => {
     const [autocomplete, setAutocomplete] = useState(null);
-    const [librariesLoaded, setLibrariesLoaded] = useState(false);
-    const [coords, setCoords] = useState({
-        latitude: "",
-        longitude: ""
-    })
 
     const tc = useTranslations("Common_Forms");
     const onAutocompleteLoad = (autocompleteInstance) => {
@@ -40,9 +35,7 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
             const components = place.address_components;
             const getAddressComponent = (type) => components.find((component) => component.types.includes(type));
 
-            // setValue("addressname", getAddressComponent("point_of_interest")?.long_name || getAddressComponent("premise")?.long_name || address);
             setValue("address", (getAddressComponent("street_number")?.long_name || "") + " " + (getAddressComponent("route")?.long_name || ""));
-
             setValue("address2", getAddressComponent("subpremise")?.long_name || "");
             setValue("city", getAddressComponent("locality")?.long_name || "");
             setValue("state", getAddressComponent("administrative_area_level_1")?.long_name || "");
@@ -50,29 +43,14 @@ export const AddressForm = ({ register, setValue, errors, searchAddress, onPlace
             setValue("zipcode", getAddressComponent("postal_code")?.long_name || "");
             setValue("latitude", latLng.lat.toString());
             setValue("longitude", latLng.lng.toString());
+            setValue("short_country", getAddressComponent("country")?.short_name || "");
+            setValue("short_state", getAddressComponent("administrative_area_level_1")?.short_name || "");
         }
-    };
-    const handleLoad = () => {
-        setLibrariesLoaded(true);
     };
 
     return (
         <>
             <div className="grid grid-cols-12 gap-6">
-                {/* <div className="col-span-12">
-                    <CustomLabel field="addressname" name={tc('field_addressname')} required />
-                    <input
-                        {...register("addressname")}
-                        type="text"
-                        name="addressname"
-                        id="addressname"
-                        autoComplete={tc('auto_addressname')}
-                        placeholder={tc('field_addressname')}
-                        className={FormStyles('input')}
-                    />
-                    <CustomError error={errors.addressname?.message} />
-                </div> */}
-
                 <div className="col-span-12">
                     <CustomLabel field="searchaddress" name={tc('field_searchaddress')} />
                     <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>

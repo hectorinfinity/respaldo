@@ -11,9 +11,8 @@ import { AddressForm } from '@/components/forms/forms';
 import { CustomError, CustomLabel, CustomCancel, CustomSubmit } from '@/components/forms';
 // Interface
 import { Address } from "@/interfaces/serializers/commons";
-import { useQueryClient } from "@tanstack/react-query";
 import { useMutationUpdateUser } from "@/hooks/user/user";
-import { User } from "@/interfaces/user";
+import { useQueryClient } from "@tanstack/react-query";
 
 const validationSchema = yup.object().shape({
     // addressname: yup.string().required("Address name is required"),
@@ -27,7 +26,7 @@ const validationSchema = yup.object().shape({
 });
 
 const ProfileAddress = () => {
-    const [uid, setUid] = useState("");
+    // const [uid, setUid] = useState("")
     const [searchAddress, setSearchAddress] = useState("");
     const [markerPosition, setMarkerPosition] = useState(null);
 
@@ -42,60 +41,50 @@ const ProfileAddress = () => {
 
     const queryClient = useQueryClient()
     const userData = queryClient.getQueryData(["user"])
+    const user = userData?.[0]?.user
+
 
     const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm<Address>({
         resolver: yupResolver(validationSchema)
     });
+
     useEffect(() => {
-        if (userData) {
-            const user = userData?.[0]?.user;
-            setUid(user.uid)
-            // setValue("addressname", user?.address?.address)
+        if (user?.address) {
             setValue("address", user?.address?.address);
             setValue("address2", user?.address?.address2);
             setValue("zipcode", user?.address?.zipcode);
-            setValue("country", user?.address?.country);
-            setValue("state", user?.address?.state);
+            setValue("country", user?.address?.country?.long_name);
+            setValue("state", user?.address?.state?.long_name);
             setValue("city", user?.address?.city);
-
         }
-    }, [userData, setValue, uid]);
+    }, [user]);
 
     const { mutate: updateUser, isError, error } = useMutationUpdateUser();
     if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
 
-    // const onSubmitHandler = (data: User) => {
-
-    //     const updatedData = { ...data, birthday: formattedBirthday, uid };
-    //     console.log("UPDATED DATA:", updatedData);
-    //     updateUser(updatedData);
-    // };
-
     const onSubmitHandler = (data: Address) => {
-        const user: User = userData?.[0]?.user;
+        console.log("address data:", JSON.stringify(data, null, 2))
+        data?.address2
         const address: Address = {
-            latitude: data.latitude,
-            longitude: data.longitude,
-            address: data.address,
-            address2: data.address2,
-            city: data.city,
+            latitude: data?.latitude,
+            longitude: data?.longitude,
+            address: data?.address,
+            address2: data?.address2 === "" ? null : data?.address2,
+            city: data?.city,
             state: {
-                long_name: `${data.state}`,
-                short_name: "",
+                long_name: `${data?.state}`,
+                short_name: `${data?.short_state}`,
             },
             country: {
-                long_name: `${data.country}`,
-                short_name: "",
+                long_name: `${data?.country}`,
+                short_name: `${data?.short_country}`,
             },
             zipcode: data.zipcode,
         };
-        console.log("UPDATED ADDRESS:", address);
-        const updatedUser: User = { ...user, address: address };
-        updateUser(updatedUser);
-        // reset();
+        const updatedUser = { address: address, uid: user?.uid };
+        console.log("UPDATED ADDRESS:", updatedUser);
+        updateUser(updatedUser)
     };
-
-
 
     const onPlaceSelected = (address, latLng) => {
         setSearchAddress(address);
