@@ -119,7 +119,7 @@ const Search = ({ categories }) => {
             className="hidden col-span-2 md:block sticky top-0"
             {...useFormReturn}
           />
-          {events?.data?.items?.length == 0 &&
+          {/* {events?.data?.items?.length == 0 &&
           isLoading == false &&
           query != '' ? (
             <div className="col-span-6 space-y-10 md:col-span-4">
@@ -162,38 +162,53 @@ const Search = ({ categories }) => {
                 {...useFormReturn}
               />
             </div>
-          ) : (
-            <ListCardEvent
-              categories={categories}
-              className="col-span-6 md:col-span-4"
-              loading={isLoading}
-              layout="grid"
-              setCurrentPage={setCurrentPage}
-              setPageSize={setPageSize}
-              totalDocs={data?.pages?.[0]?.total}
-              isFetchingNextPage={isFetchingNextPage}
-              hasNextPage={hasNextPage}
-              fetchNextPage={fetchNextPage}
-              title={t('commons.recommended_events')}
-              items={data?.pages?.flatMap((page) =>
-                page.items.map((item) => ({
-                  image: 'https://loremflickr.com/640/480/cats',
-                  name:
-                    item.content.find((obj) => obj.lang == locale)?.name ||
-                    item.content.find((obj) => obj.lang == 'es')?.name,
-                  startDate: new Date(),
-                  startTime: '1:00',
-                  endTime: '12:00',
-                  location: 'Location',
-                  color: item.category_id?.color,
-                  id: item._id,
-                }))
-              )}
-              {...useFormReturn}
-            />
+          ) : ( */}
+          {data?.pages?.[0]?.total == 0 && query != '' && (
+            <div className="flex flex-col gap-2">
+              <Title level="h5">
+                {t('commons.search_no_results', {
+                  query,
+                })}
+              </Title>
+              <p>{t('commons.check_words')}</p>
+              <hr className="border-gray-400" />
+            </div>
           )}
+          <ListCardEvent
+            categories={categories}
+            className="col-span-6 md:col-span-4"
+            loading={isLoading}
+            layout="grid"
+            setCurrentPage={setCurrentPage}
+            setPageSize={setPageSize}
+            totalDocs={
+              data?.pages?.[0]?.total == 0 && query != ''
+                ? 0
+                : data?.pages?.[0]?.total
+            }
+            isFetchingNextPage={isFetchingNextPage}
+            hasNextPage={hasNextPage}
+            fetchNextPage={fetchNextPage}
+            title={t('commons.recommended_events')}
+            items={data?.pages?.flatMap((page) =>
+              page.items.map((item) => ({
+                image: 'https://loremflickr.com/640/480/cats',
+                name:
+                  item.content.find((obj) => obj.lang == locale)?.name ||
+                  item.content.find((obj) => obj.lang == 'es')?.name,
+                startDate: new Date(),
+                startTime: '1:00',
+                endTime: '12:00',
+                location: 'Location',
+                color: item.category_id?.color,
+                id: item._id,
+              }))
+            )}
+            {...useFormReturn}
+          />
+          {/* )} */}
         </div>
-      
+
         <CardAdvertisment
           size="large"
           image="/images/advertisements/anunciate_aqui.png"
