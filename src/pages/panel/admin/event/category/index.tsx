@@ -10,8 +10,17 @@ import { columnsEventCategory } from '@/components/admin/tables/columns/columnsE
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
 import { EventCategory as EventCategoryInterface } from '@/interfaces/event';
+import { useCategories, useDeleteEventCategory,useUpdateEventCategory} from '@/hooks/admin/event/category';
 
-const EventCategory = () => {
+
+
+
+
+const  EventCategory = () => {
+
+    const {data,isLoading}= useCategories();
+
+
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
@@ -21,11 +30,8 @@ const EventCategory = () => {
         { page: ts('admin.event.category'), href: '' }
     ]
     const buttonBread =  { text: tb('add_event_category'), href: '/panel/admin/event/category/create' }
-
-    const data = useMemo(() => [
-        { id: '1', icon: '/images/events/category/arts.png', category: 'Arts', status: true },
-        { id: '2', icon: '/images/events/category/dance.png', category: 'Dance', status: true },
-    ], []);
+    
+    
     const columns = columnsEventCategory();
    
     return (
@@ -35,13 +41,19 @@ const EventCategory = () => {
                 <Heading breadcrumb={breadcrumb} buttonBread={buttonBread} />
             </div>
             <div className="flex flex-1 pt-6">
-                <div className="w-screen min-h-0 overflow-hidden">
-                    <div className="flow-root">
+                <div className="w-screen min-h-0 overflow-hidden"> 
+                    <div className="flow-root">  
                         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                                     <div className="min-w-full divide-y divide-gray-300">
-                                        <BasicTable columns={columns} defaultData={data} />
+                                       {isLoading? 
+                                       'loading'
+                                       : 
+                                       <BasicTable 
+                                        columns={columns} 
+                                        deleteCategory={useDeleteEventCategory} 
+                                        defaultData={data} />}
                                     </div>
                                 </div>
                             </div>

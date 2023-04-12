@@ -36,19 +36,19 @@ import {
 
 type Props= {
     columns: any[],
-    defaultData: any[],
-    deleteOption?: boolean,
-    exportOption?: boolean,
-    addSchedule?: boolean
+    defaultData?: any[] ,
+    addSchedule?: boolean,
+    deleteCategory?:(id:string)=>void,
+    deleteOption?:(id:string)=>void,
 }
 
-export const BasicTable = ({ columns, defaultData, deleteOption = false, exportOption = false, addSchedule = false }: Props) => {
+export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteCategory:any, exportOption: any }: Props) => {
     const t = useTranslations("table");
-
+ console.log('defaulData',defaultData)
     const currentColor = CurrentColor();
-    const [data, setData] = useState(() => [...defaultData])
+    const [data, setData] = useState(()=>[...defaultData])
     const [sorting, setSorting] = useState<SortingState>([])
-
+    console.log('seTdefaulData',data)
     const [rowSelection, setRowSelection] = useState({})
     const [globalFilter, setGlobalFilter] = useState('')
 
@@ -56,9 +56,9 @@ export const BasicTable = ({ columns, defaultData, deleteOption = false, exportO
         data,
         columns,
         state: {
-            sorting,
-            globalFilter,
-            rowSelection,
+        sorting,
+        globalFilter,
+        rowSelection,
         },
         enableRowSelection: true,
         onRowSelectionChange: setRowSelection,
@@ -78,7 +78,7 @@ export const BasicTable = ({ columns, defaultData, deleteOption = false, exportO
         debugHeaders: true,
         debugColumns: false,
     })
-    
+    console.log(table)
     const paginationRange = PaginationTable({
         totalPageCount: table.getPageCount(),
         currentPage: table.getState().pagination.pageIndex
@@ -105,12 +105,13 @@ export const BasicTable = ({ columns, defaultData, deleteOption = false, exportO
                 </div>
                 { Object.keys(rowSelection).length > 0 && (deleteOption && exportOption) ? (
                     <div className="mt-3 flex sm:mt-0 sm:ml-4">
-                        { deleteOption ? (
+                        { deleteCategory ? (
                         <button
-                        type="button"
+                        type="button" 
+                        
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                         >
-                            <TrashIcon className={`w-4 h-4 mr-2`} />({Object.keys(rowSelection).length})
+                            <TrashIcon className={`w-4 h-4 mr-2`}/>({Object.keys(rowSelection).length})
                         </button>
                         ) : '' }
                         { exportOption ? (
@@ -162,15 +163,18 @@ export const BasicTable = ({ columns, defaultData, deleteOption = false, exportO
                     ))}
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                    {table.getRowModel().rows.map(row => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map(cell => (
+                    {table.getRowModel().rows.map(row =>{
+                        console.log(row)
+                     return(
+                        
+                        <tr >
+                            {/*row.getVisibleCells().map(cell => (
                                 <td key={cell.id} className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
-                            ))}
+                            ))*/}
                         </tr>
-                    ))}
+                    )})}
                 </tbody>
             </table>
             <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
