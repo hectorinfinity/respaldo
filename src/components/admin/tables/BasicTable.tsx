@@ -38,17 +38,15 @@ type Props= {
     columns: any[],
     defaultData?: any[] ,
     addSchedule?: boolean,
-    deleteCategory?:(id:string)=>void,
     deleteOption?:(id:string)=>void,
+    exportOption?:(id:string)=>void,
 }
 
-export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteCategory:any, exportOption: any }: Props) => {
+export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOption, exportOption }: Props) => {
     const t = useTranslations("table");
- console.log('defaulData',defaultData)
     const currentColor = CurrentColor();
     const [data, setData] = useState(()=>[...defaultData])
     const [sorting, setSorting] = useState<SortingState>([])
-    console.log('seTdefaulData',data)
     const [rowSelection, setRowSelection] = useState({})
     const [globalFilter, setGlobalFilter] = useState('')
 
@@ -105,7 +103,7 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteCa
                 </div>
                 { Object.keys(rowSelection).length > 0 && (deleteOption && exportOption) ? (
                     <div className="mt-3 flex sm:mt-0 sm:ml-4">
-                        { deleteCategory ? (
+                        { deleteOption ? (
                         <button
                         type="button" 
                         

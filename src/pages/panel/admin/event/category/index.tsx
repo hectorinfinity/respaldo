@@ -52,7 +52,7 @@ const  EventCategory = () => {
                                        : 
                                        <BasicTable 
                                         columns={columns} 
-                                        deleteCategory={useDeleteEventCategory} 
+                                        deleteOption={useDeleteEventCategory} 
                                         defaultData={data} />}
                                     </div>
                                 </div>
