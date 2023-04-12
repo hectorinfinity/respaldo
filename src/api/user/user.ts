@@ -26,8 +26,15 @@ export const readUser = async (id: string) => {
 }
 
 export const updateUser = async (user: User) => {
-    console.log("updateUser from mutation: user:", user)
+    console.log("data enter updateUser from mutation: user:", JSON.stringify(user, null, 2))
     const { data } = await axios.put(`/users/${user.uid}`, user);
+
+    return data;
+}
+
+export const updateUserWithId = async (user: any, uid: string) => {
+    console.log("updateUser from mutation: user:", user)
+    const { data } = await axios.put(`/users/${uid}`, user);
 
     return data;
 }
