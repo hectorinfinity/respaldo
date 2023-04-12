@@ -1,7 +1,7 @@
 /** @format */
 import { useEffect, useMemo, useState } from 'react';
 import { GetStaticPropsContext } from "next";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from 'next-intl';
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
@@ -12,14 +12,28 @@ import { Heading } from '@/components/headers/admin/heading';
 import { EventCategory as EventCategoryInterface } from '@/interfaces/event';
 import { useCategories, useDeleteEventCategory,useUpdateEventCategory} from '@/hooks/admin/event/category';
 
-
-
-
+export interface dataTable {
+    id: string, 
+    icon: string, 
+    category: string, 
+    status: boolean
+}
 
 const  EventCategory = () => {
-
+    const locale = useLocale();
     const {data,isLoading}= useCategories();
-
+    
+    let dataTableE = [];
+    data?.map((item) => {
+        let dataIn = {
+            id: item.id,
+            icon: item.picture,
+            category: item.category.find((obj) => obj.lang == locale)?.name,
+            status: item.status
+        }
+        dataTableE.push(dataIn)
+    })
+    console.log(dataTableE)
 
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
@@ -53,7 +67,7 @@ const  EventCategory = () => {
                                        <BasicTable 
                                         columns={columns} 
                                         deleteOption={useDeleteEventCategory} 
-                                        defaultData={data} />}
+                                        defaultData={dataTableE} />}
                                     </div>
                                 </div>
                             </div>

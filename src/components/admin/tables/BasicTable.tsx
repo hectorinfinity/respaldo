@@ -45,7 +45,7 @@ type Props= {
 export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOption, exportOption }: Props) => {
     const t = useTranslations("table");
     const currentColor = CurrentColor();
-    const [data, setData] = useState(()=>[...defaultData])
+    const [data, setData] = useState(()=>[...defaultData]);
     const [sorting, setSorting] = useState<SortingState>([])
     const [rowSelection, setRowSelection] = useState({})
     const [globalFilter, setGlobalFilter] = useState('')
@@ -76,7 +76,6 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOp
         debugHeaders: true,
         debugColumns: false,
     })
-    console.log(table)
     const paginationRange = PaginationTable({
         totalPageCount: table.getPageCount(),
         currentPage: table.getState().pagination.pageIndex
@@ -162,15 +161,13 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOp
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                     {table.getRowModel().rows.map(row =>{
-                        console.log(row)
                      return(
-                        
-                        <tr >
-                            {/*row.getVisibleCells().map(cell => (
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map(cell => (
                                 <td key={cell.id} className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
-                            ))*/}
+                            ))}
                         </tr>
                     )})}
                 </tbody>
