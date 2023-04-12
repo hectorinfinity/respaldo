@@ -37,7 +37,6 @@ export  function useUpdateEventCategory( ) {
 
   const queryClient=useQueryClient();
   
-
   const {mutate, isLoading, isError, isSuccess}= useMutation(
     (updateEventCategory as MutationFunction),{onSuccess: (data)=>{
           queryClient.setQueryData([key], (prev:any)=>prev.concat(data))

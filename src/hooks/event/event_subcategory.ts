@@ -6,9 +6,6 @@ import { useState } from 'react';
 const key = "event_subcategory";
 
 export function useSubCategories(itemsPerPage:number) {
-
- 
-
     const{data,isLoading,isError}=useQuery([key], getEventsSubcategories)
 
     const [currentPage,setcurrentPage]=useState(1)
