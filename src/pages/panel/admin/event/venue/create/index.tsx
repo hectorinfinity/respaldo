@@ -1,13 +1,13 @@
 /** @format */
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { GetStaticPropsContext } from 'next';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Switch } from '@headlessui/react';
 // Layout and Header
 import AdminLayout from '@/components/layout/admin';
 import { Heading } from '@/components/headers/admin/heading';
 // Forms
-import { useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {
@@ -24,43 +24,94 @@ import { LinkIcon } from '@heroicons/react/24/solid';
 import { AddressForm } from '@/components/forms/forms';
 // Interface
 import { Address } from '@/interfaces/serializers/commons';
+import { useCreateEventVenue } from '@/hooks/event/event_venue';
+import { useEventVenueCategories } from '@/hooks/event/event_venue_category';
+import { getEventsVenuesCategories } from '@/api/event/event_venue_category';
 
-const validationSchema = yup.object().shape({
-  // addressname: yup.string().required("Address name is required"),
-  searchaddress: yup.string(),
-  address: yup.string().required('Address line 1 is required'),
-  address2: yup.string(),
-  zipcode: yup.string().required('Postal code is required'),
-  country: yup.string().required('Country is required'),
-  state: yup.string().required('State is required'),
-  city: yup.string().required('City is required'),
-  currency: yup.string().required('Currency is required'),
-  field_venue: yup.string().required('Venue name is required'),
-  field_type: yup.string().required('Type is required'),
-  field_quota: yup.string().required('Quota is required'),
-  field_url: yup.string().required('URL is required'),
-  field_generic_rules: yup.string().required('Generic rules is required'),
-  field_children_rules: yup.string().required('Children rules is required'),
-});
-
-const EventCreateAdditional = () => {
+const EventCreateAdditional = ({ categoriesVenues }) => {
   const t = useTranslations('Panel_SideBar');
   const tc = useTranslations('Common_Forms');
+  const te = useTranslations('Ferrors');
+  const validationSchema = yup.object().shape({
+    // addressname: yup.string().required("Address name is required"),
+    searchaddress: yup.string(),
+    address: yup.string().required(te('required')),
+    address2: yup.string(),
+    zipcode: yup.string().required(te('required')),
+    country: yup.string().required(te('required')),
+    state: yup.string().required(te('required')),
+    city: yup.string().required(te('required')),
+    currency: yup.string().required(te('required')),
+    venue: yup.string().required(te('required')),
+    type: yup.string().required(te('required')),
+    quota: yup.string().required(te('required')),
+    url: yup.string().url(te('url')).required(te('required')),
+    generic_rules: yup.string().required(te('required')),
+    children_rules: yup.string().required(te('required')),
+    accessible: yup.boolean(),
+    facebook: yup.string().url(te('url')).required(te('required')),
+    instagram: yup.string().url(te('url')).required(te('required')),
+    twitter: yup.string().url(te('url')).required(te('required')),
+    cost: yup.number().required(te('required')),
+    box_office: yup.number().required(te('required')),
+    cash: yup.boolean(),
+    credit: yup.boolean(),
+    debit: yup.boolean(),
+    day: yup.array(
+      yup.object({
+        day: yup.string().required(te('required')),
+        start_at: yup.string().required(te('required')),
+        end_at: yup.string().required(te('required')),
+      })
+    ),
+  });
   const currentColor = CurrentColor();
 
   const [searchAddress, setSearchAddress] = useState('');
   const [markerPosition, setMarkerPosition] = useState(null);
   const [accessible, setAccessible] = useState(false);
-
+  const locale = useLocale();
   const {
     register,
     setValue,
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
+    control,
   } = useForm<Address>({
     resolver: yupResolver(validationSchema),
+    defaultValues: {
+      accessible: false,
+      cash: false,
+      credit: false,
+      debit: false,
+      day: [
+        {
+          day: '',
+          end_at: '',
+          start_at: '',
+        },
+      ],
+    },
   });
+
+  const {
+    fields: schedulesDays,
+    append: addDay,
+    remove: removeDay,
+  } = useFieldArray({
+    control,
+    name: 'day',
+  });
+  const { mutate: createEventVenue, error } = useCreateEventVenue();
+
+  const filteredCategories = categoriesVenues?.map((item) => ({
+    ...item,
+    category:
+      item.category.find((obj) => obj.lang == locale).name ||
+      item.category.find((obj) => obj.lang == 'es').name,
+  }));
 
   const breadcrumb = [
     { page: t('event.event'), href: '' },
@@ -72,6 +123,9 @@ const EventCreateAdditional = () => {
     setMarkerPosition(latLng);
   };
   const onSubmit = (data: Address) => {
+    try {
+      // createEventVenue()
+    } catch (e) {}
     console.log('form submited');
     console.log(data);
   };
@@ -99,7 +153,9 @@ const EventCreateAdditional = () => {
                   autoComplete={tc('field_venue')}
                   placeholder={tc('field_venue')}
                   className={FormStyles('input')}
+                  {...register('venue')}
                 />
+                <CustomError error={errors?.venue?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel field="type" name={tc('field_type')} />
@@ -108,9 +164,15 @@ const EventCreateAdditional = () => {
                   name="type"
                   className={FormStyles('select')}
                   defaultValue={''}
+                  {...register('type')}
                 >
-                  <option value="">{tc('field_type')}</option>
+                  {filteredCategories?.map((item) => (
+                    <option key={item._id} value={item.category}>
+                      {item.category}
+                    </option>
+                  ))}
                 </select>
+                <CustomError error={errors?.type?.message} />
               </div>
             </div>
 
@@ -134,7 +196,9 @@ const EventCreateAdditional = () => {
                   autoComplete={tc('field_quota')}
                   placeholder={tc('field_quota')}
                   className={FormStyles('input')}
+                  {...register('quota')}
                 />
+                <CustomError error={errors?.quota?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel field="url" name={tc('field_url')} />
@@ -146,6 +210,7 @@ const EventCreateAdditional = () => {
                     autoComplete={tc('field_url')}
                     placeholder={tc('field_url')}
                     className={FormStyles('input')}
+                    {...register('url')}
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <LinkIcon
@@ -154,6 +219,7 @@ const EventCreateAdditional = () => {
                     />
                   </div>
                 </div>
+                <CustomError error={errors?.url?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel
@@ -167,7 +233,9 @@ const EventCreateAdditional = () => {
                   autoComplete={tc('field_generic_rules')}
                   placeholder={tc('field_generic_rules')}
                   className={FormStyles('input')}
+                  {...register('generic_rules')}
                 />
+                <CustomError error={errors?.generic_rules?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel
@@ -181,14 +249,19 @@ const EventCreateAdditional = () => {
                   autoComplete={tc('field_children_rules')}
                   placeholder={tc('field_children_rules')}
                   className={FormStyles('input')}
+                  {...register('children_rules')}
                 />
+                <CustomError error={errors?.children_rules?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel field="accessible" name={tc('field_accessible')} />
                 <Switch.Group as="div" className="flex items-center">
                   <Switch
-                    checked={accessible}
-                    onChange={setAccessible}
+                    checked={watch('accessible')}
+                    onChange={(e) => {
+                      setAccessible(e);
+                      setValue('accessible', e);
+                    }}
                     className={classNames(
                       accessible ? `bg-${currentColor}` : `bg-gray-200`,
                       `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
@@ -197,12 +270,13 @@ const EventCreateAdditional = () => {
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        accessible ? 'translate-x-5' : 'translate-x-0',
+                        watch('accessible') ? 'translate-x-5' : 'translate-x-0',
                         'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                       )}
                     />
                   </Switch>
                 </Switch.Group>
+                <CustomError error={errors?.accessible?.message} />
               </div>
             </div>
 
@@ -218,6 +292,7 @@ const EventCreateAdditional = () => {
                     autoComplete={tc('field_facebook')}
                     placeholder={tc('field_facebook')}
                     className={FormStyles('input')}
+                    {...register('facebook')}
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <LinkIcon
@@ -226,6 +301,7 @@ const EventCreateAdditional = () => {
                     />
                   </div>
                 </div>
+                <CustomError error={errors?.facebook?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel field="instagram" name={tc('field_instagram')} />
@@ -237,6 +313,7 @@ const EventCreateAdditional = () => {
                     autoComplete={tc('field_instagram')}
                     placeholder={tc('field_instagram')}
                     className={FormStyles('input')}
+                    {...register('instagram')}
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <LinkIcon
@@ -245,6 +322,7 @@ const EventCreateAdditional = () => {
                     />
                   </div>
                 </div>
+                <CustomError error={errors?.instagram?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel field="twitter" name={tc('field_twitter')} />
@@ -256,6 +334,7 @@ const EventCreateAdditional = () => {
                     autoComplete={tc('field_twitter')}
                     placeholder={tc('field_twitter')}
                     className={FormStyles('input')}
+                    {...register('twitter')}
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <LinkIcon
@@ -264,6 +343,7 @@ const EventCreateAdditional = () => {
                     />
                   </div>
                 </div>
+                <CustomError error={errors?.twitter?.message} />
               </div>
             </div>
 
@@ -276,9 +356,12 @@ const EventCreateAdditional = () => {
                   name="currency"
                   className={FormStyles('select')}
                   defaultValue={''}
+                  {...register('currency')}
                 >
-                  <option value="">{tc('field_currency')}</option>
+                  <option value="MXN">MXN</option>
+                  <option value="USD">USD</option>
                 </select>
+                <CustomError error={errors?.currency?.message} />
               </div>
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel field="cost" name={tc('field_cost')} />
@@ -289,7 +372,9 @@ const EventCreateAdditional = () => {
                   autoComplete={tc('field_cost')}
                   placeholder={tc('field_cost')}
                   className={FormStyles('input')}
+                  {...register('cost')}
                 />
+                <CustomError error={errors?.cost?.message} />
               </div>
             </div>
 
@@ -309,7 +394,9 @@ const EventCreateAdditional = () => {
                       autoComplete={tc('field_box_office')}
                       placeholder={tc('field_box_office')}
                       className={FormStyles('input')}
+                      {...register('box_office')}
                     />
+                    <CustomError error={errors?.box_office?.message} />
                   </div>
                 </div>
               </div>
@@ -320,64 +407,75 @@ const EventCreateAdditional = () => {
                     <CustomLabel field="cash" name={tc('field_cash')} />
                     <Switch.Group as="div" className="flex items-center">
                       <Switch
-                        checked={accessible}
-                        onChange={setAccessible}
+                        checked={watch('cash')}
+                        onChange={(e) => {
+                          setValue('cash', e);
+                        }}
                         className={classNames(
-                          accessible ? `bg-${currentColor}` : `bg-gray-200`,
+                          watch('cash') ? `bg-${currentColor}` : `bg-gray-200`,
                           `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
                         )}
                       >
                         <span
                           aria-hidden="true"
                           className={classNames(
-                            accessible ? 'translate-x-5' : 'translate-x-0',
+                            watch('cash') ? 'translate-x-5' : 'translate-x-0',
                             'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                           )}
                         />
                       </Switch>
                     </Switch.Group>
+                    <CustomError error={errors?.cash?.message} />
                   </div>
                   <div className="col-span-12 sm:col-span-6 lg:col-span-4">
                     <CustomLabel field="credit" name={tc('field_credit')} />
                     <Switch.Group as="div" className="flex items-center">
                       <Switch
-                        checked={accessible}
-                        onChange={setAccessible}
+                        checked={watch('credit')}
+                        onChange={(e) => {
+                          setValue('credit', e);
+                        }}
                         className={classNames(
-                          accessible ? `bg-${currentColor}` : `bg-gray-200`,
+                          watch('credit')
+                            ? `bg-${currentColor}`
+                            : `bg-gray-200`,
                           `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
                         )}
                       >
                         <span
                           aria-hidden="true"
                           className={classNames(
-                            accessible ? 'translate-x-5' : 'translate-x-0',
+                            watch('credit') ? 'translate-x-5' : 'translate-x-0',
                             'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                           )}
                         />
                       </Switch>
                     </Switch.Group>
+                    <CustomError error={errors?.credit?.message} />
                   </div>
                   <div className="col-span-12 sm:col-span-6 lg:col-span-4">
                     <CustomLabel field="debit" name={tc('field_debit')} />
                     <Switch.Group as="div" className="flex items-center">
                       <Switch
-                        checked={accessible}
-                        onChange={setAccessible}
+                        checked={watch('debit')}
+                        onChange={(e) => {
+                          setValue('debit', e);
+                        }}
                         className={classNames(
-                          accessible ? `bg-${currentColor}` : `bg-gray-200`,
+                          watch('debit') ? `bg-${currentColor}` : `bg-gray-200`,
                           `relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-${currentColor} focus:ring-offset-2`
                         )}
                       >
                         <span
                           aria-hidden="true"
                           className={classNames(
-                            accessible ? 'translate-x-5' : 'translate-x-0',
+                            watch('debit') ? 'translate-x-5' : 'translate-x-0',
                             'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                           )}
                         />
                       </Switch>
                     </Switch.Group>
+                    <CustomError error={errors?.debit?.message} />
                   </div>
                 </div>
               </div>
@@ -386,41 +484,66 @@ const EventCreateAdditional = () => {
             <div className="mt-6 grid grid-cols-12 gap-6">
               <div className="col-span-6">Schedule</div>
               <div className="col-span-6 text-right">
-                <CustomAdd />
-              </div>
-              <div className="col-span-12 sm:col-span-4">
-                <CustomLabel field="day" name={tc('field_day')} />
-                <select
-                  id="day"
-                  name="v"
-                  className={FormStyles('select')}
-                  defaultValue={''}
+                <div
+                  onClick={() => addDay({ day: '', end_at: '', start_at: '' })}
                 >
-                  <option value="monday">{tc('field_day')}</option>
-                </select>
+                  <CustomAdd />
+                </div>
               </div>
-              <div className="col-span-12 sm:col-span-4">
-                <CustomLabel field="start" name={tc('field_start')} />
-                <input
-                  type="text"
-                  name="start"
-                  id="start"
-                  autoComplete={tc('field_start')}
-                  placeholder={tc('field_start')}
-                  className={FormStyles('input')}
-                />
-              </div>
-              <div className="col-span-12 sm:col-span-4">
-                <CustomLabel field="end" name={tc('field_end')} />
-                <input
-                  type="text"
-                  name="end"
-                  id="end"
-                  autoComplete={tc('field_end')}
-                  placeholder={tc('field_end')}
-                  className={FormStyles('input')}
-                />
-              </div>
+              {schedulesDays.map((item, idx) => (
+                <div
+                  className="grid grid-cols-12 gap-6 col-span-12"
+                  key={item.id}
+                >
+                  <div className="col-span-12 sm:col-span-4">
+                    <CustomLabel field="day" name={tc('field_day')} />
+                    <select
+                      id="day"
+                      name="v"
+                      className={FormStyles('select')}
+                      defaultValue={''}
+                      {...register(`day.${idx}.day`)}
+                    >
+                      <option value="monday">Monday</option>
+                      <option value="tuesday">Tuesday</option>
+                      <option value="wednesday">Wednesday</option>
+                      <option value="thursday">Thursday</option>
+                      <option value="friday">Friday</option>
+                      <option value="saturday">Saturday</option>
+                      <option value="sunday">Sunday</option>
+                    </select>
+                    <CustomError error={errors?.day?.[idx]?.day?.message} />
+                  </div>
+                  <div className="col-span-12 sm:col-span-4">
+                    <CustomLabel field="start" name={tc('field_start')} />
+                    <input
+                      type="time"
+                      name="start"
+                      id="start"
+                      autoComplete={tc('field_start')}
+                      placeholder={tc('field_start')}
+                      className={FormStyles('input')}
+                      {...register(`day.${idx}.start_at`)}
+                    />
+                    <CustomError
+                      error={errors?.day?.[idx]?.start_at?.message}
+                    />
+                  </div>
+                  <div className="col-span-12 sm:col-span-4">
+                    <CustomLabel field="end" name={tc('field_end')} />
+                    <input
+                      type="time"
+                      name="end"
+                      id="end"
+                      autoComplete={tc('field_end')}
+                      placeholder={tc('field_end')}
+                      className={FormStyles('input')}
+                      {...register(`day.${idx}.end_at`)}
+                    />
+                    <CustomError error={errors?.day?.[idx]?.end_at?.message} />
+                  </div>
+                </div>
+              ))}
             </div>
 
             <div className="mt-6 grid grid-cols-12 gap-6">
@@ -449,9 +572,11 @@ EventCreateAdditional.Layout = AdminLayout;
 export default EventCreateAdditional;
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  const categoriesVenues = await getEventsVenuesCategories();
   return {
     props: {
       messages: (await import(`@/messages/${locale}.json`)).default,
+      categoriesVenues,
     },
   };
 }

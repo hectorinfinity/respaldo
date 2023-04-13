@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useInfiniteQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useInfiniteQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   createEventVenue,
   deleteEventVenue,
@@ -18,4 +23,12 @@ export function useEventVenue(event_venue_id: string) {
   return useQuery<EventVenue>([key, event_venue_id], () =>
     readEventVenue(event_venue_id as any)
   );
+}
+
+export function useCreateEventVenue() {
+  const queryClient = useQueryClient();
+
+  return useMutation(createEventVenue, {
+    onSuccess: () => queryClient.invalidateQueries([key]),
+  });
 }

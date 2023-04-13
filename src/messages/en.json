@@ -690,7 +690,8 @@
   },
   "Main_Comment_Commons": "/////////////////////////////////////// Commons",
   "Ferrors": {
-    "required": "Required"
+    "required": "Required",
+    "url": "Invalid url"
   },
   "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
   "Card_Event_Queue": {
