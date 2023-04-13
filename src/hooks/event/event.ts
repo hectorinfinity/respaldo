@@ -11,11 +11,8 @@ import { WithDocs } from '@/interfaces/serializers/commons';
 
 const key = 'event';
 
-export function useEvents(pagination: { [key: string]: any } = {}) {
-  return useQuery<WithDocs<Event>>([key, pagination?.page], {
-    queryFn: () => getEvents(pagination),
-    keepPreviousData: true,
-  });
+export function useEvents() {
+  return useQuery<WithDocs<Event>>([key], getEvents);
 }
 
 export function useInfinteEvents(pagination: { [key: string]: any } = {}) {
