@@ -635,7 +635,18 @@
 
     "field_requested": "Requested At",
     "field_accept": "Accept",
-    "field_comment": "Comment"
+    "field_comment": "Comment",
+    "field_venue": "Venue name",
+    "field_generic_rules": "Generic Rules",
+    "field_children_rules": "Children Rules",
+    "field_accessible": "Accessible Seats",
+    "field_currency": "Currency",
+    "field_cost": "Cost",
+    "field_box_office": "Number",
+    "field_cash": "Cash",
+    "field_credit": "Credit",
+    "field_debit": "Debit Card",
+    "field_day": "Day"
   },
   "Public_Comment": "/////////////////////////////////////// Public Comment",
   "Public": {
@@ -679,7 +690,8 @@
   },
   "Main_Comment_Commons": "/////////////////////////////////////// Commons",
   "Ferrors": {
-    "required": "Required"
+    "required": "Required",
+    "url": "Invalid url"
   },
   "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
   "Card_Event_Queue": {
