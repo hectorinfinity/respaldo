@@ -102,7 +102,7 @@ type Props = {
 };
 
 const EventCreate = ({ categories, specialCategories, suppliers }: Props) => {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(0);
   const t = useTranslations('Panel_SideBar');
   const te = useTranslations('Ferrors');
   const ts = useTranslations('Fsuccess')
