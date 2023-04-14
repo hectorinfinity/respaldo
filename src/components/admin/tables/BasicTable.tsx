@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   getFilteredRowModel,
@@ -39,17 +39,23 @@ type Props = {
 
 export const BasicTable = ({
   columns,
-  defaultData = [],
+  defaultData,
   addSchedule = false,
   deleteOption,
   exportOption,
 }: Props) => {
   const t = useTranslations('table');
   const currentColor = CurrentColor();
-  const [data, setData] = useState(() => defaultData);
+  const [data, setData] = useState([]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
   const [globalFilter, setGlobalFilter] = useState('');
+
+  useEffect(() => {
+    if (defaultData) {
+      setData(defaultData);
+    }
+  }, [defaultData]);
 
   const table = useReactTable({
     data,

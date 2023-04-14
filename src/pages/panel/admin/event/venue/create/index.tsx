@@ -27,6 +27,7 @@ import { Address } from '@/interfaces/serializers/commons';
 import { useCreateEventVenue } from '@/hooks/event/event_venue';
 import { useEventVenueCategories } from '@/hooks/event/event_venue_category';
 import { getEventsVenuesCategories } from '@/api/event/event_venue_category';
+import { toast } from 'react-toastify';
 
 const EventCreateAdditional = ({ categoriesVenues }) => {
   const t = useTranslations('Panel_SideBar');
@@ -37,31 +38,31 @@ const EventCreateAdditional = ({ categoriesVenues }) => {
     searchaddress: yup.string(),
     address: yup.string().required(te('required')),
     address2: yup.string(),
-    zipcode: yup.string().required(te('required')),
+    zipcode: yup.string().max(5).required(te('required')),
     country: yup.string().required(te('required')),
     state: yup.string().required(te('required')),
     city: yup.string().required(te('required')),
-    currency: yup.string().required(te('required')),
-    venue: yup.string().required(te('required')),
+    currency: yup.string(),
+    venue: yup.string(),
     type: yup.string().required(te('required')),
-    quota: yup.string().required(te('required')),
-    url: yup.string().url(te('url')).required(te('required')),
-    generic_rules: yup.string().required(te('required')),
-    children_rules: yup.string().required(te('required')),
+    quota: yup.string(),
+    url: yup.string().url(te('url')),
+    generic_rules: yup.string(),
+    children_rules: yup.string(),
     accessible: yup.boolean(),
-    facebook: yup.string().url(te('url')).required(te('required')),
-    instagram: yup.string().url(te('url')).required(te('required')),
-    twitter: yup.string().url(te('url')).required(te('required')),
-    cost: yup.number().required(te('required')),
-    box_office: yup.number().required(te('required')),
+    facebook: yup.string().url(te('url')),
+    instagram: yup.string().url(te('url')),
+    twitter: yup.string().url(te('url')),
+    cost: yup.number(),
+    box_office: yup.number(),
     cash: yup.boolean(),
     credit: yup.boolean(),
     debit: yup.boolean(),
     day: yup.array(
       yup.object({
-        day: yup.string().required(te('required')),
-        start_at: yup.string().required(te('required')),
-        end_at: yup.string().required(te('required')),
+        day: yup.string(),
+        start_at: yup.string(),
+        end_at: yup.string(),
       })
     ),
   });
@@ -123,11 +124,69 @@ const EventCreateAdditional = ({ categoriesVenues }) => {
     setMarkerPosition(latLng);
   };
   const onSubmit = (data: Address) => {
-    try {
-      // createEventVenue()
-    } catch (e) {}
-    console.log('form submited');
-    console.log(data);
+    createEventVenue({
+      category_id: filteredCategories.find((item) => item.category == data.type)
+        ._id,
+      name: data.venue,
+      address: {
+        latitude: data.latitude,
+        longitude: data.longitude,
+        address: data.address,
+        address2: data.address2,
+        city: data.city,
+        state: {
+          // @ts-ignore
+          long_name: data.state,
+          short_name: data.short_state,
+        },
+        country: {
+          // @ts-ignore
+          long_name: data.country,
+          short_name: data.short_country,
+        },
+        zipcode: data.zipcode,
+      },
+      info: {
+        quota: data.quota,
+        url: data.url,
+        social_media: {
+          facebook: data.facebook,
+          instagram: data.instagram,
+          twitter: data.twitter,
+        },
+        parking: {
+          currency: data.currency,
+          cost: data.cost,
+        },
+        box_office: {
+          number: `${data.box_office}`,
+          // @ts-ignore
+          schedule: data.day.map((item) => {
+            const [startHours, startMinutes] = item.start_at.split(':');
+            const [endHours, endMinutes] = item.end_at.split(':');
+            const startDate = new Date();
+            const endDate = new Date();
+            startDate.setHours(parseInt(startHours));
+            startDate.setMinutes(parseInt(startMinutes));
+            endDate.setHours(parseInt(endHours));
+            endDate.setMinutes(parseInt(endMinutes));
+            return {
+              ...item,
+              end_at: endDate,
+              start_at: startDate,
+            };
+          }),
+          payment: {
+            cash: data.cash,
+            card: data.credit,
+            debit: data.debit,
+          },
+        },
+        accessible_seats: data.accessible,
+        generic_rules: data.generic_rules,
+        children_rules: data.children_rules,
+      },
+    });
   };
   return (
     <>
@@ -366,7 +425,7 @@ const EventCreateAdditional = ({ categoriesVenues }) => {
               <div className="col-span-12 sm:col-span-6 lg:col-span-6">
                 <CustomLabel field="cost" name={tc('field_cost')} />
                 <input
-                  type="text"
+                  type="number"
                   name="cost"
                   id="cost"
                   autoComplete={tc('field_cost')}
