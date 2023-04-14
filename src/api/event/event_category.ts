@@ -7,7 +7,7 @@ export const getEventsCategories = async () => {
 };
 
 export const createEventCategory = async (category: EventCategory) => {
-    const { data } = await axios.post(`/events/categories/`, category);
+    const { data } = await axios.post(`/events/categories`, category);
 
     return data;
 }

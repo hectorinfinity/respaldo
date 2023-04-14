@@ -11,7 +11,7 @@ import ListCardEventRecommendation from '@/components/main/commons/ListCardEvent
 import CardEventDetails from '@/components/main/event/CardEventDetails';
 import CardEventLocation from '@/components/main/event/CardEventLocation';
 import SidebarEvent from '@/components/main/event/SidebarEvent';
-import { useEventCategory } from '@/hooks/event/category';
+import { useEventCategory } from '@/hooks/event/event_category';
 import { useEvent, useEvents } from '@/hooks/event/event';
 import { useEventScheduleTimetable } from '@/hooks/event/event_schedules_timetables';
 import { useEventSeatmap, useEventSeatmaps } from '@/hooks/event/event_seatmap';

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import AdminLayout from "@/components/layout/admin";
 // Components
 import { Heading } from '@/components/headers/admin/heading';
-import { PromoterDashboard, TicketDashboard, UserDashboard } from '@/components/admin/dashboards';
+import { PosDashboard, PromoterDashboard, TicketDashboard, UserDashboard } from '@/components/admin/dashboards';
 
 const Panel = () => {
     const ts = useTranslations("Panel_SideBar");
