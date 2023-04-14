@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
-import { useTranslations } from "next-intl";
+import { useLocale,useTranslations } from "next-intl";
 import Link from 'next/link';
+
 // Helpers
 import { CurrentColor, FormStyles } from '@/helpers';
 // Icons
@@ -10,7 +11,8 @@ import { CustomLabel } from '@/components/forms';
 type Props = {
     breadcrumb: Breadcrumb[],
     buttonBread?: buttonBread | null,
-    langBread?: boolean
+    langBread?: boolean,
+    onChange?:React.ChangeEventHandler<HTMLSelectElement>
 }
 
 interface Breadcrumb {
@@ -23,7 +25,8 @@ interface buttonBread {
     href: string
 }
 
-export const Heading = ({ breadcrumb, buttonBread = null, langBread }: Props) => {
+export const Heading = ({ breadcrumb, buttonBread = null, langBread ,onChange}: Props) => {
+    const locale = useLocale();
     const { locales } = useRouter();
     const currentColor = CurrentColor();
     const t = useTranslations("Common_Forms");
@@ -78,7 +81,8 @@ export const Heading = ({ breadcrumb, buttonBread = null, langBread }: Props) =>
                                 id="lang"
                                 name="lang"
                                 className={FormStyles('select')}
-                                defaultValue={''}
+                                defaultValue={locale}
+                                onChange={onChange}
                             >
                                 {locales.map((l, i) => {
                                     return (

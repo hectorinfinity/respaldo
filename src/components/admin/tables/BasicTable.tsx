@@ -100,15 +100,18 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOp
                     </div>
                     ): ''}
                 </div>
-                { Object.keys(rowSelection).length > 0 && (deleteOption && exportOption) ? (
+              
+                { /*Object.keys(rowSelection).length > 0 && (deleteOption && exportOption) ? (
                     <div className="mt-3 flex sm:mt-0 sm:ml-4">
                         { deleteOption ? (
                         <button
                         type="button" 
                         
+                        
                         className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                         >
                             <TrashIcon className={`w-4 h-4 mr-2`}/>({Object.keys(rowSelection).length})
+                            
                         </button>
                         ) : '' }
                         { exportOption ? (
@@ -120,7 +123,7 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOp
                         </button>
                         ) : '' }
                     </div>
-                    ) : ('')
+                    ) : ('')*/
                 }
             </div>
             <table className="min-w-full divide-y divide-gray-300">
@@ -166,6 +169,8 @@ export const BasicTable = ({ columns, defaultData, addSchedule = false, deleteOp
                             {row.getVisibleCells().map(cell => (
                                 <td key={cell.id} className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    {console.log('column',cell.column.columnDef.cell)}
+                                    {console.log('context',cell.getContext())}
                                 </td>
                             ))}
                         </tr>

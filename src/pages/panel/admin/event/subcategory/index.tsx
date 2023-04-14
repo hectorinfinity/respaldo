@@ -10,6 +10,12 @@ import { columnsCategory } from '@/components/admin/tables/columns/columnsCatego
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
 import { EventSubcategory as EventSubcategoryInterface } from '@/interfaces/event';
+//hooks
+import {useSubCategories,
+    useCreateEventSubcategory,
+    useReadEventSubcategory,
+    useUpdateEventCategory,
+    useDeleteEventCategory} from '@/hooks/event/event_subcategory';
 
 const EventSubcategory = () => {
     const t = useTranslations("table_columns");
@@ -22,11 +28,20 @@ const EventSubcategory = () => {
         { page: ts('admin.event.subcategory'), href: '' }
     ]
     const buttonBread =  { text: tb('add_event_subcategory'), href: '/panel/admin/event/subcategory/create' }
-
-    const data = useMemo(() => [
-        { id: '1', category: 'Rock', status: true },
-        { id: '2', category: 'Pop', status: true },
-    ], []);
+    
+    
+    const {isError,isLoading,data}=useSubCategories()
+    let dataTableE = [];
+    data?.map((item) => {
+        let dataIn = {
+            id: item.id,
+            icon: item.picture,
+            category: item.category.find((obj) => obj.lang == locale)?.name,
+            status: item.status
+        }
+        dataTableE.push(dataIn)
+    })
+    
     const columns = columnsCategory(t('admin.event.subcategory'));
    
     return (
@@ -42,7 +57,7 @@ const EventSubcategory = () => {
                             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                                     <div className="min-w-full divide-y divide-gray-300">
-                                        <BasicTable columns={columns} defaultData={data} />
+                                        <BasicTable columns={columns} defaultData={dataTableE} />
                                     </div>
                                 </div>
                             </div>

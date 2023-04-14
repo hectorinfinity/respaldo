@@ -19,7 +19,7 @@ import { EventCategory } from '@/interfaces/event';
 //icon
 import {ArrowPathIcon} from '@heroicons/react/24/outline';
 /*Hooks */
-import {useCreateCategories} from '@/hooks/admin/event/category';
+import {useMutationCreateEventCategory} from '@/hooks/event/event_category';
  
 
 const EventCreateCategory = () => {
@@ -34,7 +34,7 @@ const EventCreateCategory = () => {
         { page: t('admin.event.category'), href: '/panel/admin/event/category' },
         { page: t('actions.create'), href: '' }
     ];
-    const {mutate, isLoading, isError, isSuccess}= useCreateCategories()
+    const {mutate, isLoading, isError, isSuccess}= useMutationCreateEventCategory()
 
     const { register, handleSubmit,setValue, formState: { errors }, reset } = useForm<EventCategory >();
 
@@ -76,10 +76,10 @@ const EventCreateCategory = () => {
     
     const onSubmit:SubmitHandler<EventCategory >= (data:EventCategory )=>{
         setData(data) 
-        console.log()
-        const formData= new FormData
-        console.log(formData.getAll('color'))
-        mutate(data)
+      console.log(data)
+      console.log(dataCategory)
+        mutate(dataCategory)
+        
     console.log(isLoading?'cargando':'listo')
     console.log(isError?'error':'hay error')
     console.log(isSuccess?'success':'no success')
@@ -87,26 +87,23 @@ const EventCreateCategory = () => {
    
     
     
-
+const[category,setCategory]=useState( {lang:'', name:''})
+console.log(category)
 /*Lang*/
 const[lang ,setlang]=useState('en')
+
 const LangSelect:React.ChangeEventHandler<HTMLSelectElement> = (e:any)=>{
     const Lang=e.target.value;
     setlang(Lang==='en'?'en':'es')
-    if(lang==='en'){
-    setValue( `category.${0}.lang`, Lang )
-    }else if(lang==='es'){
-    setValue( `category.${1}.lang`, Lang )
-    }
     
 }
 /*Name*/
 const handleName:React.ChangeEventHandler<HTMLInputElement> = (e:any)=>{
     const Name=e.target.value;
     if(lang==='en'){
-        setValue( `category.${1}.name`, Name )
+        setCategory(...category.lang)
     }else if(lang==='es'){
-        setValue( `category.${0}.name`, Name )
+       
     }
         
 }

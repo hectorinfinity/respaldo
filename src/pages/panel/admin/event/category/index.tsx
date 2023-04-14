@@ -10,7 +10,7 @@ import { columnsEventCategory } from '@/components/admin/tables/columns/columnsE
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
 import { EventCategory as EventCategoryInterface } from '@/interfaces/event';
-import { useCategories, useDeleteEventCategory,useUpdateEventCategory} from '@/hooks/admin/event/category';
+import { useCategories, useDeleteEventCategory,useUpdateEventCategory} from '@/hooks/event/event_category';
 
 export interface dataTable {
     id: string, 
@@ -32,8 +32,10 @@ const  EventCategory = () => {
             status: item.status
         }
         dataTableE.push(dataIn)
+        console.log('dataitems', item)
     })
-    console.log(dataTableE)
+    
+    
 
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");

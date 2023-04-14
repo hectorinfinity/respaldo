@@ -8,9 +8,12 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import { EventCategory } from '@/interfaces/event';
 
 import { useForm, SubmitHandler, UseFormRegister } from "react-hook-form";
+type Props ={
+    lang: string , 
+    onChange:React.ChangeEventHandler<HTMLInputElement> 
+}
 
-
-export const InputLang = (lang: string , onChange:React.ChangeEventHandler<HTMLInputElement> ) => {
+export const InputLang = ({lang, onChange}:Props) => {
     const t = useTranslations("Common_Forms");
 
     return (
