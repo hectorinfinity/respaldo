@@ -90,8 +90,10 @@ export const AddressForm = ({
               autoComplete={tc('auto_searchaddress')}
               placeholder={tc('field_searchaddress')}
               className={FormStyles('input')}
+              {...register('field_searchaddress')}
             />
           </Autocomplete>
+          <CustomError error={errors?.field_searchaddress?.message} />
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 /** @format */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 // Layout and Header
@@ -16,8 +16,6 @@ import { updateUser } from "@/api/user/user";
 import { useMutationUpdateUser } from "@/hooks/user/user";
 import { useQueryClient } from "@tanstack/react-query";
 import { User } from "@/interfaces/user";
-
-
 
 const validationSchema = yup.object().shape({
     business_name: yup.string().required('Business name is required'),
@@ -42,9 +40,18 @@ const ProfileBilling = () => {
     const { mutate: updateUser, isError, error } = useMutationUpdateUser();
     if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(validationSchema),
     });
+
+    useEffect(() => {
+        if (user?.tax_data) {
+            setValue("business_name", user?.tax_data?.business_name)
+            setValue("rfc", user?.tax_data?.rfc)
+            setValue("cfdi", user?.tax_data?.cfdi)
+            setValue("zipcode", user?.tax_data?.zipcode)
+        }
+    }, [user])
 
     const onSubmitHandler = (data: Tax) => {
         console.log("DATA BILLING:", JSON.stringify(data, null, 2))
@@ -54,15 +61,11 @@ const ProfileBilling = () => {
             zipcode: data.zipcode,
             cfdi: data.cfdi
         }
-        const updatedData = { ...user, tax_data: tax_data }
+        const updatedData = { tax_data: tax_data, uid: user?.uid }
         // setSubmitted(false);
         // setSubmittedError(true);
         updateUser(updatedData)
-        // console.log({ data });
-        // reset();
-        // Handle Submit Form
     };
-
 
     return (
         <>

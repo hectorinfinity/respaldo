@@ -52,7 +52,6 @@ const Search = ({ categories }) => {
 
   useEffect(() => {
     setPagination(queryObj);
-    refetch();
   }, [
     query,
     queryObj?.category,
@@ -116,20 +115,28 @@ const Search = ({ categories }) => {
                 <p>{t('commons.check_words')}</p>
                 <hr className="border-gray-400" />
               </div>
-
-              <ListCardEvent
-                categories={categories}
-                className="col-span-6 md:col-span-4"
-                loading={isLoading}
-                layout="grid"
-                setCurrentPage={setCurrentPage}
-                setPageSize={setPageSize}
-                totalDocs={data?.pages?.[0]?.total}
-                isFetchingNextPage={isFetchingNextPage}
-                hasNextPage={hasNextPage}
-                fetchNextPage={fetchNextPage}
-                title={t('commons.recommended_events')}
-                items={data?.pages?.flatMap((page) =>
+            )}
+            <ListCardEvent
+              categories={categories}
+              className="col-span-6 md:col-span-4"
+              loading={isLoading}
+              layout="grid"
+              setCurrentPage={setCurrentPage}
+              setPageSize={setPageSize}
+              totalDocs={data?.pages?.[0]?.total}
+              isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
+              fetchNextPage={fetchNextPage}
+              title={
+                query != ''
+                  ? t('commons.results', {
+                      query,
+                      length: data?.pages?.[0]?.total,
+                    })
+                  : t('commons.recommended_events')
+              }
+              items={
+                data?.pages?.flatMap((page) =>
                   page.items.map((item) => ({
                     image: 'https://loremflickr.com/640/480/cats',
                     name:
@@ -142,25 +149,8 @@ const Search = ({ categories }) => {
                     color: item.category_id?.color,
                     id: item._id,
                   }))
-                )}
-                {...useFormReturn}
-              />
-            </div>
-          ) : (
-            <ListCardEvent
-              categories={categories}
-              className="col-span-6 md:col-span-4"
-              loading={isLoading}
-              layout="grid"
-              setCurrentPage={setCurrentPage}
-              setPageSize={setPageSize}
-              totalDocs={data?.pages?.[0]?.total}
-              isFetchingNextPage={isFetchingNextPage}
-              hasNextPage={hasNextPage}
-              fetchNextPage={fetchNextPage}
-              title={t('commons.recommended_events')}
-              items={data?.pages?.flatMap((page) =>
-                page.items.map((item) => ({
+                ) ||
+                events?.data?.items?.map((item) => ({
                   image: 'https://loremflickr.com/640/480/cats',
                   name:
                     item.content.find((obj) => obj.lang == locale)?.name ||
@@ -172,10 +162,10 @@ const Search = ({ categories }) => {
                   color: item.category_id?.color,
                   id: item._id,
                 }))
-              )}
+              }
               {...useFormReturn}
             />
-          )}
+          </div>
         </div>
 
         <CardAdvertisment
