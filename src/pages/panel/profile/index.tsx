@@ -35,6 +35,7 @@ const validationSchema = yup.object().shape({
 
 const Profile = () => {
     // const currentColor = CurrentColor();
+    const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const t = useTranslations("Panel_SideBar");
     const tc = useTranslations("Common_Forms");
     const tb = useTranslations("btn");
@@ -42,6 +43,28 @@ const Profile = () => {
     const { register, handleSubmit, control, formState: { errors }, setValue } = useForm<User>({
         resolver: yupResolver(validationSchema),
     });
+
+    const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files && event.target.files[0];
+        if (file) {
+            // Generate a random 64-character filename with the appropriate file extension
+            const fileExtension = file.name.split('.').pop();
+            const randomFilename = `${generateRandomString(64)}.${fileExtension}`;
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                // Save the image URL in the database
+                // Replace this example URL with your actual image storage URL
+                const imageURL = `https://url.com/public/image/${randomFilename}`;
+                console.log("imageURL", imageURL)
+                // Save the imageURL to the database here
+
+                // Update the image preview
+                setUploadedImage(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const { fields, append, remove } = useFieldArray({
         control,
@@ -97,6 +120,15 @@ const Profile = () => {
         { value: 'male', name: "Male" },
         { value: 'female', name: "Female" },
     ]
+
+    const generateRandomString = (length: number) => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return result;
+    };
 
     return (
         <>
@@ -209,14 +241,15 @@ const Profile = () => {
                                             className="inline-block h-12 w-12 flex-shrink-0 overflow-hidden rounded-full"
                                             aria-hidden="true"
                                         >
-                                            <img className="h-full w-full rounded-full" src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80" alt="" />
+                                            <img className="h-full w-full rounded-full" src={uploadedImage || "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80"} alt="profile_image" />
                                         </div>
                                         <div className="relative ml-5">
                                             <input
                                                 id="mobile-user-photo"
                                                 name="user-photo"
                                                 type="file"
-                                                className="peer absolute h-full w-full rounded-md opacity-0"
+                                                className="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0"
+                                                onChange={uploadImage}
                                             />
                                             <label
                                                 htmlFor="mobile-user-photo"
@@ -226,6 +259,7 @@ const Profile = () => {
                                                 <span className="sr-only">{tc('rs_photo')}</span>
                                             </label>
                                         </div>
+
                                     </div>
                                 </div>
 
