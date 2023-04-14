@@ -32,7 +32,6 @@ const CreateEventStep3 = () => {
   const {
     register,
     formState: { errors },
-    control,
     watch,
   } = useFormContext();
   const tc = useTranslations('Common_Forms');
