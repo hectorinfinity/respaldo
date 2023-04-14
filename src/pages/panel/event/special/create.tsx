@@ -182,7 +182,7 @@ const EventCreateSpecialCategory = () => {
                                     </div>
                                 </div>
                             </div>
-                            <NameDescLang lang="es" />
+                            <NameDescLang index={1} />
                         </div>
 
                         {/* Buttons section */}

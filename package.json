@@ -54,6 +54,7 @@
     "react-color": "^2.19.3",
     "react-docgen-typescript": "^2.2.2",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-firebaseui": "^6.0.0",
     "react-hook-form": "^7.43.2",
     "react-multi-date-picker": "^3.3.4",

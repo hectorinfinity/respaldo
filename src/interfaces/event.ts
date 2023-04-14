@@ -175,6 +175,7 @@ export interface EventSpecialCategory {
     };
     description: string;
   };
+  description:string
 }
 
 export interface EventSubcategory {
@@ -191,6 +192,7 @@ export interface EventSubsubcategory {
 }
 
 export interface EventSupplier {
+  _id: string;
   user_id?: string | null;
   name: string;
   url: string;

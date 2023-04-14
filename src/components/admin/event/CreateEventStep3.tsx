@@ -8,138 +8,156 @@ import { Heading } from '@/components/headers/admin/heading';
 import { BasicTable } from '@/components/admin/tables';
 import { ColumnsEventCreate } from '@/components/admin/tables/columns/columnsEventCreate';
 // Forms
-import { useForm, UseFormReturn } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import {
-  CustomError,
-  CustomLabel,
-  CustomCancel,
-  CustomSubmit,
-} from '@/components/forms';
+import { useFormContext, useFieldArray } from 'react-hook-form';
+import { CustomError, CustomLabel } from '@/components/forms';
 import { FormStyles } from '@/helpers';
 import { AddSchedule } from '@/components/forms/forms';
+import { format } from 'date-fns';
+import formatNumber from 'format-number';
 
-type Props = UseFormReturn;
-const CreateEventStep3: React.FC<Props> = () => {
-  const t = useTranslations('Panel_SideBar');
+type Schedule = {
+  start_at: Date;
+  end_at: Date;
+  costs: {
+    cost: number;
+    lower: number;
+    high: number;
+  };
+  urls: {
+    ticket: string;
+    streaming: string;
+  };
+};
+const CreateEventStep3 = () => {
+  const {
+    register,
+    formState: { errors },
+    control,
+    watch,
+  } = useFormContext();
   const tc = useTranslations('Common_Forms');
-
-  const breadcrumb = [
-    { page: t('event.event'), href: '' },
-    { page: t('actions.create'), href: '' },
-  ];
-
+  const [dialogSchedule, setDialogSchedule] = useState(false);
+  const [schedules, setSchedules] = useState<Schedule[]>([]);
+  const [date_type] = watch(['date_type']);
   const data = useMemo(
-    () => [
-      {
-        id: '1',
-        date: '2023-02-02',
-        initial_hour: '16:00',
-        final_hour: '18:00',
-        low_cost: '400',
-        regular_cost: '400',
-        hight_cost: '400',
-        url: 'https://url.com',
-        streaming: 'https://url.com',
+    () =>
+      schedules.map(({ start_at, end_at, costs, urls }, idx) => ({
+        id: idx,
+        date: format(start_at, 'yyyy-mm-dd'),
+        initial_hour: format(start_at, 'hh:mm'),
+        final_hour: format(end_at, 'hh:mm'),
+        low_cost: costs?.lower
+          ? formatNumber({ prefix: '$' })(costs?.lower)
+          : 0,
+        regular_cost: costs?.cost
+          ? formatNumber({ prefix: '$' })(costs?.cost)
+          : 0,
+        hight_cost: costs?.high
+          ? formatNumber({ prefix: '$' })(costs?.high)
+          : 0,
+        url: urls?.ticket,
+        streaming: urls?.streaming,
         status: true,
-      },
-      {
-        id: '2',
-        date: '2023-02-02',
-        initial_hour: '20:00',
-        final_hour: '22:00',
-        low_cost: '400',
-        regular_cost: '400',
-        hight_cost: '400',
-        url: 'https://url.com',
-        streaming: 'https://url.com',
-        status: true,
-      },
-    ],
-    []
+      })),
+    [schedules]
   );
   const columns = ColumnsEventCreate();
 
   return (
-    <>
-      {/* Breadcrumb section */}
-      <div>
-        <Heading breadcrumb={breadcrumb} />
-      </div>
-      <div className="flex flex-1 pt-6">
-        <div className="w-screen min-h-0 overflow-hidden">
-          <form className="lg:col-span-9" action="#" method="POST">
-            <div className="grid grid-cols-12 gap-6">
-              <div className="flex items-center pl-2">
-                <input
-                  name="date_type"
-                  type="radio"
-                  defaultChecked={true}
-                  className={FormStyles('radio')}
-                />
-                <span className="ml-3">
-                  <CustomLabel field="range" name={tc('field_defined')} />
-                </span>
-              </div>
-              <div className="flex items-center pl-20 md:pl-10 lg:pl-2">
-                <input
-                  name="date_type"
-                  type="radio"
-                  defaultChecked={false}
-                  className={FormStyles('radio')}
-                />
-                <span className="ml-3">
-                  <CustomLabel field="range" name={tc('field_range')} />
-                </span>
-              </div>
-            </div>
-            <div className="mt-6 grid grid-cols-12 gap-6">
-              <div className="col-span-12 sm:col-span-6">
-                <CustomLabel
-                  field="initial_date"
-                  name={tc('field_initial_date')}
-                  required
-                />
-                <input
-                  type="text"
-                  name="initial_date"
-                  id="initial_date"
-                  autoComplete={tc('field_initial_date')}
-                  placeholder={tc('field_initial_date')}
-                  className={FormStyles('input')}
-                />
-              </div>
-              <div className="col-span-12 sm:col-span-6">
-                <CustomLabel field="final_date" name={tc('field_final_date')} />
-                <input
-                  type="text"
-                  name="final_date"
-                  id="final_date"
-                  autoComplete={tc('field_final_date')}
-                  placeholder={tc('field_final_date')}
-                  className={FormStyles('input')}
-                />
-              </div>
-            </div>
-            <div className="mt-6 grid grid-cols-12 gap-6">
-              <div className="col-span-12 sm:col-span-12">
-                <BasicTable columns={columns} defaultData={data} addSchedule />
-              </div>
-            </div>
-
-            {/* Buttons section */}
-            <div className="divide-y divide-gray-200 pt-6">
-              <div className="mt-4 flex justify-end gap-x-3 py-4 px-4 sm:px-6">
-                <CustomCancel />
-                <CustomSubmit />
-              </div>
-            </div>
-            <AddSchedule />
-          </form>
+    <div>
+      <div className="grid grid-cols-12 gap-6">
+        <div className="flex items-center pl-2">
+          <input
+            type="radio"
+            value="define"
+            className={FormStyles('radio')}
+            {...register('date_type')}
+          />
+          <span className="ml-3">
+            <CustomLabel field="range" name={tc('field_defined')} />
+          </span>
+        </div>
+        <div className="flex items-center pl-20 md:pl-10 lg:pl-2">
+          <input
+            type="radio"
+            value="range"
+            className={FormStyles('radio')}
+            {...register('date_type')}
+          />
+          <span className="ml-3">
+            <CustomLabel field="range" name={tc('field_range')} />
+          </span>
         </div>
       </div>
-    </>
+      <div className="mt-6 grid grid-cols-12 gap-6">
+        <div className="col-span-12 sm:col-span-6">
+          <CustomLabel
+            field="initial_date"
+            name={tc('field_initial_date')}
+            required
+          />
+          <input
+            type="date"
+            name="initial_date"
+            id="initial_date"
+            autoComplete={tc('field_initial_date')}
+            placeholder={tc('field_initial_date')}
+            className={FormStyles('input')}
+            {...register('event_dates.dates.range.start_at', {
+              valueAsDate: true,
+            })}
+          />
+          {errors?.['event_dates']?.['dates']?.['range']?.['start_at'] && (
+            <CustomError
+              error={
+                errors?.['event_dates']?.['dates']?.['range']?.['start_at']
+                  ?.message
+              }
+            />
+          )}
+        </div>
+        {date_type == 'range' && (
+          <div className="col-span-12 sm:col-span-6">
+            <CustomLabel field="final_date" name={tc('field_final_date')} />
+            <input
+              type="date"
+              name="final_date"
+              id="final_date"
+              autoComplete={tc('field_final_date')}
+              placeholder={tc('field_final_date')}
+              className={FormStyles('input')}
+              {...register('event_dates.dates.range.end_at', {
+                valueAsDate: true,
+              })}
+            />
+            {errors?.['event_dates']?.['dates']?.['range']?.['end_at'] && (
+              <CustomError
+                error={
+                  errors?.['event_dates']?.['dates']?.['range']?.['end_at']
+                    ?.message
+                }
+              />
+            )}
+          </div>
+        )}
+      </div>
+      <div className="mt-6 grid grid-cols-12 gap-6">
+        <div className="col-span-12 sm:col-span-12">
+          <BasicTable
+            columns={columns}
+            defaultData={data}
+            addSchedule
+            setDialogSchedule={setDialogSchedule}
+          />
+        </div>
+      </div>
+
+      <AddSchedule
+        open={dialogSchedule}
+        setOpen={setDialogSchedule}
+        setSchedules={setSchedules}
+      />
+    </div>
   );
 };
 
