@@ -1,6 +1,7 @@
 import {
   Address,
   BasicTranslate,
+  Collection,
   Content,
   OrderGateway,
   SocialMedia,
@@ -207,14 +208,17 @@ export interface EventTag {
 }
 
 export interface EventVenue {
-  category_id: string;
+  _id: string;
+  category_id: Collection;
   name: string;
   address: Address;
   info?: EventVenueInfo | null;
   status?: boolean;
+  created_at: string;
 }
 
 export interface EventVenueCategory {
   category: BasicTranslate[];
   status?: boolean;
+  _id: string;
 }

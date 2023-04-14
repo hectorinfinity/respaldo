@@ -10,7 +10,6 @@ import { CustomCard } from '@/components/admin/profile/customCard';
 import { useUserCard } from "@/hooks/user/user_card"
 import { useQueryClient } from "@tanstack/react-query";
 import { User } from "@/interfaces/user";
-import { getUserCache } from "@/hooks/user/user";
 
 
 const ProfileCard = () => {

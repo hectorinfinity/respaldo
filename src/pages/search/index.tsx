@@ -41,25 +41,15 @@ const Search = ({ categories }) => {
     data,
     fetchNextPage,
     hasNextPage,
-    isFetching,
     isFetchingNextPage,
-    status,
-    error,
     isLoading,
+    refetch,
   } = useInfinteEvents({
     searchword: queryObj?.category,
     searchkey: query,
     page: pagination?.page,
     size: pagination?.size,
   });
-  const events = useEvents({
-    searchword: queryObj?.category,
-    searchkey: query,
-    page: pagination?.page,
-    size: pagination?.size,
-  });
-  const refetch = events?.refetch;
-
   const category = categories?.find((item) =>
     item.category.find((obj) => obj.name == queryObj?.category)
   );
@@ -119,9 +109,7 @@ const Search = ({ categories }) => {
             className="hidden col-span-2 md:block sticky top-0"
             {...useFormReturn}
           />
-          {events?.data?.items?.length == 0 &&
-          isLoading == false &&
-          query != '' ? (
+          {data?.pages?.length == 0 && isLoading == false && query != '' ? (
             <div className="col-span-6 space-y-10 md:col-span-4">
               <div className="flex flex-col gap-2">
                 <Title level="h5">
@@ -193,7 +181,7 @@ const Search = ({ categories }) => {
             />
           )}
         </div>
-      
+
         <CardAdvertisment
           size="large"
           image="/images/advertisements/anunciate_aqui.png"

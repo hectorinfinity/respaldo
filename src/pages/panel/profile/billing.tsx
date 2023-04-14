@@ -16,7 +16,7 @@ import { updateUser } from "@/api/user/user";
 import { useMutationUpdateUser } from "@/hooks/user/user";
 import { useQueryClient } from "@tanstack/react-query";
 import { User } from "@/interfaces/user";
-import { getUserCache } from "@/hooks/user/user";
+
 
 
 const validationSchema = yup.object().shape({
@@ -63,7 +63,6 @@ const ProfileBilling = () => {
         // Handle Submit Form
     };
 
-    console.log("getUserCache: ", getUserCache())
 
     return (
         <>
