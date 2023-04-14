@@ -13,7 +13,7 @@ type Props = {
   buttonBread?: buttonBread | null;
   langBread?: boolean;
   onAppend?: () => void;
-  onChange:any
+  onChange?:any
 };
 
 interface Breadcrumb {
