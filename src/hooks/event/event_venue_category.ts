@@ -5,7 +5,7 @@ import {
         readEventVenueCategory,
         updateEventVenueCategory,
         deleteEventVenueCategory
-} from '@/api/event/event_category';
+} from '@/api/event/event_venue_category';
 import { WithDocs } from '@/interfaces/serializers/commons';
 import { EventVenueCategory  } from '@/interfaces/event';
 

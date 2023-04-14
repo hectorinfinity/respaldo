@@ -33,18 +33,18 @@ export function useMutationCreateEventCategory() {
 
 /*Read subsubcategory*/
 export function useReadEventCategory(category_id: string) {
-  return useQuery([key, category_id], () => readEventSubcategory(category_id));
+  return useQuery([key, category_id], () => readEventCategory(category_id));
 }
 
 /*update subsubcategory*/
-export  function useUpdateEventCategory( id:number ) {
+export async function useUpdateEventCategory( id:string,category:EventCategory ) {
 
   const queryClient=useQueryClient();
   
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
-          updateEventCategory,{onSuccess: (data)=>{
-          queryClient.setQueryData([key, id], (prev:any)=>(data))
+        await  updateEventCategory(id,category),{onSuccess: (data)=>{
+          queryClient.setQueryData([key, id], (prev:any)=>prev.concat(data))
       }}
   )
 return {mutate, isLoading, isError, isSuccess};
@@ -57,7 +57,7 @@ export function useDeleteEventCategory( ) {
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
           deleteEventCategory,{onSuccess: (data)=>{
-          queryClient.setQueryData([key], (prev:any)=>prev)
+          queryClient.setQueryData([key], (prev:any)=>prev.filter(data))
       }}
   )
 return {mutate, isLoading, isError, isSuccess};

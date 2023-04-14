@@ -21,7 +21,7 @@ export function useSubCategories() {
     }
  
 }
-/*Create subsubcategory*/
+/*Create subcategory*/
 
 export function useCreateEventSubcategory() {
   
@@ -35,25 +35,25 @@ export function useCreateEventSubcategory() {
     )
   return {mutate, isLoading, isError, isSuccess};
 }
-/*Read subsubcategory*/
+/*Read subcategory*/
 export function useReadEventSubcategory(category_id: string) {
   return useQuery([key, category_id], () => readEventSubcategory(category_id));
 }
 
-/*update subsubcategory*/
-export function useUpdateEventCategory( updateCategory_id: string, eventCategory:EventSubcategory ) {
+/*update subcategory*/
+export async function useUpdateEventCategory( updateCategory_id: string, eventCategory:EventSubcategory ) {
 
   const queryClient=useQueryClient();
   
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
-        updateEventSubcategory,{onSuccess: (data)=>{
+        await updateEventSubcategory(updateCategory_id,eventCategory),{onSuccess: (data)=>{
           queryClient.setQueryData([key], (prev:any)=>prev.concat(data))
       }}
   )
 return {mutate, isLoading, isError, isSuccess};
 }
-/*delete subsubcategory*/
+/*delete subcategory*/
 export function useDeleteEventCategory( ) {
 
   const queryClient=useQueryClient();

@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery,useQueryClient,useMutation } from '@tanstack/react-query';
 import {
   createEventSupplier,
-  deleteEventSupplier,
   getEventsSuppliers,
   readEventSupplier,
   updateEventSupplier,
@@ -45,13 +44,13 @@ export function useReadEventSubcategory(category_id: string) {
 }
 
 /*update supplier*/
-export function useUpdateEventSupplier(  ) {
+export async function useUpdateEventSupplier( id:string, suplier:EventSupplier) {
 
   const queryClient=useQueryClient();
   
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
-        updateEventSupplier,{onSuccess: (data)=>{
+       await updateEventSupplier(id, suplier),{onSuccess: (data)=>{
           queryClient.setQueryData([key], (prev:any)=>prev.concat(data))
       }}
   )
