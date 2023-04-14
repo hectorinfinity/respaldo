@@ -33,6 +33,7 @@ type Props = {
   columns: any[];
   defaultData?: any[];
   addSchedule?: boolean;
+  setDialogSchedule?: any;
   deleteOption?: (id: string) => void;
   exportOption?: (id: string) => void;
 };
@@ -43,6 +44,7 @@ export const BasicTable = ({
   addSchedule = false,
   deleteOption,
   exportOption,
+  setDialogSchedule,
 }: Props) => {
   const t = useTranslations('table');
   const currentColor = CurrentColor();
@@ -101,6 +103,8 @@ export const BasicTable = ({
           {addSchedule ? (
             <div className="flex justify-end -mt-10">
               <button
+                onClick={() => setDialogSchedule(true)}
+                type="button"
                 className={`ml-3 inline-flex items-center rounded-md bg-${currentColor} px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-${currentColor} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${currentColor}`}
               >
                 Add Schedule
