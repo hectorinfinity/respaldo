@@ -57,7 +57,7 @@ export function useDeleteEventCategory( ) {
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
           deleteEventCategory,{onSuccess: (data)=>{
-          queryClient.setQueryData([key], (prev:any)=>prev.filter(data))
+          queryClient.setQueryData([key], (prev:any)=>prev.filter((dat:any)=>dat !== data))
       }}
   )
 return {mutate, isLoading, isError, isSuccess};

@@ -22,6 +22,7 @@ export interface dataTable {
 const  EventCategory = () => {
     const locale = useLocale();
     const {data,isLoading}= useCategories();
+    const{ mutate,isError,isSuccess}= useDeleteEventCategory()
     
     let dataTableE = [];
     data?.map((item) => {
@@ -70,6 +71,7 @@ const  EventCategory = () => {
                                         columns={columns} 
                                         deleteOption={useDeleteEventCategory} 
                                         defaultData={dataTableE} />}
+                                        <button onClick={()=>mutate('1')}>Click para probar hook borrar </button>
                                     </div>
                                 </div>
                             </div>

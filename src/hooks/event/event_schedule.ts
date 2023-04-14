@@ -20,3 +20,42 @@ export function useEventSchedule(event_schedule_id: string) {
     readEventSchedule(event_schedule_id as any)
   );
 }
+export function useCreateEventSchedule() {
+  
+  const queryClient=useQueryClient();
+    
+  
+  const {mutate, isLoading, isError, isSuccess}= useMutation(
+        createEventSchedule,{onSuccess: (data)=>{
+            queryClient.setQueryData([key], (prev:any)=>prev.concat(data))
+        }}
+    )
+  return {mutate, isLoading, isError, isSuccess};
+}
+
+
+/*update EventSchedule*/
+export async function useUpdateEventSchedule( updateSchedule_id: string, Schedule:EventSchedule ) {
+
+  const queryClient=useQueryClient();
+  
+
+  const {mutate, isLoading, isError, isSuccess}= useMutation(
+        await updateEventSchedule(updateSchedule_id,Schedule),{onSuccess: (data)=>{
+          queryClient.setQueryData([key, updateSchedule_id ], (prev:any)=>prev.concat(data))
+      }}
+  )
+return {mutate, isLoading, isError, isSuccess};
+}
+/*delete EventSchedule*/
+export function useDeleteEventSchedule(Schedule_id:string ) {
+
+  const queryClient=useQueryClient();
+  
+return useQuery<EventSchedule>([key, Schedule_id], () =>
+   deleteEventSchedule(Schedule_id))
+    
+
+}
+
+

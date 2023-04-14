@@ -50,23 +50,20 @@ export async function useUpdateEventSupplier( id:string, suplier:EventSupplier) 
   
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
-       await updateEventSupplier(id, suplier),{onSuccess: (data)=>{
-          queryClient.setQueryData([key], (prev:any)=>prev.concat(data))
+       await updateEventSupplier(id, suplier),{onSuccess: ()=>{
+          queryClient.invalidateQueries([key])
       }}
   )
 return {mutate, isLoading, isError, isSuccess};
 }
 /*delete supplier*/
-export  function useDeleteEventSupplier( ) {
+export  function useDeleteEventSupplier( Supplier_id:string) {
 
   const queryClient=useQueryClient();
   
 
-  const {mutate, isLoading, isError, isSuccess}= useMutation(
-    deleteEventSupplier,{onSuccess: (data)=>{
-          queryClient.setQueryData([key], (prev:any)=>prev.concat(data))
-      }}
-  )
-return {mutate, isLoading, isError, isSuccess};
+  return useQuery<EventSupplier>([key, Supplier_id], () =>
+  deleteEventSupplier(Supplier_id))
+  
 }
 

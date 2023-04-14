@@ -14,7 +14,7 @@ import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
 import { CurrentColor, FormStyles } from '@/helpers';
 import { InputLang } from '@/components/forms/lang';
 import { EventSubcategory } from '@/interfaces/event';
-import { useCategories} from '@/hooks/admin/event/category';
+import { useCategories} from '@/hooks/event/event_category';
 
 
 

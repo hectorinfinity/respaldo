@@ -15,6 +15,18 @@ const key = 'event_venue_category';
 export function useEventVenueCategory() {
   return useQuery([key], getEventsVenuesCategories);
 }
+export async function useUpdateEventVenueCategory( updateCategory_id: string, eventCategory:EventVenueCategory ) {
+
+    const queryClient=useQueryClient();
+    
+  
+    const {mutate, isLoading, isError, isSuccess}= useMutation(
+          await updateEventVenueCategory(updateCategory_id,eventCategory),{onSuccess: ()=>{
+            queryClient.invalidateQueries([key])
+        }})
+  return {mutate, isLoading, isError, isSuccess};
+}
+
 
 export function useCreateEventVenueCategory() {
   const queryClient = useQueryClient();

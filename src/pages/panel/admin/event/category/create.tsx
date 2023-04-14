@@ -53,7 +53,6 @@ const EventCreateCategory = () => {
             const type=files.type
             const blob= new Blob([files], {type})
             const url=URL.createObjectURL(blob)
-            console.log(url)
             setValue('picture', url )
         }
         
@@ -72,22 +71,19 @@ const EventCreateCategory = () => {
     }
 
 /*submit form*/ 
-    const [dataCategory,setData]=useState<EventCategory>()
+    const [dataCategory,setData]=useState('')
     
     const onSubmit:SubmitHandler<EventCategory >= (data:EventCategory )=>{
-        setData(data) 
-      console.log(data)
-      console.log(dataCategory)
-        mutate(dataCategory)
         
-    console.log(isLoading?'cargando':'listo')
-    console.log(isError?'error':'hay error')
-    console.log(isSuccess?'success':'no success')
+      const dataForm =JSON.stringify(data)
+      setData(dataForm)
+      console.log(dataCategory)
+      mutate(dataCategory)
     };
    
     
     
-const[category,setCategory]=useState( {lang:'', name:''})
+const[category,setCategory]=useState( [{lang:'es', name:''},{lang:'en', name:''}])
 console.log(category)
 /*Lang*/
 const[lang ,setlang]=useState('en')
@@ -100,12 +96,16 @@ const LangSelect:React.ChangeEventHandler<HTMLSelectElement> = (e:any)=>{
 /*Name*/
 const handleName:React.ChangeEventHandler<HTMLInputElement> = (e:any)=>{
     const Name=e.target.value;
+    const cate= [...category]
+    
     if(lang==='en'){
-        setCategory(...category.lang)
+        cate[1].name=Name
+        setCategory(cate)
     }else if(lang==='es'){
-       
+        cate[0].name=Name
+        setCategory(cate)
     }
-        
+        setValue('category', category)
 }
 
     return (
@@ -144,7 +144,7 @@ const handleName:React.ChangeEventHandler<HTMLInputElement> = (e:any)=>{
                                                 className="relative cursor-pointer relative z-10 rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                              { upload===''?  <span  >{tc('field_upload_file')}</span>:<span className='flex flex-row gap-2'>{ upload}<ArrowPathIcon width='1.5rem' height='1.5rem'/></span>}
-                                             <input    id="picture" {...register('picture')} type="file"  hidden accept="image/jpeg, image/png, .gif" size={10000000}/>
+                                             <input    id="picture" type="file"  hidden accept="image/jpeg, image/png, .gif" size={10000000}/>
                                             
                                             </label>
                                             
