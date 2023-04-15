@@ -536,6 +536,7 @@
     "field_subsubcategories": "Sub-Subategories",
     "field_subsubcategory": "Sub-Subategory",
     "field_select_subsubcategory": "Select Sub-Subategory...",
+    "field_select_age_limit": "Age Limit",
     "field_range_date": "Range Date",
     "field_location": "Location",
     "field_select_location": "Select Location",
@@ -691,6 +692,11 @@
   "Main_Comment_Commons": "/////////////////////////////////////// Commons",
   "Ferrors": {
     "required": "Required",
+    "select_one_day_at_least": "Select one day of the week at least"
+  },
+  "Fsuccess": {
+    "schedule_added": "Schedule added",
+    "schedules_added": "Schedules added"
     "url": "Invalid url"
   },
   "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
@@ -896,16 +902,16 @@
     "search": "Search",
     "subscribe": "Subscribe",
     "email": "Email"
-  }, 
+  },
   "Panel_Dashboard_Comment": "//////////////////////////////////////// Panel Dashboard Comment",
   "Panel_Dashboard": {
     "pending": "Pending Payments",
-    
+
     "my_ticket": "My Tickets",
     "old_ticket": "My Old Tickets",
     "favorite": "Favorites",
     "assist": "I Will Asist",
-    
+
     "active": "Active Events",
     "visit": "Visits",
     "attend": "Attend",
