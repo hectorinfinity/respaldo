@@ -13,17 +13,38 @@ interface AddressName {
 }
 
 export interface Address {
-  addressname?: string
-  latitude?: string
-  longitude?: string
-  address: string
-  address2?: string
-  city: string
-  state: AddressName
-  country: AddressName
-  short_state?: string
-  short_country?: string
-  zipcode: string
+  addressname?: string;
+  latitude?: string;
+  longitude?: string;
+  address: string;
+  address2?: string;
+  city: string;
+  state: AddressName;
+  country: AddressName;
+  short_state?: string;
+  short_country?: string;
+  zipcode: string;
+  currency?: string;
+  venue?: string;
+  type?: string;
+  quota?: string;
+  url?: string;
+  generic_rules?: string;
+  children_rules?: string;
+  accessible?: boolean;
+  facebook?: string;
+  instagram?: string;
+  twitter?: string;
+  cost?: number;
+  box_office?: number;
+  cash?: boolean;
+  credit?: boolean;
+  debit?: boolean;
+  day?: {
+    day: string;
+    start_at: string;
+    end_at: string;
+  }[];
 }
 
 export interface Collection {

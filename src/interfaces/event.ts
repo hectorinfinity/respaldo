@@ -1,6 +1,7 @@
 import {
   Address,
   BasicTranslate,
+  Collection,
   Content,
   OrderGateway,
   SocialMedia,
@@ -175,6 +176,7 @@ export interface EventSpecialCategory {
     };
     description: string;
   };
+  description:string
 }
 
 export interface EventSubcategory {
@@ -191,6 +193,7 @@ export interface EventSubsubcategory {
 }
 
 export interface EventSupplier {
+  _id: string;
   user_id?: string | null;
   name: string;
   url: string;
@@ -205,14 +208,17 @@ export interface EventTag {
 }
 
 export interface EventVenue {
-  category_id: string;
+  _id: string;
+  category_id: Collection;
   name: string;
   address: Address;
   info?: EventVenueInfo | null;
   status?: boolean;
+  created_at: string;
 }
 
 export interface EventVenueCategory {
   category: BasicTranslate[];
   status?: boolean;
+  _id: string;
 }

@@ -12,7 +12,7 @@ import { WithDocs } from '@/interfaces/serializers/commons';
 const key = 'event_special_category';
 
 export function useEventsSpecialsCategories() {
-  return useQuery<EventSpecialCategory[]>([key], getEventsSpecialsCategories);
+  return useQuery<WithDocs<EventSpecialCategory>>([key], getEventsSpecialsCategories);
 }
 
 export function useEventSpecialCategory(event_special_category_id: string) {

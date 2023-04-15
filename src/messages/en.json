@@ -536,6 +536,7 @@
     "field_subsubcategories": "Sub-Subategories",
     "field_subsubcategory": "Sub-Subategory",
     "field_select_subsubcategory": "Select Sub-Subategory...",
+    "field_select_age_limit": "Age Limit",
     "field_range_date": "Range Date",
     "field_location": "Location",
     "field_select_location": "Select Location",
@@ -635,7 +636,18 @@
 
     "field_requested": "Requested At",
     "field_accept": "Accept",
-    "field_comment": "Comment"
+    "field_comment": "Comment",
+    "field_venue": "Venue name",
+    "field_generic_rules": "Generic Rules",
+    "field_children_rules": "Children Rules",
+    "field_accessible": "Accessible Seats",
+    "field_currency": "Currency",
+    "field_cost": "Cost",
+    "field_box_office": "Number",
+    "field_cash": "Cash",
+    "field_credit": "Credit",
+    "field_debit": "Debit Card",
+    "field_day": "Day"
   },
   "Public_Comment": "/////////////////////////////////////// Public Comment",
   "Public": {
@@ -679,7 +691,13 @@
   },
   "Main_Comment_Commons": "/////////////////////////////////////// Commons",
   "Ferrors": {
-    "required": "Required"
+    "required": "Required",
+    "select_one_day_at_least": "Select one day of the week at least"
+  },
+  "Fsuccess": {
+    "schedule_added": "Schedule added",
+    "schedules_added": "Schedules added"
+    "url": "Invalid url"
   },
   "Main_Comment_Molecules": "/////////////////////////////////////// Molecules",
   "Card_Event_Queue": {
@@ -884,16 +902,16 @@
     "search": "Search",
     "subscribe": "Subscribe",
     "email": "Email"
-  }, 
+  },
   "Panel_Dashboard_Comment": "//////////////////////////////////////// Panel Dashboard Comment",
   "Panel_Dashboard": {
     "pending": "Pending Payments",
-    
+
     "my_ticket": "My Tickets",
     "old_ticket": "My Old Tickets",
     "favorite": "Favorites",
     "assist": "I Will Asist",
-    
+
     "active": "Active Events",
     "visit": "Visits",
     "attend": "Attend",

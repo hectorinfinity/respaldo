@@ -4,13 +4,6 @@ import { User } from "@/interfaces/user";
 
 const key = "user";
 
-export function getUserCache() {
-  const queryClient = useQueryClient();
-  const data = queryClient.getQueryData([key])
-  return data?.["user"]
-
-}
-
 export function useMe() {
   return useQuery([key], getMe);
 }

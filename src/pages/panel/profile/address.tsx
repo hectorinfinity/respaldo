@@ -63,7 +63,6 @@ const ProfileAddress = () => {
     if (isError) console.log("useMutationUpdateUser ERROR", (error as Error)?.message)
 
     const onSubmitHandler = (data: Address) => {
-        console.log("address data:", JSON.stringify(data, null, 2))
         data?.address2
         const address: Address = {
             latitude: data?.latitude,
