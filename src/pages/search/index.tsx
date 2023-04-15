@@ -1,4 +1,3 @@
-import { getEvents } from '@/api/event/event';
 import {
   getEventsCategories,
   readEventCategory,
@@ -11,7 +10,7 @@ import ListCardEvent from '@/components/main/commons/ListCardEvent';
 import SidebarSearch from '@/components/main/commons/SidebarSearch';
 import HeaderCategory from '@/components/main/search/HeaderCategory';
 import HeaderSearch from '@/components/main/search/HeaderSearch';
-import {  useInfinteEvents } from '@/hooks/event/event';
+import { useInfinteEvents } from '@/hooks/event/event';
 import axios from 'axios';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
@@ -52,6 +51,7 @@ const Search = ({ categories }) => {
 
   useEffect(() => {
     setPagination(queryObj);
+    refetch();
   }, [
     query,
     queryObj?.category,
@@ -101,7 +101,7 @@ const Search = ({ categories }) => {
         <div className="grid grid-cols-6 gap-5 md:gap-10">
           <SidebarSearch
             categories={categories}
-            className="hidden col-span-2 md:block sticky top-0"
+            className="sticky top-0 hidden col-span-2 md:block"
             {...useFormReturn}
           />
           {data?.pages?.length == 0 && isLoading == false && query != '' ? (
@@ -115,28 +115,20 @@ const Search = ({ categories }) => {
                 <p>{t('commons.check_words')}</p>
                 <hr className="border-gray-400" />
               </div>
-            )}
-            <ListCardEvent
-              categories={categories}
-              className="col-span-6 md:col-span-4"
-              loading={isLoading}
-              layout="grid"
-              setCurrentPage={setCurrentPage}
-              setPageSize={setPageSize}
-              totalDocs={data?.pages?.[0]?.total}
-              isFetchingNextPage={isFetchingNextPage}
-              hasNextPage={hasNextPage}
-              fetchNextPage={fetchNextPage}
-              title={
-                query != ''
-                  ? t('commons.results', {
-                      query,
-                      length: data?.pages?.[0]?.total,
-                    })
-                  : t('commons.recommended_events')
-              }
-              items={
-                data?.pages?.flatMap((page) =>
+
+              <ListCardEvent
+                categories={categories}
+                className="col-span-6 md:col-span-4"
+                loading={isLoading}
+                layout="grid"
+                setCurrentPage={setCurrentPage}
+                setPageSize={setPageSize}
+                totalDocs={data?.pages?.[0]?.total}
+                isFetchingNextPage={isFetchingNextPage}
+                hasNextPage={hasNextPage}
+                fetchNextPage={fetchNextPage}
+                title={t('commons.recommended_events')}
+                items={data?.pages?.flatMap((page) =>
                   page.items.map((item) => ({
                     image: 'https://loremflickr.com/640/480/cats',
                     name:
@@ -149,8 +141,25 @@ const Search = ({ categories }) => {
                     color: item.category_id?.color,
                     id: item._id,
                   }))
-                ) ||
-                events?.data?.items?.map((item) => ({
+                )}
+                {...useFormReturn}
+              />
+            </div>
+          ) : (
+            <ListCardEvent
+              categories={categories}
+              className="col-span-6 md:col-span-4"
+              loading={isLoading}
+              layout="grid"
+              setCurrentPage={setCurrentPage}
+              setPageSize={setPageSize}
+              totalDocs={data?.pages?.[0]?.total}
+              isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
+              fetchNextPage={fetchNextPage}
+              title={t('commons.recommended_events')}
+              items={data?.pages?.flatMap((page) =>
+                page.items.map((item) => ({
                   image: 'https://loremflickr.com/640/480/cats',
                   name:
                     item.content.find((obj) => obj.lang == locale)?.name ||
@@ -162,10 +171,10 @@ const Search = ({ categories }) => {
                   color: item.category_id?.color,
                   id: item._id,
                 }))
-              }
+              )}
               {...useFormReturn}
             />
-          </div>
+          )}
         </div>
 
         <CardAdvertisment
