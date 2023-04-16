@@ -13,7 +13,7 @@ export const createEventSubcategory = async (subcategory: EventSubcategory) => {
 }
 
 export const readEventSubcategory = async (id: string) => {
-    const { data } = await axios.get(`/events/subcategories/${id}`);
+    const { data } = await axios.get(`/events/subcategories/${id} `);
 
     return data;
 }

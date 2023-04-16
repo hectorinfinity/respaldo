@@ -1,18 +1,19 @@
-/* import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { getEventsSubcategories,
-     createEventSubcategory,
-      readEventSubcategory,
-      updateEventSubcategory,
-      deleteEventSubcategory} from '@/api/event/event_sub_subcategory'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useSubSubcategories,
+  createSubSubcategory,
+  readSubSubcategory,
+  updateSubSubcategory,
+  deleteSubSubcategory } from '@/api/event/event_sub_subcategory'
 import { EventSubsubcategory} from '@/interfaces/event';
 import { useState } from 'react';
 
 const key = "event_sub_subcategory";
 
-export function useSubCategories(itemsPerPage:number) {
-    const{data,isLoading,isError}=useQuery([key], getEventsSubcategories)
+export function useSubsubCategories() {
+    const{data,isLoading,isError}=useQuery([key], useSubSubcategories)
 
    
+    return{    
         isError,
         isLoading,
         data
@@ -21,31 +22,31 @@ export function useSubCategories(itemsPerPage:number) {
 }
 //Create sub_subcategory
 
-export function useCreateEventSubcategory() {
+export function useCreateEventSubSubcategory() {
   
   const queryClient=useQueryClient();
     
   
   const {mutate, isLoading, isError, isSuccess}= useMutation(
-        createEventSubcategory,{onSuccess: (data)=>{
+    createSubSubcategory,{onSuccess: (data)=>{
             queryClient.setQueryData([key], (prev:any)=>prev.concat(data))
         }}
     )
   return {mutate, isLoading, isError, isSuccess};
 }
 //Read sub_subcategory
-export function useReadEventSubcategory(category_id: string) {
-  return useQuery([key, category_id], () => readEventSubcategory(category_id));
+export function readEventSubSubcategory(category_id: string) {
+  return useQuery([key, category_id], () => readSubSubcategory(category_id));
 }
 
 //update sub_subcategory
-export async function useUpdateEventCategory( updateCategory_id: string, eventCategory:EventSubcategory ) {
+export async function useUpdateEventCategory( updateCategory_id: string, eventSubSubCategory:EventSubsubcategory ) {
 
   const queryClient=useQueryClient();
   
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
-        await updateEventSubcategory(updateCategory_id, eventCategory),{onSuccess: (data)=>{
+        await updateSubSubcategory(updateCategory_id, eventSubSubCategory),{onSuccess: (data)=>{
           queryClient.setQueryData([key], (prev:any)=>prev.concat(data))
       }}
   )
@@ -58,11 +59,10 @@ export  function useDeleteEventCategory( ) {
   
 
   const {mutate, isLoading, isError, isSuccess}= useMutation(
-        deleteEventSubcategory,{onSuccess: (data)=>{
+    deleteSubSubcategory,{onSuccess: (data)=>{
           queryClient.setQueryData([key], (prev:any)=>prev.filter(data))
       }}
   )
 return {mutate, isLoading, isError, isSuccess};
 }
 
-*/

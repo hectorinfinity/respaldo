@@ -1,7 +1,7 @@
 /** @format */
 import { useEffect, useMemo, useState } from 'react';
 import { GetStaticPropsContext } from "next";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale  } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
@@ -9,9 +9,16 @@ import { columnsEventCategory } from '@/components/admin/tables/columns/columnsE
 // Components
 import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
+import {useSubsubCategories, 
+    readEventSubSubcategory,
+    useUpdateEventCategory,
+    useDeleteEventCategory} from '@/hooks/event/event_sub_subcategory';
 import { EventSubsubcategory as EventSubsubcategoryInterface } from '@/interfaces/event';
 
+
 const EventSubsubcategory = () => {
+    const locale = useLocale();
+
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
@@ -22,10 +29,18 @@ const EventSubsubcategory = () => {
     ]
     const buttonBread =  { text: tb('add_event_subsubcategory'), href: '/panel/admin/event/subsubcategory/create' }
 
-    const data = useMemo(() => [
-        { id: '1', icon: '/images/events/category/arts.png', category: 'Arts', status: true },
-        { id: '2', icon: '/images/events/category/dance.png', category: 'Dance', status: true },
-    ], []);
+    const {isError,isLoading,data}=useSubsubCategories()
+    console.log('subsubcategory',data)
+    let dataTableE = [];
+    data?.map((item) => {
+        let dataIn = {
+            id: item.id,
+            icon: item.picture,
+            category: item.category.find((obj) => obj.lang == locale)?.name,
+            status: item.status
+        }
+        dataTableE.push(dataIn)
+    })
     const columns = columnsEventCategory();
    
     return (

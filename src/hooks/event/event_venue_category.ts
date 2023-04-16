@@ -13,8 +13,10 @@ import { EventVenueCategory  } from '@/interfaces/event';
 const key = 'event_venue_category';
 
 export function useEventVenueCategory() {
-  return useQuery([key], getEventsVenuesCategories);
+const{data,isLoading,isError}=useQuery([key], getEventsVenuesCategories)
+  return {isError,isLoading,data}
 }
+
 export async function useUpdateEventVenueCategory( updateCategory_id: string, eventCategory:EventVenueCategory ) {
 
     const queryClient=useQueryClient();
@@ -39,6 +41,10 @@ export function useCreateEventVenueCategory() {
       queryClient.invalidateQueries([key]);
     },
   });
+}
+export function useReadEventVenueCategory(EventVenue_id: string){
+  return useQuery([key, EventVenue_id], () => readEventVenueCategory(EventVenue_id));
+  
 }
 
 

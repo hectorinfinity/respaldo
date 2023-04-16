@@ -1,7 +1,7 @@
 /** @format */
 import { useEffect, useMemo, useState } from 'react';
 import { GetStaticPropsContext } from "next";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
@@ -15,9 +15,11 @@ import {useSubCategories,
     useCreateEventSubcategory,
     useReadEventSubcategory,
     useUpdateEventCategory,
-    useDeleteEventCategory} from '@/hooks/event/event_subcategory';
+    useDeleteEventSubCategory} from '@/hooks/event/event_subcategory';
 
 const EventSubcategory = () => {
+    const locale = useLocale();
+    
     const t = useTranslations("table_columns");
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");

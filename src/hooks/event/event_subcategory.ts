@@ -14,11 +14,7 @@ export function useSubCategories() {
     const{data,isLoading,isError}=useQuery([key], getEventsSubcategories)
 
    
-    return {
-        isError,
-        isLoading,
-        data
-    }
+    return {isError,isLoading,data}
  
 }
 /*Create subcategory*/
@@ -55,9 +51,6 @@ return {mutate, isLoading, isError, isSuccess};
 }
 /*delete subcategory*/
 export function useDeleteEventSubCategory( SubCategory_id:string) {
-
-  const queryClient=useQueryClient();
-  
 
   return useQuery<EventSubcategory>([key, SubCategory_id], () =>
   deleteEventSubcategory(SubCategory_id))

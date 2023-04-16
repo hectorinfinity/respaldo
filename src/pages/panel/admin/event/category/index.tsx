@@ -27,7 +27,7 @@ const  EventCategory = () => {
     let dataTableE = [];
     data?.map((item) => {
         let dataIn = {
-            id: item.id,
+            id: item._id,
             icon: item.picture,
             category: item.category.find((obj) => obj.lang == locale)?.name,
             status: item.status
@@ -71,7 +71,7 @@ const  EventCategory = () => {
                                         columns={columns} 
                                         deleteOption={useDeleteEventCategory} 
                                         defaultData={dataTableE} />}
-                                        <button onClick={()=>mutate('1')}>Click para probar hook borrar </button>
+                                        
                                     </div>
                                 </div>
                             </div>

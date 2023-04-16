@@ -11,15 +11,18 @@ import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
 import { EventVenue as EventVenueInterface } from '@/interfaces/event';
 import { useEventsVenues } from '@/hooks/event/event_venue';
-import { useCategories } from '@/hooks/admin/event/category';
-import { useEventVenueCategories } from '@/hooks/event/event_venue_category';
+import { useCategories } from '@/hooks/event/event_category';
+
+import { useEventVenueCategory } from '@/hooks/event/event_venue_category';
+
 
 const EventVenue = () => {
   const ts = useTranslations('Panel_SideBar');
   const tb = useTranslations('btn');
   const locale = useLocale();
   const eventsVenues = useEventsVenues();
-  const categoriesVenues = useEventVenueCategories();
+  const categoriesVenues = useEventVenueCategory();
+  
   const breadcrumb = [
     { page: ts('admin.admin'), href: '/panel/admin' },
     { page: ts('admin.event.event'), href: '' },
@@ -30,31 +33,8 @@ const EventVenue = () => {
     href: '/panel/admin/event/venue/create',
   };
 
-  const data = useMemo(
-    () => [
-      {
-        id: '1',
-        name: 'Estadio Carlos',
-        category: 'Stadium',
-        city: 'Zacatecas',
-        state: 'Zacatecas',
-        country: 'México',
-        created: '2023-02-02',
-        status: true,
-      },
-      {
-        id: '2',
-        name: 'Gimnacio Marcelino Gonzáles',
-        category: 'Gimnacio',
-        city: 'Zacatecas',
-        state: 'Zacatecas',
-        country: 'México',
-        created: '2023-03-02',
-        status: true,
-      },
-    ],
-    []
-  );
+ 
+     
   const columns = columnsEventVenue();
 
   return (

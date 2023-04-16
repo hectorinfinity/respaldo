@@ -1,17 +1,27 @@
 /** @format */
 import { useEffect, useMemo, useState } from 'react';
 import { GetStaticPropsContext } from "next";
-import { useTranslations } from "next-intl";
+import { useTranslations,useLocale  } from "next-intl";
 // Layout and Header
 import AdminLayout from "@/components/layout/admin";
 import { BasicTable } from '@/components/admin/tables';
 import { columnsEventSupplier } from '@/components/admin/tables/columns/columnsEventSupplier';
+//hooks
+import {useEventSuppliers,
+    useEventSupplier,
+    useCreateEventSubcategory,
+    useReadEventSubcategory,
+    useUpdateEventSupplier,
+    useDeleteEventSupplier} from '@/hooks/event/event_supplier';
 // Components
 import { Heading } from '@/components/headers/admin/heading';
+
 // Import Interface
 import { EventSupplier as EventSupplierInterface } from '@/interfaces/event';
 
 const EventSupplier = () => {
+    const locale = useLocale();
+    
     const ts = useTranslations("Panel_SideBar");
     const tb = useTranslations("btn");
 
@@ -22,10 +32,18 @@ const EventSupplier = () => {
     ]
     const buttonBread =  { text: tb('add_event_supplier'), href: '/panel/admin/event/supplier/create' }
 
-    const data = useMemo(() => [
-        { id: '1', category: "Name", url: 'https://url.com', status: true },
-        { id: '2', category: "Name2", url: 'https://url.com', status: true },
-    ], []);
+    const {isError,isLoading,data}=useEventSuppliers()
+    console.log('EventSupplier',data)
+    let dataTableE = [];
+   /* data?.map((item) => {
+        let dataIn = {
+            id: item.id,
+            icon: item.picture,
+            category: item.category.find((obj) => obj.lang == locale)?.name,
+            status: item.status
+        }
+        dataTableE.push(dataIn)
+    })*/
     const columns = columnsEventSupplier();
    
     return (

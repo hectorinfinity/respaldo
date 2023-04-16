@@ -32,7 +32,7 @@ export const Heading = ({
   buttonBread = null,
   langBread,
   onAppend,
-,onChange}: Props) => {
+  onChange}: Props) => {
     const locale = useLocale();
   const { locales } = useRouter();
   const currentColor = CurrentColor();

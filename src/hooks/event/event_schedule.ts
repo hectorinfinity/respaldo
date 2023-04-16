@@ -11,9 +11,7 @@ import { WithDocs } from '@/interfaces/serializers/commons';
 
 const key = 'event_schedule';
 
-export function useEventSchedules() {
-  return useQuery<EventSchedule[]>([key], getEventsSchedules);
-}
+
 
 export function useEventSchedule(event_schedule_id: string) {
   return useQuery<EventSchedule>([key, event_schedule_id], () =>
