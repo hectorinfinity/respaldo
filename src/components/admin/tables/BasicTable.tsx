@@ -60,7 +60,7 @@ export const BasicTable = ({
   }, [defaultData]);
 
   const table = useReactTable({
-    data,
+    data: defaultData,
     columns,
     state: {
       sorting,

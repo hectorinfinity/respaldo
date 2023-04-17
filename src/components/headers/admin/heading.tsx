@@ -6,12 +6,14 @@ import { CurrentColor, FormStyles } from '@/helpers';
 // Icons
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { CustomLabel } from '@/components/forms';
+import { useFormContext } from 'react-hook-form';
 
 type Props = {
   breadcrumb: Breadcrumb[];
   buttonBread?: buttonBread | null;
   langBread?: boolean;
-  onChange?: any;
+  onAppend?: () => void;
+  onChange?:any
 };
 
 interface Breadcrumb {
@@ -28,10 +30,12 @@ export const Heading = ({
   breadcrumb,
   buttonBread = null,
   langBread,
+  onAppend,
 }: Props) => {
   const { locales } = useRouter();
   const currentColor = CurrentColor();
   const t = useTranslations('Common_Forms');
+  const formMethods = useFormContext();
 
   return (
     <>
@@ -102,10 +106,8 @@ export const Heading = ({
             <CustomLabel field="lang" name={t('field_add_lang')} />
             <div className="inline-flex">
               <select
-                id="lang"
-                name="lang"
                 className={FormStyles('select')}
-                defaultValue={''}
+                {...(formMethods?.register('lang') || {})}
               >
                 {locales.map((l, i) => {
                   return (
@@ -117,8 +119,9 @@ export const Heading = ({
               </select>
               <div className="px-2">
                 <button
-                  type="submit"
+                  type="button"
                   className={`inline-flex justify-center rounded-md bg-${currentColor} py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-${currentColor}-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700`}
+                  onClick={onAppend}
                 >
                   Add
                 </button>

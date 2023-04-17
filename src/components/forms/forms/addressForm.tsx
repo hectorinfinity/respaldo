@@ -41,7 +41,6 @@ export const AddressForm = ({
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
       };
-      console.log('Selected address: ', address, latLng);
       onPlaceSelected(address, latLng);
 
       const components = place.address_components;
@@ -121,7 +120,7 @@ export const AddressForm = ({
             placeholder={tc('field_address')}
             className={FormStyles('input')}
           />
-          <CustomError error={errors?.address?.message} />
+          {errors?.address && <CustomError error={errors?.address?.message} />}
         </div>
         <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
           <CustomLabel field="address2" name={tc('field_address2')} />
@@ -134,7 +133,9 @@ export const AddressForm = ({
             placeholder={tc('field_address2')}
             className={FormStyles('input')}
           />
-          <CustomError error={errors?.address2?.message} />
+          {errors?.address2 && (
+            <CustomError error={errors?.address2?.message} />
+          )}
         </div>
         <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
           <CustomLabel field="zipcode" name={tc('field_pc')} required />
@@ -147,7 +148,7 @@ export const AddressForm = ({
             placeholder={tc('field_pc')}
             className={FormStyles('input')}
           />
-          <CustomError error={errors?.zipcode?.message} />
+          {errors?.zipcode && <CustomError error={errors?.zipcode?.message} />}
         </div>
         <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
           <CustomLabel field="country" name={tc('field_country')} required />
@@ -160,7 +161,7 @@ export const AddressForm = ({
             placeholder={tc('field_country')}
             className={FormStyles('input')}
           />
-          <CustomError error={errors?.country?.message} />
+          {errors?.country && <CustomError error={errors?.country?.message} />}
         </div>
         <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
           <CustomLabel field="state" name={tc('field_state')} required />
@@ -173,7 +174,7 @@ export const AddressForm = ({
             placeholder={tc('field_state')}
             className={FormStyles('input')}
           />
-          <CustomError error={errors?.state?.message} />
+          {errors?.state && <CustomError error={errors?.state?.message} />}
         </div>
         <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-4">
           <CustomLabel field="city" name={tc('field_city')} required />
@@ -186,7 +187,7 @@ export const AddressForm = ({
             placeholder={tc('field_city')}
             className={FormStyles('input')}
           />
-          <CustomError error={errors?.city?.message} />
+          {errors?.city && <CustomError error={errors?.city?.message} />}
         </div>
       </div>
     </>
