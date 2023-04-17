@@ -96,14 +96,15 @@ export interface EventOrderPayment {
 }
 
 export interface EventSchedule {
-  event_id: string;
-  venue_id: string;
+  event_id: Event;
+  venue_id: EventVenue;
   type: EventDate;
   status?: boolean;
 }
 
 export interface EventScheduleTimetable {
-  schedule_id: string;
+  _id: string;
+  schedule_id: EventSchedule;
   start_at: Date;
   end_at?: Date | null;
   costs: EventCost;
@@ -176,7 +177,7 @@ export interface EventSpecialCategory {
     };
     description: string;
   };
-  description:string
+  description: string;
 }
 
 export interface EventSubcategory {

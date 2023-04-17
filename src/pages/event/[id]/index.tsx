@@ -28,7 +28,7 @@ const EventDetailed = () => {
   const useFormReturn = useForm();
   const t = useTranslations('Public');
   const router = useRouter();
-  const {id} = router.query
+  const { id } = router.query;
   const events = useEvents();
   const event = useEvent(id as string);
   const category = useEventCategory(event?.data?.category_id?._id);
@@ -96,8 +96,7 @@ const EventDetailed = () => {
           image: 'https://loremflickr.com/640/480/cats',
           name: item.content.find((obj) => obj.lang == locale)?.name,
           startDate: new Date(),
-          startTime: '1:00',
-          endTime: '12:00',
+          endDate: new Date(),
           location: 'Location',
           color: item.category_id?.color,
           id: item._id,

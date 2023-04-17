@@ -26,9 +26,8 @@ export type props = {
   layout?: 'grid' | 'column';
   image: string;
   name: string;
-  startDate: Date;
-  startTime: string;
-  endTime: string;
+  startDate: any;
+  endDate: any;
   location: string;
   favorite?: boolean;
   willAttend?: boolean;
@@ -39,8 +38,7 @@ export type props = {
 const CardEvent: React.FC<props> = ({
   className,
   startDate,
-  endTime,
-  startTime,
+  endDate,
   image,
   layout = 'grid',
   location,
@@ -74,7 +72,7 @@ const CardEvent: React.FC<props> = ({
       });
     }
   };
-  const slug = name.replace(' ', '-')
+  const slug = name.replaceAll(' ', '-');
 
   const handleAddAttend = () => {
     if (!attend) {
@@ -166,7 +164,8 @@ const CardEvent: React.FC<props> = ({
                 })}
               </span>
               <span className="flex gap-2 text-customGray">
-                {startTime} <span>-</span> {endTime}
+                {format(parseDate(startDate), 'HH:mm')} <span>-</span>{' '}
+                {format(parseDate(endDate), 'HH:mm')}
               </span>
             </span>
 
