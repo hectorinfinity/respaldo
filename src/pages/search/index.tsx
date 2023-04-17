@@ -11,6 +11,7 @@ import SidebarSearch from '@/components/main/commons/SidebarSearch';
 import HeaderCategory from '@/components/main/search/HeaderCategory';
 import HeaderSearch from '@/components/main/search/HeaderSearch';
 import { useInfinteEvents } from '@/hooks/event/event';
+import { useInfinteEventSchedulesTimetables } from '@/hooks/event/event_schedules_timetables';
 import axios from 'axios';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/router';
@@ -39,12 +40,13 @@ const Search = ({ categories }) => {
     isFetchingNextPage,
     isLoading,
     refetch,
-  } = useInfinteEvents({
+  } = useInfinteEventSchedulesTimetables({
     searchword: queryObj?.category,
     searchkey: query,
     page: pagination?.page,
     size: pagination?.size,
   });
+  console.log(data?.pages);
   const category = categories?.find((item) =>
     item.category.find((obj) => obj.name == queryObj?.category)
   );
@@ -130,15 +132,19 @@ const Search = ({ categories }) => {
                 title={t('commons.recommended_events')}
                 items={data?.pages?.flatMap((page) =>
                   page.items.map((item) => ({
+                    // image: item.schedule_id.event_id.images.picture,
                     image: 'https://loremflickr.com/640/480/cats',
                     name:
-                      item.content.find((obj) => obj.lang == locale)?.name ||
-                      item.content.find((obj) => obj.lang == 'es')?.name,
-                    startDate: new Date(),
-                    startTime: '1:00',
-                    endTime: '12:00',
-                    location: 'Location',
-                    color: item.category_id?.color,
+                      item.schedule_id.event_id.content.find(
+                        (obj) => obj.lang == locale
+                      )?.name ||
+                      item.schedule_id.event_id.content.find(
+                        (obj) => obj.lang == 'es'
+                      )?.name,
+                    startDate: item.start_at,
+                    endDate: item.end_at,
+                    location: `${item.schedule_id.venue_id.address.country.long_name}, ${item.schedule_id.venue_id.address.city} ${item.schedule_id.venue_id.address.address}`,
+                    color: item.schedule_id.event_id.category_id.color,
                     id: item._id,
                   }))
                 )}
@@ -160,15 +166,19 @@ const Search = ({ categories }) => {
               title={t('commons.recommended_events')}
               items={data?.pages?.flatMap((page) =>
                 page.items.map((item) => ({
+                  // image: item.schedule_id.event_id.images.picture,
                   image: 'https://loremflickr.com/640/480/cats',
                   name:
-                    item.content.find((obj) => obj.lang == locale)?.name ||
-                    item.content.find((obj) => obj.lang == 'es')?.name,
-                  startDate: new Date(),
-                  startTime: '1:00',
-                  endTime: '12:00',
-                  location: 'Location',
-                  color: item.category_id?.color,
+                    item.schedule_id.event_id.content.find(
+                      (obj) => obj.lang == locale
+                    )?.name ||
+                    item.schedule_id.event_id.content.find(
+                      (obj) => obj.lang == 'es'
+                    )?.name,
+                  startDate: item.start_at,
+                  endDate: item.end_at,
+                  location: `${item.schedule_id.venue_id.address.country.long_name}, ${item.schedule_id.venue_id.address.city} ${item.schedule_id.venue_id.address.address}`,
+                  color: item.schedule_id.event_id.category_id.color,
                   id: item._id,
                 }))
               )}
