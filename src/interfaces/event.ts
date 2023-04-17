@@ -200,6 +200,7 @@ export interface EventSupplier {
 }
 
 export interface EventTag {
+  _id?: string
   tag: string;
   status?: boolean;
 }
