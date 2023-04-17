@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import {
   createEventScheduleTimetable,
   deleteEventScheduleTimetable,
@@ -15,6 +15,18 @@ export function useEventScheduleTimetables() {
   return useQuery<EventScheduleTimetable[]>(
     [key],
     getEventsSchedulesTimetables
+  );
+}
+
+export function useInfinteEventSchedulesTimetables(
+  pagination: { [key: string]: any } = {}
+) {
+  return useInfiniteQuery<WithDocs<EventScheduleTimetable>>(
+    [key, pagination?.page],
+    {
+      queryFn: () => getEventsSchedulesTimetables(pagination),
+      keepPreviousData: true,
+    }
   );
 }
 
