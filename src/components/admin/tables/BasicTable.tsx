@@ -92,12 +92,12 @@ export const BasicTable = ({
 
   return (
     <>
-      <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
+      <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
         <div className="inline-block w-[100%] text-base font-semibold leading-6 text-gray-900">
           <SearchInput
             value={globalFilter ?? ''}
             onChange={(value) => setGlobalFilter(String(value))}
-            className="p-2 font-lg shadow border border-block"
+            className="p-2 border shadow font-lg border-block"
             placeholder="Search..."
           />
           {addSchedule ? (
@@ -117,7 +117,7 @@ export const BasicTable = ({
         {Object.keys(rowSelection).length > 0 &&
         deleteOption &&
         exportOption ? (
-          <div className="mt-3 flex sm:mt-0 sm:ml-4">
+          <div className="flex mt-3 sm:mt-0 sm:ml-4">
             {deleteOption ? (
               <button
                 type="button"
@@ -194,14 +194,14 @@ export const BasicTable = ({
             </tr>
           ))}
         </thead>
-        <tbody className="divide-y divide-gray-200 bg-white">
+        <tbody className="bg-white divide-y divide-gray-200">
           {table.getRowModel().rows.map((row) => {
             return (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
+                    className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6"
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
@@ -211,8 +211,8 @@ export const BasicTable = ({
           })}
         </tbody>
       </table>
-      <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-        <div className="flex flex-1 justify-between">
+      <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
+        <div className="flex justify-between flex-1">
           <div className="sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div className="">
               <p className="text-sm text-gray-700">
@@ -231,7 +231,7 @@ export const BasicTable = ({
             </div>
             <div className="flex justify-center">
               <nav
-                className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+                className="inline-flex -space-x-px rounded-md shadow-sm isolate"
                 aria-label="Pagination"
               >
                 <button
@@ -242,7 +242,7 @@ export const BasicTable = ({
                 >
                   <span className="sr-only">{t('init')}</span>
                   <ChevronDoubleLeftIcon
-                    className="h-5 w-5"
+                    className="w-5 h-5"
                     aria-hidden="true"
                   />
                 </button>
@@ -253,7 +253,7 @@ export const BasicTable = ({
                   disabled={!table.getCanPreviousPage()}
                 >
                   <span className="sr-only">{t('previous')}</span>
-                  <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+                  <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
                 </button>
                 {paginationRange?.map((pageNumber, index) => {
                   if (pageNumber === DOTS) {
@@ -301,7 +301,7 @@ export const BasicTable = ({
                   disabled={!table.getCanNextPage()}
                 >
                   <span className="sr-only">{t('next')}</span>
-                  <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+                  <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
                 </button>
                 <button
                   type="button"
@@ -311,7 +311,7 @@ export const BasicTable = ({
                 >
                   <span className="sr-only">{t('end')}</span>
                   <ChevronDoubleRightIcon
-                    className="h-5 w-5"
+                    className="w-5 h-5"
                     aria-hidden="true"
                   />
                 </button>

@@ -949,5 +949,17 @@
     "assisted": "Assisted",
 
     "top_events": "Top 5 Events"
+  },
+  "Toast": {
+    "event_tag": {
+      "create": {
+        "success": "Created Tag Successfully!",
+        "error": "Error while tag is created!"
+      },
+      "update": {
+        "success": "Update Tag Successfully!",
+        "error": "Error while tag is updated!"
+      }
+    }
   }
 }
