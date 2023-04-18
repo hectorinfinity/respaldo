@@ -1,15 +1,8 @@
-import { Checkbox } from "./checkbox";
-import { Icon } from "./icon";
-import { Options } from "./options";
-import { OptionsEvent } from "./optionsEvent";
-import { Status } from "./status";
-import { SwitchTable } from "./switch";
+import { Checkbox } from './checkbox';
+import { Icon } from './icon';
+import { Options } from './options';
+import { Status } from './status';
+import { SwitchTable } from './switch';
+import { SwitchTag } from './switch_tags';
 
-export {
-    Checkbox,
-    Icon,
-    Options,
-    Status,
-    SwitchTable,
-    OptionsEvent
-}
+export { Checkbox, Icon, Options, Status, SwitchTable, SwitchTag };
