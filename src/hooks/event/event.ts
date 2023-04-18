@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useInfiniteQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useInfiniteQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   getEvents,
   createEvent,
@@ -24,4 +29,11 @@ export function useInfinteEvents(pagination: { [key: string]: any } = {}) {
 
 export function useEvent(event_id: string) {
   return useQuery<Event>([key, event_id], () => readEvent(event_id as any));
+}
+
+export function useMutationUpdateEvent() {
+  const queryClient = useQueryClient();
+  return useMutation(updateEvent, {
+    onSuccess: () => queryClient.invalidateQueries([key]),
+  });
 }

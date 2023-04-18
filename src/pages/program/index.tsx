@@ -75,6 +75,7 @@ const Program = ({ categories }) => {
             color={category?.color}
             image={category?.picture}
             name={category?.category?.find((obj) => obj.lang == locale)?.name}
+            id={category?._id}
             size="large"
           />
         )}
