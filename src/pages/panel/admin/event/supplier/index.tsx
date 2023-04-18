@@ -9,8 +9,6 @@ import { columnsEventSupplier } from '@/components/admin/tables/columns/columnsE
 //hooks
 import {useEventSuppliers,
     useEventSupplier,
-    useCreateEventSubcategory,
-    useReadEventSubcategory,
     useUpdateEventSupplier,
     useDeleteEventSupplier} from '@/hooks/event/event_supplier';
 // Components
@@ -35,15 +33,17 @@ const EventSupplier = () => {
     const {isError,isLoading,data}=useEventSuppliers()
     console.log('EventSupplier',data)
     let dataTableE = [];
-   /* data?.map((item) => {
+    data?.map((item) => {
         let dataIn = {
-            id: item.id,
-            icon: item.picture,
-            category: item.category.find((obj) => obj.lang == locale)?.name,
-            status: item.status
+            id:item._id,
+            name: item.name,
+            url: item.url,
+            data: item.data,
+            status:item.color
         }
         dataTableE.push(dataIn)
-    })*/
+    })
+    
     const columns = columnsEventSupplier();
    
     return (
@@ -59,7 +59,7 @@ const EventSupplier = () => {
                             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                                     <div className="min-w-full divide-y divide-gray-300">
-                                        <BasicTable columns={columns} defaultData={data} />
+                                        <BasicTable columns={columns} defaultData={dataTableE} />
                                     </div>
                                 </div>
                             </div>

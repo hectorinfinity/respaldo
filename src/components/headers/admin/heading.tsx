@@ -14,7 +14,7 @@ type Props = {
   buttonBread?: buttonBread | null,
   langBread?: boolean,
   onAppend?: () => void,
-  onChange?: React.ChangeEventHandler<HTMLFormElement>,
+  onChange?: React.ChangeEventHandler<any>,
 };
 
 interface Breadcrumb {
@@ -33,11 +33,12 @@ export const Heading = ({
   langBread,
   onAppend,
   onChange}: Props) => {
-    const locale = useLocale();
+  const locale = useLocale();
   const { locales } = useRouter();
   const currentColor = CurrentColor();
   const t = useTranslations('Common_Forms');
   const formMethods = useFormContext();
+ 
 
   return (
     <>
@@ -108,6 +109,7 @@ export const Heading = ({
             <CustomLabel field="lang" name={t('field_add_lang')} />
             <div className="inline-flex">
               <select
+                onChange={onChange}
                 className={FormStyles('select')}
                 {...(formMethods?.register('lang') || {})}
               >

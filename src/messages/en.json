@@ -426,7 +426,8 @@
     "dashboard": "Dashboard",
     "user": "User",
     "actions": {
-      "create": "Create"
+      "create": "Create",
+      "edit": "Edit"
     },
     "profile": {
       "favorite": "Favorites",

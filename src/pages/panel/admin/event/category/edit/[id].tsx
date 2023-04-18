@@ -1,7 +1,8 @@
 /** @format */
 import React, { useState, useRef,useEffect} from 'react';
-import { GetStaticPropsContext } from "next";
-import { useTranslations } from "next-intl";
+import { useRouter } from 'next/router';
+import { GetStaticPropsContext, GetStaticPaths } from "next";
+import { useTranslations, useLocale } from "next-intl";
 import { SketchPicker } from 'react-color'
 // Helpers
 import { FormStyles } from "@/helpers";
@@ -19,7 +20,7 @@ import { EventCategory } from '@/interfaces/event';
 //icon
 import {ArrowPathIcon} from '@heroicons/react/24/outline';
 /*Hooks */
-import {useMutationCreateEventCategory, useCategories} from '@/hooks/event/event_category';
+import {useReadEventCategory, useUpdateEventCategory} from '@/hooks/event/event_category';
  
 
 const EventCreateCategory = () => {
@@ -27,25 +28,29 @@ const EventCreateCategory = () => {
     const tf = useTranslations("Common_Forms");
     const tp = useTranslations('Panel_Profile_Request');
     const tc = useTranslations("Common_Forms");
+    const locale=useLocale()
+    const router=useRouter()
+    const {query,pathname}=router 
+    
+    
+    const itemCategory=useReadEventCategory(`${query.id}`)
 
     const breadcrumb = [
         { page: t('admin.admin'), href: '/panel/admin' },
         { page: t('admin.event.event'), href: '/panel/admin/event/category' },
         { page: t('admin.event.category'), href: '/panel/admin/event/category' },
-        { page: t('actions.create'), href: '' }
+        { page: t('actions.edit') + ` / ${itemCategory.category.find((e)=>e.lang== locale).name}`, href: '' }
     ];
-    const {mutate, isLoading, isError, isSuccess}= useMutationCreateEventCategory()
+    const {mutate, isLoading, isError, isSuccess}= useUpdateEventCategory()
 
     const { register, handleSubmit,setValue, formState: { errors }, reset,getValues } = useForm<EventCategory >();
 
-   
-console.log(useCategories().data)
 
 /*input file config*/ 
     const [upload, setUpload ]=useState('');
     const File=useRef<HTMLLabelElement>();
     const handleSelectFile=()=>{
-      const FileSelected = File.current;
+    const FileSelected = File.current;
         
         if(FileSelected ){
             const files=(FileSelected.children[1]as HTMLInputElement).files[0]
@@ -55,7 +60,7 @@ console.log(useCategories().data)
             const url=URL.createObjectURL(blob)
             console.log(files)
             console.log(url)
-            setValue('picture', files )
+            setValue('picture', url )
         }
         
     };
@@ -73,8 +78,14 @@ console.log(useCategories().data)
     }
 
 /*submit form*/ 
+    const [dataCategory,setData]=useState()
+    
     const onSubmit:SubmitHandler<EventCategory >= (data:EventCategory )=>{
-      mutate(data)
+        
+      
+      console.log(data)
+      mutate({id:`${query.id}`,category:data})
+      
     };
    
     
@@ -157,31 +168,7 @@ console.log(getValues())
                                 color={initColor}
                                 />
                             </div>
-                            {/*
-                            <div className="col-span-12 sm:col-span-6 lg:col-span-3">
-                                <div className="h-fit gap-x-16 gap-y-10 border-2">
-                                    <div className="inputCoverAd relative space-y-1 px-5 pt-10 pb-10">
-                                        <CustomLabel field='name' name={tf('field_name')} />
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            {...register(`category.${0}.name`)}
-                                            autoComplete={tf('field_name')}
-                                            placeholder={tf('field_name')}
-                                            className={FormStyles('input')}
-                                        />
-                                        <select {...register(`category.${1}.lang`)} className="cursor-pointer absolute -top-5 w-[7rem] rounded-md bg-white px-2 py-1 text-xl font-black uppercase text-customShadow">
-                                            <option >en</option>
-                                            <option >es</option>
-                                            
-                                        </select>
-                                        <TrashIcon
-                                            name="delete"
-                                            className="w-4 h-4 absolute right-0 top-[18%] hidden px-[6%] text-customRed"
-                                        />
-                                    </div>
-                                </div>
-                            </div>*/}
+                            
                             <InputLang lang={lang} onChange={handleName}/>
                         </div>
 
@@ -201,6 +188,14 @@ console.log(getValues())
 
 EventCreateCategory.Layout = AdminLayout;
 export default EventCreateCategory;
+
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+
+    return {
+        paths: [], //indicates that no page needs be created at build time
+        fallback: 'blocking' //indicates the type of fallback
+    }
+}
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {

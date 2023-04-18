@@ -55,7 +55,7 @@ export const BasicTable = ({
 
   useEffect(() => {
     if (defaultData) {
-      setData(defaultData);
+      setData(data);
     }
   }, [defaultData]);
 
@@ -86,8 +86,8 @@ export const BasicTable = ({
     debugColumns: false,
   });
   const paginationRange = PaginationTable({
-    totalPageCount: table.getPageCount(),
-    currentPage: table.getState().pagination.pageIndex,
+    totalPageCount: table?.getPageCount(),
+    currentPage: table?.getState().pagination.pageIndex,
   });
 
   return (

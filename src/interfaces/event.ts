@@ -47,7 +47,7 @@ export interface Event {
 export interface EventCategory {
   _id: string;
   category: BasicTranslate[];
-  picture: string;
+  picture: File;
   color: string;
   status?: boolean;
   content: Content[];

@@ -1,11 +1,17 @@
 import { useTranslations } from "next-intl";
 // Table
 import { createColumnHelper } from '@tanstack/react-table';
-import { Checkbox, Icon, Options, SwitchTable } from "./components";
+import { Checkbox, Icon, OptionsEvent, SwitchTable } from "./components";
 // Helpers
 import { CurrentColor } from '@/helpers';
+//hooks
+
+import {useDeleteEventCategory}from '@/hooks/event/event_category'
 
 export function columnsEventCategory() {
+
+const { mutate,isLoading,isError,isSuccess}=useDeleteEventCategory()
+
   const tcc = useTranslations("table_columns");
 
   const currentColor = CurrentColor();
@@ -59,7 +65,7 @@ export function columnsEventCategory() {
       id: 'options',
       header: () => tcc('option'),
       cell: props => (
-        <Options id={props.row.original.id} color={currentColor} />
+        <OptionsEvent id={props.row.original.id} color={currentColor} deleteCategory={mutate}/>
       ),
     })
   ]);

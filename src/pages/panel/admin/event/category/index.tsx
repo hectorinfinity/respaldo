@@ -22,7 +22,6 @@ export interface dataTable {
 const  EventCategory = () => {
     const locale = useLocale();
     const {data,isLoading}= useCategories();
-    const{ mutate,isError,isSuccess}= useDeleteEventCategory()
     
     let dataTableE = [];
     data?.map((item) => {
@@ -33,7 +32,6 @@ const  EventCategory = () => {
             status: item.status
         }
         dataTableE.push(dataIn)
-        console.log('dataitems', item)
     })
     
     

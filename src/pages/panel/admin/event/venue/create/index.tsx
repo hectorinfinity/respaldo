@@ -25,7 +25,7 @@ import { AddressForm } from '@/components/forms/forms';
 // Interface
 import { Address } from '@/interfaces/serializers/commons';
 import { useCreateEventVenue } from '@/hooks/event/event_venue';
-import { useEventVenueCategories } from '@/hooks/event/event_venue_category';
+import { useEventVenueCategory } from '@/hooks/event/event_venue_category';
 import { getEventsVenuesCategories } from '@/api/event/event_venue_category';
 import { toast } from 'react-toastify';
 

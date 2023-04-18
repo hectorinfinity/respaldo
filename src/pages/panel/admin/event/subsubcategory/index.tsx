@@ -34,11 +34,11 @@ const EventSubsubcategory = () => {
     let dataTableE = [];
     data?.map((item) => {
         let dataIn = {
-            id: item.id,
-            icon: item.picture,
-            category: item.category.find((obj) => obj.lang == locale)?.name,
-            status: item.status
-        }
+            category_id: item.category_id,
+            subcategory_id: item.subcategory_id,
+            sub_subcategory: item.sub_subcategory,
+            picture: item.picture
+            }
         dataTableE.push(dataIn)
     })
     const columns = columnsEventCategory();

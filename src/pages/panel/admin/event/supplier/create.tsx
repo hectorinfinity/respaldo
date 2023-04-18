@@ -7,12 +7,14 @@ import { SketchPicker } from 'react-color'
 import AdminLayout from "@/components/layout/admin";
 import { Heading } from '@/components/headers/admin/heading';
 // Forms
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
 import { LinkIcon } from '@heroicons/react/24/solid';
+import { EventSupplier } from '@/interfaces/event';
+import { useCreateEventSupplier } from '@/hooks/event/event_supplier';
 
 const EventCreateSuplier = () => {
     const t = useTranslations("Panel_SideBar");
@@ -25,6 +27,27 @@ const EventCreateSuplier = () => {
         { page: t('actions.create'), href: '' }
     ]
 
+    const{mutate,
+        isError,
+        isSuccess}=useCreateEventSupplier()
+    const { 
+        register,
+        handleSubmit,
+        setValue, 
+        formState: { errors },
+         reset,
+         getValues } = useForm<EventSupplier>();
+
+   console.log(getValues())
+    const [initColor, setInitColor]=useState<string>('#ffffff');
+    const  onChangeColor=(color:any)=>{ 
+        setInitColor(color.hex)
+        setValue('color', initColor )
+    }
+
+    const onSubmit:SubmitHandler<EventSupplier>= (data:EventSupplier )=>{
+        mutate(data)
+      };
     return (
         <>
             {/* Breadcrumb section */}
@@ -33,13 +56,13 @@ const EventCreateSuplier = () => {
             </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
-                    <form className="lg:col-span-9" action="#" method="POST">
+                    <form className="lg:col-span-9" onSubmit={handleSubmit(onSubmit)} method="POST">
                         <div className="py-6 grid grid-cols-12 gap-6">
                             <div className="col-span-12 md:col-span-6 lg:col-span-4">
                                 <CustomLabel field="name" name={tc('field_name')} />
                                 <input
                                     type="text"
-                                    name="name"
+                                    {...register('name')}
                                     id="name"
                                     autoComplete={tc('field_name')}
                                     placeholder={tc('field_name')}
@@ -51,7 +74,7 @@ const EventCreateSuplier = () => {
                                 <div className="relative rounded-md shadow-sm">
                                     <input
                                         type="text"
-                                        name="url"
+                                        {...register('url')}
                                         id="url"
                                         autoComplete={tc('field_url')}
                                         placeholder={tc('field_url')}
@@ -65,14 +88,16 @@ const EventCreateSuplier = () => {
 
                             <div className="col-span-12 md:col-span-6 lg:col-span-4">
                                 <CustomLabel field="front_id" name={tc('field_color')} required />
-                                <SketchPicker />
+                                <SketchPicker
+                                color={initColor}
+                                onChange={onChangeColor}/>
                             </div>
 
                             <div className="col-span-12 md:col-span-6 lg:col-span-4">
                                 <CustomLabel field="name" name={tc('field_type')} />
                                 <input
                                     type="text"
-                                    name="type"
+                                    {...register('data.type')}
                                     id="type"
                                     autoComplete={tc('field_name')}
                                     placeholder={tc('field_name')}
@@ -84,7 +109,7 @@ const EventCreateSuplier = () => {
                                 <div className="relative rounded-md shadow-sm">
                                     <input
                                         type="text"
-                                        name="data_url"
+                                        {...register('data.url')}
                                         id="data_url"
                                         autoComplete={tc('field_data_url')}
                                         placeholder={tc('field_data_url')}
@@ -99,7 +124,7 @@ const EventCreateSuplier = () => {
                                 <CustomLabel field="key" name={tc('field_key')} />
                                 <input
                                     type="text"
-                                    name="key"
+                                    {...register('data.key')}
                                     id="key"
                                     autoComplete={tc('field_key')}
                                     placeholder={tc('field_key')}
