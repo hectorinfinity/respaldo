@@ -20,8 +20,8 @@ export const readEvent = async (id: number) => {
   return data;
 };
 
-export const updateEvent = async (id: number, event: Event) => {
-  const { data } = await axios.put(`/events/${id}`, event);
+export const updateEvent = async (event: Partial<Event>) => {
+  const { data } = await axios.put(`/events/${event._id}`, event);
 
   return data;
 };

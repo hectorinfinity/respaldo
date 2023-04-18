@@ -3,6 +3,7 @@ import {
   createEventScheduleTimetable,
   deleteEventScheduleTimetable,
   getEventsSchedulesTimetables,
+  getFilterEventsSchedulesTimetables,
   readEventScheduleTimetable,
   updateEventScheduleTimetable,
 } from '@/api/event/event_schedule_timetable';
@@ -24,7 +25,7 @@ export function useInfinteEventSchedulesTimetables(
   return useInfiniteQuery<WithDocs<EventScheduleTimetable>>(
     [key, pagination?.page],
     {
-      queryFn: () => getEventsSchedulesTimetables(pagination),
+      queryFn: () => getFilterEventsSchedulesTimetables(pagination),
       keepPreviousData: true,
     }
   );

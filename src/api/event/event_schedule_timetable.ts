@@ -8,6 +8,16 @@ export const getEventsSchedulesTimetables = async (pagination) => {
   return data;
 };
 
+export const getFilterEventsSchedulesTimetables = async (pagination) => {
+  const { data } = await axios.get(
+    `/events/schedules/timetables/search/filter`,
+    {
+      params: pagination,
+    }
+  );
+  return data;
+};
+
 export const createEventScheduleTimetable = async (
   schedule_timetable: EventScheduleTimetable
 ) => {

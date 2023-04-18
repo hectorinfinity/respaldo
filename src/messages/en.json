@@ -710,7 +710,8 @@
   "Main_Comment_Commons": "/////////////////////////////////////// Commons",
   "Ferrors": {
     "required": "Required",
-    "select_one_day_at_least": "Select one day of the week at least"
+    "select_one_day_at_least": "Select one day of the week at least",
+    "url": "Invalid url"
   },
   "Fsuccess": {
     "schedule_added": "Schedule added",
