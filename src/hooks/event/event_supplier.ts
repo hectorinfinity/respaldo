@@ -66,7 +66,7 @@ return {mutate, isLoading, isError, isSuccess};
 
 
 /*delete supplier*/
-export  function useDeleteEventSupplier( ) {
+export function useDeleteEventSupplier( ) {
 
   const queryClient=useQueryClient();
   

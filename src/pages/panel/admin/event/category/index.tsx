@@ -11,6 +11,7 @@ import { Heading } from '@/components/headers/admin/heading';
 // Import Interface
 import { EventCategory as EventCategoryInterface } from '@/interfaces/event';
 import { useCategories, useDeleteEventCategory,useUpdateEventCategory} from '@/hooks/event/event_category';
+import { deleteEventCategory } from '@/api/event/event_category';
 
 export interface dataTable {
     id: string, 
@@ -46,7 +47,13 @@ const  EventCategory = () => {
     ]
     const buttonBread =  { text: tb('add_event_category'), href: '/panel/admin/event/category/create' }
     
-    
+    const deletecategory=()=>{
+        try {
+            deleteEventCategory('643c4e35b6e4e43de015c387')
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const columns = columnsEventCategory();
    
     return (
@@ -69,7 +76,7 @@ const  EventCategory = () => {
                                         columns={columns} 
                                         deleteOption={useDeleteEventCategory} 
                                         defaultData={dataTableE} />}
-                                        
+                                        <button onClick={deletecategory}>click</button>
                                     </div>
                                 </div>
                             </div>

@@ -24,7 +24,7 @@ export const OptionsEvent = ({id, color, edit = true, deleteOpt = true, pay = fa
           </Link>
           ) : ''}
           { deleteOpt ? (
-          <button onClick={()=>deleteCategory(id)} className="px-1">
+          <button onClick={()=>deleteCategory(`${id}`)} className="px-1">
             <TrashIcon className={`w-4 h-4 hover:text-${color}`} />
           </button>
           ) : ''}

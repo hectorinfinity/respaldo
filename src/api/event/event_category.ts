@@ -25,7 +25,16 @@ export const updateEventCategory = async (id: string, category: EventCategory) =
 }
 
 export const deleteEventCategory = async (id: string) => {
-    const { data } = await axios.delete(`/events/categories/${id}`);
 
-    return data;
+    try {
+        
+          const { data } = await axios.delete(`/events/categories/${id}`);
+    console.log(data)
+    return data
+
+    } catch (error) {
+    return error;
+    }
+  
+    
 }

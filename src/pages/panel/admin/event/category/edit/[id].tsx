@@ -21,6 +21,7 @@ import { EventCategory } from '@/interfaces/event';
 import {ArrowPathIcon} from '@heroicons/react/24/outline';
 /*Hooks */
 import {useReadEventCategory, useUpdateEventCategory} from '@/hooks/event/event_category';
+import { readEventCategory } from '@/api/event/event_category';
  
 
 const EventCreateCategory = () => {
@@ -33,13 +34,15 @@ const EventCreateCategory = () => {
     const {query,pathname}=router 
     
     
-    const itemCategory=useReadEventCategory(`${query.id}`)
-
+    
+    const data=useReadEventCategory(`${query.id}`)
+    console.log(data)
+    
     const breadcrumb = [
         { page: t('admin.admin'), href: '/panel/admin' },
         { page: t('admin.event.event'), href: '/panel/admin/event/category' },
         { page: t('admin.event.category'), href: '/panel/admin/event/category' },
-        { page: t('actions.edit') + ` / ${itemCategory.category.find((e)=>e.lang== locale).name}`, href: '' }
+        { page: t('actions.edit') + ` / ${data?.category.find((e)=>e.lang==locale).name}` , href: '' }
     ];
     const {mutate, isLoading, isError, isSuccess}= useUpdateEventCategory()
 
@@ -60,7 +63,7 @@ const EventCreateCategory = () => {
             const url=URL.createObjectURL(blob)
             console.log(files)
             console.log(url)
-            setValue('picture', url )
+            setValue('picture',files)
         }
         
     };
@@ -75,15 +78,14 @@ const EventCreateCategory = () => {
     const  onChangeColor=(color:any)=>{ 
         setInitColor(color.hex)
         setValue('color', initColor )
+        setValue('status', data?.status) 
     }
 
 /*submit form*/ 
     const [dataCategory,setData]=useState()
     
     const onSubmit:SubmitHandler<EventCategory >= (data:EventCategory )=>{
-        
-      
-      console.log(data)
+    
       mutate({id:`${query.id}`,category:data})
       
     };
