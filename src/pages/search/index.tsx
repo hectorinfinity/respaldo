@@ -54,7 +54,7 @@ const Search = ({ categories }) => {
     size: pagination?.size,
   });
   const category = categories?.find((item) => item._id == queryObj?.category);
-
+  console.log(data?.pages?.map((page) => page.items));
   useEffect(() => {
     setPagination({ ...queryObj, page: 1, size: 50 });
     refetch();
