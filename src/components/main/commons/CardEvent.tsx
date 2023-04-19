@@ -114,7 +114,7 @@ const CardEvent: React.FC<props> = ({
         />
       )}
       <Link
-        href={`/event/${slug}?id=${id}`}
+        href={`/event/${slug}?_id=${id}`}
         className={classNames(
           'relative block',
           layout == 'grid' ? 'aspect-[4/3]' : 'aspect-square w-72 '

@@ -5,10 +5,19 @@ import { classNames } from '@/helpers';
 
 type Props = {
   color: string;
+  id?: string;
+  category?: string;
+  status?: boolean;
+  onChange?: (id: string, category: string, status: boolean) => void;
 };
 
-export const SwitchTable = ({ color }: Props) => {
-  const [enabled, setEnabled] = useState(false);
+export const SwitchTable = ({ color, id, category, status, onChange }: Props) => {
+  const [enabled, setEnabled] = useState(status);
+
+  const changeHandler = (e) => {
+    setEnabled(e);
+    onChange(id, category, e);
+  }
 
   return (
     <Switch
