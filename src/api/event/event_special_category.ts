@@ -1,8 +1,8 @@
 import axios from '@/lib/axios';
 import { EventSpecialCategory } from '@/interfaces/event';
 
-export const getEventsSpecialsCategories = async () => {
-    const { data } = await axios.get(`/events/specials/categories/`);
+export const getEventsSpecialsCategories = async (searchkey:string , searchword:string,sortby:string ) => {
+    const { data } = await axios.get(`/events/specials/categories/?page=1&size=100&${searchkey}&${searchword}&${sortby}&descending=true`);
     return data;
 };
 

@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 // Components
 import { CustomLabel, CustomError } from '@/components/forms';
 import { FormStyles } from '@/helpers';
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext, Controller,useForm} from 'react-hook-form';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
@@ -51,10 +51,14 @@ const formats = [
 ];
 
 type Props = {
-  index?: number;
+  index?: number,
+  control?:any
+
+
 };
 
-export const NameDescLang = ({ index = 0 }: Props) => {
+export const NameDescLang = ({ index = 0, control }: Props) => {
+  
   const formMethods = useFormContext();
   const t = useTranslations('Common_Forms');
   const lang = formMethods?.watch(`event_general.content.${index}.lang`);
@@ -87,7 +91,7 @@ export const NameDescLang = ({ index = 0 }: Props) => {
             <div className="col-span-12">
               <CustomLabel field="description" name={t('field_description')} />
               <Controller
-                control={formMethods?.control}
+                control={control}
                 name={`event_general.content.${index}.description`}
                 render={({ field: { onChange, value } }) => (
                   <QuillNoSSRWrapper

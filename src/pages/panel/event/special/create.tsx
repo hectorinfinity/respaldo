@@ -1,5 +1,5 @@
 /** @format */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { GetStaticPropsContext } from "next";
 import { useTranslations } from "next-intl";
 import { SketchPicker } from 'react-color'
@@ -13,6 +13,13 @@ import * as yup from "yup";
 import { CustomCancel, CustomLabel, CustomSubmit } from '@/components/forms';
 import { FormStyles } from '@/helpers';
 import { NameDescLang } from '@/components/forms/lang';
+import {EventSpecialCategory } from '@/interfaces/event';
+import {useEventsSpecialsCategories,
+useCreateEventSpecialCategory,
+useReadEventSpecialCategory,
+useUpdateEventSpecialCategory,
+updateEventSpecialCategory,
+useDeleteEventSpecialCategory}  from '@/hooks/event/event_special_category';
 
 const EventCreateSpecialCategory = () => {
     const t = useTranslations("Panel_SideBar");
@@ -26,6 +33,78 @@ const EventCreateSpecialCategory = () => {
         { page: t('actions.create'), href: '' }
     ]
 
+    const {mutate, isLoading, isError, isSuccess}= useCreateEventSpecialCategory()
+
+    const { register, handleSubmit,setValue, formState: { errors }, reset,getValues ,control} = useForm<EventSpecialCategory>();
+
+
+/*input file config*/ 
+    const [upload, setUpload ]=useState('');
+    const [upload2, setUpload2 ]=useState('');
+    const File=useRef<HTMLLabelElement>();
+    const File2=useRef<HTMLLabelElement>();
+    const handleSelectFile=()=>{
+      const FileSelected = File.current;
+      const FileSelected2 = File2.current;
+        
+        if(FileSelected ){
+            const files=(FileSelected.children[1]as HTMLInputElement).files[0]
+            setUpload(files.name)
+            setValue('header_img', files )
+        }
+        if(FileSelected2 ){
+            const files=(FileSelected2.children[1]as HTMLInputElement).files[0]
+            setUpload(files.name)
+            setValue('event_img', files )
+        }
+        
+    };
+   
+
+    
+    
+ 
+
+/*input color config*/
+    const [initColor, setInitColor]=useState<string>('#ffffff');
+    const  onChangeColor=(color:any)=>{ 
+        setInitColor(color.hex)
+        setValue('color', initColor )
+        console.log(getValues())
+    }
+
+/*submit form*/ 
+    const onSubmit:SubmitHandler<EventSpecialCategory>= (data:EventSpecialCategory)=>{
+      mutate(data)
+    };
+   
+    
+    
+const[category,setCategory]=useState( [{lang:'es', name:'',description:''},{lang:'en', name:'',description:''}])
+console.log(category)
+/*Lang*/
+const[lang ,setlang]=useState('en')
+
+const LangSelect:React.ChangeEventHandler<HTMLSelectElement> = (e:any)=>{
+    const Lang=e.target.value;
+    setlang(Lang==='en'? 'en': 'es')
+}
+/*Name*/
+const handleName:React.ChangeEventHandler<HTMLInputElement> = (e:any)=>{
+    const Name=e.target.value;
+    const cate= [...category]
+    
+    if(lang==='en'){
+        e.target.name ==='name'?cate[1].name=Name:cate[1].description=Name
+        
+        setCategory(cate)
+    }else if(lang==='es'){
+        e.target.name ==='name'?cate[0].name=Name:cate[0].description=Name
+        setCategory(cate)
+    }
+        setValue('category', category)
+}
+
     return (
         <>
             {/* Breadcrumb section */}
@@ -34,7 +113,7 @@ const EventCreateSpecialCategory = () => {
             </div>
             <div className="flex flex-1 pt-6">
                 <div className="w-screen min-h-0 overflow-hidden">
-                    <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
+                    <form className="divide-y divide-gray-200 lg:col-span-9" action={handleSubmit(onSubmit())} method="POST">
                         <div className="py-6 grid grid-cols-12 gap-6">
                             <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12">
                                 <CustomLabel field="header-upload" name={tc('field_header')} required />
@@ -56,11 +135,13 @@ const EventCreateSpecialCategory = () => {
                                         </svg>
                                         <div className="flex text-sm text-gray-600">
                                             <label
+                                                ref={File} 
                                                 htmlFor="header-upload"
                                                 className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>{tc('field_upload_file')}</span>
                                                 <input id="header-upload" name="header-upload" type="file" className="sr-only" />
+                                            
                                             </label>
                                             <p className="pl-1">{tp('text_drag_n_drop')}</p>
                                         </div>
@@ -88,6 +169,7 @@ const EventCreateSpecialCategory = () => {
                                         </svg>
                                         <div className="flex text-sm text-gray-600">
                                             <label
+                                                ref={File2} 
                                                 htmlFor="icon-upload"
                                                 className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
@@ -103,7 +185,10 @@ const EventCreateSpecialCategory = () => {
                             <div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6">
                                 <div>
                                     <CustomLabel field="front_id" name={tc('field_color')} required />
-                                    <SketchPicker />
+                                    <SketchPicker 
+                                    onChange={onChangeColor}
+                                    color={initColor}
+                                    />
                                 </div>
                                 <div className='py-6'>
                                     <CustomLabel field="front_id" name={tc('field_color')} required />
@@ -182,7 +267,7 @@ const EventCreateSpecialCategory = () => {
                                     </div>
                                 </div>
                             </div>
-                            <NameDescLang index={1} />
+                            <NameDescLang index={1}  control={control}/>
                         </div>
 
                         {/* Buttons section */}
