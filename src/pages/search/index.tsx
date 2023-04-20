@@ -41,18 +41,22 @@ const Search = ({ categories }) => {
     isLoading,
     refetch,
   } = useInfinteEventSchedulesTimetables({
-    searchword: queryObj?.category,
-    searchkey: query,
+    category: queryObj?.category,
+    sub_category: queryObj?.sub_category,
+    sub_subcategory: queryObj?.sub_sub_category,
+    init_date: queryObj?.initial_date
+      ? new Date(queryObj?.initial_date as string)
+      : undefined,
+    end_date: queryObj?.finish_date
+      ? new Date(queryObj?.finish_date as string)
+      : undefined,
     page: pagination?.page,
     size: pagination?.size,
   });
-  console.log(data?.pages);
-  const category = categories?.find((item) =>
-    item.category.find((obj) => obj.name == queryObj?.category)
-  );
-
+  const category = categories?.find((item) => item._id == queryObj?.category);
+  console.log(data?.pages?.map((page) => page.items));
   useEffect(() => {
-    setPagination(queryObj);
+    setPagination({ ...queryObj, page: 1, size: 50 });
     refetch();
   }, [
     query,
@@ -83,6 +87,7 @@ const Search = ({ categories }) => {
             name: item.category.find((obj) => obj.lang == locale)?.name,
             color: item.color,
             image: item.picture,
+            id: item._id,
           }))}
           layout="swiper"
           size="small"
@@ -94,6 +99,7 @@ const Search = ({ categories }) => {
 
         {typeof queryObj?.category == 'string' && queryObj?.category !== '' && (
           <HeaderCategory
+            id={category?.category?.find((obj) => obj.lang == locale)?._id}
             color={category?.color}
             image={category?.picture}
             name={category?.category?.find((obj) => obj.lang == locale)?.name}
