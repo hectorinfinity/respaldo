@@ -16,6 +16,13 @@ export const createEventSpecialCategory = async (
     `/events/specials/categories/`,
     special_category
   );
+export const createEventSpecialCategory = async (
+  special_category: EventSpecialCategory
+) => {
+  const { data } = await axios.post(
+    `/events/specials/categories/`,
+    special_category
+  );
 
   return data;
 };

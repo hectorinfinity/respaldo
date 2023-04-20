@@ -27,6 +27,15 @@ export function useInfiniteQueryEventSchedules(
   });
 }
 
+export function useInfiniteQueryEventSchedules(
+  pagination: { [key: string]: any } = {}
+) {
+  return useInfiniteQuery<WithDocs<EventSchedule>>([key, pagination?.page], {
+    queryFn: () => getEventsSchedules(pagination),
+    keepPreviousData: true,
+  });
+}
+
 export function useEventSchedule(event_schedule_id: string) {
   return useQuery<EventSchedule>([key, event_schedule_id], () =>
     readEventSchedule(event_schedule_id as any)
