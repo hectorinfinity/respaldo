@@ -5,8 +5,15 @@ import ListCardEventRecommendation from '@/components/main/commons/ListCardEvent
 import CardProgramDetails from '@/components/main/programs/CardProgramDetails';
 import HeaderProgram from '@/components/main/programs/HeaderProgram';
 import ListProgramDays from '@/components/main/search/ListProgramDays';
-import { useEvent } from '@/hooks/event/event';
-import { useEventScheduleTimetable } from '@/hooks/event/event_schedules_timetables';
+import { useEvent, useEvents } from '@/hooks/event/event';
+import {
+  useEventScheduleTimetable,
+  useEventScheduleTimetables,
+} from '@/hooks/event/event_schedules_timetables';
+import {
+  useEventSpecialCategory,
+  useEventSpecialCategoryDateRange,
+} from '@/hooks/event/event_special_category';
 import { faker } from '@faker-js/faker';
 import { useQuery } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
@@ -23,13 +30,19 @@ const ProgramDetailed = () => {
   const [cardProgramDetails, setCardProgramDetails] = useState<any>();
   const [eventsRecommendations, setEventsRecommendations] = useState([]);
   const [listProgramDays, setListProgramDays] = useState([]);
-  const events = useQuery({
-    queryKey: ['events'],
-    queryFn: getEvents,
-  });
 
-  const event = useEvent(query?.id as string);
-  const eventScheduleTimetable = useEventScheduleTimetable(query?.id as string);
+  const { data: specialCategory } = useEventSpecialCategory(
+    query?.id as string
+  );
+
+  console.log(new Date(specialCategory?.initial_date));
+
+  const { data: eventsSchedules, isLoading } = useEventScheduleTimetables();
+  const eventRange = useEventSpecialCategoryDateRange(query?.id as string);
+  console.log('range ', eventRange.data);
+  const categoryName =
+    specialCategory?.category.find((item) => item.lang == locale).name ||
+    specialCategory?.category.find((item) => item.lang == 'es').name;
   useEffect(() => {
     setCardProgramDetails({
       image: faker.image.cats(),
@@ -55,55 +68,66 @@ const ProgramDetailed = () => {
     <div>
       <HeaderProgram
         image="https://loremflickr.com/640/480/cats"
-        name={event?.data?.content.find((obj) => obj.lang == locale)?.name}
+        name={categoryName}
       />
 
       <div className="mt-16 mb-44 section-container space-y-16">
-        {/** TODO: start and end dates */}
         <CardProgramDetails
           className="mt-16"
-          description={
-            event?.data?.content.find((obj) => obj.lang == locale)?.description
-          }
-          endDate={new Date()}
-          image={'https://loremflickr.com/640/480/cats'}
-          location={'Location'}
-          name={event?.data?.content.find((obj) => obj.lang == locale)?.name}
-          startDate={new Date()}
+          description={specialCategory?.description}
+          endDate={specialCategory?.final_date || new Date()}
+          startDate={specialCategory?.initial_date || new Date()}
+          image={specialCategory?.header_img}
+          location={`${specialCategory?.location.city}, ${specialCategory?.location.state.long_name}, ${specialCategory?.location.country.long_name}`}
+          name={categoryName}
         />
-        {/** TODO: list program days fetch missing */}
         <ListProgramDays
           items={listProgramDays}
           name="field"
           control={control}
         />
         <ListCardEvent
-          loading={events?.isLoading}
+          loading={isLoading}
           layout="swiper"
           setCurrentPage={() => {}}
           setPageSize={() => {}}
           totalDocs={10}
           title={t('home.new_events')}
-          items={events?.data?.items?.map((item) => ({
+          items={eventsSchedules?.items.map((item) => ({
+            // image: item.schedule_id.event_id.images.picture,
             image: 'https://loremflickr.com/640/480/cats',
-            name: item.content.find((obj) => obj.lang == locale)?.name,
-            startDate: item.created_at,
-            startTime: '1:00',
-            endTime: '12:00',
-            location: 'Location',
-            category_id: item.category_id?.id,
+            name:
+              item.schedule_id.event_id.content.find(
+                (obj) => obj.lang == locale
+              )?.name ||
+              item.schedule_id.event_id.content.find((obj) => obj.lang == 'es')
+                ?.name,
+            startDate: item.start_at,
+            endDate: item.end_at,
+            location: `${item.schedule_id.venue_id.address.country.long_name}, ${item.schedule_id.venue_id.address.city} ${item.schedule_id.venue_id.address.address}`,
+            color: item.schedule_id.event_id.category_id.color,
             id: item._id,
+            category_id: item.schedule_id.event_id.category_id._id,
           }))}
           {...useFormReturn}
         />
 
         <ListCardEventRecommendation
-          items={events?.data?.items?.map((item) => ({
-            category_id: item.category_id.id,
+          items={eventsSchedules?.items.map((item) => ({
+            // image: item.schedule_id.event_id.images.picture,
             image: 'https://loremflickr.com/640/480/cats',
-            location: 'Location',
-            name: item.content.find((obj) => obj.lang == locale)?.name,
+            name:
+              item.schedule_id.event_id.content.find(
+                (obj) => obj.lang == locale
+              )?.name ||
+              item.schedule_id.event_id.content.find((obj) => obj.lang == 'es')
+                ?.name,
+            startDate: item.start_at,
+            endDate: item.end_at,
+            location: `${item.schedule_id.venue_id.address.country.long_name}, ${item.schedule_id.venue_id.address.city} ${item.schedule_id.venue_id.address.address}`,
+            color: item.schedule_id.event_id.category_id.color,
             id: item._id,
+            category_id: item.schedule_id.event_id.category_id._id,
           }))}
           setCurrentPage={() => {}}
           setPageSize={() => {}}
