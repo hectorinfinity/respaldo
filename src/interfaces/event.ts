@@ -164,7 +164,7 @@ export interface EventSpecialCategory {
   color: string;
   status?: boolean;
   initial_date: string;
-  finish_date: string;
+  final_date: string;
   location: {
     latitude: string;
     longitude: string;
@@ -206,7 +206,7 @@ export interface EventSupplier {
 }
 
 export interface EventTag {
-  _id?: string
+  _id?: string;
   tag: string;
   status?: boolean;
 }
